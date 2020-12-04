@@ -1,15 +1,17 @@
 ---
-title: "Data cleaning with R"
-subtitle: "<br/>Regular expressions and their role in data cleaning"
-author: "Luis D. Verde Arregoitia"
+title: "Regular Expressions"
+subtitle: "Data Cleaning with R"
 output:
   xaringan::moon_reader:
+    css: ["style.css", "default"]
     lib_dir: libs
     nature:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
+      ratio: 16:9
 ---
+
 ```{r xaringan-tachyons, echo=FALSE}
 xaringanExtra::use_tachyons()
 ```
@@ -17,6 +19,13 @@ xaringanExtra::use_tachyons()
 ```{r xaringan-panelset, echo=FALSE}
 xaringanExtra::use_panelset()
 ```
+
+```{r xaringan-logo, echo = FALSE}
+xaringanExtra::use_logo(
+  image_url = "https://raw.githubusercontent.com/rfortherestofus/course-assets/master/images/rru-logo-blue.png"
+)
+```
+
 
 ```{r preloaded data, echo=FALSE}
 library(palmerpenguins)
@@ -32,16 +41,19 @@ data(msleep)
 options(tibble.print_max = 5, tibble.print_min = 5)
 ```
 
-class: center, middle
+---
+
+class: center, middle, section-title, inverse
 
 # What are regular expressions?
 
 ???
 
 ---
-class: middle
 
-.f1[Specially encoded .avenir[strings] of characters that match patterns in other text strings.] 
+## Regular expressions
+
+Specially encoded .avenir[strings] of characters that match patterns in other text strings.
 
 ---
 
@@ -166,7 +178,7 @@ They stand for exactly what they are: .orange[`d`] in the regex matches a “.pu
 If a text pattern can be described verbally, we can most likely write regular expression to match it.]
 
 ---
-#Possible patterns:
+# Possible patterns:
 .f3[
 - "dog" but not "dogs"  
 - "dogs" but only if string begins with "dogs"  
@@ -350,7 +362,7 @@ str_replace(string = c("colour", "neighbour", "honour"),
 - `str_view()` from 📦 [`stringr`](https://stringr.tidyverse.org/)]
 
 ---
-class: my-turn
+class: my-turn, hide_logo
 
 .f2[1. Write regular expressions for the patterns bellow  
 2. Test them in an interactive tool]
