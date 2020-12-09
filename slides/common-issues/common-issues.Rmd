@@ -87,7 +87,9 @@ class: center, middle, dk-section-title
 background-image:url("images/james-rathmell-t0iwmK0WC0Y-unsplash.jpg")
 background-size: cover
 # Unusable headers 
+
 ---
+
 ## Unusable headers 
 
 Inconsistent or uninformative names  
@@ -134,13 +136,20 @@ tibble::tribble(
 
 ### Syntactically valid variable names
 
+--
+
 - Contain only letters, numbers, dots or underscores
 
+--
+
 - Start with a letter or a dot (not followed by a number)
+
+--
 
 - Not reserved words (_if_, _else_, _for_, _in_, _TRUE_, _NaN_, etc.)  
 
 ---
+
 ## Cleaning column names 
 
 .left-column[
@@ -380,7 +389,9 @@ class: center, middle, dk-section-title
 background-image:url("images/snake-mylene2401.jpg")
 background-size: fill
 # Letter case 
+
 ---
+
 ## Letter case
 ### Strings in R are case sensitive
 
@@ -521,6 +532,7 @@ background-size: cover
 - Part of a compound value (next lesson)
 
 ---
+
 ## Embedded subheaders
 
 .left-column[
