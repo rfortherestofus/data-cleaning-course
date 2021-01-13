@@ -1,0 +1,714 @@
+---
+title: "Regular Expressions"
+output:
+  xaringan::moon_reader:
+    css: ["style.css", "default"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: 16:9
+---
+
+```{r child = "setup.Rmd"}
+```
+
+```{r xaringan-tachyons, echo=FALSE, eval=TRUE}
+xaringanExtra::use_tachyons()
+```
+
+```{r xaringan-panelset, echo=FALSE, eval=TRUE}
+xaringanExtra::use_panelset()
+```
+
+```{r imgs setup, echo=FALSE, eval=TRUE}
+knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
+
+```
+
+```{r preloaded data, echo=FALSE, eval=TRUE}
+library(palmerpenguins)
+library(stringr)
+library(dplyr)
+library(ggplot2)
+```
+
+class: center, middle, dk-section-title
+background-image:url("images/alex-iby-2JfOIZ1jR3M-unsplash.jpg")
+background-size: cover
+# What are regular expressions?
+
+---
+
+class: middle
+
+##Specially encoded _strings_ of characters that match patterns in other text string 
+
+---
+class: center, middle, dk-section-title
+background-image:url("images/dylan-freedom-DLwjgBvD_yA-unsplash.jpg")
+background-size: cover
+# Strings
+---
+
+</br></br>
+.large[A collection of characters that make up one element of a vector:]
+```{r, eval=TRUE}
+test_string <- "This sentence is a string."
+```
+
+.large[We can store multiple strings in a character vector:]
+
+```{r, eval=TRUE}
+pets <-  c("dog","cat","parrot")
+```
+
+.pull-left[
+.large[Headers and values in a data frame can also be strings:]]
+
+```{r include=FALSE, eval=TRUE}
+library(gt)
+library(tibble)
+library(magrittr)
+drinks_df <- tibble(drink=c("Coffee","Tea","Juice"),price=c(3.50,2.99,3.20))
+```
+
+.pull-right[
+```{r echo=FALSE, eval=TRUE}
+drinks_df %>%
+  gt() %>%
+  tab_style(
+    style = list(
+      cell_fill(color = "yellow")
+    ),
+    locations = cells_body(
+      columns = vars(drink)
+    )
+  ) %>%
+  tab_options(column_labels.background.color = "yellow")
+
+```
+]
+
+---
+
+# Strings in R are _case sensitive_
+
+.large[Uppercase and lowercase letters are treated as distinct]
+
+```{r, eval=TRUE}
+"cat"=="CAT" ; "cat"=="cat"
+```
+
+--
+
+.large[Regex searches are case sensitive by default, so we can:]    
+
+- Build case-insensitive regular expressions  
+
+- Change the matching to be case insensitive  
+
+- Coerce the input before matching
+
+---
+class: center, middle, dk-section-title
+background-image:url("images/jorge-balleza-vtvwNNjYBz4-unsplash.jpg")
+background-size: cover
+# Why learn regular expressions?
+---
+
+</br>
+.large[
+.center[🕰]  
+Cleaning text can be time-consuming and the first hurdle to address when working with less-than-perfect data.] 
+
+.center.large[💻      
+Regular expressions can often replace dozens of lines of code.] 
+
+.large.center[
+Regex is not specific to any particular programming language or command-line tool]
+
+---
+class: center, middle, dk-section-title
+background-image:url("images/dan-gold-4YAhiaZkUfs-unsplash.jpg")
+background-size: cover
+# Literal Characters and Metacharacters
+---
+
+## Getting started
+.large[To search for a specific sequence of characters, the regexp we need is simply that sequence of characters.]
+
+</br>
+.fl.w-third[
+<div class="f2 mt1 pt0 code">Regexp</div>
+</br>
+</br>
+`dog`
+]
+
+.fl.w-third[
+<div class="f2 mt0 pt0 code">Input 
+string</div>
+</br></br>
+"The dog is fat."
+]
+
+.fl.w-third[
+<div class="f2 mt0 pt0 code">Match</div>
+</br>
+</br>
+The .bg-yellow[dog] is fat.
+</br></br>
+]
+</br></br>
+</br></br>
+
+---
+
+# Literal characters
+</br></br>
+.large[We will get a match whenever the characters .orange[`d`], .orange[`o`], and .orange[`g`] occur consecutively in the input text.]
+</br></br>
+.large[`"dog"` tells the regex engine:
+find a .orange[d], immediately followed by an .orange[o], immediately followed by a .orange[g] (together and in that particular order)] 
+
+---
+
+## Literal characters (continued)
+</br>
+.large[.orange[`d`], .orange[`o`], and .orange[`g`] are examples of literal characters.
+</br>
+</br>
+
+They stand for exactly what they are: .orange[`d`] in the regex matches a “.purple.b[d]” in the input text, .orange[`o`]  matches an “.purple.b[o]” in text, and so on.]
+
+---
+
+# Metacharacters
+  
+</br>  
+.large[The power and flexibility of regular expressions comes from their ability to describe more complex patterns.] 
+</br>  
+
+--
+
+.large[
+If a text pattern can be described verbally, we can most likely write regular expression to match it.]
+
+---
+# Possible patterns:
+
+- "dog" but not "dogs"  
+- "dogs" but only if string begins with "dogs"  
+- digits (0,1,2,3,4,5,6,7,8,9)  
+- "modeling" or "modelling"  
+- words ending in "at"
+- strings that start with digits
+- dates
+- zip codes
+- numbers inside square brackets and also the brackets  
+- valid Twitter handles (start with @, no spaces or symbols, <16 characters)
+- UPPERCASE words
+- positions at which strings switch letter case (e.g. lowerUPPER)
+
+---
+
+# Metacharacters
+</br>
+.large[To match more than literal strings of text, we call on a small subset of characters that have special functionalities when they appear in a regular expression.] 
+</br></br>
+ 
+--
+ 
+.large[Metacharacters include: .b.orange[[]\^$.|?*+()], which are reserved for unique matching purposes.]
+
+---
+
+# Using metacharacters
+
+.large[Depending on what they do, we can place most metacharacters into major “families“]
+
+.b[Wildcards] stand in for unknown characters  
+&nbsp; .large[.f1.orange.pre[&nbsp;.&nbsp; ] &nbsp;&nbsp; match any character]
+
+.b[Character sets/classes] match one or more characters  
+&nbsp;.large[.b.orange.pre[&nbsp;[ ] &nbsp;] &nbsp;&nbsp; match a set of characters]  
+
+.b[Anchors] specify the relative position of the pattern being matched   
+&nbsp;.large[.orange.large.pre[&nbsp;^&nbsp;] &nbsp;&nbsp;     starts with]  
+&nbsp;.large[.large.orange.pre[&nbsp;$&nbsp;]  &nbsp;&nbsp; ends with]
+
+---
+
+## Using metacharacters (continued)
+
+.large[**Quantifiers** specify how many times a character or character class must appear in the input for a match to be found] 
+
+&nbsp;.f2[.orange.f1[&nbsp;?&nbsp;] &nbsp;&nbsp;Zero or one (of the preceding character)]  	
+&nbsp;.f2[.orange.f1[&nbsp;\\\*&nbsp;] &nbsp;&nbsp;Zero or more occurrences] 	
+&nbsp;.f2[.orange.f1[&nbsp;+&nbsp;]	 &nbsp;&nbsp;One or more occurrences]   
+&nbsp;.f2[.orange.f1[&nbsp;{}] 	&nbsp;&nbsp;Exactly the specified number of occurrences]  	
+
+---
+
+### Using metacharacters (continued)
+
+.b.large[Negation tokens]   
+
+&nbsp;.large[.orange.b[[^]] &nbsp;&nbsp;  matches characters not in the specified character set] 
+
+.large[.b[Alternation] tokens separate a series of alternatives]  
+&nbsp;.large[.orange.b.pre[&nbsp;|&nbsp;] &nbsp;&nbsp; either or]  
+
+.large.b[Special sequences and escapes]  
+&nbsp;.large[.b.orange.pre[&nbsp;\\&nbsp;] 	&nbsp;&nbsp; signals a shorthand sequence or gives special characters a literal meaning]	
+
+---
+
+# Note 
+
+.large[
+* To use special characters in a regular expression, escape them with a backslash, but the backslash itself needs to be escaped.
+
+* Metacharacters inside a character set are stripped of their special nature.]
+
+---
+
+### Using metacharacters (continued)
+
+.b[Shorthand character classes] are available to refer to commonly-used character sets   
+.large[.b.orange[\w] &nbsp;all letters and numbers]   
+.large[.b.orange[\d] &nbsp;digits]  
+.large[.orange.b[\t]  &nbsp;tab]  
+.large[.orange.b[\n]  &nbsp;new line]  
+.large[.orange.b[\s]  &nbsp;space]  
+.large[.orange.b[\b]  &nbsp;word boundary]  
+
+.b[Shorthand + negation]   
+.large[.orange.b[\S]  &nbsp;  not whitespace]  
+.large[.orange.b[\D]  &nbsp;  not digits]   
+.large[.orange.b[\W]  &nbsp;not letters, numbers, or underscores]   
+
+---
+
+# Examples
+
+.f2[
+
+.b.orange[\\\\\\\\(hello\\\\\\\\)] matches .b["(hello)"]  
+
+.b.orange[ing$] matches .b["going"] but not .b["ingest"]  
+
+.b.orange[f..l] matches **"fill"**, **"fool"**, but not **"flail"**  
+
+.b.orange[dog|bird] matches **"dog"** or **"bird"**
+
+.b.orange[[cb]at] matches **"cat"**, and **"bat"**, but not   **"rat"**] 
+
+---
+
+## Examples (continued)
+.f2[
+.b.orange[modell?ing] matches .b["modeling"] and .b["modelling"]  
+
+.b.orange[ya*y!] matches .b["yy"], .b["yay!"], .b["yaaay!"], .b[“yaaaaaay!”], etc.  
+
+.b.orange[no+] matches .b[“no”], **“noo"**, **“nooooo”**, etc, but not **“n”**  
+ 
+.b.orange[^can.\\\*] matches **"can"**, **"canine"**, **"canoli"**, **"canadian"**] 
+
+---
+
+## Examples (continued)
+.f2[
+.b.orange[\\bcase] matches .b["case"] and .b["casein"] but not .b["suitcase"]  
+
+.b.orange[\\s{3}] matches three spaces 
+
+.b.orange[[^aoeio]] matches consonants
+ 
+.b.orange[^[a-z]+$] matches a lowercase string]
+
+---
+class: center, middle, dk-section-title
+background-image:url("images/joakim-honkasalo-1LEq1hqDxEg-unsplash.jpg")
+background-size: cover
+# Regex in R
+---
+
+.large.center[Matching patterns]  
+
+**`grepl`** - returns a logical vector (match or no match for each element of x)
+.large[`grepl(pattern, x)`]  
+
+
+**`grep`** - returns a vector indicating which elements of x yielded a match  
+.large[`grep(pattern, x)`]
+
+
+.large.center[Replacing matches]
+
+**`gsub`** - returns the input string with substitutions  
+.large[`gsub(pattern, replacement, x)`]
+
+---
+
+.large[Matches?]
+```{r, eval=TRUE}
+grepl(pattern = "cat", x= c("catalog", "battlecat", "apple"))
+```
+
+.large[Which elements contain matches?]
+```{r, eval=TRUE}
+grep(pattern = "cat", x= c("catalog", "battlecat", "apple"))
+```
+
+.large[Replacing matches (British to American spelling)]
+```{r, eval=TRUE}
+gsub(pattern = "ou",
+     replacement = "o",
+     x= c("colour", "neighbour", "honour"))
+```
+
+---
+
+# 📦 .rrured[`stringr`]
+.right[https://stringr.tidyverse.org/]
+
+.large[Cohesive set of functions for string manipulation
+
+- Function names start with .b[`str_`]   
+
+- All functions take a vector of strings as the first argument (pipe-friendly)  
+
+**`regex()`** modifier to control matching behavior]
+
+---
+
+.large[Matches?]
+
+```{r, eval=TRUE}
+str_detect(string = c("catalog", "battlecat", "apple"), pattern = "cat")
+```
+
+.large[Which elements contain matches?]
+
+```{r, eval=TRUE}
+str_which(string = c("catalog", "battlecat", "apple"), pattern = "cat")
+```
+
+.large[Replacing matches (British to American spelling)]
+
+```{r, eval=TRUE}
+str_replace(string = c("colour", "neighbour", "honour"),
+            pattern = "ou",
+            replacement = "o")
+```
+
+---
+class: center, middle, dk-section-title
+background-image:url("images/dfkt-nkynQWagL-s-unsplash.jpg")
+background-size: cover
+# Understanding a Regular Expression
+---
+  
+## Online regex testers
+.large[
+- [regex101](https://regex101.com/) by Firas Dib 
+- [regexr](https://regexr.com/) by Grant Skinner 
+- [regexpal](https://www.regexpal.com/) - part of Dan's Developer Tools] 
+
+## Inside R 
+.large[
+- 📦 [`regexplain`](https://www.garrickadenbuie.com/project/regexplain/) by Garrick Aden‑Buie
+- `str_view()` from 📦 [`stringr`](https://stringr.tidyverse.org/)]
+
+---
+class: my-turn
+### My Turn
+.large[
+1. Write regular expressions for the patterns bellow  
+2. Test them in an interactive tool]
+
+* "dogs" but only if string begins with "dogs"  
+* strings that start with digits  
+* UPPERCASE strings  
+* numbers in brackets  
+* strings that end in “at” but longer than 3 characters   
+
+Match the regular expressions against the following vector (clue: there is only one match for each pattern)
+
+```{r}
+test_vector <- c("Those dogs are small.","dogs and cats",
+                 "34","(34)","rat","watchdog","placemat",
+                 "BABY","2011_April","HELP","mice")
+```
+
+---
+class: inverse
+## Your turn
+
+.large[Write regular expressions to match the following:]  
+(make sure they work)
+
+
+* cute, cuuute, cuuuuuute, and cuuuuuuuuute 
+* strings with both letters and digits
+* strings ending in a period
+* lowercase strings
+* exactly four digits
+* strings without the letter _**s**_
+
+---
+class: center, middle, dk-section-title
+background-image:url("images/patrick-janser-YGP2NAGaBwc-unsplash.jpg")
+background-size: cover
+# Regular expressions & data cleaning
+---
+class: middle
+
+</br>
+.large[Select, keep, or discard rows and columns]  
+</br>
+   
+.large[Substitute or recode values]  
+ 
+</br>
+.large[Extract or remove substrings]  
+
+---
+
+# Cleaning data with regex
+
+.large[Most data wrangling workflows involve specifying columns (variables).]
+
+.large[To select variables in 📦 .b.rrured[`dplyr`] and 📦 .b.rrured[`tidyr`]:]
+
+.large[
+- write out their names   
+- refer to them by position  
+- specify ranges of contiguous variables
+- use 📦 .b.rrured[`tidyselect`] helper functions]
+
+---
+
+## 📦 .rrured.b[`tidyselect`] helpers
+
+</br></br></br>
+.large[.b[`matches()`] takes regular expressions, and selects variables that match a given pattern]
+</br></br></br>
+
+**`starts_with()`**: Starts with a prefix  
+**`ends_with()`**: Ends with a suffix  
+**`contains()`**: Contains a literal string 
+
+---
+
+## Selecting columns
+
+Refer to variables by name (`penguins` data from 📦 .rrured.b[`palmerpenguins`]) 
+
+```{r, eval=TRUE}
+names(penguins)
+```
+
+```{r, eval=TRUE}
+penguins %>% select(species,bill_length_mm,flipper_length_mm) %>% 
+  sample_n(3)
+```
+
+---
+
+##Selecting columns
+
+.large[Matches in variable names]  
+
+```{r, eval=TRUE}
+names(penguins)
+```
+
+```{r, eval=TRUE}
+penguins %>% select(species, matches("length")) %>% sample_n(3)
+```
+
+---
+
+## Match values and filter rows
+
+.large[Mammals sleep dataset]
+```{r, eval=FALSE}
+library(ggplot2)
+```
+
+```{r, eval=TRUE}
+msleep %>% select(name,genus) %>% sample_n(7)
+```
+
+---
+
+## Match values and filter rows
+.large[Filter to keep rats only]
+```{r, eval=TRUE}
+msleep %>% select(name,genus) %>% 
+  filter(str_detect(string = name,pattern = "rat"))
+```
+</br></br>
+.dark-green[🐀 How can we exclude muskrats?]
+
+---
+
+```{r, eval=TRUE, echo=FALSE}
+companies <- data.frame(
+  stringsAsFactors = FALSE,
+           Company = c("Olsson","Ollsson","olson",
+                       "Olsson LLC","Olsson Group","Olsonn","Mila Inc",
+                       "Mila Inc","Mila Inc"),
+         Operation = c("Logistics","Logistics",
+                       "Logistics","Logistics","Logistics","Logistics",
+                       "E-commerce","E-commerce","E-commerce")
+)
+```
+
+
+### Substitute or recode values
+
+.panelset[
+.panel[.panel-name[companies]
+
+```{r panel-chunk comps, fig.show='hide', eval=TRUE, echo=FALSE}
+companies %>% gt::gt()
+```
+]
+
+.panel[.panel-name[Data setup]
+```{r, fig.show='hide'}
+companies <- data.frame(
+  stringsAsFactors = FALSE,
+           Company = c("Olsson","Ollsson","olson",
+                       "Olsson LLC","Olsson Group","Olsonn","Mila Inc",
+                       "Mila Inc","Mila Inc"),
+         Operation = c("Logistics","Logistics",
+                       "Logistics","Logistics","Logistics","Logistics",
+                       "E-commerce","E-commerce","E-commerce")
+)
+```
+]
+]
+---
+
+### Substitute or recode values
+.i[(correct name should be Olsson)]  
+```{r, eval=TRUE}
+companies %>% 
+  mutate(Company=str_replace(Company,"[o|O]l+s+on+.*","Olsson")) %>% 
+  distinct()
+```
+
+---
+
+# Case insensitive matching
+
+```{r, eval=TRUE}
+companies %>%
+  mutate(Company = str_replace(
+    Company,
+    regex("ol+s+on+.*", ignore_case = TRUE), "Olsson"
+  )) %>%
+  distinct()
+```
+
+---
+```{r, eval=TRUE, echo = FALSE}
+team_record <- 
+tibble::tribble(
+  ~week,               ~result,  ~game,
+    12L,                "loss", "home",
+    13L, "loss (disqualified)", "away",
+    14L,    "win (overturned)", "away",
+    15L,       "win (forefit)", "home",
+    16L,       "win (rematch)", "away"
+  )
+
+```
+
+## Extract or remove substrings  
+.panelset[
+.panel[.panel-name[team_record]
+```{r, fig.show='hide', eval=TRUE, echo=FALSE}
+team_record %>% gt::gt()
+```
+]
+.panel[.panel-name[Data setup]
+```{r, fig.show='hide'}
+team_record <- 
+tibble::tribble(
+  ~week,               ~result,  ~game,
+    12L,                "loss", "home",
+    13L, "loss (disqualified)", "away",
+    14L,    "win (overturned)", "away",
+    15L,       "win (forefit)", "home",
+    16L,       "win (rematch)", "away"
+  )
+```
+]
+]
+.large[
+.b[`str_extract()`] extracts matching patterns  
+.b[`str_remove()`]  removes matched patterns]
+---
+
+#Extract substrings
+.large[
+```{r, eval=TRUE}
+team_record %>%
+  mutate(result_comment = str_extract(
+    string = result, pattern = "\\(.+\\)"))
+```
+]
+--
+
+*Can we strip the brackets with a regular expression?
+
+---
+
+## Extract substrings
+.large.b[`str_remove_all()`]
+```{r, eval=TRUE}
+team_record %>%
+  mutate(result_comment = str_extract(
+    string = result, pattern = "\\(.+\\)")) %>% 
+  mutate(result_comment=str_remove_all(result_comment,"[()]"))
+```
+
+---
+
+# Remove substrings
+
+```{r, eval=TRUE}
+team_record %>%
+  mutate(result=str_remove(
+    string= result,pattern = " \\(.*\\)"))
+```
+---
+class: my-turn
+# My Turn
+.large[
+1. Download CRAN package descriptions  
+2. Select Package name, author, description, and all variables that contain 'License'  
+3. Filter rows for packages with names that:  
+ - start with _gg_ (case insensitivty)
+ - contain _Bayes_
+ - contain _glm_ but not _glmm_]
+
+---
+class: inverse
+# Your Turn
+.large[
+1. Download CRAN package descriptions  
+2. Select Package name, author, description, and all variables that end in 'ports'  
+3. Filter rows for packages with names that:  
+ - end in _plot_
+ - contain _Bayes_
+ - contain digits  
+ - are all UPPER CASE]

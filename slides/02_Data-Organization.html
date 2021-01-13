@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Data Organization</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.5/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+    <script src="libs/pagedtable-1.1/js/pagedtable.js"></script>
+    <link href="libs/tachyons-4.12.0/tachyons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Data Organization
+
+---
+
+
+
+
+
+layout: true
+  
+&lt;div class="dk-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://rfortherestofus.com/" target="_blank"&gt;R for the Rest of Us
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
+---
+
+
+
+
+
+class: center, middle, dk-section-title
+background-image:url("images/road-trip-with-raj-ywJx2-ZD8UU-unsplash.jpg")
+background-size: cover
+# Data organization good practices
+---
+
+
+## Well-organized data
+
+.large[
+Easier to import and manipulate, less prone to errors.]
+
+--
+
+.large[
+Manual input and interactive restructuring can lead to non-replicable, inadvertent user errors such as omitted, altered, or duplicated data.
+]
+
+--
+
+.large[
+Understanding data organization principles helps us when we produce data,
+but also to identify and solve problems in existing data.
+]
+
+---
+
+# Good Practices in Data Organization
+&lt;/br&gt;
+.large[
+- Consistency in names layouts, abbreviations, units, etc.
+]
+
+.large[
+- Good names for objects, files, and variables
+]
+
+.large[
+- Rectangular data
+]
+
+---
+
+## Consistency
+
+&lt;img src="images/consistency.png" width="3333" /&gt;
+
+---
+
+# Good names
+
+.right.large.b[
+For files, objects in our R environment, and variables in a table
+]
+&lt;/br&gt;
+
+.center.large[Keep names short but informative  
+
+Avoid spaces and special characters 
+
+Avoid using names for versioning  
+(`var_V2_final_2020`)]
+
+---
+
+##  Short but informative
+.fl.w-40[
+**Good name**  
+`max_prec`
+]
+
+.fl.w-60[
+**Avoid**  
+`Maximum_Precipitation_mm_2010-2014`  
+`max`  
+`prec`
+&lt;/br&gt;
+]
+
+## Spaces and special characters  
+
+.fl.w-40[
+**Good name**  
+`mean_price_usd`  
+`monthly_temp`
+]
+
+.fl.w-60[
+**Avoid**  
+`Mean Price ($)`  
+`Temperature/Month (°F)`
+]
+
+
+---
+
+## Data rectangles
+.fl.w-30[
+&lt;img src="images/rectangle1.png" width="76%" /&gt;
+]
+
+.large[
+- Each row has the same number of columns  
+
+- Each column has the same number of rows  
+]
+
+_Vectors and factors of the same length = all columns must have the same 'height'_
+
+.large[
+- Equal-height columns give a rectangular shape to the data frame
+]
+  
+---
+
+## Organizing data in rectangular tables
+
+&lt;img src="images/transposed.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+class: center, middle, dk-section-title
+background-image:url("images/max-bohme--bz-MQOrd18-unsplash.jpg")
+background-size: cover
+# Tidy Data and Data Rectangling
+---
+
+.pull-left[## Data imported to R ✅]    
+
+&lt;img src="images/import.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Ready for immediate use?
+
+--
+
+.large[
+- Subset, group, transform, sort, visualize, model, share
+]
+
+--
+
+## Not ready?
+
+--
+
+.large[
+- Restructure for easier and more effective handling
+]
+
+---
+
+## Tidy data 
+&lt;/br&gt;
+--
+.center.large[
+Data arranged in a 2D data matrix   
+]
+
+--
+
+.center.large[
+Rows correspond to observations   
+]
+
+--
+
+.center.large[
+Columns correspond to variables
+]
+
+--
+
+.center.large[
+One value per cell
+]
+
+---
+
+&lt;img src="images/varscols.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+---
+
+### Tidy Data Checklist
+
+.large[
+1. Each variable should be in one column  
+   
+2. Each observation of that variable should be in a different row
+
+3. There should be one table for each "kind" of variable
+
+4. Multiple related tables should include a column in common that allows them to be merged together
+]
+
+---
+
+&lt;img src="images/tidydata.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Why tidy?
+
+--
+
+.large[
+Observations are preserved across functions and operations
+]
+
+--
+
+.large[
+Easy to reshape into other structures after cleaning or transforming
+]
+
+--
+
+.large[
+Variables feed directly into model specifications and plotting parameters
+]
+
+---
+
+## Why not
+
+--
+
+.large[Tidy data is more repetitive, and often takes up more space than other more condensed representations.
+
+Not ideal for data entry, or for tables that will be embedded in a text document]
+
+---
+class: center, middle, dk-section-title
+background-image:url("images/jahongir-ismoilov-RcjvFd1k18o-unsplash.jpg")
+background-size: cover
+# Grouping and indicator variables
+---
+
+.large[
+Put any grouping information in its own variable.  
+
+Use indicator variables instead of encoding information into an existing value.
+] 
+
+&lt;img src="images/indgroups.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+---
+class: center, middle, dk-section-title
+background-image:url("images/anatoliu-WYrb7rzthBQ-unsplash.jpg")
+background-size: cover
+# NA and empty values
+---
+
+### Missing data are still data
+
+--
+
+.large[
+- Code .red[`NA`] values consistently (if done consistently, blank cells are OK)]
+
+--
+
+.large[
+- Avoid ambiguity  
+
+&gt; Are data known to be missing, or was a value intentionally left blank?
+]
+
+--
+
+.large[
+- Avoid empty cells  
+]
+--
+
+.large[
+- Avoid .red[`NA`] values in column headers and in columns that hold the observational units]
+
+---
+
+&lt;img src="images/NAblank.png" width="55%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: center, middle, dk-section-title
+background-image:url("images/aleksei-zaitcev-Nc34cnxcfH0-unsplash.jpg")
+background-size: cover
+# Data sharing good practices
+
+---
+
+### Data can be intuitive, easy to read AND machine-readable if shared adequately
+
+--
+
+.large[↘️ Reduce the need for complex/proprietary software or advanced programming skills for inclusion in future analyses.]
+
+--
+
+.large[↘ Minimize the amount of interpretation that others (or future you) will need to make to use the data.]
+
+--
+
+### 🗎 Consider file formats
+
+--
+
+- Avoid PDF as a data format
+- The simpler the better (prefer delimited text files)  
+- Share data-only files, keep calculations and results elsewhere
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

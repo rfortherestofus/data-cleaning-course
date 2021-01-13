@@ -1,0 +1,6158 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Common issues in data cleaning</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.5/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/panelset-0.2.4/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset-0.2.4/panelset.js"></script>
+    <link href="libs/tachyons-4.12.0/tachyons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Common issues in data cleaning
+
+---
+
+
+
+
+
+layout: true
+  
+&lt;div class="dk-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://rfortherestofus.com/" target="_blank"&gt;R for the Rest of Us
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
+---
+
+
+
+
+
+
+
+
+
+class: center, middle, dk-section-title
+background-image:url("images/michael-We2t3suGiYk-unsplash.jpg")
+background-size: cover
+# Common issues in real-word data and their consequences
+---
+
+## Real-world data
+
+&lt;br/&gt;
+--
+
+.large[
+- May not be readily imported  
+]
+
+--
+
+.large[
+- May not function properly within analysis software  
+]
+
+--
+
+.large[
+- Often contains issues that go unnoticed until they: 
+]
+    - break a workflow
+    - introduce biases
+    - waste resources (computational, $)  
+
+---
+
+# General data cleaning workflows 
+
+&lt;br/&gt;
+.large[
+0\. Rectangular data
+]
+.large[
+1\. Variable names
+]
+.large[
+2\. Observational units
+]
+.large[
+3\. Grouping variables
+]
+
+---
+
+## Less interpretation
+
+.large[
+Whitespace, duplication, letter case
+]
+
+## More interpretation
+
+.large[
+Cleaning numeric variables, unbreaking values, extracting target data
+]
+
+---
+class: center, middle, dk-section-title
+background-image:url("images/james-rathmell-t0iwmK0WC0Y-unsplash.jpg")
+background-size: cover
+# Unusable headers 
+---
+
+## Unusable headers 
+
+.large[
+Inconsistent or uninformative names  
+]
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#zlwtycaytk .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #f4f4f9;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#zlwtycaytk .gt_heading {
+  background-color: #f4f4f9;
+  text-align: center;
+  border-bottom-color: #f4f4f9;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zlwtycaytk .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #f4f4f9;
+  border-bottom-width: 0;
+}
+
+#zlwtycaytk .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #f4f4f9;
+  border-top-width: 0;
+}
+
+#zlwtycaytk .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zlwtycaytk .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zlwtycaytk .gt_col_heading {
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#zlwtycaytk .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#zlwtycaytk .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#zlwtycaytk .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#zlwtycaytk .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#zlwtycaytk .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#zlwtycaytk .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#zlwtycaytk .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#zlwtycaytk .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#zlwtycaytk .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#zlwtycaytk .gt_stub {
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#zlwtycaytk .gt_summary_row {
+  color: #333333;
+  background-color: #f4f4f9;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zlwtycaytk .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#zlwtycaytk .gt_grand_summary_row {
+  color: #333333;
+  background-color: #f4f4f9;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zlwtycaytk .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#zlwtycaytk .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#zlwtycaytk .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zlwtycaytk .gt_footnotes {
+  color: #333333;
+  background-color: #f4f4f9;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zlwtycaytk .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#zlwtycaytk .gt_sourcenotes {
+  color: #333333;
+  background-color: #f4f4f9;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zlwtycaytk .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#zlwtycaytk .gt_left {
+  text-align: left;
+}
+
+#zlwtycaytk .gt_center {
+  text-align: center;
+}
+
+#zlwtycaytk .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#zlwtycaytk .gt_font_normal {
+  font-weight: normal;
+}
+
+#zlwtycaytk .gt_font_bold {
+  font-weight: bold;
+}
+
+#zlwtycaytk .gt_font_italic {
+  font-style: italic;
+}
+
+#zlwtycaytk .gt_super {
+  font-size: 65%;
+}
+
+#zlwtycaytk .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="zlwtycaytk" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">X</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">X1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">X2</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">mean_Score</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">AVERAGE.SCORE</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left">UMN</td>
+      <td class="gt_row gt_left">EAST</td>
+      <td class="gt_row gt_left">A</td>
+      <td class="gt_row gt_right">7.7</td>
+      <td class="gt_row gt_right">7.701</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">UV</td>
+      <td class="gt_row gt_left">WEST</td>
+      <td class="gt_row gt_left">B</td>
+      <td class="gt_row gt_right">8.9</td>
+      <td class="gt_row gt_right">8.890</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">UNLV</td>
+      <td class="gt_row gt_left">EAST</td>
+      <td class="gt_row gt_left">C</td>
+      <td class="gt_row gt_right">9.2</td>
+      <td class="gt_row gt_right">9.199</td>
+    </tr>
+  </tbody>
+  
+  
+</table></div>
+
+.large[
+- Distinct != informative  
+- More difficult to remember and specify  
+- Do not sort well  
+]
+
+---
+
+## Unusable headers
+
+.large[
+Names broken across rows
+]
+
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#ocwrrknktg .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #f4f4f9;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ocwrrknktg .gt_heading {
+  background-color: #f4f4f9;
+  text-align: center;
+  border-bottom-color: #f4f4f9;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ocwrrknktg .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #f4f4f9;
+  border-bottom-width: 0;
+}
+
+#ocwrrknktg .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #f4f4f9;
+  border-top-width: 0;
+}
+
+#ocwrrknktg .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ocwrrknktg .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ocwrrknktg .gt_col_heading {
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ocwrrknktg .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ocwrrknktg .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ocwrrknktg .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ocwrrknktg .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ocwrrknktg .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ocwrrknktg .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ocwrrknktg .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ocwrrknktg .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ocwrrknktg .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ocwrrknktg .gt_stub {
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#ocwrrknktg .gt_summary_row {
+  color: #333333;
+  background-color: #f4f4f9;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ocwrrknktg .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#ocwrrknktg .gt_grand_summary_row {
+  color: #333333;
+  background-color: #f4f4f9;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ocwrrknktg .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ocwrrknktg .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ocwrrknktg .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ocwrrknktg .gt_footnotes {
+  color: #333333;
+  background-color: #f4f4f9;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ocwrrknktg .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#ocwrrknktg .gt_sourcenotes {
+  color: #333333;
+  background-color: #f4f4f9;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ocwrrknktg .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#ocwrrknktg .gt_left {
+  text-align: left;
+}
+
+#ocwrrknktg .gt_center {
+  text-align: center;
+}
+
+#ocwrrknktg .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ocwrrknktg .gt_font_normal {
+  font-weight: normal;
+}
+
+#ocwrrknktg .gt_font_bold {
+  font-weight: bold;
+}
+
+#ocwrrknktg .gt_font_italic {
+  font-style: italic;
+}
+
+#ocwrrknktg .gt_super {
+  font-size: 65%;
+}
+
+#ocwrrknktg .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="ocwrrknktg" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">X</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">X1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">X2</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">mean</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">AVERAGE</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_left">Score</td>
+      <td class="gt_row gt_left">SCORE</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">UMN</td>
+      <td class="gt_row gt_left">EAST</td>
+      <td class="gt_row gt_left">A</td>
+      <td class="gt_row gt_left">7.7</td>
+      <td class="gt_row gt_left">7.701</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">UV</td>
+      <td class="gt_row gt_left">WEST</td>
+      <td class="gt_row gt_left">B</td>
+      <td class="gt_row gt_left">8.9</td>
+      <td class="gt_row gt_left">8.89</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">UNLV</td>
+      <td class="gt_row gt_left">EAST</td>
+      <td class="gt_row gt_left">C</td>
+      <td class="gt_row gt_left">9.2</td>
+      <td class="gt_row gt_left">9.199</td>
+    </tr>
+  </tbody>
+  
+  
+</table></div>
+
+
+- Variable names appear in &gt;1 rows  
+- Header fragments mixed with data
+- Separators become implicit  
+- `NAs` introduced
+
+---
+
+## Cleaning column names
+
+### Syntactically valid variable names
+
+.large[
+- Contain only letters, numbers, dots or underscores
+
+- Start with a letter or a dot (not followed by a number)
+
+- Not reserved words (_if_, _else_, _for_, _in_, _TRUE_, _NaN_, etc.)  
+]
+
+---
+
+## Cleaning column names 
+
+.left-column[
+&lt;/br&gt;
+.large[
+Rename or clean with .orange.b[regex]
+]
+]
+.right-column[
+.large[
+Clean names with 📦 **.rrured.b[`janitor`]**  
+]
+- Strips special characters
+
+- Changes spaces and dots to underscores
+
+- User-defined capitalization (default is snake_case)
+
+]
+
+---
+
+
+```r
+badnames
+```
+
+```
+## # A tibble: 3 x 5
+##   X     X1    X2    mean_Score AVERAGE.SCORE
+##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;         &lt;dbl&gt;
+## 1 UMN   EAST  A            7.7          7.70
+## 2 UV    WEST  B            8.9          8.89
+## 3 UNLV  EAST  C            9.2          9.20
+```
+
+
+```r
+badnames %&gt;% clean_names()
+```
+
+```
+## # A tibble: 3 x 5
+##   x     x1    x2    mean_score average_score
+##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;         &lt;dbl&gt;
+## 1 UMN   EAST  A            7.7          7.70
+## 2 UV    WEST  B            8.9          8.89
+## 3 UNLV  EAST  C            9.2          9.20
+```
+
+---
+
+## Broken headers
+
+
+
+
+```r
+badheaders
+```
+
+```
+## # A tibble: 4 x 5
+##   X     X1    X2    mean  AVERAGE
+##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  
+## 1 &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  Score SCORE  
+## 2 UMN   EAST  A     7.7   7.701  
+## 3 UV    WEST  B     8.9   8.89   
+## 4 UNLV  EAST  C     9.2   9.199
+```
+
+.large[
+Mash the top _n_ data rows column-wise with 📦 .rrured.b[`unheadr`]
+]
+
+
+```r
+badheaders %&gt;% 
+*  mash_colnames(n_name_rows = 1, # number of data rows with header fragments
+                sep = "_") # separator for collapsing header fragments
+```
+
+---
+
+
+```r
+badheaders %&gt;% 
+  mash_colnames(n_name_rows = 1,
+                sep = "_")
+```
+
+```
+## # A tibble: 3 x 5
+##   X     X1    X2    mean_Score AVERAGE_SCORE
+##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;        
+## 1 UMN   EAST  A     7.7        7.701        
+## 2 UV    WEST  B     8.9        8.89         
+## 3 UNLV  EAST  C     9.2        9.199
+```
+
+
+
+```r
+badheaders %&gt;% 
+  mash_colnames(n_name_rows = 1,
+                sep = "_") %&gt;% 
+  clean_names()
+```
+
+```
+## # A tibble: 3 x 5
+##   x     x1    x2    mean_score average_score
+##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;        
+## 1 UMN   EAST  A     7.7        7.701        
+## 2 UV    WEST  B     8.9        8.89         
+## 3 UNLV  EAST  C     9.2        9.199
+```
+---
+class: my-turn
+## My turn
+
+.large[
+- Import a .csv file with problematic headers (MPAS-mine.csv)
+
+- Make the variable names usable by placing all header fragments in a single header row  
+
+- Clean the names for consistency, using snake case
+]
+---
+class: inverse
+## Your turn
+
+.large[
+- Import a .csv file with problematic headers (MPAS-your.csv)
+
+- Make the variable names usable by placing all header fragments in a single header row  
+
+- Clean the names for consistency
+]
+---
+class: center, middle, dk-section-title
+background-image:url("images/farnoosh-abdollahi-vIkABUsLEDY-unsplash.jpg")
+background-size: cover
+# Whitespace
+---
+
+## Whitespace
+
+.large[
+Does not correspond to a visible character, but occupies space in a string.
+]
+
+```r
+string_a &lt;- "This string starts with a T"
+string_b &lt;- " This string starts with a space"
+string_c &lt;- "This string has trailing whitespace "
+tibble(strings=c(string_a,string_b,string_c))
+```
+
+```
+## # A tibble: 3 x 1
+##   strings                               
+##   &lt;chr&gt;                                 
+## 1 "This string starts with a T"         
+## 2 " This string starts with a space"    
+## 3 "This string has trailing whitespace "
+```
+
+---
+
+class: middle
+
+```r
+string_a &lt;- "R for the rest of us"
+string_b &lt;- " R for the rest of us"
+string_c &lt;- "R for the rest of us "
+string_d &lt;- " R for the rest of us "
+string_e &lt;- "R for the   rest of us"
+RrU &lt;- tibble(strings=c(string_a,string_b,string_c,string_d,string_e))
+RrU
+```
+
+```
+## # A tibble: 5 x 1
+##   strings                 
+##   &lt;chr&gt;                   
+## 1 "R for the rest of us"  
+## 2 " R for the rest of us" 
+## 3 "R for the rest of us " 
+## 4 " R for the rest of us "
+## 5 "R for the   rest of us"
+```
+
+---
+
+
+```r
+RrU %&gt;% distinct(strings)
+```
+
+```
+## # A tibble: 5 x 1
+##   strings                 
+##   &lt;chr&gt;                   
+## 1 "R for the rest of us"  
+## 2 " R for the rest of us" 
+## 3 "R for the rest of us " 
+## 4 " R for the rest of us "
+## 5 "R for the   rest of us"
+```
+### Issues
+
+.large[
+- Leading whitespace
+- Trailing whitespace
+- Duplicated whitespace within strings
+]
+---
+
+## Diagnosing whitespace issues
+&gt;**"R for the rest of us"**   
+(six words, five spaces)  
+
+.large[
+Count words then spaces
+]
+
+
+```r
+str_count(RrU$strings, '\\w+')
+```
+
+```
+## [1] 6 6 6 6 6
+```
+
+```r
+str_count(RrU$strings, '\\s')
+```
+
+```
+## [1] 5 6 6 7 7
+```
+---
+
+### Ambiguous strings
+
+
+**`is.ambiguous_string()`**  
+
+.large[
+- Unexported function from 📦 .rrured.b[`pillar`]
+- Used by 📦 .rrured.b[`tibble`] to reveal ambiguous strings when printing to console
+- Ambiguous strings defined with a .orange.b[regexp]]
+
+
+```r
+function (x) 
+{
+    !is.na(x) &amp; grepl("^$|^ | $|\\\\|\"", x)
+}
+```
+
+---
+
+
+```r
+RrU %&gt;% mutate(is_ambiguous = pillar:::is_ambiguous_string(strings))
+```
+
+```
+## # A tibble: 5 x 2
+##   strings                  is_ambiguous
+##   &lt;chr&gt;                    &lt;lgl&gt;       
+## 1 "R for the rest of us"   FALSE       
+## 2 " R for the rest of us"  TRUE        
+## 3 "R for the rest of us "  TRUE        
+## 4 " R for the rest of us " TRUE        
+## 5 "R for the   rest of us" FALSE
+```
+
+
+```r
+RrU %&gt;% mutate(is_ambiguous = str_detect(strings,"^$|^ | $"))
+```
+
+```
+## # A tibble: 5 x 2
+##   strings                  is_ambiguous
+##   &lt;chr&gt;                    &lt;lgl&gt;       
+## 1 "R for the rest of us"   FALSE       
+## 2 " R for the rest of us"  TRUE        
+## 3 "R for the rest of us "  TRUE        
+## 4 " R for the rest of us " TRUE        
+## 5 "R for the   rest of us" FALSE
+```
+
+---
+
+.large[
+Check **all** columns of type _character_
+]
+
+
+```r
+RrU %&gt;% mutate(across(where(is.character),pillar:::is_ambiguous_string))
+```
+
+```
+## # A tibble: 5 x 1
+##   strings
+##   &lt;lgl&gt;  
+## 1 FALSE  
+## 2 TRUE   
+## 3 TRUE   
+## 4 TRUE   
+## 5 FALSE
+```
+
+
+```r
+RrU %&gt;% mutate(across(where(is.character),
+                      str_detect,"^$|^ | $"))
+```
+
+```
+## # A tibble: 5 x 1
+##   strings
+##   &lt;lgl&gt;  
+## 1 FALSE  
+## 2 TRUE   
+## 3 TRUE   
+## 4 TRUE   
+## 5 FALSE
+```
+
+---
+
+## Removing whitespace
+
+### **`trim_ws`** 
+.large[
+Argument to `read_x` functions in 📦 .rrured.b[`readr`]
+
+Trims leading and trailing whitespace from each field during import. 
+]
+`TRUE`  for **`read_csv()`** and **`read_tsv()`**  
+`FALSE` for **`read_delim()`**
+
+---
+
+#### Removing whitespace
+### **`str_squish()`**  
+String manipulation function from 📦 **.rrured.b[`stringr`]**   
+
+Removes whitespace from the start and end of a string and reduces repeated whitespace inside the string
+
+
+```r
+RrU$strings_sq &lt;- str_squish(RrU$strings); RrU
+```
+
+```
+## # A tibble: 5 x 2
+##   strings                  strings_sq          
+##   &lt;chr&gt;                    &lt;chr&gt;               
+## 1 "R for the rest of us"   R for the rest of us
+## 2 " R for the rest of us"  R for the rest of us
+## 3 "R for the rest of us "  R for the rest of us
+## 4 " R for the rest of us " R for the rest of us
+## 5 "R for the   rest of us" R for the rest of us
+```
+---
+
+&lt;/br&gt;
+&lt;/br&gt;
+.large[
+Count words and spaces (again)  
+]
+.large[
+**"R for the rest of us"** (six words, five spaces)
+]
+
+
+```r
+str_count(RrU$strings_sq, '\\w+')
+```
+
+```
+## [1] 6 6 6 6 6
+```
+
+```r
+str_count(RrU$strings_sq, '\\s')
+```
+
+```
+## [1] 5 5 5 5 5
+```
+
+---
+
+&lt;br/&gt;&lt;br/&gt;
+.large[
+Check ambiguous strings (again)
+]
+
+
+
+```r
+RrU %&gt;% mutate(across(where(is.character),
+                      str_detect,"^$|^ | $"))
+```
+
+```
+## # A tibble: 5 x 2
+##   strings strings_sq
+##   &lt;lgl&gt;   &lt;lgl&gt;     
+## 1 FALSE   FALSE     
+## 2 TRUE    FALSE     
+## 3 TRUE    FALSE     
+## 4 TRUE    FALSE     
+## 5 FALSE   FALSE
+```
+
+---
+
+
+```r
+RrU %&gt;% mutate(strings=str_squish(strings)) %&gt;% distinct()
+```
+
+```
+## # A tibble: 1 x 2
+##   strings              strings_sq          
+##   &lt;chr&gt;                &lt;chr&gt;               
+## 1 R for the rest of us R for the rest of us
+```
+
+---
+class: my-turn
+## My turn
+- In the Marine Protected Areas dataset from the previous lesson (MPAS-mine.csv), check the _geographic_location_ variable for leading or trailing whitespace and remove it if necessary.
+
+---
+class: inverse
+## Your turn
+- In the Marine Protected Areas dataset from the previous lesson (MPAS-your.csv), check the _Country_ variable for leading or trailing whitespace and remove it if necessary.
+---
+class: center, middle, dk-section-title
+background-image:url("images/snake-mylene2401.jpg")
+background-size: fill
+# Letter case 
+---
+
+## Letter case
+### Strings in R are case sensitive
+
+.large[Changing letter case:
+
+- Removes unwanted variation
+- Improves noise/signal ratio
+- Adds consistency 
+- Improves readability (more shape contrast in lower vs. upper case, for many popular fonts)]
+
+---
+
+
+
+.panelset[
+.panel[.panel-name[Districts]
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#gwbggxjwlj .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #f4f4f9;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#gwbggxjwlj .gt_heading {
+  background-color: #f4f4f9;
+  text-align: center;
+  border-bottom-color: #f4f4f9;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gwbggxjwlj .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #f4f4f9;
+  border-bottom-width: 0;
+}
+
+#gwbggxjwlj .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #f4f4f9;
+  border-top-width: 0;
+}
+
+#gwbggxjwlj .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gwbggxjwlj .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gwbggxjwlj .gt_col_heading {
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#gwbggxjwlj .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#gwbggxjwlj .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#gwbggxjwlj .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#gwbggxjwlj .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#gwbggxjwlj .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#gwbggxjwlj .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#gwbggxjwlj .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#gwbggxjwlj .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#gwbggxjwlj .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#gwbggxjwlj .gt_stub {
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#gwbggxjwlj .gt_summary_row {
+  color: #333333;
+  background-color: #f4f4f9;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gwbggxjwlj .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#gwbggxjwlj .gt_grand_summary_row {
+  color: #333333;
+  background-color: #f4f4f9;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gwbggxjwlj .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#gwbggxjwlj .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#gwbggxjwlj .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gwbggxjwlj .gt_footnotes {
+  color: #333333;
+  background-color: #f4f4f9;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gwbggxjwlj .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#gwbggxjwlj .gt_sourcenotes {
+  color: #333333;
+  background-color: #f4f4f9;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gwbggxjwlj .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#gwbggxjwlj .gt_left {
+  text-align: left;
+}
+
+#gwbggxjwlj .gt_center {
+  text-align: center;
+}
+
+#gwbggxjwlj .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#gwbggxjwlj .gt_font_normal {
+  font-weight: normal;
+}
+
+#gwbggxjwlj .gt_font_bold {
+  font-weight: bold;
+}
+
+#gwbggxjwlj .gt_font_italic {
+  font-style: italic;
+}
+
+#gwbggxjwlj .gt_super {
+  font-size: 65%;
+}
+
+#gwbggxjwlj .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="gwbggxjwlj" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">District</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Contribution.(USD)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Constituents</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left">Orange walk</td>
+      <td class="gt_row gt_center">10990</td>
+      <td class="gt_row gt_center">12</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">TOLEDO</td>
+      <td class="gt_row gt_center">30000</td>
+      <td class="gt_row gt_center">7</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Stann Creek</td>
+      <td class="gt_row gt_center">3400</td>
+      <td class="gt_row gt_center">9</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Toledo</td>
+      <td class="gt_row gt_center">21999</td>
+      <td class="gt_row gt_center">7</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Orange WalK</td>
+      <td class="gt_row gt_center">8800</td>
+      <td class="gt_row gt_center">12</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Orange Walk</td>
+      <td class="gt_row gt_center">800</td>
+      <td class="gt_row gt_center">12</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Orange Walk</td>
+      <td class="gt_row gt_center">55000</td>
+      <td class="gt_row gt_center">12</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">stann creek</td>
+      <td class="gt_row gt_center">22999</td>
+      <td class="gt_row gt_center">9</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Toledo</td>
+      <td class="gt_row gt_center">4900</td>
+      <td class="gt_row gt_center">7</td>
+    </tr>
+  </tbody>
+  
+  
+</table></div>
+]
+
+.panel[.panel-name[Data setup]
+
+```r
+districts &lt;- 
+tibble::tribble(
+      ~District, ~`Contribution.(USD)`, ~Constituents,
+  "Orange walk",                10990L,           12L,
+       "TOLEDO",                30000L,            7L,
+  "Stann Creek",                 3400L,            9L,
+       "Toledo",                21999L,            7L,
+  "Orange WalK",                 8800L,           12L,
+  "Orange Walk",                  800L,           12L,
+  "Orange Walk",                55000L,           12L,
+  "stann creek",                22999L,            9L,
+       "Toledo",                 4900L,            7L
+  )
+```
+]
+]
+---
+
+## Total contributions by district
+
+```r
+districts %&gt;% group_by(District) %&gt;% 
+  summarize(total_contribution=sum(`Contribution.(USD)`))
+```
+
+```
+## # A tibble: 7 x 2
+##   District    total_contribution
+##   &lt;chr&gt;                    &lt;int&gt;
+## 1 Orange walk              10990
+## 2 Orange Walk              55800
+## 3 Orange WalK               8800
+## 4 stann creek              22999
+## 5 Stann Creek               3400
+## 6 Toledo                   26899
+## 7 TOLEDO                   30000
+```
+
+---
+
+# Detecting lower and upper case
+
+```r
+districts %&gt;% mutate(lowercase=str_detect(District,"^[a-z\\s]+$"),
+                     uppercase=str_detect(District,"^[A-Z\\s]+$")) %&gt;% 
+                     select(District,lowercase,uppercase)
+```
+
+```
+## # A tibble: 9 x 3
+##   District    lowercase uppercase
+##   &lt;chr&gt;       &lt;lgl&gt;     &lt;lgl&gt;    
+## 1 Orange walk FALSE     FALSE    
+## 2 TOLEDO      FALSE     TRUE     
+## 3 Stann Creek FALSE     FALSE    
+## 4 Toledo      FALSE     FALSE    
+## 5 Orange WalK FALSE     FALSE    
+## 6 Orange Walk FALSE     FALSE    
+## 7 Orange Walk FALSE     FALSE    
+## 8 stann creek TRUE      FALSE    
+## 9 Toledo      FALSE     FALSE
+```
+
+---
+
+## Parsing and converting strings
+📦 .rrured.b[`snakecase`]    
+
+
+```r
+to_any_case(strings, case)
+```
+
+**camelCase** - capitalize all words following the first word, no spaces  
+
+**snake_case** - all lowercase, underscores between words  
+
+**slug-case** - all lowercase, dashes between words  
+
+**Title case** - All words capitalized except articles (_a_, _the_, _and_, etc.)  
+
+**Sentence case** - First word capitalized, spaces between words  
+
+---
+
+## Total contributions by district
+
+.large[
+Convert case first
+]
+
+```r
+districts %&gt;%
+  mutate(District_clean = to_any_case(District, "title",
+*   parsing_option = 0
+  )) %&gt;%  
+  group_by(District_clean) %&gt;%
+  summarize(total_contribution = sum(`Contribution.(USD)`))
+```
+
+```
+## # A tibble: 3 x 2
+##   District_clean total_contribution
+##   &lt;chr&gt;                       &lt;int&gt;
+## 1 Orange Walk                 75590
+## 2 Stann Creek                 26399
+## 3 Toledo                      56899
+```
+
+&gt; `?to_any_case()` for details on parsing options
+---
+
+## Total contributions by district
+
+📦 .rrured.b[`snakecase`] shortcuts
+
+```r
+districts %&gt;% 
+*mutate(District_clean = to_title_case(District,
+*   parsing_option = 0
+  )) %&gt;% 
+  group_by(District_clean) %&gt;%
+  summarize(total_contribution = sum(`Contribution.(USD)`))
+```
+
+```
+## # A tibble: 3 x 2
+##   District_clean total_contribution
+##   &lt;chr&gt;                       &lt;int&gt;
+## 1 Orange Walk                 75590
+## 2 Stann Creek                 26399
+## 3 Toledo                      56899
+```
+
+---
+class: my-turn
+## My turn
+
+- Import the Marine Protected Areas dataset (MPAS-mine.csv) and summarize the number of Marine Protected Areas by United Nations Geoscheme Region (_UN Geoscheme_).
+
+---
+class: inverse
+## Your turn
+
+- Import the Marine Protected Areas dataset (MPAS-your.csv), and summarize the number of Marine Protected Areas by country (_Country full_).
+
+---
+class: center, middle, dk-section-title
+background-image:url("images/hans-heiner-buhr-OKe4Q8azVNU-unsplash.jpg")
+background-size: cover
+# Missing, implicit, or misplaced grouping variables
+---
+
+### Missing ... 🤷
+
+### Implicit or misplaced
+
+.large[
+- Embedded as subheaders  
+
+- Part of a compound value (next lesson)
+]
+---
+
+## Embedded subheaders
+
+.left-column[
+**Hot drinks**
+Coffee  
+Tea  
+Hot chocolate
+**Cold Drinks**
+Soda  
+Juice  
+Water  
+Beer  
+]
+.right-column[
+
+.large[
+- Rows that correspond to values in grouping variables   
+
+- Embedded in the data rectangle instead of in their own column   
+
+- Human-readable, but hard to work with (for example: calculating group-wise summaries)
+]
+]
+
+---
+
+
+
+.panelset[
+.panel[.panel-name[Cafeteria Menu]
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#jktnnfabdn .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #f4f4f9;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#jktnnfabdn .gt_heading {
+  background-color: #f4f4f9;
+  text-align: center;
+  border-bottom-color: #f4f4f9;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jktnnfabdn .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #f4f4f9;
+  border-bottom-width: 0;
+}
+
+#jktnnfabdn .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #f4f4f9;
+  border-top-width: 0;
+}
+
+#jktnnfabdn .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jktnnfabdn .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jktnnfabdn .gt_col_heading {
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#jktnnfabdn .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#jktnnfabdn .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#jktnnfabdn .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#jktnnfabdn .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#jktnnfabdn .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#jktnnfabdn .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#jktnnfabdn .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#jktnnfabdn .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#jktnnfabdn .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#jktnnfabdn .gt_stub {
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#jktnnfabdn .gt_summary_row {
+  color: #333333;
+  background-color: #f4f4f9;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jktnnfabdn .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#jktnnfabdn .gt_grand_summary_row {
+  color: #333333;
+  background-color: #f4f4f9;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jktnnfabdn .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#jktnnfabdn .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#jktnnfabdn .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jktnnfabdn .gt_footnotes {
+  color: #333333;
+  background-color: #f4f4f9;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jktnnfabdn .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#jktnnfabdn .gt_sourcenotes {
+  color: #333333;
+  background-color: #f4f4f9;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jktnnfabdn .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#jktnnfabdn .gt_left {
+  text-align: left;
+}
+
+#jktnnfabdn .gt_center {
+  text-align: center;
+}
+
+#jktnnfabdn .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#jktnnfabdn .gt_font_normal {
+  font-weight: normal;
+}
+
+#jktnnfabdn .gt_font_bold {
+  font-weight: bold;
+}
+
+#jktnnfabdn .gt_font_italic {
+  font-style: italic;
+}
+
+#jktnnfabdn .gt_super {
+  font-size: 65%;
+}
+
+#jktnnfabdn .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="jktnnfabdn" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Item</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Price</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left">Hot Drinks</td>
+      <td class="gt_row gt_center">NA</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Coffee</td>
+      <td class="gt_row gt_center">12</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Tea</td>
+      <td class="gt_row gt_center">9</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Hot chocolate</td>
+      <td class="gt_row gt_center">9</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Cold Drinks</td>
+      <td class="gt_row gt_center">NA</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Soda</td>
+      <td class="gt_row gt_center">10</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Juice</td>
+      <td class="gt_row gt_center">13</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Water</td>
+      <td class="gt_row gt_center">8</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Beer</td>
+      <td class="gt_row gt_center">8</td>
+    </tr>
+  </tbody>
+  
+  
+</table></div>
+]
+
+.panel[.panel-name[Data setup]
+
+```r
+cafeteria &lt;- 
+tibble::tribble(
+            ~Item, ~Price,
+     "Hot Drinks",     NA,
+         "Coffee",    12L,
+            "Tea",     9L,
+  "Hot chocolate",     9L,
+    "Cold Drinks",     NA,
+           "Soda",    10L,
+          "Juice",    13L,
+          "Water",     8L,
+           "Beer",     8L
+  )
+```
+]
+
+.panel[.panel-name[Cafeteria Menu (tidy)]
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#krmdmeaibv .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #f4f4f9;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#krmdmeaibv .gt_heading {
+  background-color: #f4f4f9;
+  text-align: center;
+  border-bottom-color: #f4f4f9;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#krmdmeaibv .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #f4f4f9;
+  border-bottom-width: 0;
+}
+
+#krmdmeaibv .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #f4f4f9;
+  border-top-width: 0;
+}
+
+#krmdmeaibv .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#krmdmeaibv .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#krmdmeaibv .gt_col_heading {
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#krmdmeaibv .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#krmdmeaibv .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#krmdmeaibv .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#krmdmeaibv .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#krmdmeaibv .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#krmdmeaibv .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#krmdmeaibv .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#krmdmeaibv .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#krmdmeaibv .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#krmdmeaibv .gt_stub {
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#krmdmeaibv .gt_summary_row {
+  color: #333333;
+  background-color: #f4f4f9;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#krmdmeaibv .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#krmdmeaibv .gt_grand_summary_row {
+  color: #333333;
+  background-color: #f4f4f9;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#krmdmeaibv .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#krmdmeaibv .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#krmdmeaibv .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#krmdmeaibv .gt_footnotes {
+  color: #333333;
+  background-color: #f4f4f9;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#krmdmeaibv .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#krmdmeaibv .gt_sourcenotes {
+  color: #333333;
+  background-color: #f4f4f9;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#krmdmeaibv .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#krmdmeaibv .gt_left {
+  text-align: left;
+}
+
+#krmdmeaibv .gt_center {
+  text-align: center;
+}
+
+#krmdmeaibv .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#krmdmeaibv .gt_font_normal {
+  font-weight: normal;
+}
+
+#krmdmeaibv .gt_font_bold {
+  font-weight: bold;
+}
+
+#krmdmeaibv .gt_font_italic {
+  font-style: italic;
+}
+
+#krmdmeaibv .gt_super {
+  font-size: 65%;
+}
+
+#krmdmeaibv .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="krmdmeaibv" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Item</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Price</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">drink_type</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left">Coffee</td>
+      <td class="gt_row gt_center">12</td>
+      <td class="gt_row gt_left">Hot Drinks</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Tea</td>
+      <td class="gt_row gt_center">9</td>
+      <td class="gt_row gt_left">Hot Drinks</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Hot chocolate</td>
+      <td class="gt_row gt_center">9</td>
+      <td class="gt_row gt_left">Hot Drinks</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Soda</td>
+      <td class="gt_row gt_center">10</td>
+      <td class="gt_row gt_left">Cold Drinks</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Juice</td>
+      <td class="gt_row gt_center">13</td>
+      <td class="gt_row gt_left">Cold Drinks</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Water</td>
+      <td class="gt_row gt_center">8</td>
+      <td class="gt_row gt_left">Cold Drinks</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Beer</td>
+      <td class="gt_row gt_center">8</td>
+      <td class="gt_row gt_left">Cold Drinks</td>
+    </tr>
+  </tbody>
+  
+  
+</table></div>
+]
+
+.panel[.panel-name[Data setup (tidy)]
+
+```r
+cafeteria_tidy &lt;- 
+tibble::tribble(
+            ~Item, ~Price,   ~drink_type,
+         "Coffee",    12L,  "Hot Drinks",
+            "Tea",     9L,  "Hot Drinks",
+  "Hot chocolate",     9L,  "Hot Drinks",
+           "Soda",    10L, "Cold Drinks",
+          "Juice",    13L, "Cold Drinks",
+          "Water",     8L, "Cold Drinks",
+           "Beer",     8L, "Cold Drinks"
+  )
+```
+]
+]
+
+---
+
+## Tidying embedded subheaders
+📦 .rrured.b[`unheadr`]
+
+**`untangle2()`** function 
+
+.large[
+1. Match with a .orange.b[regular expression]
+
+2. Position (sometimes) identifiable as the rows with NAs in all the variables except for the one with the subheaders
+]
+
+---
+
+
+```
+## # A tibble: 9 x 2
+##   Item          Price
+##   &lt;chr&gt;         &lt;int&gt;
+## 1 Hot Drinks       NA
+## 2 Coffee           12
+## 3 Tea               9
+## 4 Hot chocolate     9
+## 5 Cold Drinks      NA
+## 6 Soda             10
+## 7 Juice            13
+## 8 Water             8
+## 9 Beer              8
+```
+
+
+```r
+untangle2(df,
+          regex, # regular expression to match subheaders
+          orig,  # variable with the subheaders
+          new)   # name of the new variable with the group values
+```
+
+Match using .orange.b[regex]
+
+```r
+cafeteria %&gt;% 
+*  untangle2("Drinks$",Item,drink_type) %&gt;%
+  clean_names()
+```
+
+---
+
+.orange.b[Regexp] match and summarize
+
+```r
+cafeteria %&gt;% untangle2("Drinks$", Item, drink_type) %&gt;% clean_names()
+```
+
+```
+## # A tibble: 7 x 3
+##   item          price drink_type 
+##   &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;      
+## 1 Coffee           12 Hot Drinks 
+## 2 Tea               9 Hot Drinks 
+## 3 Hot chocolate     9 Hot Drinks 
+## 4 Soda             10 Cold Drinks
+## 5 Juice            13 Cold Drinks
+## 6 Water             8 Cold Drinks
+## 7 Beer              8 Cold Drinks
+```
+
+
+
+```r
+cafeteria %&gt;% untangle2("Drinks$", Item, drink_type) %&gt;% 
+  clean_names() %&gt;% group_by(drink_type) %&gt;% 
+  summarize(mean_price=mean(price))
+```
+
+```
+## # A tibble: 2 x 2
+##   drink_type  mean_price
+##   &lt;chr&gt;            &lt;dbl&gt;
+## 1 Cold Drinks       9.75
+## 2 Hot Drinks       10
+```
+---
+
+Alternation
+
+```r
+cafeteria %&gt;% untangle2("Hot Drinks|Cold Drinks", Item, drink_type) %&gt;% clean_names()
+```
+
+```
+## # A tibble: 7 x 3
+##   item          price drink_type 
+##   &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;      
+## 1 Coffee           12 Hot Drinks 
+## 2 Tea               9 Hot Drinks 
+## 3 Hot chocolate     9 Hot Drinks 
+## 4 Soda             10 Cold Drinks
+## 5 Juice            13 Cold Drinks
+## 6 Water             8 Cold Drinks
+## 7 Beer              8 Cold Drinks
+```
+
+
+```r
+cafeteria %&gt;% untangle2("Hot Drinks|Cold Drinks", Item, drink_type) %&gt;% 
+  clean_names() %&gt;% group_by(drink_type) %&gt;% 
+  summarize(mean_price=mean(price))
+```
+
+```
+## # A tibble: 2 x 2
+##   drink_type  mean_price
+##   &lt;chr&gt;            &lt;dbl&gt;
+## 1 Cold Drinks       9.75
+## 2 Hot Drinks       10
+```
+
+---
+
+### Identify subheaders by context (`NA` values)
+
+
+```r
+cafeteria %&gt;%
+    filter(across(-Item, is.na)) %&gt;%
+    select(Item) %&gt;%
+    mutate(tag = paste0("subheader_", Item)) %&gt;% 
+    right_join(cafeteria) %&gt;%
+    untangle2("^subheader", tag, drink_type) %&gt;%
+    select(-tag) %&gt;%
+    mutate(drink_type = stringr::str_remove(drink_type, "^subheader_"))
+```
+
+```
+## # A tibble: 7 x 3
+##   Item          Price drink_type 
+##   &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;      
+## 1 Coffee           12 Cold Drinks
+## 2 Tea               9 Cold Drinks
+## 3 Hot chocolate     9 Cold Drinks
+## 4 Soda             10 Cold Drinks
+## 5 Juice            13 Cold Drinks
+## 6 Water             8 Cold Drinks
+## 7 Beer              8 Cold Drinks
+```
+
+---
+
+.pull-left[
+
+```r
+cafeteria %&gt;%
+    filter(across(-Item, is.na)) %&gt;%
+    select(Item) %&gt;%
+    mutate(tag = paste0("subheader_", Item)) 
+```
+
+```
+## # A tibble: 2 x 2
+##   Item        tag                  
+##   &lt;chr&gt;       &lt;chr&gt;                
+## 1 Hot Drinks  subheader_Hot Drinks 
+## 2 Cold Drinks subheader_Cold Drinks
+```
+]
+
+.pull-right[
+&lt;/br&gt;
+Filter rows with NAs in all columns except the one holding the subheaders  
+
+Keep only the column with subheaders  
+
+Create a new variable that includes a pattern that can be matched with .orange.b[regex]
+]
+
+.pull-left[
+
+```r
+... %&gt;%    
+    right_join(cafeteria) %&gt;%
+    untangle2("^subheader", tag, drink_type) %&gt;%
+    select(-tag) %&gt;%
+    mutate(drink_type = stringr::str_remove(drink_type, "^subheader_"))
+```
+]
+
+
+.pull-right[
+&lt;br/&gt;
+Join resulting object with original data
+
+Put implicit grouping variable into its own column
+
+Clean up resulting data
+]
+
+---
+class: my-turn
+## My turn
+.large[
+- Load the `primates2017` dataset bundled with 📦 .rrured.b[`unheadr`] and create a new column that groups the different species by geographic region. 
+]
+---
+class: inverse
+## Your turn
+.large[
+- Load the `primates2017` dataset bundled with 📦 .rrured.b[`unheadr`] and create a new column that groups the different species by taxonomic family.  
+]
+
+&gt; In biology, taxonomic families all end in the suffix "_DAE_"  
+
+.large[- How many different ways can you identify the embedded subheaders in these data?
+]
+---
+class: center, middle, dk-section-title
+background-image:url("images/max-vertsanov-qvRuue12Huw-unsplash.jpg")
+background-size: fill
+# Compound values  
+---
+
+### Compound values
+
+.large[
+* Not tidy  
+
+* Potential loss of variables or observations  
+]
+
+--
+
+### Tidying compound values 
+
+.pull-left[Split on a separator, then:
+
+**`separate()`** columns  
+
+**`unnest()`** rows
+]
+
+.pull-right[
+Match with .orange.b[regex], then:  
+
+**`str_extract()`** substrings into new columns
+]
+---
+
+
+
+
+.panelset[
+.panel[.panel-name[Households]
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#gjrzxkzbzg .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#gjrzxkzbzg .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gjrzxkzbzg .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#gjrzxkzbzg .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#gjrzxkzbzg .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gjrzxkzbzg .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gjrzxkzbzg .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#gjrzxkzbzg .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#gjrzxkzbzg .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#gjrzxkzbzg .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#gjrzxkzbzg .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#gjrzxkzbzg .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#gjrzxkzbzg .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#gjrzxkzbzg .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#gjrzxkzbzg .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#gjrzxkzbzg .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#gjrzxkzbzg .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#gjrzxkzbzg .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gjrzxkzbzg .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#gjrzxkzbzg .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gjrzxkzbzg .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#gjrzxkzbzg .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#gjrzxkzbzg .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gjrzxkzbzg .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gjrzxkzbzg .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#gjrzxkzbzg .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gjrzxkzbzg .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#gjrzxkzbzg .gt_left {
+  text-align: left;
+}
+
+#gjrzxkzbzg .gt_center {
+  text-align: center;
+}
+
+#gjrzxkzbzg .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#gjrzxkzbzg .gt_font_normal {
+  font-weight: normal;
+}
+
+#gjrzxkzbzg .gt_font_bold {
+  font-weight: bold;
+}
+
+#gjrzxkzbzg .gt_font_italic {
+  font-style: italic;
+}
+
+#gjrzxkzbzg .gt_super {
+  font-size: 65%;
+}
+
+#gjrzxkzbzg .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="gjrzxkzbzg" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Participant.ID</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Education</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Residence</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Bonus</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left">GHC21</td>
+      <td class="gt_row gt_left">Vocational</td>
+      <td class="gt_row gt_left">Living Alone-Cat</td>
+      <td class="gt_row gt_center">500</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">MYL11</td>
+      <td class="gt_row gt_left">High School</td>
+      <td class="gt_row gt_left">Family Home-Cat</td>
+      <td class="gt_row gt_center">400</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">LLB16</td>
+      <td class="gt_row gt_left">Graduate</td>
+      <td class="gt_row gt_left">Family Home-Dog</td>
+      <td class="gt_row gt_center">400</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">AAH08</td>
+      <td class="gt_row gt_left">Vocational</td>
+      <td class="gt_row gt_left">Shared Housing-None</td>
+      <td class="gt_row gt_center">450</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">PCG91</td>
+      <td class="gt_row gt_left">Vocational</td>
+      <td class="gt_row gt_left">Family Home-Other</td>
+      <td class="gt_row gt_center">500</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">ACC22, PMM02</td>
+      <td class="gt_row gt_left">High School</td>
+      <td class="gt_row gt_left">Shared Housing-None</td>
+      <td class="gt_row gt_center">400</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">MJM13</td>
+      <td class="gt_row gt_left">Postgraduate</td>
+      <td class="gt_row gt_left">Living Alone-Dog</td>
+      <td class="gt_row gt_center">500</td>
+    </tr>
+  </tbody>
+  
+  
+</table></div>
+]
+
+.panel[.panel-name[Data setup]
+
+```r
+households &lt;- 
+tibble::tribble(
+  ~Participant.ID,     ~Education,            ~Residence, ~Bonus,
+          "GHC21",   "Vocational",    "Living Alone-Cat",   500L,
+          "MYL11",  "High School",     "Family Home-Cat",   400L,
+          "LLB16",     "Graduate",     "Family Home-Dog",   400L,
+          "AAH08",   "Vocational", "Shared Housing-None",   450L,
+          "PCG91",   "Vocational",   "Family Home-Other",   500L,
+   "ACC22, PMM02",  "High School", "Shared Housing-None",   400L,
+          "MJM13", "Postgraduate",    "Living Alone-Dog",   500L
+  )
+```
+]
+]
+
+---
+
+## Separate Residence and 'Pet' variables
+
+
+```r
+households %&gt;% 
+  separate(col = Residence, # columns to separate
+           into = c("Residence", "Pet"), # names of new variables to create 
+           sep = "-") # separator between columns
+```
+
+```
+## # A tibble: 7 x 5
+##   Participant.ID Education    Residence      Pet   Bonus
+##   &lt;chr&gt;          &lt;chr&gt;        &lt;chr&gt;          &lt;chr&gt; &lt;int&gt;
+## 1 GHC21          Vocational   Living Alone   Cat     500
+## 2 MYL11          High School  Family Home    Cat     400
+## 3 LLB16          Graduate     Family Home    Dog     400
+## 4 AAH08          Vocational   Shared Housing None    450
+## 5 PCG91          Vocational   Family Home    Other   500
+## 6 ACC22, PMM02   High School  Shared Housing None    400
+## 7 MJM13          Postgraduate Living Alone   Dog     500
+```
+
+---
+
+### Match and extract
+.large[
+.orange.b[Regexp] for ~'last word in string'
+]
+
+```r
+households %&gt;% 
+  mutate(Pet = str_extract(households$Residence,"\\b\\w+$"))
+```
+
+```
+## # A tibble: 7 x 5
+##   Participant.ID Education    Residence           Bonus Pet  
+##   &lt;chr&gt;          &lt;chr&gt;        &lt;chr&gt;               &lt;int&gt; &lt;chr&gt;
+## 1 GHC21          Vocational   Living Alone-Cat      500 Cat  
+## 2 MYL11          High School  Family Home-Cat       400 Cat  
+## 3 LLB16          Graduate     Family Home-Dog       400 Dog  
+## 4 AAH08          Vocational   Shared Housing-None   450 None 
+## 5 PCG91          Vocational   Family Home-Other     500 Other
+## 6 ACC22, PMM02   High School  Shared Housing-None   400 None 
+## 7 MJM13          Postgraduate Living Alone-Dog      500 Dog
+```
+
+---
+
+## Unnest Participant IDs
+
+**`str_split()`** from 📦 **.rrured.b[`stringr`]**  
+- Split the compound value at the separator "`, `"   
+
+
+**`unnest()`** from 📦 **.rrured.b[`tidyr`]** 
+- Flatten each element from the split into a row
+
+---
+
+#### List of vectors  
+
+```r
+str_split(households$Participant.ID,", ")
+```
+
+```
+## [[1]]
+## [1] "GHC21"
+## 
+## [[2]]
+## [1] "MYL11"
+## 
+## [[3]]
+## [1] "LLB16"
+## 
+## [[4]]
+## [1] "AAH08"
+## 
+## [[5]]
+## [1] "PCG91"
+## 
+## [[6]]
+## [1] "ACC22" "PMM02"
+## 
+## [[7]]
+## [1] "MJM13"
+```
+
+---
+
+#### Within the data rectangle:
+
+
+```r
+households %&gt;%
+  mutate(Participant.ID=str_split(households$Participant.ID,", "))
+```
+
+```
+## # A tibble: 7 x 4
+##   Participant.ID Education    Residence           Bonus
+##   &lt;list&gt;         &lt;chr&gt;        &lt;chr&gt;               &lt;int&gt;
+## 1 &lt;chr [1]&gt;      Vocational   Living Alone-Cat      500
+## 2 &lt;chr [1]&gt;      High School  Family Home-Cat       400
+## 3 &lt;chr [1]&gt;      Graduate     Family Home-Dog       400
+## 4 &lt;chr [1]&gt;      Vocational   Shared Housing-None   450
+## 5 &lt;chr [1]&gt;      Vocational   Family Home-Other     500
+## 6 &lt;chr [2]&gt;      High School  Shared Housing-None   400
+## 7 &lt;chr [1]&gt;      Postgraduate Living Alone-Dog      500
+```
+
+---
+
+#### Flatten to rows
+
+```r
+households %&gt;% 
+    mutate(Participant.ID=str_split(Participant.ID,", ")) %&gt;% 
+*   unnest(cols = Participant.ID)
+```
+
+```
+## # A tibble: 8 x 4
+##   Participant.ID Education    Residence           Bonus
+##   &lt;chr&gt;          &lt;chr&gt;        &lt;chr&gt;               &lt;int&gt;
+## 1 GHC21          Vocational   Living Alone-Cat      500
+## 2 MYL11          High School  Family Home-Cat       400
+## 3 LLB16          Graduate     Family Home-Dog       400
+## 4 AAH08          Vocational   Shared Housing-None   450
+## 5 PCG91          Vocational   Family Home-Other     500
+## 6 ACC22          High School  Shared Housing-None   400
+## 7 PMM02          High School  Shared Housing-None   400
+## 8 MJM13          Postgraduate Living Alone-Dog      500
+```
+
+---
+
+#### Separate and unnest
+
+```r
+households %&gt;% 
+  separate(col = Residence, into =  c("Residence", "Pet"),sep = "-") %&gt;%  
+    mutate(Participant.ID=str_split(Participant.ID,", ")) %&gt;% 
+    unnest(cols = Participant.ID) 
+```
+
+```
+## # A tibble: 8 x 5
+##   Participant.ID Education    Residence      Pet   Bonus
+##   &lt;chr&gt;          &lt;chr&gt;        &lt;chr&gt;          &lt;chr&gt; &lt;int&gt;
+## 1 GHC21          Vocational   Living Alone   Cat     500
+## 2 MYL11          High School  Family Home    Cat     400
+## 3 LLB16          Graduate     Family Home    Dog     400
+## 4 AAH08          Vocational   Shared Housing None    450
+## 5 PCG91          Vocational   Family Home    Other   500
+## 6 ACC22          High School  Shared Housing None    400
+## 7 PMM02          High School  Shared Housing None    400
+## 8 MJM13          Postgraduate Living Alone   Dog     500
+```
+---
+
+class: my-turn
+## My turn
+
+.large[
+- Import the Marine Protected Areas dataset (MPAS-mine.csv), separate the country codes variable (ISO3 and UN scheme) and unnest the Reference variable.
+
+- Which Reference appears the most?
+]
+
+---
+
+class: inverse
+## Your turn
+
+.large[
+- Import the Marine Protected Areas dataset (MPAS-your.csv), separate the country codes variable (ISO3 and UN scheme) and unnest the Reference variable.
+
+&gt; Keep an eye on the separators
+
+- Optional: Arrange the data by ISO3 country code
+]
+---
+
+class: center, middle, dk-section-title
+background-image:url("images/armelle-danjour-kwGqIuNrM5E-unsplash.jpg")
+background-size: cover
+# Duplicates  
+---
+
+### Duplicates
+
+.large[
+- Bloat our data  
+
+- Unintentional repetition can be costly  
+
+- Inaccurate reporting (double counting, inflated or biased summary statistics)  
+]
+---
+
+### What can we do?
+
+.large[
+Identify with `get_dupes()` from 📦 .rrured.b[`janitor`]  
+
+Discard with `distinct()` from 📦 .rrured.b[`dplyr`]  
+]
+---
+
+### Duplicated values  
+
+.large[
+- Across all variables  
+
+- Across the variable(s) defining the observational units  
+
+- Across arbitrary sets of variables
+]
+
+---
+
+
+
+
+.panelset[
+.panel[.panel-name[pizza_orders]
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; CustomerID &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Address &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; City &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; State &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Country &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Newman &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Apartment 5E, 129 West 81st Street &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; New York City &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; New York &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; USA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; susan_A &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 185 West 74th Street &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; New York City &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; New York &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; USA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; susan_A &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 185 West 74th Street &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; New York City &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; New York &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; USA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; js1994 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Apartment 5A, 129 West 81st Street &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; New York City &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; New York &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; USA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Eric &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Unit 1B, 4186 Willoughby Avenue &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Brooklyn &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; New York &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; USA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Dash &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Unit 1B, 4186 Willoughby Avenue &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Brooklyn &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; New York &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; USA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Rakeem &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Unit 1B, 4186 Willoughby Avenue &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Brooklyn &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; New York &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; USA &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+.panel[.panel-name[Data setup]
+
+```r
+pizza_orders &lt;- 
+tibble::tribble(
+  ~CustomerID,                             ~Address,           ~City,     ~State, ~Country,
+     "Newman", "Apartment 5E, 129 West 81st Street", "New York City", "New York",    "USA",
+    "susan_A",               "185 West 74th Street", "New York City", "New York",    "USA",
+    "susan_A",               "185 West 74th Street", "New York City", "New York",    "USA",
+     "js1994", "Apartment 5A, 129 West 81st Street", "New York City", "New York",    "USA",
+       "Eric",    "Unit 1B, 4186 Willoughby Avenue",      "Brooklyn", "New York",    "USA",
+       "Dash",    "Unit 1B, 4186 Willoughby Avenue",      "Brooklyn", "New York",    "USA",
+     "Rakeem",    "Unit 1B, 4186 Willoughby Avenue",      "Brooklyn", "New York",    "USA"
+  )
+```
+]
+]
+---
+
+### Identify with **`get_dupes()`** from 📦 .rrured.b[`janitor`]  
+
+.large[
+All variables
+]
+
+```r
+pizza_orders %&gt;% 
+  get_dupes() # all variables by default
+```
+
+```
+## # A tibble: 2 x 6
+##   CustomerID Address              City          State    Country dupe_count
+##   &lt;chr&gt;      &lt;chr&gt;                &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt;        &lt;int&gt;
+## 1 susan_A    185 West 74th Street New York City New York USA              2
+## 2 susan_A    185 West 74th Street New York City New York USA              2
+```
+
+--
+
+.large[
+* Adds a `dupe_count` variable showing the number of rows sharing the duplicated values  
+* Puts the input variables at the beginning of the resulting data frame 
+]
+---
+
+&lt;/br&gt;&lt;/br&gt;
+.large[
+Variable with chosen observational unit
+]
+
+```r
+pizza_orders %&gt;% 
+  get_dupes(CustomerID)
+```
+
+```
+## # A tibble: 2 x 6
+##   CustomerID dupe_count Address              City          State    Country
+##   &lt;chr&gt;           &lt;int&gt; &lt;chr&gt;                &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt;  
+## 1 susan_A             2 185 West 74th Street New York City New York USA    
+## 2 susan_A             2 185 West 74th Street New York City New York USA
+```
+
+---
+
+&lt;/br&gt;&lt;/br&gt;
+.large[
+Custom combination
+]
+
+&gt; now accepts 📦 `tidyselect` helpers
+
+
+```r
+pizza_orders %&gt;% get_dupes(Address,starts_with("Cit")) 
+```
+
+```
+## # A tibble: 5 x 6
+##   Address                    City        dupe_count CustomerID State   Country
+##   &lt;chr&gt;                      &lt;chr&gt;            &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;  
+## 1 185 West 74th Street       New York C…          2 susan_A    New Yo… USA    
+## 2 185 West 74th Street       New York C…          2 susan_A    New Yo… USA    
+## 3 Unit 1B, 4186 Willoughby … Brooklyn             3 Eric       New Yo… USA    
+## 4 Unit 1B, 4186 Willoughby … Brooklyn             3 Dash       New Yo… USA    
+## 5 Unit 1B, 4186 Willoughby … Brooklyn             3 Rakeem     New Yo… USA
+```
+---
+
+### Discard with `distinct()` from 📦 .rrured.b[`dplyr`]
+
+.large[
+All variables
+]
+
+
+```r
+pizza_orders %&gt;% 
+  distinct() # all variables by default
+```
+
+```
+## # A tibble: 6 x 5
+##   CustomerID Address                            City          State    Country
+##   &lt;chr&gt;      &lt;chr&gt;                              &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt;  
+## 1 Newman     Apartment 5E, 129 West 81st Street New York City New York USA    
+## 2 susan_A    185 West 74th Street               New York City New York USA    
+## 3 js1994     Apartment 5A, 129 West 81st Street New York City New York USA    
+## 4 Eric       Unit 1B, 4186 Willoughby Avenue    Brooklyn      New York USA    
+## 5 Dash       Unit 1B, 4186 Willoughby Avenue    Brooklyn      New York USA    
+## 6 Rakeem     Unit 1B, 4186 Willoughby Avenue    Brooklyn      New York USA
+```
+---
+
+&lt;/br&gt;&lt;/br&gt;
+.large[
+Variable with chosen observational unit
+]
+
+
+```r
+pizza_orders %&gt;% 
+  distinct(CustomerID,.keep_all = TRUE)
+```
+
+```
+## # A tibble: 6 x 5
+##   CustomerID Address                            City          State    Country
+##   &lt;chr&gt;      &lt;chr&gt;                              &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt;  
+## 1 Newman     Apartment 5E, 129 West 81st Street New York City New York USA    
+## 2 susan_A    185 West 74th Street               New York City New York USA    
+## 3 js1994     Apartment 5A, 129 West 81st Street New York City New York USA    
+## 4 Eric       Unit 1B, 4186 Willoughby Avenue    Brooklyn      New York USA    
+## 5 Dash       Unit 1B, 4186 Willoughby Avenue    Brooklyn      New York USA    
+## 6 Rakeem     Unit 1B, 4186 Willoughby Avenue    Brooklyn      New York USA
+```
+--
+
+&gt; Use `.keep_all = FALSE` (default) to drop all other variables
+
+---
+
+&lt;/br&gt;&lt;/br&gt;
+.large[
+Custom combination
+]
+
+&gt;  📦 `tidyselect` helpers enabled by using `across` semantics
+
+
+```r
+pizza_orders %&gt;% 
+  distinct(across(c(Address,starts_with("Cit")))) 
+```
+
+```
+## # A tibble: 4 x 2
+##   Address                            City         
+##   &lt;chr&gt;                              &lt;chr&gt;        
+## 1 Apartment 5E, 129 West 81st Street New York City
+## 2 185 West 74th Street               New York City
+## 3 Apartment 5A, 129 West 81st Street New York City
+## 4 Unit 1B, 4186 Willoughby Avenue    Brooklyn
+```
+
+---
+
+&lt;/br&gt;&lt;/br&gt;
+.large[Custom combination]
+
+&gt;⚠️ If `.keep_all = TRUE` and there are duplicates in other variables, `distinct` only keeps the fist row 
+
+
+```r
+pizza_orders %&gt;% 
+  distinct(across(c(Address,starts_with("City"))),.keep_all = TRUE) 
+```
+
+```
+## # A tibble: 4 x 5
+##   CustomerID Address                            City          State    Country
+##   &lt;chr&gt;      &lt;chr&gt;                              &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt;  
+## 1 Newman     Apartment 5E, 129 West 81st Street New York City New York USA    
+## 2 susan_A    185 West 74th Street               New York City New York USA    
+## 3 js1994     Apartment 5A, 129 West 81st Street New York City New York USA    
+## 4 Eric       Unit 1B, 4186 Willoughby Avenue    Brooklyn      New York USA
+```
+
+---
+class: my-turn
+## My turn
+
+.large[
+- Load the messy Age of Empires units dataset bundled with .rrured.b[`unheadr`] (AOEunits_raw) and discard units that are not of Type "Archer".
+
+- Identify duplicated records across all variables.
+
+- Remove duplicated records across all variables.
+]
+
+---
+
+class: inverse
+## Your turn
+
+.large[
+- Load the messy Age of Empires units dataset bundled with .rrured.b[`unheadr`] (AOEunits_raw) and keep only units of Type "Cavalry".
+
+- Identify duplicated records across all variables.
+
+- Remove duplicated records across all variables.
+]
+
+---
+class: center, middle, dk-section-title
+background-image:url("images/jonathan-safa-YcxOAC5DpDA-unsplash.jpg")
+background-size: cover
+# Broken values
+---
+
+### Broken values
+
+.large[
+Values broken across rows, often to save horizontal space on a page or column, and carried over onto machine-readable data
+
+`NA` or blank values introduced  
+
+Problematic when grouping variables or observational units are broken
+]
+
+---
+
+
+
+
+.panelset[
+.panel[.panel-name[olympics]
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#pvpdnvfttw .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 2px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#pvpdnvfttw .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pvpdnvfttw .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#pvpdnvfttw .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#pvpdnvfttw .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pvpdnvfttw .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pvpdnvfttw .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#pvpdnvfttw .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#pvpdnvfttw .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#pvpdnvfttw .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#pvpdnvfttw .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#pvpdnvfttw .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#pvpdnvfttw .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#pvpdnvfttw .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#pvpdnvfttw .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#pvpdnvfttw .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#pvpdnvfttw .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#pvpdnvfttw .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pvpdnvfttw .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#pvpdnvfttw .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pvpdnvfttw .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#pvpdnvfttw .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#pvpdnvfttw .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pvpdnvfttw .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pvpdnvfttw .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#pvpdnvfttw .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pvpdnvfttw .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#pvpdnvfttw .gt_left {
+  text-align: left;
+}
+
+#pvpdnvfttw .gt_center {
+  text-align: center;
+}
+
+#pvpdnvfttw .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#pvpdnvfttw .gt_font_normal {
+  font-weight: normal;
+}
+
+#pvpdnvfttw .gt_font_bold {
+  font-weight: bold;
+}
+
+#pvpdnvfttw .gt_font_italic {
+  font-style: italic;
+}
+
+#pvpdnvfttw .gt_super {
+  font-size: 65%;
+}
+
+#pvpdnvfttw .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="pvpdnvfttw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Edition</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Country</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Soccer.gold.medal.(men)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Wrestling.(men.middleweight)</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_left">weight class limit:</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_left">82 kg</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Los Angeles 1984</td>
+      <td class="gt_row gt_left">USA</td>
+      <td class="gt_row gt_left">France</td>
+      <td class="gt_row gt_left">USA</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Barcelona</td>
+      <td class="gt_row gt_left">Spain</td>
+      <td class="gt_row gt_left">Spain</td>
+      <td class="gt_row gt_left">USA</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">1992</td>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_left">NA</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Atlanta 1996</td>
+      <td class="gt_row gt_left">USA</td>
+      <td class="gt_row gt_left">Nigeria</td>
+      <td class="gt_row gt_left">Russia</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_left">weight class limit:</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_left">85 kg</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Sydney 2000</td>
+      <td class="gt_row gt_left">Australia</td>
+      <td class="gt_row gt_left">Cameroon</td>
+      <td class="gt_row gt_left">Russia</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">London</td>
+      <td class="gt_row gt_left">UK</td>
+      <td class="gt_row gt_left">Mexico</td>
+      <td class="gt_row gt_left">Azerbaijan</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">2012</td>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_left">NA</td>
+    </tr>
+  </tbody>
+  
+  
+</table></div>
+]
+
+.panel[.panel-name[Data setup]
+
+```r
+olympics &lt;- 
+tibble::tribble(
+            ~Edition,    ~Country, ~`Soccer.gold.medal.(men)`, ~`Wrestling.(men.middleweight)`,
+                  NA,          NA,                         NA,           "weight class limit:",
+                  NA,          NA,                         NA,                         "82 kg",
+  "Los Angeles 1984",       "USA",                   "France",                           "USA",
+         "Barcelona",     "Spain",                    "Spain",                           "USA",
+              "1992",          NA,                         NA,                              NA,
+      "Atlanta 1996",       "USA",                  "Nigeria",                        "Russia",
+                  NA,          NA,                         NA,           "weight class limit:",
+                  NA,          NA,                         NA,                         "85 kg",
+       "Sydney 2000", "Australia",                 "Cameroon",                        "Russia",
+            "London",        "UK",                   "Mexico",                    "Azerbaijan",
+              "2012",          NA,                         NA,                              NA
+  )
+```
+]
+]
+
+---
+
+## 'Unbreaking' values 
+
+.large[
+Values broken up across **two consecutive rows**
+
+Match trailing or leading half of the value with a .orange.b[regexp] and 📦 .rrured.b[`unheadr`]
+]
+
+.pull-left[
+Fast  
+food  
+Casual dining  
+Thai  
+Pizzeria  
+Cakes and  
+ice cream  
+]  
+
+.pull-right[
+Retriever  
+(flat-coated)  
+Bulldog (American)   
+Bullmastiff  
+Retriever  
+(golden)  
+Poodle  
+]
+
+---
+
+## 'Unbreaking' values
+
+.large[
+Values broken up across **two consecutive rows**
+
+Match _trailing_ or _leading_ half of the value with a .orange.b[regexp] and 📦 .rrured.b[`unheadr`]
+]  
+.pull-left[
+Fast  
+**food**  
+Casual dining  
+Thai  
+Pizzeria  
+Cakes and  
+**ice cream**  
+]  
+
+.pull-right[
+Retriever  
+**(flat-coated)**  
+Bulldog (American)   
+Bullmastiff  
+Retriever  
+**(golden)**  
+Poodle  
+]
+
+---
+
+## **`unbreak_vals()`**  
+
+.large[
+verb-like function from 📦 .rrured.b[`unheadr`]
+
+Match the trailing half of the broken value with a .orange.b[regular expression]
+]
+
+```r
+unbreak_vals(df, 
+             regex, 
+             ogcol, 
+             newcol, 
+             sep = " ",
+             )
+```
+
+---
+
+&lt;/br&gt;&lt;/br&gt;
+.large[
+Trailing row
+]
+
+
+```r
+olympics %&gt;% unbreak_vals(regex = "^\\d", # numbers at start of string
+                          ogcol = Edition,
+                          newcol = Edition_ub,
+                          sep = " ")
+```
+
+```
+## # A tibble: 9 x 4
+##   Edition_ub      Country   `Soccer.gold.medal.(me… `Wrestling.(men.middlewei…
+##   &lt;chr&gt;           &lt;chr&gt;     &lt;chr&gt;                   &lt;chr&gt;                     
+## 1 &lt;NA&gt;            &lt;NA&gt;      &lt;NA&gt;                    weight class limit:       
+## 2 &lt;NA&gt;            &lt;NA&gt;      &lt;NA&gt;                    82 kg                     
+## 3 Los Angeles 19… USA       France                  USA                       
+## 4 Barcelona 1992  Spain     Spain                   USA                       
+## 5 Atlanta 1996    USA       Nigeria                 Russia                    
+## 6 &lt;NA&gt;            &lt;NA&gt;      &lt;NA&gt;                    weight class limit:       
+## 7 &lt;NA&gt;            &lt;NA&gt;      &lt;NA&gt;                    85 kg                     
+## 8 Sydney 2000     Australia Cameroon                Russia                    
+## 9 London 2012     UK        Mexico                  Azerbaijan
+```
+
+---
+
+### **`unbreak_rows()`**  
+
+.large[
+Verb for merging rows from 📦 .rrured.b[`unheadr`]
+
+Match the leading half of the broken value with .orange.b[regular expression]
+]
+
+
+```r
+unbreak_rows(df, 
+             regex, 
+             ogcol, 
+             sep = " ",
+             )
+```
+
+---
+
+&lt;/br&gt;&lt;/br&gt;
+.large[
+Leading row
+]
+
+
+```r
+olympics %&gt;% unbreak_rows(regex = "^weight", # numbers at start of string
+                          ogcol = `Wrestling.(men.middleweight)`,
+                          sep = " ")
+```
+
+```
+## # A tibble: 9 x 4
+##   Edition         Country  `Soccer.gold.medal.(me… `Wrestling.(men.middleweig…
+##   &lt;chr&gt;           &lt;chr&gt;    &lt;chr&gt;                   &lt;chr&gt;                      
+## 1 &lt;NA&gt;            &lt;NA&gt;     &lt;NA&gt;                    weight class limit: 82 kg  
+## 2 Los Angeles 19… USA      France                  USA                        
+## 3 Barcelona       Spain    Spain                   USA                        
+## 4 1992            &lt;NA&gt;     &lt;NA&gt;                    &lt;NA&gt;                       
+## 5 Atlanta 1996    USA      Nigeria                 Russia                     
+## 6 &lt;NA&gt;            &lt;NA&gt;     &lt;NA&gt;                    weight class limit: 85 kg  
+## 7 Sydney 2000     Austral… Cameroon                Russia                     
+## 8 London          UK       Mexico                  Azerbaijan                 
+## 9 2012            &lt;NA&gt;     &lt;NA&gt;                    &lt;NA&gt;
+```
+
+---
+.large[
+Leading and trailing rows
+]
+
+```r
+olympics %&gt;%
+  unbreak_rows(
+    regex = "^weight",
+    ogcol = `Wrestling.(men.middleweight)`) %&gt;%
+  unbreak_vals(
+    regex = "^\\d", # numbers at start of string
+    ogcol = Edition,
+    newcol = Edition_ub)
+```
+
+```
+## # A tibble: 7 x 4
+##   Edition_ub      Country   `Soccer.gold.medal.(me… `Wrestling.(men.middlewei…
+##   &lt;chr&gt;           &lt;chr&gt;     &lt;chr&gt;                   &lt;chr&gt;                     
+## 1 &lt;NA&gt;            &lt;NA&gt;      &lt;NA&gt;                    weight class limit: 82 kg 
+## 2 Los Angeles 19… USA       France                  USA                       
+## 3 Barcelona 1992  Spain     Spain                   USA                       
+## 4 Atlanta 1996    USA       Nigeria                 Russia                    
+## 5 &lt;NA&gt;            &lt;NA&gt;      &lt;NA&gt;                    weight class limit: 85 kg 
+## 6 Sydney 2000     Australia Cameroon                Russia                    
+## 7 London 2012     UK        Mexico                  Azerbaijan
+```
+
+---
+class: my-turn
+## My turn
+
+.large[
+- Load the messy Age of Empires units dataset from csv (aoe_raw.csv)
+
+- Identify the broken values in the 'Type' column and unbreak them
+]
+---
+class: inverse
+## Your turn
+
+.large[
+- Load the messy Age of Empires units dataset from csv (aoe_raw.csv)
+
+- Identify the broken values in both the 'Type' and 'Name' columns and unbreak them
+
+- Clean up any separator-related issues arising from the 'unbreaking'
+]
+---
+class: center, middle, dk-section-title
+background-image:url("images/david-hertle-8HAhmMk9HJI-unsplash.jpg")
+background-size: cover
+# Empty rows and columns
+---
+
+### Empty rows and columns
+
+.large[
+- Common when importing files
+
+- Problematic when referring to variables by position or ranges of consecutive variables  (`:`)  
+
+- Potentially disruptive when filling adjacent cells
+]
+--
+
+### What can we do?
+
+.large[
+Identify with 📦 .rrured.b[`dplyr`]  
+ 
+Discard with **`remove_empty()`** from 📦 .rrured.b[`janitor`]
+]
+---
+
+
+
+.panelset[
+.panel[.panel-name[universities]
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#vtchcofgkf .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 8%;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #f4f4f9;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#vtchcofgkf .gt_heading {
+  background-color: #f4f4f9;
+  text-align: center;
+  border-bottom-color: #f4f4f9;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#vtchcofgkf .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #f4f4f9;
+  border-bottom-width: 0;
+}
+
+#vtchcofgkf .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #f4f4f9;
+  border-top-width: 0;
+}
+
+#vtchcofgkf .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vtchcofgkf .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#vtchcofgkf .gt_col_heading {
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#vtchcofgkf .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#vtchcofgkf .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#vtchcofgkf .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#vtchcofgkf .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#vtchcofgkf .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#vtchcofgkf .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#vtchcofgkf .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#vtchcofgkf .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#vtchcofgkf .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#vtchcofgkf .gt_stub {
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#vtchcofgkf .gt_summary_row {
+  color: #333333;
+  background-color: #f4f4f9;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vtchcofgkf .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#vtchcofgkf .gt_grand_summary_row {
+  color: #333333;
+  background-color: #f4f4f9;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vtchcofgkf .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#vtchcofgkf .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#vtchcofgkf .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vtchcofgkf .gt_footnotes {
+  color: #333333;
+  background-color: #f4f4f9;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vtchcofgkf .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#vtchcofgkf .gt_sourcenotes {
+  color: #333333;
+  background-color: #f4f4f9;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vtchcofgkf .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#vtchcofgkf .gt_left {
+  text-align: left;
+}
+
+#vtchcofgkf .gt_center {
+  text-align: center;
+}
+
+#vtchcofgkf .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#vtchcofgkf .gt_font_normal {
+  font-weight: normal;
+}
+
+#vtchcofgkf .gt_font_bold {
+  font-weight: bold;
+}
+
+#vtchcofgkf .gt_font_italic {
+  font-style: italic;
+}
+
+#vtchcofgkf .gt_super {
+  font-size: 65%;
+}
+
+#vtchcofgkf .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="vtchcofgkf" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">ID</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Institution</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">year</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">ZIP.code</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Highest.degree.offered</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">County.name</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Religious.affiliation</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_center">NA</td>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_center">NA</td>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_center">NA</td>
+      <td class="gt_row gt_left">NA</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">100663</td>
+      <td class="gt_row gt_left">University of Alabama at Birmingham</td>
+      <td class="gt_row gt_center">NA</td>
+      <td class="gt_row gt_left">35294-0110</td>
+      <td class="gt_row gt_left">Doctor's degree</td>
+      <td class="gt_row gt_center">NA</td>
+      <td class="gt_row gt_left">Not applicable</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">100690</td>
+      <td class="gt_row gt_left">Amridge University</td>
+      <td class="gt_row gt_center">NA</td>
+      <td class="gt_row gt_left">36117-3553</td>
+      <td class="gt_row gt_left">Doctor's degree</td>
+      <td class="gt_row gt_center">NA</td>
+      <td class="gt_row gt_left">Churches of Christ</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">100706</td>
+      <td class="gt_row gt_left">University of Alabama in Huntsville</td>
+      <td class="gt_row gt_center">NA</td>
+      <td class="gt_row gt_left">35899</td>
+      <td class="gt_row gt_left">Doctor's degree</td>
+      <td class="gt_row gt_center">NA</td>
+      <td class="gt_row gt_left">Not applicable</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">NA</td>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_center">NA</td>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_center">NA</td>
+      <td class="gt_row gt_left">NA</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">100751</td>
+      <td class="gt_row gt_left">The University of Alabama</td>
+      <td class="gt_row gt_center">NA</td>
+      <td class="gt_row gt_left">35487-0166</td>
+      <td class="gt_row gt_left">Doctor's degree</td>
+      <td class="gt_row gt_center">NA</td>
+      <td class="gt_row gt_left">Not applicable</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">NA</td>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_center">NA</td>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_center">NA</td>
+      <td class="gt_row gt_left">NA</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">NA</td>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_center">NA</td>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_center">NA</td>
+      <td class="gt_row gt_left">NA</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">101541</td>
+      <td class="gt_row gt_left">Judson College</td>
+      <td class="gt_row gt_center">NA</td>
+      <td class="gt_row gt_left">36756</td>
+      <td class="gt_row gt_left">Bachelor's degree</td>
+      <td class="gt_row gt_center">NA</td>
+      <td class="gt_row gt_left">Baptist</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">101587</td>
+      <td class="gt_row gt_left">University of West Alabama</td>
+      <td class="gt_row gt_center">NA</td>
+      <td class="gt_row gt_left">35470</td>
+      <td class="gt_row gt_left">Master's degree</td>
+      <td class="gt_row gt_center">NA</td>
+      <td class="gt_row gt_left">Not applicable</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">NA</td>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_center">NA</td>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_left">NA</td>
+      <td class="gt_row gt_center">NA</td>
+      <td class="gt_row gt_left">NA</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">101693</td>
+      <td class="gt_row gt_left">University of Mobile</td>
+      <td class="gt_row gt_center">NA</td>
+      <td class="gt_row gt_left">36613-2842</td>
+      <td class="gt_row gt_left">Master's degree</td>
+      <td class="gt_row gt_center">NA</td>
+      <td class="gt_row gt_left">Southern Baptist</td>
+    </tr>
+  </tbody>
+  
+  
+</table></div>
+]
+
+.panel[.panel-name[Data setup]
+
+```r
+universities &lt;- 
+  tibble::tribble(
+        ~ID,                          ~Institution, ~year,    ~ZIP.code, ~Highest.degree.offered, ~County.name, ~Religious.affiliation,
+         NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
+    100663L, "University of Alabama at Birmingham",    NA, "35294-0110",       "Doctor's degree",           NA,       "Not applicable",
+    100690L,                  "Amridge University",    NA, "36117-3553",       "Doctor's degree",           NA,   "Churches of Christ",
+    100706L, "University of Alabama in Huntsville",    NA,      "35899",       "Doctor's degree",           NA,       "Not applicable",
+         NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
+    100751L,           "The University of Alabama",    NA, "35487-0166",       "Doctor's degree",           NA,       "Not applicable",
+         NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
+         NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
+    101541L,                      "Judson College",    NA,      "36756",     "Bachelor's degree",           NA,              "Baptist",
+    101587L,          "University of West Alabama",    NA,      "35470",       "Master's degree",           NA,       "Not applicable",
+         NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
+    101693L,                "University of Mobile",    NA, "36613-2842",       "Master's degree",           NA,     "Southern Baptist"
+    )
+```
+]
+]
+source: US Integrated Postsecondary Education Data System (IPEDS)
+
+---
+
+&lt;/br&gt;
+.large[
+Identify empty rows with 📦 .rrured.b[`dplyr`] (and 📦 .rrured.b[`tibble`])  
+]
+
+```r
+universities %&gt;% filter(across(everything(), is.na))
+```
+
+```
+## # A tibble: 5 x 7
+##      ID Institution year  ZIP.code Highest.degree.… County.name
+##   &lt;int&gt; &lt;chr&gt;       &lt;lgl&gt; &lt;chr&gt;    &lt;chr&gt;            &lt;lgl&gt;      
+## 1    NA &lt;NA&gt;        NA    &lt;NA&gt;     &lt;NA&gt;             NA         
+## 2    NA &lt;NA&gt;        NA    &lt;NA&gt;     &lt;NA&gt;             NA         
+## 3    NA &lt;NA&gt;        NA    &lt;NA&gt;     &lt;NA&gt;             NA         
+## 4    NA &lt;NA&gt;        NA    &lt;NA&gt;     &lt;NA&gt;             NA         
+## 5    NA &lt;NA&gt;        NA    &lt;NA&gt;     &lt;NA&gt;             NA         
+## # … with 1 more variable: Religious.affiliation &lt;chr&gt;
+```
+
+```r
+universities %&gt;% filter(across(everything(), is.na)) %&gt;% nrow()
+```
+
+```
+## [1] 5
+```
+
+---
+
+&lt;/br&gt;
+.large[
+Identify empty rows with 📦 .rrured.b[`dplyr`] (and 📦 .rrured.b[`tibble`])  
+]
+
+**Add unique identifier first**
+
+```r
+universities %&gt;% 
+* rowid_to_column() %&gt;%
+  filter(across(-rowid, is.na)) 
+```
+
+```
+## # A tibble: 5 x 8
+##   rowid    ID Institution year  ZIP.code Highest.degree.… County.name
+##   &lt;int&gt; &lt;int&gt; &lt;chr&gt;       &lt;lgl&gt; &lt;chr&gt;    &lt;chr&gt;            &lt;lgl&gt;      
+## 1     1    NA &lt;NA&gt;        NA    &lt;NA&gt;     &lt;NA&gt;             NA         
+## 2     5    NA &lt;NA&gt;        NA    &lt;NA&gt;     &lt;NA&gt;             NA         
+## 3     7    NA &lt;NA&gt;        NA    &lt;NA&gt;     &lt;NA&gt;             NA         
+## 4     8    NA &lt;NA&gt;        NA    &lt;NA&gt;     &lt;NA&gt;             NA         
+## 5    11    NA &lt;NA&gt;        NA    &lt;NA&gt;     &lt;NA&gt;             NA         
+## # … with 1 more variable: Religious.affiliation &lt;chr&gt;
+```
+
+---
+
+&lt;/br&gt;
+.large[Negate the condition and discard empty rows]  
+
+```r
+universities %&gt;% filter(!across(everything(), is.na))
+```
+
+```
+## # A tibble: 7 x 7
+##       ID Institution year  ZIP.code Highest.degree.… County.name
+##    &lt;int&gt; &lt;chr&gt;       &lt;lgl&gt; &lt;chr&gt;    &lt;chr&gt;            &lt;lgl&gt;      
+## 1 100663 University… NA    35294-0… Doctor's degree  NA         
+## 2 100690 Amridge Un… NA    36117-3… Doctor's degree  NA         
+## 3 100706 University… NA    35899    Doctor's degree  NA         
+## 4 100751 The Univer… NA    35487-0… Doctor's degree  NA         
+## 5 101541 Judson Col… NA    36756    Bachelor's degr… NA         
+## 6 101587 University… NA    35470    Master's degree  NA         
+## 7 101693 University… NA    36613-2… Master's degree  NA         
+## # … with 1 more variable: Religious.affiliation &lt;chr&gt;
+```
+
+---
+
+&lt;/br&gt;
+.large[
+Discard empty rows with with **`remove_empty()`** from 📦 .rrured.b[`janitor`]  
+]
+
+&gt; `quiet = FALSE` prints a statement about the rows that were removed
+
+
+```r
+universities %&gt;% remove_empty(which = "rows",
+                              quiet = FALSE) 
+```
+
+```
+## Removing 5 empty rows of 12 rows total (41.7%).
+```
+
+```
+## # A tibble: 7 x 7
+##       ID Institution year  ZIP.code Highest.degree.… County.name
+##    &lt;int&gt; &lt;chr&gt;       &lt;lgl&gt; &lt;chr&gt;    &lt;chr&gt;            &lt;lgl&gt;      
+## 1 100663 University… NA    35294-0… Doctor's degree  NA         
+## 2 100690 Amridge Un… NA    36117-3… Doctor's degree  NA         
+## 3 100706 University… NA    35899    Doctor's degree  NA         
+## 4 100751 The Univer… NA    35487-0… Doctor's degree  NA         
+## 5 101541 Judson Col… NA    36756    Bachelor's degr… NA         
+## 6 101587 University… NA    35470    Master's degree  NA         
+## 7 101693 University… NA    36613-2… Master's degree  NA         
+## # … with 1 more variable: Religious.affiliation &lt;chr&gt;
+```
+
+---
+
+## Empty columns 
+
+.large[
+Identify with 📦 .rrured.b[`dplyr`] and **`all_na()`** from 📦 .rrured.b[`naniar`]  
+]
+
+
+```r
+universities %&gt;% select(where(all_na))
+```
+
+```
+## # A tibble: 12 x 2
+##    year  County.name
+##    &lt;lgl&gt; &lt;lgl&gt;      
+##  1 NA    NA         
+##  2 NA    NA         
+##  3 NA    NA         
+##  4 NA    NA         
+##  5 NA    NA         
+##  6 NA    NA         
+##  7 NA    NA         
+##  8 NA    NA         
+##  9 NA    NA         
+## 10 NA    NA         
+## 11 NA    NA         
+## 12 NA    NA
+```
+
+---
+
+&lt;/br&gt;
+.large[
+Identify and get names
+]
+
+
+```r
+universities %&gt;% 
+  select(where(all_na)) %&gt;% 
+  names()
+```
+
+```
+## [1] "year"        "County.name"
+```
+
+.large[
+Negate condition for selection, get names
+]
+
+
+```r
+universities %&gt;% 
+  select(!where(all_na)) %&gt;% 
+  names()
+```
+
+```
+## [1] "ID"                     "Institution"            "ZIP.code"              
+## [4] "Highest.degree.offered" "Religious.affiliation"
+```
+---
+
+.large[
+Discard empty columns with with **`remove_empty()`** from 📦 .rrured.b[`janitor`]  
+]
+
+
+```r
+universities %&gt;% remove_empty(which= "cols", quiet = FALSE) 
+```
+
+```
+## Removing 2 empty columns of 7 columns total (Removed: year, County.name).
+```
+
+```
+## # A tibble: 12 x 5
+##        ID Institution           ZIP.code  Highest.degree.of… Religious.affili…
+##     &lt;int&gt; &lt;chr&gt;                 &lt;chr&gt;     &lt;chr&gt;              &lt;chr&gt;            
+##  1     NA &lt;NA&gt;                  &lt;NA&gt;      &lt;NA&gt;               &lt;NA&gt;             
+##  2 100663 University of Alabam… 35294-01… Doctor's degree    Not applicable   
+##  3 100690 Amridge University    36117-35… Doctor's degree    Churches of Chri…
+##  4 100706 University of Alabam… 35899     Doctor's degree    Not applicable   
+##  5     NA &lt;NA&gt;                  &lt;NA&gt;      &lt;NA&gt;               &lt;NA&gt;             
+##  6 100751 The University of Al… 35487-01… Doctor's degree    Not applicable   
+##  7     NA &lt;NA&gt;                  &lt;NA&gt;      &lt;NA&gt;               &lt;NA&gt;             
+##  8     NA &lt;NA&gt;                  &lt;NA&gt;      &lt;NA&gt;               &lt;NA&gt;             
+##  9 101541 Judson College        36756     Bachelor's degree  Baptist          
+## 10 101587 University of West A… 35470     Master's degree    Not applicable   
+## 11     NA &lt;NA&gt;                  &lt;NA&gt;      &lt;NA&gt;               &lt;NA&gt;             
+## 12 101693 University of Mobile  36613-28… Master's degree    Southern Baptist
+```
+
+---
+
+### Discard empty rows and columns
+
+```r
+universities %&gt;% remove_empty(which = c("rows","cols"), quiet = FALSE) 
+```
+---
+class: my-turn
+## My turn
+
+.large[
+- Import the Marine Protected Areas dataset (MPAS-mine.csv)
+
+- Identify the empty rows and columns, and create a new object with only the empty rows and columns 
+
+- Remove the empty rows and columns 
+]
+---
+class: inverse
+## Your turn
+
+.large[
+- Import the Marine Protected Areas dataset (MPAS-your.csv)
+
+- Identify the empty rows and columns, and create a new object with only the empty rows and columns 
+
+- Remove the empty rows and columns
+]
+---
+class: center, middle, dk-section-title
+background-image:url("images/markus-spiske-4jiR57y3jgY-unsplash.jpg")
+background-size: cover
+# Parsing numbers
+---
+class: middle
+
+.large[
+- Vectors must have all their values of the same mode (_character, numeric, logical_)  
+
+- If there is a character string is present in a vector, everything else in the vector will be converted to character strings
+]
+---
+&lt;/br&gt;&lt;/br&gt;
+### We cannot perform arithmetic operations on:
+
+- **Numbers stored as text**
+
+- **Strings with non-digits**
+
+
+```r
+test_scores &lt;- c(8.8,9,10,7.2,8.4)
+class(test_scores)
+```
+
+```
+## [1] "numeric"
+```
+
+```r
+class(c(test_scores,"a"))
+```
+
+```
+## [1] "character"
+```
+
+---
+
+## Numbers stored as text
+
+.large[
+1. **`type_convert()`** the whole object (📦 .rrured.b[`readr`])
+
+2. Coerce one or more variables to `numeric` with 📦 .rrured.b[`dplyr`]
+]
+
+---
+
+## Strings with non-digits
+
+.large[
+1. Parse with 📦 .rrured.b[`readr`]  
+
+2. Clean with .orange.b[regular expressions]
+]
+
+---
+
+
+.panelset[
+.panel[.panel-name[Burger Prices]
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#eqovardiuy .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #f4f4f9;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#eqovardiuy .gt_heading {
+  background-color: #f4f4f9;
+  text-align: center;
+  border-bottom-color: #f4f4f9;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#eqovardiuy .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #f4f4f9;
+  border-bottom-width: 0;
+}
+
+#eqovardiuy .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #f4f4f9;
+  border-top-width: 0;
+}
+
+#eqovardiuy .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#eqovardiuy .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#eqovardiuy .gt_col_heading {
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#eqovardiuy .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#eqovardiuy .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#eqovardiuy .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#eqovardiuy .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#eqovardiuy .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#eqovardiuy .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#eqovardiuy .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#eqovardiuy .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#eqovardiuy .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#eqovardiuy .gt_stub {
+  color: #333333;
+  background-color: #f4f4f9;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#eqovardiuy .gt_summary_row {
+  color: #333333;
+  background-color: #f4f4f9;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eqovardiuy .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#eqovardiuy .gt_grand_summary_row {
+  color: #333333;
+  background-color: #f4f4f9;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eqovardiuy .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#eqovardiuy .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#eqovardiuy .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#eqovardiuy .gt_footnotes {
+  color: #333333;
+  background-color: #f4f4f9;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#eqovardiuy .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#eqovardiuy .gt_sourcenotes {
+  color: #333333;
+  background-color: #f4f4f9;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#eqovardiuy .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#eqovardiuy .gt_left {
+  text-align: left;
+}
+
+#eqovardiuy .gt_center {
+  text-align: center;
+}
+
+#eqovardiuy .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#eqovardiuy .gt_font_normal {
+  font-weight: normal;
+}
+
+#eqovardiuy .gt_font_bold {
+  font-weight: bold;
+}
+
+#eqovardiuy .gt_font_italic {
+  font-style: italic;
+}
+
+#eqovardiuy .gt_super {
+  font-size: 65%;
+}
+
+#eqovardiuy .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="eqovardiuy" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Rank</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Country</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Price</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Price.ARS</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Region</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left">1</td>
+      <td class="gt_row gt_left">Switzerland</td>
+      <td class="gt_row gt_left">6.8</td>
+      <td class="gt_row gt_left">$544.50</td>
+      <td class="gt_row gt_left">Europe</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">2</td>
+      <td class="gt_row gt_left">Norway</td>
+      <td class="gt_row gt_left">6.2</td>
+      <td class="gt_row gt_left">496</td>
+      <td class="gt_row gt_left">Europe</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">3</td>
+      <td class="gt_row gt_left">Sweden</td>
+      <td class="gt_row gt_left">6.1</td>
+      <td class="gt_row gt_left">488</td>
+      <td class="gt_row gt_left">Europe</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">4</td>
+      <td class="gt_row gt_left">Finland</td>
+      <td class="gt_row gt_left">5.6</td>
+      <td class="gt_row gt_left">448</td>
+      <td class="gt_row gt_left">Europe</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">5</td>
+      <td class="gt_row gt_left">United States</td>
+      <td class="gt_row gt_left">5.3[1]</td>
+      <td class="gt_row gt_left">$424.50</td>
+      <td class="gt_row gt_left">America</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">8</td>
+      <td class="gt_row gt_left">Italy</td>
+      <td class="gt_row gt_left">5.1</td>
+      <td class="gt_row gt_left">408</td>
+      <td class="gt_row gt_left">Europe</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">7</td>
+      <td class="gt_row gt_left">France</td>
+      <td class="gt_row gt_left">5.1</td>
+      <td class="gt_row gt_left">408,50</td>
+      <td class="gt_row gt_left">Europe</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">6</td>
+      <td class="gt_row gt_left">Canada</td>
+      <td class="gt_row gt_left">5.3</td>
+      <td class="gt_row gt_left">424</td>
+      <td class="gt_row gt_left">America</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">9</td>
+      <td class="gt_row gt_left">Brazil</td>
+      <td class="gt_row gt_left">5.1*</td>
+      <td class="gt_row gt_left">408</td>
+      <td class="gt_row gt_left">America</td>
+    </tr>
+  </tbody>
+  
+  
+</table></div>
+]
+
+.panel[.panel-name[Data setup]
+
+```r
+burger_prices &lt;- 
+tibble::tribble(
+  ~Rank,        ~Country,   ~Price, ~Price.ARS,   ~Region,
+    "1",   "Switzerland",    "6.8",  "$544.50",  "Europe",
+    "2",        "Norway",    "6.2",      "496",  "Europe",
+    "3",        "Sweden",    "6.1",      "488",  "Europe",
+    "4",       "Finland",    "5.6",      "448",  "Europe",
+    "5", "United States", "5.3[1]",  "$424.50", "America",
+    "8",         "Italy",    "5.1",      "408",  "Europe",
+    "7",        "France",    "5.1",   "408,50",  "Europe",
+    "6",        "Canada",    "5.3",      "424", "America",
+    "9",        "Brazil",   "5.1*",      "408", "America"
+  )
+```
+]
+]
+---
+
+## Numbers stored as text  
+
+.large[Parse all columns] 
+
+```r
+burger_prices %&gt;% type_convert()
+```
+
+```
+## # A tibble: 9 x 5
+##    Rank Country       Price  Price.ARS Region 
+##   &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;  
+## 1     1 Switzerland   6.8    $544.50   Europe 
+## 2     2 Norway        6.2    496       Europe 
+## 3     3 Sweden        6.1    488       Europe 
+## 4     4 Finland       5.6    448       Europe 
+## 5     5 United States 5.3[1] $424.50   America
+## 6     8 Italy         5.1    408       Europe 
+## 7     7 France        5.1    408,50    Europe 
+## 8     6 Canada        5.3    424       America
+## 9     9 Brazil        5.1*   408       America
+```
+
+---
+
+## Numbers stored as text  
+
+.large[Coerce variables to `numeric`]
+
+
+```r
+burger_prices %&gt;% mutate(Rank= as.numeric(Rank))
+```
+
+```
+## # A tibble: 9 x 5
+##    Rank Country       Price  Price.ARS Region 
+##   &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;  
+## 1     1 Switzerland   6.8    $544.50   Europe 
+## 2     2 Norway        6.2    496       Europe 
+## 3     3 Sweden        6.1    488       Europe 
+## 4     4 Finland       5.6    448       Europe 
+## 5     5 United States 5.3[1] $424.50   America
+## 6     8 Italy         5.1    408       Europe 
+## 7     7 France        5.1    408,50    Europe 
+## 8     6 Canada        5.3    424       America
+## 9     9 Brazil        5.1*   408       America
+```
+
+&gt; ⚠ be careful of problems when coercing strings with non-digits
+
+---
+
+## Strings with non-digits
+
+.large[
+Parse with 📦 .rrured.b[`readr`]
+]
+
+
+```r
+burger_prices %&gt;% mutate(across(c(Rank,Price,Price.ARS),parse_number))
+```
+
+```
+## # A tibble: 9 x 5
+##    Rank Country       Price Price.ARS Region 
+##   &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  
+## 1     1 Switzerland     6.8      544. Europe 
+## 2     2 Norway          6.2      496  Europe 
+## 3     3 Sweden          6.1      488  Europe 
+## 4     4 Finland         5.6      448  Europe 
+## 5     5 United States   5.3      424. America
+## 6     8 Italy           5.1      408  Europe 
+## 7     7 France          5.1    40850  Europe 
+## 8     6 Canada          5.3      424  America
+## 9     9 Brazil          5.1      408  America
+```
+
+&gt; ⚠ be careful of problems when parsing strings with non-digits
+
+---
+
+## Strings with non-digits
+
+.large[
+Clean with .orange.b[regular expressions] and `type_convert()`
+]
+
+
+
+
+
+```r
+burger_prices %&gt;%
+  mutate(across(c(Rank, Price, Price.ARS), str_remove_all, "\\[.+\\]|\\(.+\\)")) %&gt;%
+  mutate(across(c(Rank, Price, Price.ARS), str_remove_all, "[^0-9.,]")) %&gt;%
+  mutate(Price.ARS = str_replace(Price.ARS, ",", ".")) %&gt;% type_convert()
+```
+
+```
+## # A tibble: 9 x 5
+##    Rank Country       Price Price.ARS Region 
+##   &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  
+## 1     1 Switzerland   6.8       544.5 Europe 
+## 2     2 Norway        6.2       496   Europe 
+## 3     3 Sweden        6.1       488   Europe 
+## 4     4 Finland       5.6       448   Europe 
+## 5     5 United States 5.3       424.5 America
+## 6     8 Italy         5.100     408   Europe 
+## 7     7 France        5.100     408.5 Europe 
+## 8     6 Canada        5.3       424   America
+## 9     9 Brazil        5.100     408   America
+```
+
+---
+class: my-turn
+## My turn
+
+.large[
+- Import the Marine Protected Areas dataset (MPAS-mine.csv)
+
+- Make the columns that hold the MPA extent into usable numeric variables
+]
+---
+class: inverse
+## Your turn
+
+.large[
+- Import the Marine Protected Areas dataset (MPAS-mine.csv)
+
+- Subset to keep only the MPA names and columns with extent data
+
+- Make the columns that hold the MPA extent into usable numeric variables
+
+- Watch out for the decimals
+]
+---
+
+### Putting everything together
+
+.large[
+Demonstration: Load and wrangle the messy Age of Empires units dataset into a usable, tidy object]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

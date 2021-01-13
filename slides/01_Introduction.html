@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Introduction</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.5/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+    <script src="libs/pagedtable-1.1/js/pagedtable.js"></script>
+    <link href="libs/tachyons-4.12.0/tachyons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Introduction
+
+---
+
+
+
+
+
+layout: true
+  
+&lt;div class="dk-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://rfortherestofus.com/" target="_blank"&gt;R for the Rest of Us
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
+---
+
+
+
+
+
+
+
+class: center, middle, dk-section-title
+background-image:url("images/gawn-australia-_OUvt8kLf0s-unsplash.jpg")
+background-size: cover
+# What is data cleaning?
+---
+class: center, middle
+
+&gt;.large["Mechanistic, time consuming process of identifying and fixing incomplete, inaccurate, irrelevant, or duplicated data"]
+
+--
+
+&gt;.large["Tedious tasks that get in the way of extracting true value and insights from data"]
+
+--
+
+&gt; .large["Not difficult, not _real_ work. Done (grudgingly) before the main analyses"]
+
+---
+
+class: center, middle
+
+&gt;.large["~~.gray[Mechanistic, time consuming]~~ process of identifying and _fixing_ incomplete, inaccurate, irrelevant, or duplicated data"]
+
+&gt;.large["~~.gray[Tedious tasks that get in the way of]~~ extracting true value and insights from data"]
+
+&gt; .large["~~.gray[Not difficult, not _real_ work. Done (grudgingly) before the main analyses"]~~]
+
+---
+
+## Data cleaning:
+&lt;/br&gt;
+
+.large[
+A spectrum of **reusable data transformations**  to make data **usable** and to obtain more meaningful results from our analysis or visualization methods.] 
+&lt;/br&gt;
+--
+.large[
+Has no single end product, because different systems and methods consume different input data formats and structures.] 
+
+---
+
+##Cleaning data involves:
+
+--
+
+.large[
+**1\.** Identifying specific **issues** that hinder an analysis, visualization, or reporting workflow.]  
+
+--
+.large[
+**2\.** Determining which approach or tool is needed to address each issue.] 
+
+--
+.large[
+**3\.** Transforming the data, making it more appropriate and valuable for a variety of downstream purposes.
+]
+
+---
+
+# Common issues
+
+.fl.w-50[
+.large[
+- Non-rectangular data  
+- Unusable variable names
+- Whitespace 
+- Inconsistent letter case  
+- Missing/implicit/misplaced grouping variables
+]]
+
+.fl.w-50[
+.large[
+- Compound values  
+- Duplicated values  
+- Broken values  
+- Empty rows and columns  
+- Numbers stored as text  
+]]
+
+---
+
+## Why data cleaning
+&lt;/br&gt;
+--
+.large[
+- Enables downstream tasks by making data readable &amp; usable  
+]
+--
+.large[
+- Saves time (rows and columns in a data object ready for use)  
+]
+--
+.large[
+- Avoid potentially costly delays, or misinterpretations
+]
+
+---
+
+## Why data cleaning in R
+&lt;/br&gt;
+--
+.large[
+- Document and reproduce the process  
+]
+--
+.large[
+- Less time editing manually  
+]
+--
+.large[
+- Purpose-built tools available and well documented
+]
+--
+.large[
+- Code can be reproduced and repurposed
+] 
+
+---
+
+&lt;img src="images/drugs.png" width="96%" /&gt;
+
+---
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#vlhpvmpaum .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 28px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#vlhpvmpaum .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#vlhpvmpaum .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#vlhpvmpaum .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#vlhpvmpaum .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vlhpvmpaum .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#vlhpvmpaum .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#vlhpvmpaum .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#vlhpvmpaum .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#vlhpvmpaum .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#vlhpvmpaum .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#vlhpvmpaum .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#vlhpvmpaum .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#vlhpvmpaum .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#vlhpvmpaum .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#vlhpvmpaum .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#vlhpvmpaum .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#vlhpvmpaum .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vlhpvmpaum .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#vlhpvmpaum .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vlhpvmpaum .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#vlhpvmpaum .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#vlhpvmpaum .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vlhpvmpaum .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vlhpvmpaum .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#vlhpvmpaum .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vlhpvmpaum .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#vlhpvmpaum .gt_left {
+  text-align: left;
+}
+
+#vlhpvmpaum .gt_center {
+  text-align: center;
+}
+
+#vlhpvmpaum .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#vlhpvmpaum .gt_font_normal {
+  font-weight: normal;
+}
+
+#vlhpvmpaum .gt_font_bold {
+  font-weight: bold;
+}
+
+#vlhpvmpaum .gt_font_italic {
+  font-style: italic;
+}
+
+#vlhpvmpaum .gt_super {
+  font-size: 65%;
+}
+
+#vlhpvmpaum .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="vlhpvmpaum" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="2" class="gt_heading gt_title gt_font_normal" style>Faculty Productivity Bonuses</th>
+    </tr>
+    <tr>
+      <th colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>2017 - School of Engineering</th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Researcher</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Publications<sup class="gt_footnote_marks">1</sup></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left">James Wilson</td>
+      <td class="gt_row gt_left">19 $$$</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Colt Whitman</td>
+      <td class="gt_row gt_left">18*</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Jane Allen</td>
+      <td class="gt_row gt_left">17*</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Maria Dias</td>
+      <td class="gt_row gt_left">14</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Dr. Deavan Smith</td>
+      <td class="gt_row gt_left">9</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Angie Ramirez</td>
+      <td class="gt_row gt_left">7</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Ellen Dice</td>
+      <td class="gt_row gt_left">5</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Dr. Jane Allen</td>
+      <td class="gt_row gt_left">4</td>
+    </tr>
+  </tbody>
+  
+  <tfoot>
+    <tr class="gt_footnotes">
+      <td colspan="2">
+        <p class="gt_footnote">
+          <sup class="gt_footnote_marks">
+            <em>1</em>
+          </sup>
+           
+          <strong>$$$</strong>  Award winner, <strong>*</strong>  Honorable mention
+          <br />
+        </p>
+      </td>
+    </tr>
+  </tfoot>
+</table></div>
+
+---
+&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;
+&lt;img src="images/fishlandings.png" width="100%" /&gt;
+
+Source: [Kenya Ministry of Agriculture, Livestock and Fisheries](https://africaopendata.org/organization/kenya-ministry-of-agriculture-livestock-and-fisheries)
+
+---
+
+&lt;/br&gt;
+.left[
+&lt;img src="images/tymp.png" width="100%" /&gt;
+]
+
+Source: Ojeda _et al._ [(1999)](https://doi.org/10.1006/jare.1999.0496)
+
+---
+
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#zxkmbmplkj .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#zxkmbmplkj .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zxkmbmplkj .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#zxkmbmplkj .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#zxkmbmplkj .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zxkmbmplkj .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zxkmbmplkj .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#zxkmbmplkj .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#zxkmbmplkj .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#zxkmbmplkj .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#zxkmbmplkj .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#zxkmbmplkj .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#zxkmbmplkj .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#zxkmbmplkj .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#zxkmbmplkj .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#zxkmbmplkj .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#zxkmbmplkj .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#zxkmbmplkj .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zxkmbmplkj .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#zxkmbmplkj .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zxkmbmplkj .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#zxkmbmplkj .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#zxkmbmplkj .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zxkmbmplkj .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zxkmbmplkj .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#zxkmbmplkj .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zxkmbmplkj .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#zxkmbmplkj .gt_left {
+  text-align: left;
+}
+
+#zxkmbmplkj .gt_center {
+  text-align: center;
+}
+
+#zxkmbmplkj .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#zxkmbmplkj .gt_font_normal {
+  font-weight: normal;
+}
+
+#zxkmbmplkj .gt_font_bold {
+  font-weight: bold;
+}
+
+#zxkmbmplkj .gt_font_italic {
+  font-style: italic;
+}
+
+#zxkmbmplkj .gt_super {
+  font-size: 65%;
+}
+
+#zxkmbmplkj .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="zxkmbmplkj" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">mfr</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">model</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">year</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">bdy_style</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">hp</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">trq</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr class="gt_group_heading_row">
+      <td colspan="6" class="gt_group_heading">Germany</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Audi</td>
+      <td class="gt_row gt_left">RS 7</td>
+      <td class="gt_row gt_right">2016</td>
+      <td class="gt_row gt_left">hatchback</td>
+      <td class="gt_row gt_right">560</td>
+      <td class="gt_row gt_right">516</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">BMW</td>
+      <td class="gt_row gt_left">M6</td>
+      <td class="gt_row gt_right">2016</td>
+      <td class="gt_row gt_left">coupe</td>
+      <td class="gt_row gt_right">560</td>
+      <td class="gt_row gt_right">500</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Audi</td>
+      <td class="gt_row gt_left">S7</td>
+      <td class="gt_row gt_right">2016</td>
+      <td class="gt_row gt_left">hatchback</td>
+      <td class="gt_row gt_right">450</td>
+      <td class="gt_row gt_right">406</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Audi</td>
+      <td class="gt_row gt_left">S8</td>
+      <td class="gt_row gt_right">2016</td>
+      <td class="gt_row gt_left">sedan</td>
+      <td class="gt_row gt_right">520</td>
+      <td class="gt_row gt_right">481</td>
+    </tr>
+    <tr class="gt_group_heading_row">
+      <td colspan="6" class="gt_group_heading">Italy</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Ferrari</td>
+      <td class="gt_row gt_left">458 Speciale</td>
+      <td class="gt_row gt_right">2015</td>
+      <td class="gt_row gt_left">coupe</td>
+      <td class="gt_row gt_right">597</td>
+      <td class="gt_row gt_right">398</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Ferrari</td>
+      <td class="gt_row gt_left">FF</td>
+      <td class="gt_row gt_right">2015</td>
+      <td class="gt_row gt_left">coupe</td>
+      <td class="gt_row gt_right">652</td>
+      <td class="gt_row gt_right">504</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Ferrari</td>
+      <td class="gt_row gt_left">458 Italia</td>
+      <td class="gt_row gt_right">2014</td>
+      <td class="gt_row gt_left">coupe</td>
+      <td class="gt_row gt_right">562</td>
+      <td class="gt_row gt_right">398</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Ferrari</td>
+      <td class="gt_row gt_left">LaFerrari</td>
+      <td class="gt_row gt_right">2015</td>
+      <td class="gt_row gt_left">coupe</td>
+      <td class="gt_row gt_right">949</td>
+      <td class="gt_row gt_right">664</td>
+    </tr>
+  </tbody>
+  
+  
+</table></div>
+
+source: `gt:gtcars` Luxury Automobiles Dataset
+---
+class: center, middle, dk-section-title
+background-image:url("images/willian-justen-de-vasconcellos-JJEQ1SQhkEg-unsplash.jpg")
+background-size: cover
+# Data cleaning is analysis
+
+---
+
+### When we clean data, we make judgements and interpretations
+&lt;/br&gt;
+.large[
+- Are the data in a usable structure?
+
+- What constitutes 'unwanted' variation?
+
+- Is there any implicit information that needs to made explicit?
+
+- What to do about missing data. 
+]
+---
+class: center
+&lt;/br&gt;&lt;/br&gt;
+
+.large[After identifying issues in our data, we decide which tool is best suited to address them.]
+
+--
+&lt;/br&gt;
+
+# This is also data analysis.
+
+--
+&lt;/br&gt;
+
+&gt;.large[Data cleaning is an important stage in most data analyses, not a single-use task of lesser importance.]
+
+---
+class: center, middle, dk-section-title
+background-image:url("images/endri-killo-tvWqbeOaJnw-unsplash.jpg")
+background-size: cover
+# The Data Cleaning process
+---
+
+&lt;img src="images/workflow.png" width="110%" /&gt;
+
+---
+class: center, middle, dk-section-title
+background-image:url("images/bence-boros-l3_9j916sh0-unsplash.jpg")
+background-size: cover
+# Course requirements and prerequisites
+
+---
+
+## You: 
+&lt;/br&gt;
+.large[
+- are familiar with basic data types and objects in R  
+
+- can use functions and arguments  
+
+- have R and RStudio running  
+
+- can install and load packages
+]
+
+---
+class: center, middle, dk-section-title
+background-image:url("images/endri-killo-tvWqbeOaJnw-unsplash.jpg")
+background-size: cover
+# Course conventions and setup
+---
+
+## Course conventions
+
+.large[
+- All packages available on CRAN   
+
+- All slides are available in html format
+
+- Package names in .b.rrured[red], preceded by 📦  
+
+- Functions and operators in .b.orange[orange]  
+
+- Relevant example data is provided in slides (see '**data-setup**' panels)  
+
+]
+
+---
+
+## Course setup
+
+.large[
+**1\.** Create a new RStudio project on your computer
+]
+
+.large[
+**2\.** Download course materials (data needed for "your turn" exercises) with 
+📦 .b.rrured[`usethis`]]  
+
+
+
+```r
+install.packages("usethis") # Install first if necessary
+usethis::use_course("FINALURLHERE") # Download course materials 
+```
+
+.large[
+**3\.** Copy the downloaded materials to the folder containing the RStudio project you created for this course. 
+]
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

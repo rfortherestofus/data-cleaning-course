@@ -1,0 +1,321 @@
+---
+title: "Introduction"
+output:
+  xaringan::moon_reader:
+    css: ["style.css", "default"]
+    lib_dir: libs
+    df_print: paged
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: 16:9
+---
+
+```{r child = "setup.Rmd"}
+```
+
+```{r imgs setup, echo=FALSE, eval=TRUE}
+knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
+
+```
+
+```{r xaringan-tachyons, echo=FALSE, eval=TRUE}
+xaringanExtra::use_tachyons()
+```
+
+```{r load pkgs, echo=FALSE, eval=TRUE}
+library(dplyr)
+library(gt)
+```
+
+class: center, middle, dk-section-title
+background-image:url("images/gawn-australia-_OUvt8kLf0s-unsplash.jpg")
+background-size: cover
+# What is data cleaning?
+---
+class: center, middle
+
+>.large["Mechanistic, time consuming process of identifying and fixing incomplete, inaccurate, irrelevant, or duplicated data"]
+
+--
+
+>.large["Tedious tasks that get in the way of extracting true value and insights from data"]
+
+--
+
+> .large["Not difficult, not _real_ work. Done (grudgingly) before the main analyses"]
+
+---
+
+class: center, middle
+
+>.large["~~.gray[Mechanistic, time consuming]~~ process of identifying and _fixing_ incomplete, inaccurate, irrelevant, or duplicated data"]
+
+>.large["~~.gray[Tedious tasks that get in the way of]~~ extracting true value and insights from data"]
+
+> .large["~~.gray[Not difficult, not _real_ work. Done (grudgingly) before the main analyses"]~~]
+
+---
+
+## Data cleaning:
+</br>
+
+.large[
+A spectrum of **reusable data transformations**  to make data **usable** and to obtain more meaningful results from our analysis or visualization methods.] 
+</br>
+--
+.large[
+Has no single end product, because different systems and methods consume different input data formats and structures.] 
+
+---
+
+##Cleaning data involves:
+
+--
+
+.large[
+**1\.** Identifying specific **issues** that hinder an analysis, visualization, or reporting workflow.]  
+
+--
+.large[
+**2\.** Determining which approach or tool is needed to address each issue.] 
+
+--
+.large[
+**3\.** Transforming the data, making it more appropriate and valuable for a variety of downstream purposes.
+]
+
+---
+
+# Common issues
+
+.fl.w-50[
+.large[
+- Non-rectangular data  
+- Unusable variable names
+- Whitespace 
+- Inconsistent letter case  
+- Missing/implicit/misplaced grouping variables
+]]
+
+.fl.w-50[
+.large[
+- Compound values  
+- Duplicated values  
+- Broken values  
+- Empty rows and columns  
+- Numbers stored as text  
+]]
+
+---
+
+## Why data cleaning
+</br>
+--
+.large[
+- Enables downstream tasks by making data readable & usable  
+]
+--
+.large[
+- Saves time (rows and columns in a data object ready for use)  
+]
+--
+.large[
+- Avoid potentially costly delays, or misinterpretations
+]
+
+---
+
+## Why data cleaning in R
+</br>
+--
+.large[
+- Document and reproduce the process  
+]
+--
+.large[
+- Less time editing manually  
+]
+--
+.large[
+- Purpose-built tools available and well documented
+]
+--
+.large[
+- Code can be reproduced and repurposed
+] 
+
+---
+
+```{r, eval=TRUE, out.width = "96%", echo=FALSE}
+knitr::include_graphics("images/drugs.png")
+```
+
+---
+```{r, eval=TRUE, echo=FALSE}
+isi <- 
+tibble::tribble(
+         ~Researcher, ~Publications,
+      "James Wilson",      "19 $$$",
+      "Colt Whitman",         "18*",
+        "Jane Allen",         "17*",
+        "Maria Dias",          "14",
+   "Dr. Deavan Smith",           "9",
+     "Angie Ramirez",           "7",
+        "Ellen Dice",           "5",
+    "Dr. Jane Allen",           "4",
+  )
+
+isi %>% gt %>%   tab_header(
+  title = md("Faculty Productivity Bonuses"),
+  subtitle = "2017 - School of Engineering"
+)  %>% tab_footnote(locations = cells_column_labels(columns = "Publications"),
+  footnote = md("**$$$**  Award winner, **\\***  Honorable mention")
+) %>% 
+  tab_options(table.font.size = px(28))
+```
+
+---
+</br></br></br>
+```{r, eval=TRUE, out.width = "100%", echo=FALSE}
+knitr::include_graphics("images/fishlandings.png")
+```
+
+Source: [Kenya Ministry of Agriculture, Livestock and Fisheries](https://africaopendata.org/organization/kenya-ministry-of-agriculture-livestock-and-fisheries)
+
+---
+
+</br>
+.left[
+```{r, eval=TRUE, out.width = "100%", echo=FALSE}
+knitr::include_graphics("images/tymp.png")
+```
+]
+
+Source: Ojeda _et al._ [(1999)](https://doi.org/10.1006/jare.1999.0496)
+
+---
+
+```{r, eval=TRUE, echo=FALSE}
+  gtcars %>%
+  dplyr::select(1:3,bdy_style,hp,trq,ctry_origin) %>% 
+  dplyr::filter(ctry_origin == "Italy" | ctry_origin == "Germany") %>% 
+  dplyr::group_by(ctry_origin) %>%
+  dplyr::sample_n(4) %>%
+  dplyr::ungroup() %>%
+  dplyr::group_by(ctry_origin) %>%
+  gt()
+```
+
+source: `gt:gtcars` Luxury Automobiles Dataset
+---
+class: center, middle, dk-section-title
+background-image:url("images/willian-justen-de-vasconcellos-JJEQ1SQhkEg-unsplash.jpg")
+background-size: cover
+# Data cleaning is analysis
+
+---
+
+### When we clean data, we make judgements and interpretations
+</br>
+.large[
+- Are the data in a usable structure?
+
+- What constitutes 'unwanted' variation?
+
+- Is there any implicit information that needs to made explicit?
+
+- What to do about missing data. 
+]
+---
+class: center
+</br></br>
+
+.large[After identifying issues in our data, we decide which tool is best suited to address them.]
+
+--
+</br>
+
+# This is also data analysis.
+
+--
+</br>
+
+>.large[Data cleaning is an important stage in most data analyses, not a single-use task of lesser importance.]
+
+---
+class: center, middle, dk-section-title
+background-image:url("images/endri-killo-tvWqbeOaJnw-unsplash.jpg")
+background-size: cover
+# The Data Cleaning process
+---
+
+```{r, eval=TRUE, out.width = "110%", echo=FALSE}
+knitr::include_graphics("images/workflow.png")
+```
+
+---
+class: center, middle, dk-section-title
+background-image:url("images/bence-boros-l3_9j916sh0-unsplash.jpg")
+background-size: cover
+# Course requirements and prerequisites
+
+---
+
+## You: 
+</br>
+.large[
+- are familiar with basic data types and objects in R  
+
+- can use functions and arguments  
+
+- have R and RStudio running  
+
+- can install and load packages
+]
+
+---
+class: center, middle, dk-section-title
+background-image:url("images/endri-killo-tvWqbeOaJnw-unsplash.jpg")
+background-size: cover
+# Course conventions and setup
+---
+
+## Course conventions
+
+.large[
+- All packages available on CRAN   
+
+- All slides are available in html format
+
+- Package names in .b.rrured[red], preceded by 📦  
+
+- Functions and operators in .b.orange[orange]  
+
+- Relevant example data is provided in slides (see '**data-setup**' panels)  
+
+]
+
+---
+
+## Course setup
+
+.large[
+**1\.** Create a new RStudio project on your computer
+]
+
+.large[
+**2\.** Download course materials (data needed for "your turn" exercises) with 
+📦 .b.rrured[`usethis`]]  
+
+
+```{r, eval=FALSE}
+install.packages("usethis") # Install first if necessary
+usethis::use_course("FINALURLHERE") # Download course materials 
+```
+
+.large[
+**3\.** Copy the downloaded materials to the folder containing the RStudio project you created for this course. 
+]
+

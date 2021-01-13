@@ -1,0 +1,353 @@
+---
+title: "Data Organization"
+output:
+  xaringan::moon_reader:
+    css: ["style.css", "default"]
+    lib_dir: libs
+    df_print: paged
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: 16:9
+---
+
+```{r child = "setup.Rmd"}
+```
+
+```{r imgs setup, echo=FALSE, eval=TRUE}
+knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
+
+```
+
+```{r xaringan-tachyons, echo=FALSE, eval=TRUE}
+xaringanExtra::use_tachyons()
+```
+
+class: center, middle, dk-section-title
+background-image:url("images/road-trip-with-raj-ywJx2-ZD8UU-unsplash.jpg")
+background-size: cover
+# Data organization good practices
+---
+
+
+## Well-organized data
+
+.large[
+Easier to import and manipulate, less prone to errors.]
+
+--
+
+.large[
+Manual input and interactive restructuring can lead to non-replicable, inadvertent user errors such as omitted, altered, or duplicated data.
+]
+
+--
+
+.large[
+Understanding data organization principles helps us when we produce data,
+but also to identify and solve problems in existing data.
+]
+
+---
+
+# Good Practices in Data Organization
+</br>
+.large[
+- Consistency in names layouts, abbreviations, units, etc.
+]
+
+.large[
+- Good names for objects, files, and variables
+]
+
+.large[
+- Rectangular data
+]
+
+---
+
+## Consistency
+
+```{r birdnests, echo=FALSE, eval=TRUE}
+knitr::include_graphics("images/consistency.png")
+```
+
+---
+
+# Good names
+
+.right.large.b[
+For files, objects in our R environment, and variables in a table
+]
+</br>
+
+.center.large[Keep names short but informative  
+
+Avoid spaces and special characters 
+
+Avoid using names for versioning  
+(`var_V2_final_2020`)]
+
+---
+
+##  Short but informative
+.fl.w-40[
+**Good name**  
+`max_prec`
+]
+
+.fl.w-60[
+**Avoid**  
+`Maximum_Precipitation_mm_2010-2014`  
+`max`  
+`prec`
+</br>
+]
+
+## Spaces and special characters  
+
+.fl.w-40[
+**Good name**  
+`mean_price_usd`  
+`monthly_temp`
+]
+
+.fl.w-60[
+**Avoid**  
+`Mean Price ($)`  
+`Temperature/Month (°F)`
+]
+
+
+---
+
+## Data rectangles
+.fl.w-30[
+```{r, echo=FALSE, eval=TRUE, out.width="76%"}
+knitr::include_graphics("images/rectangle1.png")
+```
+]
+
+.large[
+- Each row has the same number of columns  
+
+- Each column has the same number of rows  
+]
+
+_Vectors and factors of the same length = all columns must have the same 'height'_
+
+.large[
+- Equal-height columns give a rectangular shape to the data frame
+]
+  
+---
+
+## Organizing data in rectangular tables
+
+```{r, echo=FALSE, eval=TRUE, fig.align='center',out.width="80%"}
+knitr::include_graphics("images/transposed.png", error = FALSE)
+```
+
+---
+class: center, middle, dk-section-title
+background-image:url("images/max-bohme--bz-MQOrd18-unsplash.jpg")
+background-size: cover
+# Tidy Data and Data Rectangling
+---
+
+.pull-left[## Data imported to R ✅]    
+
+```{r, echo=FALSE, eval=TRUE, fig.align='center',out.width="70%"}
+knitr::include_graphics("images/import.png", error=FALSE)
+```
+
+---
+
+## Ready for immediate use?
+
+--
+
+.large[
+- Subset, group, transform, sort, visualize, model, share
+]
+
+--
+
+## Not ready?
+
+--
+
+.large[
+- Restructure for easier and more effective handling
+]
+
+---
+
+## Tidy data 
+</br>
+--
+.center.large[
+Data arranged in a 2D data matrix   
+]
+
+--
+
+.center.large[
+Rows correspond to observations   
+]
+
+--
+
+.center.large[
+Columns correspond to variables
+]
+
+--
+
+.center.large[
+One value per cell
+]
+
+---
+
+```{r, echo=FALSE, eval=TRUE, fig.align='center',out.width="90%"}
+knitr::include_graphics("images/varscols.png", error=FALSE)
+```
+
+---
+
+### Tidy Data Checklist
+
+.large[
+1. Each variable should be in one column  
+   
+2. Each observation of that variable should be in a different row
+
+3. There should be one table for each "kind" of variable
+
+4. Multiple related tables should include a column in common that allows them to be merged together
+]
+
+---
+
+```{r, echo=FALSE, eval=TRUE, fig.align='center',out.width="80%"}
+knitr::include_graphics("images/tidydata.png", error=FALSE)
+```
+
+---
+
+## Why tidy?
+
+--
+
+.large[
+Observations are preserved across functions and operations
+]
+
+--
+
+.large[
+Easy to reshape into other structures after cleaning or transforming
+]
+
+--
+
+.large[
+Variables feed directly into model specifications and plotting parameters
+]
+
+---
+
+## Why not
+
+--
+
+.large[Tidy data is more repetitive, and often takes up more space than other more condensed representations.
+
+Not ideal for data entry, or for tables that will be embedded in a text document]
+
+---
+class: center, middle, dk-section-title
+background-image:url("images/jahongir-ismoilov-RcjvFd1k18o-unsplash.jpg")
+background-size: cover
+# Grouping and indicator variables
+---
+
+.large[
+Put any grouping information in its own variable.  
+
+Use indicator variables instead of encoding information into an existing value.
+] 
+
+```{r, echo=FALSE, eval=TRUE, fig.align='center',out.width="90%"}
+knitr::include_graphics("images/indgroups.png")
+```
+
+---
+class: center, middle, dk-section-title
+background-image:url("images/anatoliu-WYrb7rzthBQ-unsplash.jpg")
+background-size: cover
+# NA and empty values
+---
+
+### Missing data are still data
+
+--
+
+.large[
+- Code .red[`NA`] values consistently (if done consistently, blank cells are OK)]
+
+--
+
+.large[
+- Avoid ambiguity  
+
+> Are data known to be missing, or was a value intentionally left blank?
+]
+
+--
+
+.large[
+- Avoid empty cells  
+]
+--
+
+.large[
+- Avoid .red[`NA`] values in column headers and in columns that hold the observational units]
+
+---
+
+```{r, echo=FALSE, eval=TRUE, fig.align='center',out.width="55%"}
+knitr::include_graphics("images/NAblank.png")
+```
+
+---
+
+class: center, middle, dk-section-title
+background-image:url("images/aleksei-zaitcev-Nc34cnxcfH0-unsplash.jpg")
+background-size: cover
+# Data sharing good practices
+
+---
+
+### Data can be intuitive, easy to read AND machine-readable if shared adequately
+
+--
+
+.large[↘️ Reduce the need for complex/proprietary software or advanced programming skills for inclusion in future analyses.]
+
+--
+
+.large[↘ Minimize the amount of interpretation that others (or future you) will need to make to use the data.]
+
+--
+
+### 🗎 Consider file formats
+
+--
+
+- Avoid PDF as a data format
+- The simpler the better (prefer delimited text files)  
+- Share data-only files, keep calculations and results elsewhere
+

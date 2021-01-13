@@ -1,0 +1,2075 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Regular Expressions</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.5/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/tachyons-4.12.0/tachyons.min.css" rel="stylesheet" />
+    <link href="libs/panelset-0.2.4/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset-0.2.4/panelset.js"></script>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Regular Expressions
+
+---
+
+
+
+
+
+layout: true
+  
+&lt;div class="dk-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://rfortherestofus.com/" target="_blank"&gt;R for the Rest of Us
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
+---
+
+
+
+
+
+
+
+
+
+class: center, middle, dk-section-title
+background-image:url("images/alex-iby-2JfOIZ1jR3M-unsplash.jpg")
+background-size: cover
+# What are regular expressions?
+
+---
+
+class: middle
+
+##Specially encoded _strings_ of characters that match patterns in other text string 
+
+---
+class: center, middle, dk-section-title
+background-image:url("images/dylan-freedom-DLwjgBvD_yA-unsplash.jpg")
+background-size: cover
+# Strings
+---
+
+&lt;/br&gt;&lt;/br&gt;
+.large[A collection of characters that make up one element of a vector:]
+
+```r
+test_string &lt;- "This sentence is a string."
+```
+
+.large[We can store multiple strings in a character vector:]
+
+
+```r
+pets &lt;-  c("dog","cat","parrot")
+```
+
+.pull-left[
+.large[Headers and values in a data frame can also be strings:]]
+
+
+
+.pull-right[
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#guslmfmkjo .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#guslmfmkjo .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#guslmfmkjo .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#guslmfmkjo .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#guslmfmkjo .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#guslmfmkjo .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#guslmfmkjo .gt_col_heading {
+  color: #333333;
+  background-color: yellow;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#guslmfmkjo .gt_column_spanner_outer {
+  color: #333333;
+  background-color: yellow;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#guslmfmkjo .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#guslmfmkjo .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#guslmfmkjo .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#guslmfmkjo .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#guslmfmkjo .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#guslmfmkjo .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#guslmfmkjo .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#guslmfmkjo .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#guslmfmkjo .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#guslmfmkjo .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#guslmfmkjo .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#guslmfmkjo .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#guslmfmkjo .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#guslmfmkjo .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#guslmfmkjo .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#guslmfmkjo .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#guslmfmkjo .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#guslmfmkjo .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#guslmfmkjo .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#guslmfmkjo .gt_left {
+  text-align: left;
+}
+
+#guslmfmkjo .gt_center {
+  text-align: center;
+}
+
+#guslmfmkjo .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#guslmfmkjo .gt_font_normal {
+  font-weight: normal;
+}
+
+#guslmfmkjo .gt_font_bold {
+  font-weight: bold;
+}
+
+#guslmfmkjo .gt_font_italic {
+  font-style: italic;
+}
+
+#guslmfmkjo .gt_super {
+  font-size: 65%;
+}
+
+#guslmfmkjo .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="guslmfmkjo" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">drink</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">price</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left" style="background-color: #FFFF00;">Coffee</td>
+      <td class="gt_row gt_right">3.50</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="background-color: #FFFF00;">Tea</td>
+      <td class="gt_row gt_right">2.99</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="background-color: #FFFF00;">Juice</td>
+      <td class="gt_row gt_right">3.20</td>
+    </tr>
+  </tbody>
+  
+  
+</table></div>
+]
+
+---
+
+# Strings in R are _case sensitive_
+
+.large[Uppercase and lowercase letters are treated as distinct]
+
+
+```r
+"cat"=="CAT" ; "cat"=="cat"
+```
+
+```
+## [1] FALSE
+```
+
+```
+## [1] TRUE
+```
+
+--
+
+.large[Regex searches are case sensitive by default, so we can:]    
+
+- Build case-insensitive regular expressions  
+
+- Change the matching to be case insensitive  
+
+- Coerce the input before matching
+
+---
+class: center, middle, dk-section-title
+background-image:url("images/jorge-balleza-vtvwNNjYBz4-unsplash.jpg")
+background-size: cover
+# Why learn regular expressions?
+---
+
+&lt;/br&gt;
+.large[
+.center[🕰]  
+Cleaning text can be time-consuming and the first hurdle to address when working with less-than-perfect data.] 
+
+.center.large[💻      
+Regular expressions can often replace dozens of lines of code.] 
+
+.large.center[
+Regex is not specific to any particular programming language or command-line tool]
+
+---
+class: center, middle, dk-section-title
+background-image:url("images/dan-gold-4YAhiaZkUfs-unsplash.jpg")
+background-size: cover
+# Literal Characters and Metacharacters
+---
+
+## Getting started
+.large[To search for a specific sequence of characters, the regexp we need is simply that sequence of characters.]
+
+&lt;/br&gt;
+.fl.w-third[
+&lt;div class="f2 mt1 pt0 code"&gt;Regexp&lt;/div&gt;
+&lt;/br&gt;
+&lt;/br&gt;
+`dog`
+]
+
+.fl.w-third[
+&lt;div class="f2 mt0 pt0 code"&gt;Input 
+string&lt;/div&gt;
+&lt;/br&gt;&lt;/br&gt;
+"The dog is fat."
+]
+
+.fl.w-third[
+&lt;div class="f2 mt0 pt0 code"&gt;Match&lt;/div&gt;
+&lt;/br&gt;
+&lt;/br&gt;
+The .bg-yellow[dog] is fat.
+&lt;/br&gt;&lt;/br&gt;
+]
+&lt;/br&gt;&lt;/br&gt;
+&lt;/br&gt;&lt;/br&gt;
+
+---
+
+# Literal characters
+&lt;/br&gt;&lt;/br&gt;
+.large[We will get a match whenever the characters .orange[`d`], .orange[`o`], and .orange[`g`] occur consecutively in the input text.]
+&lt;/br&gt;&lt;/br&gt;
+.large[`"dog"` tells the regex engine:
+find a .orange[d], immediately followed by an .orange[o], immediately followed by a .orange[g] (together and in that particular order)] 
+
+---
+
+## Literal characters (continued)
+&lt;/br&gt;
+.large[.orange[`d`], .orange[`o`], and .orange[`g`] are examples of literal characters.
+&lt;/br&gt;
+&lt;/br&gt;
+
+They stand for exactly what they are: .orange[`d`] in the regex matches a “.purple.b[d]” in the input text, .orange[`o`]  matches an “.purple.b[o]” in text, and so on.]
+
+---
+
+# Metacharacters
+  
+&lt;/br&gt;  
+.large[The power and flexibility of regular expressions comes from their ability to describe more complex patterns.] 
+&lt;/br&gt;  
+
+--
+
+.large[
+If a text pattern can be described verbally, we can most likely write regular expression to match it.]
+
+---
+# Possible patterns:
+
+- "dog" but not "dogs"  
+- "dogs" but only if string begins with "dogs"  
+- digits (0,1,2,3,4,5,6,7,8,9)  
+- "modeling" or "modelling"  
+- words ending in "at"
+- strings that start with digits
+- dates
+- zip codes
+- numbers inside square brackets and also the brackets  
+- valid Twitter handles (start with @, no spaces or symbols, &lt;16 characters)
+- UPPERCASE words
+- positions at which strings switch letter case (e.g. lowerUPPER)
+
+---
+
+# Metacharacters
+&lt;/br&gt;
+.large[To match more than literal strings of text, we call on a small subset of characters that have special functionalities when they appear in a regular expression.] 
+&lt;/br&gt;&lt;/br&gt;
+ 
+--
+ 
+.large[Metacharacters include: .b.orange[[]\^$.|?*+()], which are reserved for unique matching purposes.]
+
+---
+
+# Using metacharacters
+
+.large[Depending on what they do, we can place most metacharacters into major “families“]
+
+.b[Wildcards] stand in for unknown characters  
+&amp;nbsp; .large[.f1.orange.pre[&amp;nbsp;.&amp;nbsp; ] &amp;nbsp;&amp;nbsp; match any character]
+
+.b[Character sets/classes] match one or more characters  
+&amp;nbsp;.large[.b.orange.pre[&amp;nbsp;[ ] &amp;nbsp;] &amp;nbsp;&amp;nbsp; match a set of characters]  
+
+.b[Anchors] specify the relative position of the pattern being matched   
+&amp;nbsp;.large[.orange.large.pre[&amp;nbsp;^&amp;nbsp;] &amp;nbsp;&amp;nbsp;     starts with]  
+&amp;nbsp;.large[.large.orange.pre[&amp;nbsp;$&amp;nbsp;]  &amp;nbsp;&amp;nbsp; ends with]
+
+---
+
+## Using metacharacters (continued)
+
+.large[**Quantifiers** specify how many times a character or character class must appear in the input for a match to be found] 
+
+&amp;nbsp;.f2[.orange.f1[&amp;nbsp;?&amp;nbsp;] &amp;nbsp;&amp;nbsp;Zero or one (of the preceding character)]  	
+&amp;nbsp;.f2[.orange.f1[&amp;nbsp;\\\*&amp;nbsp;] &amp;nbsp;&amp;nbsp;Zero or more occurrences] 	
+&amp;nbsp;.f2[.orange.f1[&amp;nbsp;+&amp;nbsp;]	 &amp;nbsp;&amp;nbsp;One or more occurrences]   
+&amp;nbsp;.f2[.orange.f1[&amp;nbsp;{}] 	&amp;nbsp;&amp;nbsp;Exactly the specified number of occurrences]  	
+
+---
+
+### Using metacharacters (continued)
+
+.b.large[Negation tokens]   
+
+&amp;nbsp;.large[.orange.b[[^]] &amp;nbsp;&amp;nbsp;  matches characters not in the specified character set] 
+
+.large[.b[Alternation] tokens separate a series of alternatives]  
+&amp;nbsp;.large[.orange.b.pre[&amp;nbsp;|&amp;nbsp;] &amp;nbsp;&amp;nbsp; either or]  
+
+.large.b[Special sequences and escapes]  
+&amp;nbsp;.large[.b.orange.pre[&amp;nbsp;\\&amp;nbsp;] 	&amp;nbsp;&amp;nbsp; signals a shorthand sequence or gives special characters a literal meaning]	
+
+---
+
+# Note 
+
+.large[
+* To use special characters in a regular expression, escape them with a backslash, but the backslash itself needs to be escaped.
+
+* Metacharacters inside a character set are stripped of their special nature.]
+
+---
+
+### Using metacharacters (continued)
+
+.b[Shorthand character classes] are available to refer to commonly-used character sets   
+.large[.b.orange[\w] &amp;nbsp;all letters and numbers]   
+.large[.b.orange[\d] &amp;nbsp;digits]  
+.large[.orange.b[\t]  &amp;nbsp;tab]  
+.large[.orange.b[\n]  &amp;nbsp;new line]  
+.large[.orange.b[\s]  &amp;nbsp;space]  
+.large[.orange.b[\b]  &amp;nbsp;word boundary]  
+
+.b[Shorthand + negation]   
+.large[.orange.b[\S]  &amp;nbsp;  not whitespace]  
+.large[.orange.b[\D]  &amp;nbsp;  not digits]   
+.large[.orange.b[\W]  &amp;nbsp;not letters, numbers, or underscores]   
+
+---
+
+# Examples
+
+.f2[
+
+.b.orange[\\\\\\\\(hello\\\\\\\\)] matches .b["(hello)"]  
+
+.b.orange[ing$] matches .b["going"] but not .b["ingest"]  
+
+.b.orange[f..l] matches **"fill"**, **"fool"**, but not **"flail"**  
+
+.b.orange[dog|bird] matches **"dog"** or **"bird"**
+
+.b.orange[[cb]at] matches **"cat"**, and **"bat"**, but not   **"rat"**] 
+
+---
+
+## Examples (continued)
+.f2[
+.b.orange[modell?ing] matches .b["modeling"] and .b["modelling"]  
+
+.b.orange[ya*y!] matches .b["yy"], .b["yay!"], .b["yaaay!"], .b[“yaaaaaay!”], etc.  
+
+.b.orange[no+] matches .b[“no”], **“noo"**, **“nooooo”**, etc, but not **“n”**  
+ 
+.b.orange[^can.\\\*] matches **"can"**, **"canine"**, **"canoli"**, **"canadian"**] 
+
+---
+
+## Examples (continued)
+.f2[
+.b.orange[\\bcase] matches .b["case"] and .b["casein"] but not .b["suitcase"]  
+
+.b.orange[\\s{3}] matches three spaces 
+
+.b.orange[[^aoeio]] matches consonants
+ 
+.b.orange[^[a-z]+$] matches a lowercase string]
+
+---
+class: center, middle, dk-section-title
+background-image:url("images/joakim-honkasalo-1LEq1hqDxEg-unsplash.jpg")
+background-size: cover
+# Regex in R
+---
+
+.large.center[Matching patterns]  
+
+**`grepl`** - returns a logical vector (match or no match for each element of x)
+.large[`grepl(pattern, x)`]  
+
+
+**`grep`** - returns a vector indicating which elements of x yielded a match  
+.large[`grep(pattern, x)`]
+
+
+.large.center[Replacing matches]
+
+**`gsub`** - returns the input string with substitutions  
+.large[`gsub(pattern, replacement, x)`]
+
+---
+
+.large[Matches?]
+
+```r
+grepl(pattern = "cat", x= c("catalog", "battlecat", "apple"))
+```
+
+```
+## [1]  TRUE  TRUE FALSE
+```
+
+.large[Which elements contain matches?]
+
+```r
+grep(pattern = "cat", x= c("catalog", "battlecat", "apple"))
+```
+
+```
+## [1] 1 2
+```
+
+.large[Replacing matches (British to American spelling)]
+
+```r
+gsub(pattern = "ou",
+     replacement = "o",
+     x= c("colour", "neighbour", "honour"))
+```
+
+```
+## [1] "color"    "neighbor" "honor"
+```
+
+---
+
+# 📦 .rrured[`stringr`]
+.right[https://stringr.tidyverse.org/]
+
+.large[Cohesive set of functions for string manipulation
+
+- Function names start with .b[`str_`]   
+
+- All functions take a vector of strings as the first argument (pipe-friendly)  
+
+**`regex()`** modifier to control matching behavior]
+
+---
+
+.large[Matches?]
+
+
+```r
+str_detect(string = c("catalog", "battlecat", "apple"), pattern = "cat")
+```
+
+```
+## [1]  TRUE  TRUE FALSE
+```
+
+.large[Which elements contain matches?]
+
+
+```r
+str_which(string = c("catalog", "battlecat", "apple"), pattern = "cat")
+```
+
+```
+## [1] 1 2
+```
+
+.large[Replacing matches (British to American spelling)]
+
+
+```r
+str_replace(string = c("colour", "neighbour", "honour"),
+            pattern = "ou",
+            replacement = "o")
+```
+
+```
+## [1] "color"    "neighbor" "honor"
+```
+
+---
+class: center, middle, dk-section-title
+background-image:url("images/dfkt-nkynQWagL-s-unsplash.jpg")
+background-size: cover
+# Understanding a Regular Expression
+---
+  
+## Online regex testers
+.large[
+- [regex101](https://regex101.com/) by Firas Dib 
+- [regexr](https://regexr.com/) by Grant Skinner 
+- [regexpal](https://www.regexpal.com/) - part of Dan's Developer Tools] 
+
+## Inside R 
+.large[
+- 📦 [`regexplain`](https://www.garrickadenbuie.com/project/regexplain/) by Garrick Aden‑Buie
+- `str_view()` from 📦 [`stringr`](https://stringr.tidyverse.org/)]
+
+---
+class: my-turn
+### My Turn
+.large[
+1. Write regular expressions for the patterns bellow  
+2. Test them in an interactive tool]
+
+* "dogs" but only if string begins with "dogs"  
+* strings that start with digits  
+* UPPERCASE strings  
+* numbers in brackets  
+* strings that end in “at” but longer than 3 characters   
+
+Match the regular expressions against the following vector (clue: there is only one match for each pattern)
+
+
+```r
+test_vector &lt;- c("Those dogs are small.","dogs and cats",
+                 "34","(34)","rat","watchdog","placemat",
+                 "BABY","2011_April","HELP","mice")
+```
+
+---
+class: inverse
+## Your turn
+
+.large[Write regular expressions to match the following:]  
+(make sure they work)
+
+
+* cute, cuuute, cuuuuuute, and cuuuuuuuuute 
+* strings with both letters and digits
+* strings ending in a period
+* lowercase strings
+* exactly four digits
+* strings without the letter _**s**_
+
+---
+class: center, middle, dk-section-title
+background-image:url("images/patrick-janser-YGP2NAGaBwc-unsplash.jpg")
+background-size: cover
+# Regular expressions &amp; data cleaning
+---
+class: middle
+
+&lt;/br&gt;
+.large[Select, keep, or discard rows and columns]  
+&lt;/br&gt;
+   
+.large[Substitute or recode values]  
+ 
+&lt;/br&gt;
+.large[Extract or remove substrings]  
+
+---
+
+# Cleaning data with regex
+
+.large[Most data wrangling workflows involve specifying columns (variables).]
+
+.large[To select variables in 📦 .b.rrured[`dplyr`] and 📦 .b.rrured[`tidyr`]:]
+
+.large[
+- write out their names   
+- refer to them by position  
+- specify ranges of contiguous variables
+- use 📦 .b.rrured[`tidyselect`] helper functions]
+
+---
+
+## 📦 .rrured.b[`tidyselect`] helpers
+
+&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;
+.large[.b[`matches()`] takes regular expressions, and selects variables that match a given pattern]
+&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;
+
+**`starts_with()`**: Starts with a prefix  
+**`ends_with()`**: Ends with a suffix  
+**`contains()`**: Contains a literal string 
+
+---
+
+## Selecting columns
+
+Refer to variables by name (`penguins` data from 📦 .rrured.b[`palmerpenguins`]) 
+
+
+```r
+names(penguins)
+```
+
+```
+## [1] "species"           "island"            "bill_length_mm"   
+## [4] "bill_depth_mm"     "flipper_length_mm" "body_mass_g"      
+## [7] "sex"               "year"
+```
+
+
+```r
+penguins %&gt;% select(species,bill_length_mm,flipper_length_mm) %&gt;% 
+  sample_n(3)
+```
+
+```
+## # A tibble: 3 x 3
+##   species   bill_length_mm flipper_length_mm
+##   &lt;fct&gt;              &lt;dbl&gt;             &lt;int&gt;
+## 1 Adelie              33.5               190
+## 2 Adelie              39.3               190
+## 3 Chinstrap           43.5               202
+```
+
+---
+
+##Selecting columns
+
+.large[Matches in variable names]  
+
+
+```r
+names(penguins)
+```
+
+```
+## [1] "species"           "island"            "bill_length_mm"   
+## [4] "bill_depth_mm"     "flipper_length_mm" "body_mass_g"      
+## [7] "sex"               "year"
+```
+
+
+```r
+penguins %&gt;% select(species, matches("length")) %&gt;% sample_n(3)
+```
+
+```
+## # A tibble: 3 x 3
+##   species   bill_length_mm flipper_length_mm
+##   &lt;fct&gt;              &lt;dbl&gt;             &lt;int&gt;
+## 1 Gentoo              46.9               222
+## 2 Gentoo              46.1               215
+## 3 Chinstrap           51.3               197
+```
+
+---
+
+## Match values and filter rows
+
+.large[Mammals sleep dataset]
+
+```r
+library(ggplot2)
+```
+
+
+```r
+msleep %&gt;% select(name,genus) %&gt;% sample_n(7)
+```
+
+```
+## # A tibble: 7 x 2
+##   name                   genus        
+##   &lt;chr&gt;                  &lt;chr&gt;        
+## 1 Degu                   Octodon      
+## 2 Mountain beaver        Aplodontia   
+## 3 Tree hyrax             Dendrohyrax  
+## 4 Pilot whale            Globicephalus
+## 5 Golden hamster         Mesocricetus 
+## 6 North American Opossum Didelphis    
+## 7 Arctic ground squirrel Spermophilus
+```
+
+---
+
+## Match values and filter rows
+.large[Filter to keep rats only]
+
+```r
+msleep %&gt;% select(name,genus) %&gt;% 
+  filter(str_detect(string = name,pattern = "rat"))
+```
+
+```
+## # A tibble: 5 x 2
+##   name                      genus     
+##   &lt;chr&gt;                     &lt;chr&gt;     
+## 1 African giant pouched rat Cricetomys
+## 2 Round-tailed muskrat      Neofiber  
+## 3 Laboratory rat            Rattus    
+## 4 Cotton rat                Sigmodon  
+## 5 Mole rat                  Spalax
+```
+&lt;/br&gt;&lt;/br&gt;
+.dark-green[🐀 How can we exclude muskrats?]
+
+---
+
+
+
+
+### Substitute or recode values
+
+.panelset[
+.panel[.panel-name[companies]
+
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#cwwogkjogq .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#cwwogkjogq .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#cwwogkjogq .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#cwwogkjogq .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#cwwogkjogq .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cwwogkjogq .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#cwwogkjogq .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#cwwogkjogq .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#cwwogkjogq .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#cwwogkjogq .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#cwwogkjogq .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#cwwogkjogq .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#cwwogkjogq .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#cwwogkjogq .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#cwwogkjogq .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#cwwogkjogq .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#cwwogkjogq .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#cwwogkjogq .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cwwogkjogq .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#cwwogkjogq .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cwwogkjogq .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#cwwogkjogq .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#cwwogkjogq .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cwwogkjogq .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#cwwogkjogq .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#cwwogkjogq .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#cwwogkjogq .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#cwwogkjogq .gt_left {
+  text-align: left;
+}
+
+#cwwogkjogq .gt_center {
+  text-align: center;
+}
+
+#cwwogkjogq .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#cwwogkjogq .gt_font_normal {
+  font-weight: normal;
+}
+
+#cwwogkjogq .gt_font_bold {
+  font-weight: bold;
+}
+
+#cwwogkjogq .gt_font_italic {
+  font-style: italic;
+}
+
+#cwwogkjogq .gt_super {
+  font-size: 65%;
+}
+
+#cwwogkjogq .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="cwwogkjogq" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Company</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Operation</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left">Olsson</td>
+      <td class="gt_row gt_left">Logistics</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Ollsson</td>
+      <td class="gt_row gt_left">Logistics</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">olson</td>
+      <td class="gt_row gt_left">Logistics</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Olsson LLC</td>
+      <td class="gt_row gt_left">Logistics</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Olsson Group</td>
+      <td class="gt_row gt_left">Logistics</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Olsonn</td>
+      <td class="gt_row gt_left">Logistics</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Mila Inc</td>
+      <td class="gt_row gt_left">E-commerce</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Mila Inc</td>
+      <td class="gt_row gt_left">E-commerce</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Mila Inc</td>
+      <td class="gt_row gt_left">E-commerce</td>
+    </tr>
+  </tbody>
+  
+  
+</table></div>
+]
+
+.panel[.panel-name[Data setup]
+
+```r
+companies &lt;- data.frame(
+  stringsAsFactors = FALSE,
+           Company = c("Olsson","Ollsson","olson",
+                       "Olsson LLC","Olsson Group","Olsonn","Mila Inc",
+                       "Mila Inc","Mila Inc"),
+         Operation = c("Logistics","Logistics",
+                       "Logistics","Logistics","Logistics","Logistics",
+                       "E-commerce","E-commerce","E-commerce")
+)
+```
+]
+]
+---
+
+### Substitute or recode values
+.i[(correct name should be Olsson)]  
+
+```r
+companies %&gt;% 
+  mutate(Company=str_replace(Company,"[o|O]l+s+on+.*","Olsson")) %&gt;% 
+  distinct()
+```
+
+```
+##    Company  Operation
+## 1   Olsson  Logistics
+## 2 Mila Inc E-commerce
+```
+
+---
+
+# Case insensitive matching
+
+
+```r
+companies %&gt;%
+  mutate(Company = str_replace(
+    Company,
+    regex("ol+s+on+.*", ignore_case = TRUE), "Olsson"
+  )) %&gt;%
+  distinct()
+```
+
+```
+##    Company  Operation
+## 1   Olsson  Logistics
+## 2 Mila Inc E-commerce
+```
+
+---
+
+
+## Extract or remove substrings  
+.panelset[
+.panel[.panel-name[team_record]
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#hvdsuxlivl .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#hvdsuxlivl .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hvdsuxlivl .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#hvdsuxlivl .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#hvdsuxlivl .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hvdsuxlivl .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hvdsuxlivl .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#hvdsuxlivl .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#hvdsuxlivl .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#hvdsuxlivl .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#hvdsuxlivl .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#hvdsuxlivl .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hvdsuxlivl .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hvdsuxlivl .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#hvdsuxlivl .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#hvdsuxlivl .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#hvdsuxlivl .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#hvdsuxlivl .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hvdsuxlivl .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#hvdsuxlivl .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hvdsuxlivl .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#hvdsuxlivl .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#hvdsuxlivl .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hvdsuxlivl .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hvdsuxlivl .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#hvdsuxlivl .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hvdsuxlivl .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#hvdsuxlivl .gt_left {
+  text-align: left;
+}
+
+#hvdsuxlivl .gt_center {
+  text-align: center;
+}
+
+#hvdsuxlivl .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hvdsuxlivl .gt_font_normal {
+  font-weight: normal;
+}
+
+#hvdsuxlivl .gt_font_bold {
+  font-weight: bold;
+}
+
+#hvdsuxlivl .gt_font_italic {
+  font-style: italic;
+}
+
+#hvdsuxlivl .gt_super {
+  font-size: 65%;
+}
+
+#hvdsuxlivl .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="hvdsuxlivl" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">week</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">result</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">game</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_center">12</td>
+      <td class="gt_row gt_left">loss</td>
+      <td class="gt_row gt_left">home</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">13</td>
+      <td class="gt_row gt_left">loss (disqualified)</td>
+      <td class="gt_row gt_left">away</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">14</td>
+      <td class="gt_row gt_left">win (overturned)</td>
+      <td class="gt_row gt_left">away</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">15</td>
+      <td class="gt_row gt_left">win (forefit)</td>
+      <td class="gt_row gt_left">home</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">16</td>
+      <td class="gt_row gt_left">win (rematch)</td>
+      <td class="gt_row gt_left">away</td>
+    </tr>
+  </tbody>
+  
+  
+</table></div>
+]
+.panel[.panel-name[Data setup]
+
+```r
+team_record &lt;- 
+tibble::tribble(
+  ~week,               ~result,  ~game,
+    12L,                "loss", "home",
+    13L, "loss (disqualified)", "away",
+    14L,    "win (overturned)", "away",
+    15L,       "win (forefit)", "home",
+    16L,       "win (rematch)", "away"
+  )
+```
+]
+]
+.large[
+.b[`str_extract()`] extracts matching patterns  
+.b[`str_remove()`]  removes matched patterns]
+---
+
+#Extract substrings
+.large[
+
+```r
+team_record %&gt;%
+  mutate(result_comment = str_extract(
+    string = result, pattern = "\\(.+\\)"))
+```
+
+```
+## # A tibble: 5 x 4
+##    week result              game  result_comment
+##   &lt;int&gt; &lt;chr&gt;               &lt;chr&gt; &lt;chr&gt;         
+## 1    12 loss                home  &lt;NA&gt;          
+## 2    13 loss (disqualified) away  (disqualified)
+## 3    14 win (overturned)    away  (overturned)  
+## 4    15 win (forefit)       home  (forefit)     
+## 5    16 win (rematch)       away  (rematch)
+```
+]
+--
+
+*Can we strip the brackets with a regular expression?
+
+---
+
+## Extract substrings
+.large.b[`str_remove_all()`]
+
+```r
+team_record %&gt;%
+  mutate(result_comment = str_extract(
+    string = result, pattern = "\\(.+\\)")) %&gt;% 
+  mutate(result_comment=str_remove_all(result_comment,"[()]"))
+```
+
+```
+## # A tibble: 5 x 4
+##    week result              game  result_comment
+##   &lt;int&gt; &lt;chr&gt;               &lt;chr&gt; &lt;chr&gt;         
+## 1    12 loss                home  &lt;NA&gt;          
+## 2    13 loss (disqualified) away  disqualified  
+## 3    14 win (overturned)    away  overturned    
+## 4    15 win (forefit)       home  forefit       
+## 5    16 win (rematch)       away  rematch
+```
+
+---
+
+# Remove substrings
+
+
+```r
+team_record %&gt;%
+  mutate(result=str_remove(
+    string= result,pattern = " \\(.*\\)"))
+```
+
+```
+## # A tibble: 5 x 3
+##    week result game 
+##   &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;
+## 1    12 loss   home 
+## 2    13 loss   away 
+## 3    14 win    away 
+## 4    15 win    home 
+## 5    16 win    away
+```
+---
+class: my-turn
+# My Turn
+.large[
+1. Download CRAN package descriptions  
+2. Select Package name, author, description, and all variables that contain 'License'  
+3. Filter rows for packages with names that:  
+ - start with _gg_ (case insensitivty)
+ - contain _Bayes_
+ - contain _glm_ but not _glmm_]
+
+---
+class: inverse
+# Your Turn
+.large[
+1. Download CRAN package descriptions  
+2. Select Package name, author, description, and all variables that end in 'ports'  
+3. Filter rows for packages with names that:  
+ - end in _plot_
+ - contain _Bayes_
+ - contain digits  
+ - are all UPPER CASE]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
