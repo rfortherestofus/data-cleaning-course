@@ -92,7 +92,7 @@ Has no single end product, because different systems and methods consume differe
 
 ---
 
-# Common Issues
+## Common Issues
 
 .fl.w-50[
 
@@ -249,7 +249,7 @@ class: center, middle
 
 --
 
-# This is also data analysis.
+## This is also data analysis.
 
 --
 
