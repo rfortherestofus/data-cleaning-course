@@ -24,7 +24,6 @@ xaringanExtra::use_tachyons()
 
 ```{r imgs setup, echo=FALSE, eval=TRUE}
 knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
-
 ```
 
 ```{r, include=FALSE, eval=TRUE}

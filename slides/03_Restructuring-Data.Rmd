@@ -68,14 +68,12 @@ Flexible, but developed around built-in features that support a particular way o
 
 To perform multiple operations in sequence:
 
-.large[
+
 - Nested code  
 
 - Intermediate objects  
 
 - Pipes  
-
-]
 
 ---
 
@@ -244,6 +242,7 @@ beers %>% select(name, style, star_rating)
 
 ![select animation](images/select.gif)
 ]
+
 ---
 .left-column[
 .large.b[`mutate()`]
@@ -261,6 +260,7 @@ beers %>% select(name, style, star_rating) %>%
 
 ![mutate animation](images/mutate.gif)
 ]
+
 ---
 .left-column[
 .large.b[`filter()`]

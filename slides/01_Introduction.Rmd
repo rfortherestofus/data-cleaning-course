@@ -33,7 +33,9 @@ class: center, middle, dk-section-title
 background-image:url("images/gawn-australia-_OUvt8kLf0s-unsplash.jpg")
 background-size: cover
 # What is Data Cleaning?
+
 ---
+
 class: center, middle
 
 >.large["Mechanistic, time consuming process of identifying and fixing incomplete, inaccurate, irrelevant, or duplicated data"]
@@ -41,6 +43,7 @@ class: center, middle
 --
 
 >.large["Tedious tasks that get in the way of extracting true value and insights from data"]
+
 
 --
 
@@ -59,18 +62,18 @@ class: center, middle
 ---
 
 ## Data cleaning:
-</br>
 
 .large[
 A spectrum of **reusable data transformations**  to make data **usable** and to obtain more meaningful results from our analysis or visualization methods.] 
-</br>
+
 --
+
 .large[
 Has no single end product, because different systems and methods consume different input data formats and structures.] 
 
 ---
 
-##Cleaning data involves:
+## Cleaning data involves:
 
 --
 
@@ -78,6 +81,7 @@ Has no single end product, because different systems and methods consume differe
 **1\.** Identifying specific **issues** that hinder an analysis, visualization, or reporting workflow.]  
 
 --
+
 .large[
 **2\.** Determining which approach or tool is needed to address each issue.] 
 
@@ -91,27 +95,26 @@ Has no single end product, because different systems and methods consume differe
 # Common Issues
 
 .fl.w-50[
-.large[
+
 - Non-rectangular data  
 - Unusable variable names
 - Whitespace 
 - Inconsistent letter case  
 - Missing/implicit/misplaced grouping variables
-]]
+]
 
 .fl.w-50[
-.large[
 - Compound values  
 - Duplicated values  
 - Broken values  
 - Empty rows and columns  
 - Numbers stored as text  
-]]
+]
 
 ---
 
 ## Why data cleaning
-</br>
+
 --
 .large[
 - Enables downstream tasks by making data readable & usable  
@@ -128,7 +131,7 @@ Has no single end product, because different systems and methods consume differe
 ---
 
 ## Why data cleaning in R
-</br>
+
 --
 .large[
 - Document and reproduce the process  
@@ -147,6 +150,8 @@ Has no single end product, because different systems and methods consume differe
 ] 
 
 ---
+
+class: middle, center
 
 ```{r, eval=TRUE, out.width = "96%", echo=FALSE}
 knitr::include_graphics("images/drugs.png")
@@ -177,12 +182,14 @@ isi %>% gt %>%   tab_header(
 ```
 
 ---
-</br></br></br>
+
+class: middle, center
+
 ```{r, eval=TRUE, out.width = "100%", echo=FALSE}
 knitr::include_graphics("images/fishlandings.png")
 ```
 
-Source: [Kenya Ministry of Agriculture, Livestock and Fisheries](https://africaopendata.org/organization/kenya-ministry-of-agriculture-livestock-and-fisheries)
+.small[Source: [Kenya Ministry of Agriculture, Livestock and Fisheries](https://africaopendata.org/organization/kenya-ministry-of-agriculture-livestock-and-fisheries)]
 
 ---
 
@@ -193,12 +200,12 @@ knitr::include_graphics("images/tymp.png")
 ```
 ]
 
-Source: Ojeda _et al._ [(1999)](https://doi.org/10.1006/jare.1999.0496)
+.small[Source: Ojeda _et al._ [(1999)](https://doi.org/10.1006/jare.1999.0496)]
 
 ---
 
 ```{r, eval=TRUE, echo=FALSE}
-  gtcars %>%
+gtcars %>%
   dplyr::select(1:3,bdy_style,hp,trq,ctry_origin) %>% 
   dplyr::filter(ctry_origin == "Italy" | ctry_origin == "Germany") %>% 
   dplyr::group_by(ctry_origin) %>%
@@ -208,39 +215,43 @@ Source: Ojeda _et al._ [(1999)](https://doi.org/10.1006/jare.1999.0496)
   gt()
 ```
 
-source: `gt:gtcars` Luxury Automobiles Dataset
+.small[source: `gt:gtcars` Luxury Automobiles Dataset]
+
 ---
+
 class: center, middle, dk-section-title
 background-image:url("images/willian-justen-de-vasconcellos-JJEQ1SQhkEg-unsplash.jpg")
 background-size: cover
-# Data cleaning is Analysis
+# Data Cleaning is Analysis
 
 ---
 
 ### When we clean data, we make judgements and interpretations
-</br>
-.large[
+
 - Are the data in a usable structure?
+
+--
 
 - What constitutes 'unwanted' variation?
 
+--
+
 - Is there any implicit information that needs to made explicit?
 
+--
+
 - What to do about missing data. 
-]
+
 ---
-class: center
-</br></br>
+class: center, middle
 
 .large[After identifying issues in our data, we decide which tool is best suited to address them.]
 
 --
-</br>
 
 # This is also data analysis.
 
 --
-</br>
 
 >.large[Data cleaning is an important stage in most data analyses, not a single-use task of lesser importance.]
 
@@ -252,6 +263,8 @@ background-size: cover
 # The Data Cleaning Process
 
 ---
+
+class: middle, center
 
 ```{r, eval=TRUE, out.width = "110%", echo=FALSE}
 knitr::include_graphics("images/workflow.png")
@@ -266,7 +279,7 @@ background-size: cover
 ---
 
 ## You: 
-</br>
+
 .large[
 - are familiar with basic data types and objects in R  
 
@@ -288,30 +301,35 @@ background-size: cover
 
 ## Course conventions
 
-.large[
 - All packages available on CRAN   
+
+--
 
 - All slides are available in html format
 
+--
+
 - Package names in .b.rrured[red], preceded by 📦  
+
+--
 
 - Functions and operators in .b.orange[orange]  
 
+--
+
 - Relevant example data is provided in slides (see '**data-setup**' panels)  
 
-]
 
 ---
 
 ## Course setup
 
-.large[
-**1\.** Create a new RStudio project on your computer
-]
 
-.large[
+**1\.** Create a new RStudio project on your computer
+
+
 **2\.** Download course materials (data needed for "your turn" exercises) with 
-📦 .b.rrured[`usethis`]]  
+📦 .b.rrured[`usethis`]
 
 
 ```{r, eval=FALSE}
@@ -319,7 +337,6 @@ install.packages("usethis") # Install first if necessary
 usethis::use_course("FINALURLHERE") # Download course materials 
 ```
 
-.large[
 **3\.** Copy the downloaded materials to the folder containing the RStudio project you created for this course. 
-]
+
 
