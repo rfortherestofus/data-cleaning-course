@@ -37,7 +37,8 @@ library(tidyr)
 class: center, middle, dk-section-title
 background-image:url("images/casey-horner-KtlTvi8leYQ-unsplash.jpg")
 background-size: cover
-# Toolbox refresher
+# Toolbox Refresher
+
 ---
 
 ## Tools for preparing, transforming, and restructuring data
@@ -85,6 +86,8 @@ grades <- c(7,8,8,10,6,9,5,9,8)
 
 round(mean(grades), digits = 2)
 ```
+
+--
 
 ## Intermediate objects
 
@@ -137,11 +140,20 @@ Right Hand Side
 
 ## Pipes 
 
+--
+
 - Minimize the need for intermediate objects and nested code  
+
+--
 
 - Make code readable  
 
+--
+
 - Easy to add or remove steps at any point in the sequence of operations
+
+--
+
 > Insert with `ctrl + shift + M`
 
 --
@@ -268,46 +280,73 @@ beers %>% select(name, style, star_rating) %>%
 ]
 ---
 class: my-turn
-# My turn
+# My Turn
+
+--
 
 - .large[Load the mammal sleep data bundled with `ggplot2`]
+
+--
 
 - .large[Select the "name" and "conservation" columns, as well as all numeric variables]
 
+--
+
 - .large[Create a new column that contains the values of _'awake'_ multiplied by the values in _'brainwt'_]  
+
+--
 
 - .large[Filter the data to keep only rows with _'sleep_total'_ > 4]
 
-> Use pipes to chain the operations 
+--
+
+> I'll use pipes to chain the operations 
+
 ---
+
 class: inverse
-# Your turn
+# Your Turn
+
+--
 
 - .large[Load the mammal sleep data bundled with `ggplot2`]
 
+--
+
 - .large[Select "name" and "conservation" columns and those that include the string _'sleep'_ in their name]
+
+--
 
 - .large[Create a new column that contains the values of _'sleep_total'_ multiplied by 3]  
 
+--
+
 - .large[Filter the data to remove domesticated mammals]
 
-> Use pipes to chain the operations 
+--
+
+> Use pipes to chain the operations!
 
 ---
 
 class: center, middle, dk-section-title
 background-image:url("images/emmanuel-acua-43Tvb651fxE-unsplash.jpg")
 background-size: cover
-# Working with columns with 'across'
+# Working with Columns with `across()`
+
 ---
 
 ## Operating on multiple columns
 
 ###.center.b.large.orange[`across()`]
 
+--
+
 .large[`filter`, `mutate`, or `summarize` multiple columns]
 
 - By position, name, or type  
+
+--
 
 - Compound selections of columns  
 (e.g. _numeric columns that contain "mass" in their name_)
@@ -316,10 +355,19 @@ background-size: cover
 
 ## .b.orange[`across()`] arguments:
 
- - .large.b[`.cols`] Columns to transform
+--
+
+.large.b[`.cols`] Columns to transform
  
- - .large.b[`.fns`]  Function to apply to each of the selected columns  
+--
+ 
+.large.b[`.fns`]  Function to apply to each of the selected columns  
+
+--
+
 \* Expects a function, so function name and arguments can be passed separately
+
+--
 
 ```{r}
 beers %>% 
@@ -333,10 +381,16 @@ beers %>%
 .b.large.orange[`everything()`] Match all variables
 ]
 </br>
+
+--
+
 .ba.ph4[
 .b.large.orange[`!`] Take the complement of a set of variables (negate a selection)
 ]
 </br>
+
+--
+
 .ba.ph4.mt1.mb1[
 .b.large.orange[`where()`] Selects variables for which a predicate function returns `TRUE`  
 > e.g. subset or transform all numeric variables, determined by `is.numeric()`
@@ -351,10 +405,16 @@ beers %>%
 
 ]
 </br>
+
+--
+
 .ba.ph4[
 .b.large.orange[`:`] Select a range of consecutive variables
 ]
 </br>
+
+--
+
 .ba.ph4[
 .b.large.orange[`-`]   Exclude variables   
 (return all elements except the one preceded by the subtraction operator)
@@ -385,27 +445,56 @@ beers %>% mutate(across(where(is.numeric),sqrt))
 
 ---
 class: my-turn
-# My turn
+# My Turn
+
+--
+
 - .large[Load the _midwest_ data bundled with `ggplot2`]
+
+--
+
 - .large[Keep only rows for Wisconsin (WI)]
+
+--
+
 - .large[Subset the 'county' column and all columns that match the string '_perc_' (hint: use a selection helper)]
+
+--
+
 - .large[log-transform all numeric variables]
+
+--
+
 - .large[Append the suffix "_check" to every value]
 
 ---
 
 class: inverse
-# Your turn
+# Your Turn
+
+--
+
 - .large[Load the _midwest_ data bundled with `ggplot2`]
+
+--
+
 - .large[Keep only rows for Ohio (OH)]
+
+--
+
 - .large[Subset the 'county' column and all columns that match the string '_pop_' (hint: use a selection helper)]
+
+--
+
 - .large[Square-root transform all numeric variables]
 
 ---
+
 class: center, middle, dk-section-title
 background-image:url("images/1024px-Espacio_Escultórico.jpg")
 background-size: cover
-# Pivoting data
+# Pivoting Data
+
 ---
 
 .pull-left[
@@ -426,14 +515,14 @@ Maps well to plot axes and aesthetics ]
 ---
 # Reshaping data with 📦 .b.rrured[`tidyr`]
 
-.large[wide to long - .b.orange[`pivot_longer()`]]  
+.large[wide to long: .b.orange[`pivot_longer()`]]  
 
 ```{r}
 pivot_longer(data, cols, names_to, values_to)
 ```
 
 </br>
-.large[long to wide - .b.orange[`pivot_wider()`]] 
+.large[long to wide: .b.orange[`pivot_wider()`]] 
 
 ```{r}
 pivot_longer(data, cols, names_from, values_from)
@@ -510,7 +599,11 @@ critters_long <-
 
 .b[`cols`] Which columns have data in their names  
 
+--
+
 **`names_to`** Name for the new column to be created from `cols`  
+
+--
 
 **`values_to`** Name of the column to be created from the contents of the cells in **`cols`**  
 
@@ -536,6 +629,8 @@ critters_long %>%
 
 .b[`names_from`] Which column's values will be used for new column names
 
+--
+
 **`values_from`** Which column has the cell values for the new output columns
 
 ---
@@ -554,31 +649,49 @@ class: center
 ---
 
 class: my-turn
-# My turn
+# My Turn
+
+--
+
 - .large[Load the dog ranks data ("dogranks_mine.csv")]  
+
+--
 
 - .large[Pivot the data (wide to long and back to wide)]
 
 ---
 
 class: inverse
-# Your turn
+# Your Turn
+
+--
+
 - .large[Load the dog ranks data ("dogranks_your.csv")]  
+
+--
 
 - .large[Pivot the data (wide to long and back to wide)]
 
 ---
+
 class: center, middle, dk-section-title
 background-image:url("images/drew-dau-dXxsLrlg9qY-unsplash.jpg")
 background-size: cover
-# Coalescing columns
+# Coalescing Columns
+
 ---
 
 ## .b.orange[coalesce()] from 📦 .b.rrured[`dplyr`]  
 
+--
+
 - Find and return the first non-NA value at each position for a set of vectors
 
+--
+
 - Returns a single vector with the non-NA values that appear first 
+
+--
 
 ```{r, eval=TRUE}
 x <- c(1, 2, NA, NA, 5)
@@ -590,9 +703,9 @@ z <- c(1, 4, 3, 5, 3)
 
 ```{r, eval=TRUE}
 coalesce(x, y, z)
-
 ```
 
+--
 
 ```{r, eval=TRUE}
 coalesce(z,x,y)
@@ -649,10 +762,11 @@ class: center
 ![](images/coalesce.gif)
 
 ---
+
 class: center, middle, dk-section-title
 background-image:url("images/sen-sathyamony-4RkmVyBMO5Q-unsplash.jpg")
 background-size: cover
-# Filling adjacent values
+# Filling Adjacent Values
 
 ---
 
@@ -671,14 +785,21 @@ animal_populations %>% gt() %>%
 
 </br>
 `animal_populations`
+
+--
+j
 .large[- Fill missing values in a column (top to bottom by default)]   
 
+--
+
 .large[- Contiguous/adjacent values assumed to be the same]   
+
+--
 
 .large[- Values only appear when they change along a column]
 
 ---
-class: center, middle
+class: middle
 
 ```{r, eval=TRUE}
 animal_populations %>% 
@@ -687,21 +808,33 @@ animal_populations %>%
 
 ---
 class: my-turn
-# My turn
+# My Turn
+
+--
 
 .large[- Load the fish landings data 'fish-landings.csv']
 
+--
+
 .large[- Fill the 'Fish' and 'Lake' columns]
+
+--
 
 .large[- Create a new column, coalescing the three numeric variables]
 
 ---
 
 class: inverse
-# Your turn
+# Your Turn
+
+--
 
 .large[- Load the fish landings data 'fish-landings.csv']
 
+--
+
 .large[- Fill the 'Fish' and 'Lake' columns]
+
+--
 
 .large[- Reorder the numeric variables ('Comission reported total' first) and create a new column, coalescing the three numeric variables]

@@ -15,7 +15,7 @@ body {
 }
 
 .remark-slide-content {
-  font-size: 25px;
+  font-size: 32px;
   line-height: 1.25;
 }
 
@@ -23,6 +23,9 @@ body {
 .remark-slide-content h2{font-size:50px}
 .remark-slide-content h3{font-size:40px}
 
+.xl {
+  font-size: 500%;
+}
 
 
 .large {

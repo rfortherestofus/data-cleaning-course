@@ -3,7 +3,6 @@
   <head>
     <title>Restructuring Data</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.5/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/panelset-0.2.4/panelset.css" rel="stylesheet" />
     <script src="libs/panelset-0.2.4/panelset.js"></script>
@@ -44,7 +43,8 @@ layout: true
 class: center, middle, dk-section-title
 background-image:url("images/casey-horner-KtlTvi8leYQ-unsplash.jpg")
 background-size: cover
-# Toolbox refresher
+# Toolbox Refresher
+
 ---
 
 ## Tools for preparing, transforming, and restructuring data
@@ -97,6 +97,8 @@ round(mean(grades), digits = 2)
 ```
 ## [1] 7.78
 ```
+
+--
 
 ## Intermediate objects
 
@@ -154,11 +156,20 @@ Right Hand Side
 
 ## Pipes 
 
+--
+
 - Minimize the need for intermediate objects and nested code  
+
+--
 
 - Make code readable  
 
+--
+
 - Easy to add or remove steps at any point in the sequence of operations
+
+--
+
 &gt; Insert with `ctrl + shift + M`
 
 --
@@ -197,11 +208,13 @@ grades %&gt;%
 
 .panelset[
 .panel[.panel-name[beers]
-<style>html {
+
+```{=html}
+&lt;style&gt;html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#fxghnanjnj .gt_table {
+#hmfazsklrm .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -226,7 +239,7 @@ grades %&gt;%
   border-left-color: #D3D3D3;
 }
 
-#fxghnanjnj .gt_heading {
+#hmfazsklrm .gt_heading {
   background-color: #f4f4f9;
   text-align: center;
   border-bottom-color: #f4f4f9;
@@ -238,7 +251,7 @@ grades %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#fxghnanjnj .gt_title {
+#hmfazsklrm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -248,7 +261,7 @@ grades %&gt;%
   border-bottom-width: 0;
 }
 
-#fxghnanjnj .gt_subtitle {
+#hmfazsklrm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -258,13 +271,13 @@ grades %&gt;%
   border-top-width: 0;
 }
 
-#fxghnanjnj .gt_bottom_border {
+#hmfazsklrm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fxghnanjnj .gt_col_headings {
+#hmfazsklrm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -279,7 +292,7 @@ grades %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#fxghnanjnj .gt_col_heading {
+#hmfazsklrm .gt_col_heading {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -299,7 +312,7 @@ grades %&gt;%
   overflow-x: hidden;
 }
 
-#fxghnanjnj .gt_column_spanner_outer {
+#hmfazsklrm .gt_column_spanner_outer {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -311,15 +324,15 @@ grades %&gt;%
   padding-right: 4px;
 }
 
-#fxghnanjnj .gt_column_spanner_outer:first-child {
+#hmfazsklrm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fxghnanjnj .gt_column_spanner_outer:last-child {
+#hmfazsklrm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fxghnanjnj .gt_column_spanner {
+#hmfazsklrm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -331,7 +344,7 @@ grades %&gt;%
   width: 100%;
 }
 
-#fxghnanjnj .gt_group_heading {
+#hmfazsklrm .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #f4f4f9;
@@ -353,7 +366,7 @@ grades %&gt;%
   vertical-align: middle;
 }
 
-#fxghnanjnj .gt_empty_group_heading {
+#hmfazsklrm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #f4f4f9;
@@ -368,15 +381,15 @@ grades %&gt;%
   vertical-align: middle;
 }
 
-#fxghnanjnj .gt_from_md > :first-child {
+#hmfazsklrm .gt_from_md &gt; :first-child {
   margin-top: 0;
 }
 
-#fxghnanjnj .gt_from_md > :last-child {
+#hmfazsklrm .gt_from_md &gt; :last-child {
   margin-bottom: 0;
 }
 
-#fxghnanjnj .gt_row {
+#hmfazsklrm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -395,7 +408,7 @@ grades %&gt;%
   overflow-x: hidden;
 }
 
-#fxghnanjnj .gt_stub {
+#hmfazsklrm .gt_stub {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -407,7 +420,7 @@ grades %&gt;%
   padding-left: 12px;
 }
 
-#fxghnanjnj .gt_summary_row {
+#hmfazsklrm .gt_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -417,7 +430,7 @@ grades %&gt;%
   padding-right: 5px;
 }
 
-#fxghnanjnj .gt_first_summary_row {
+#hmfazsklrm .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -427,7 +440,7 @@ grades %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#fxghnanjnj .gt_grand_summary_row {
+#hmfazsklrm .gt_grand_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -437,7 +450,7 @@ grades %&gt;%
   padding-right: 5px;
 }
 
-#fxghnanjnj .gt_first_grand_summary_row {
+#hmfazsklrm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -447,11 +460,11 @@ grades %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#fxghnanjnj .gt_striped {
+#hmfazsklrm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fxghnanjnj .gt_table_body {
+#hmfazsklrm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -460,7 +473,7 @@ grades %&gt;%
   border-bottom-color: #D3D3D3;
 }
 
-#fxghnanjnj .gt_footnotes {
+#hmfazsklrm .gt_footnotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -474,13 +487,13 @@ grades %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#fxghnanjnj .gt_footnote {
+#hmfazsklrm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#fxghnanjnj .gt_sourcenotes {
+#hmfazsklrm .gt_sourcenotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -494,142 +507,143 @@ grades %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#fxghnanjnj .gt_sourcenote {
+#hmfazsklrm .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#fxghnanjnj .gt_left {
+#hmfazsklrm .gt_left {
   text-align: left;
 }
 
-#fxghnanjnj .gt_center {
+#hmfazsklrm .gt_center {
   text-align: center;
 }
 
-#fxghnanjnj .gt_right {
+#hmfazsklrm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fxghnanjnj .gt_font_normal {
+#hmfazsklrm .gt_font_normal {
   font-weight: normal;
 }
 
-#fxghnanjnj .gt_font_bold {
+#hmfazsklrm .gt_font_bold {
   font-weight: bold;
 }
 
-#fxghnanjnj .gt_font_italic {
+#hmfazsklrm .gt_font_italic {
   font-style: italic;
 }
 
-#fxghnanjnj .gt_super {
+#hmfazsklrm .gt_super {
   font-size: 65%;
 }
 
-#fxghnanjnj .gt_footnote_marks {
+#hmfazsklrm .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
-</style>
-<div id="fxghnanjnj" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+&lt;/style&gt;
+&lt;div id="hmfazsklrm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"&gt;&lt;table class="gt_table"&gt;
   
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">name</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">style</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">alc_by_volume</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">price_range</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">country</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">star_rating</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">County</td>
-      <td class="gt_row gt_left">Lager</td>
-      <td class="gt_row gt_right">4.2</td>
-      <td class="gt_row gt_left">low</td>
-      <td class="gt_row gt_left">USA</td>
-      <td class="gt_row gt_right">3.40</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Mountain Special</td>
-      <td class="gt_row gt_left">Pale Ale</td>
-      <td class="gt_row gt_right">4.1</td>
-      <td class="gt_row gt_left">low</td>
-      <td class="gt_row gt_left">USA</td>
-      <td class="gt_row gt_right">2.70</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Lagartos</td>
-      <td class="gt_row gt_left">Lager</td>
-      <td class="gt_row gt_right">5.1</td>
-      <td class="gt_row gt_left">mid</td>
-      <td class="gt_row gt_left">Mexico</td>
-      <td class="gt_row gt_right">4.10</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Jealous Hobo</td>
-      <td class="gt_row gt_left">Porter</td>
-      <td class="gt_row gt_right">6.5</td>
-      <td class="gt_row gt_left">mid</td>
-      <td class="gt_row gt_left">USA</td>
-      <td class="gt_row gt_right">3.36</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Strasse</td>
-      <td class="gt_row gt_left">Stout</td>
-      <td class="gt_row gt_right">8.3</td>
-      <td class="gt_row gt_left">high</td>
-      <td class="gt_row gt_left">Germany</td>
-      <td class="gt_row gt_right">4.89</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Arbre</td>
-      <td class="gt_row gt_left">Pale Ale</td>
-      <td class="gt_row gt_right">3.4</td>
-      <td class="gt_row gt_left">low</td>
-      <td class="gt_row gt_left">Belgium</td>
-      <td class="gt_row gt_right">4.01</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">K1997</td>
-      <td class="gt_row gt_left">Lager</td>
-      <td class="gt_row gt_right">4.0</td>
-      <td class="gt_row gt_left">high</td>
-      <td class="gt_row gt_left">Japan</td>
-      <td class="gt_row gt_right">3.88</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Lagartos Cero</td>
-      <td class="gt_row gt_left">Lager</td>
-      <td class="gt_row gt_right">0.0</td>
-      <td class="gt_row gt_left">mid</td>
-      <td class="gt_row gt_left">Mexico</td>
-      <td class="gt_row gt_right">2.00</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Airball</td>
-      <td class="gt_row gt_left">Irish Ale</td>
-      <td class="gt_row gt_right">6.0</td>
-      <td class="gt_row gt_left">high</td>
-      <td class="gt_row gt_left">USA</td>
-      <td class="gt_row gt_right">3.64</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Clean Tackle</td>
-      <td class="gt_row gt_left">Stout</td>
-      <td class="gt_row gt_right">7.2</td>
-      <td class="gt_row gt_left">mid</td>
-      <td class="gt_row gt_left">England</td>
-      <td class="gt_row gt_right">4.20</td>
-    </tr>
-  </tbody>
+  &lt;thead class="gt_col_headings"&gt;
+    &lt;tr&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;name&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;style&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1"&gt;alc_by_volume&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;price_range&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;country&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1"&gt;star_rating&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class="gt_table_body"&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;County&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Lager&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;4.2&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;low&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;USA&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;3.40&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Mountain Special&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Pale Ale&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;4.1&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;low&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;USA&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;2.70&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Lagartos&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Lager&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;5.1&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;mid&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Mexico&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;4.10&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Jealous Hobo&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Porter&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;6.5&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;mid&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;USA&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;3.36&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Strasse&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Stout&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;8.3&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;high&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Germany&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;4.89&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Arbre&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Pale Ale&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;3.4&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;low&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Belgium&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;4.01&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;K1997&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Lager&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;4.0&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;high&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Japan&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;3.88&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Lagartos Cero&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Lager&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;0.0&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;mid&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Mexico&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;2.00&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Airball&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Irish Ale&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;6.0&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;high&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;USA&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;3.64&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Clean Tackle&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Stout&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;7.2&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;mid&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;England&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;4.20&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
   
   
-</table></div>
+&lt;/table&gt;&lt;/div&gt;
+```
 ]
 
 .panel[.panel-name[Data setup]
@@ -709,46 +723,73 @@ beers %&gt;% select(name, style, star_rating) %&gt;%
 ]
 ---
 class: my-turn
-# My turn
+# My Turn
+
+--
 
 - .large[Load the mammal sleep data bundled with `ggplot2`]
+
+--
 
 - .large[Select the "name" and "conservation" columns, as well as all numeric variables]
 
+--
+
 - .large[Create a new column that contains the values of _'awake'_ multiplied by the values in _'brainwt'_]  
+
+--
 
 - .large[Filter the data to keep only rows with _'sleep_total'_ &gt; 4]
 
-&gt; Use pipes to chain the operations 
+--
+
+&gt; I'll use pipes to chain the operations 
+
 ---
+
 class: inverse
-# Your turn
+# Your Turn
+
+--
 
 - .large[Load the mammal sleep data bundled with `ggplot2`]
 
+--
+
 - .large[Select "name" and "conservation" columns and those that include the string _'sleep'_ in their name]
+
+--
 
 - .large[Create a new column that contains the values of _'sleep_total'_ multiplied by 3]  
 
+--
+
 - .large[Filter the data to remove domesticated mammals]
 
-&gt; Use pipes to chain the operations 
+--
+
+&gt; Use pipes to chain the operations!
 
 ---
 
 class: center, middle, dk-section-title
 background-image:url("images/emmanuel-acua-43Tvb651fxE-unsplash.jpg")
 background-size: cover
-# Working with columns with 'across'
+# Working with Columns with `across()`
+
 ---
 
 ## Operating on multiple columns
 
 ###.center.b.large.orange[`across()`]
 
+--
+
 .large[`filter`, `mutate`, or `summarize` multiple columns]
 
 - By position, name, or type  
+
+--
 
 - Compound selections of columns  
 (e.g. _numeric columns that contain "mass" in their name_)
@@ -757,10 +798,19 @@ background-size: cover
 
 ## .b.orange[`across()`] arguments:
 
- - .large.b[`.cols`] Columns to transform
+--
+
+.large.b[`.cols`] Columns to transform
  
- - .large.b[`.fns`]  Function to apply to each of the selected columns  
+--
+ 
+.large.b[`.fns`]  Function to apply to each of the selected columns  
+
+--
+
 \* Expects a function, so function name and arguments can be passed separately
+
+--
 
 
 ```r
@@ -775,10 +825,16 @@ beers %&gt;%
 .b.large.orange[`everything()`] Match all variables
 ]
 &lt;/br&gt;
+
+--
+
 .ba.ph4[
 .b.large.orange[`!`] Take the complement of a set of variables (negate a selection)
 ]
 &lt;/br&gt;
+
+--
+
 .ba.ph4.mt1.mb1[
 .b.large.orange[`where()`] Selects variables for which a predicate function returns `TRUE`  
 &gt; e.g. subset or transform all numeric variables, determined by `is.numeric()`
@@ -793,10 +849,16 @@ beers %&gt;%
 
 ]
 &lt;/br&gt;
+
+--
+
 .ba.ph4[
 .b.large.orange[`:`] Select a range of consecutive variables
 ]
 &lt;/br&gt;
+
+--
+
 .ba.ph4[
 .b.large.orange[`-`]   Exclude variables   
 (return all elements except the one preceded by the subtraction operator)
@@ -805,11 +867,13 @@ beers %&gt;%
 
 `beers`
 
-<style>html {
+
+```{=html}
+&lt;style&gt;html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#wdorkxizld .gt_table {
+#uozbqnlrsd .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -834,7 +898,7 @@ beers %&gt;%
   border-left-color: #D3D3D3;
 }
 
-#wdorkxizld .gt_heading {
+#uozbqnlrsd .gt_heading {
   background-color: #f4f4f9;
   text-align: center;
   border-bottom-color: #f4f4f9;
@@ -846,7 +910,7 @@ beers %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#wdorkxizld .gt_title {
+#uozbqnlrsd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -856,7 +920,7 @@ beers %&gt;%
   border-bottom-width: 0;
 }
 
-#wdorkxizld .gt_subtitle {
+#uozbqnlrsd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -866,13 +930,13 @@ beers %&gt;%
   border-top-width: 0;
 }
 
-#wdorkxizld .gt_bottom_border {
+#uozbqnlrsd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wdorkxizld .gt_col_headings {
+#uozbqnlrsd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -887,7 +951,7 @@ beers %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#wdorkxizld .gt_col_heading {
+#uozbqnlrsd .gt_col_heading {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -907,7 +971,7 @@ beers %&gt;%
   overflow-x: hidden;
 }
 
-#wdorkxizld .gt_column_spanner_outer {
+#uozbqnlrsd .gt_column_spanner_outer {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -919,15 +983,15 @@ beers %&gt;%
   padding-right: 4px;
 }
 
-#wdorkxizld .gt_column_spanner_outer:first-child {
+#uozbqnlrsd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wdorkxizld .gt_column_spanner_outer:last-child {
+#uozbqnlrsd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wdorkxizld .gt_column_spanner {
+#uozbqnlrsd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -939,7 +1003,7 @@ beers %&gt;%
   width: 100%;
 }
 
-#wdorkxizld .gt_group_heading {
+#uozbqnlrsd .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #f4f4f9;
@@ -961,7 +1025,7 @@ beers %&gt;%
   vertical-align: middle;
 }
 
-#wdorkxizld .gt_empty_group_heading {
+#uozbqnlrsd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #f4f4f9;
@@ -976,15 +1040,15 @@ beers %&gt;%
   vertical-align: middle;
 }
 
-#wdorkxizld .gt_from_md > :first-child {
+#uozbqnlrsd .gt_from_md &gt; :first-child {
   margin-top: 0;
 }
 
-#wdorkxizld .gt_from_md > :last-child {
+#uozbqnlrsd .gt_from_md &gt; :last-child {
   margin-bottom: 0;
 }
 
-#wdorkxizld .gt_row {
+#uozbqnlrsd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1003,7 +1067,7 @@ beers %&gt;%
   overflow-x: hidden;
 }
 
-#wdorkxizld .gt_stub {
+#uozbqnlrsd .gt_stub {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -1015,7 +1079,7 @@ beers %&gt;%
   padding-left: 12px;
 }
 
-#wdorkxizld .gt_summary_row {
+#uozbqnlrsd .gt_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -1025,7 +1089,7 @@ beers %&gt;%
   padding-right: 5px;
 }
 
-#wdorkxizld .gt_first_summary_row {
+#uozbqnlrsd .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1035,7 +1099,7 @@ beers %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#wdorkxizld .gt_grand_summary_row {
+#uozbqnlrsd .gt_grand_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -1045,7 +1109,7 @@ beers %&gt;%
   padding-right: 5px;
 }
 
-#wdorkxizld .gt_first_grand_summary_row {
+#uozbqnlrsd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1055,11 +1119,11 @@ beers %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#wdorkxizld .gt_striped {
+#uozbqnlrsd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wdorkxizld .gt_table_body {
+#uozbqnlrsd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1068,7 +1132,7 @@ beers %&gt;%
   border-bottom-color: #D3D3D3;
 }
 
-#wdorkxizld .gt_footnotes {
+#uozbqnlrsd .gt_footnotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -1082,13 +1146,13 @@ beers %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#wdorkxizld .gt_footnote {
+#uozbqnlrsd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#wdorkxizld .gt_sourcenotes {
+#uozbqnlrsd .gt_sourcenotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -1102,142 +1166,143 @@ beers %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#wdorkxizld .gt_sourcenote {
+#uozbqnlrsd .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#wdorkxizld .gt_left {
+#uozbqnlrsd .gt_left {
   text-align: left;
 }
 
-#wdorkxizld .gt_center {
+#uozbqnlrsd .gt_center {
   text-align: center;
 }
 
-#wdorkxizld .gt_right {
+#uozbqnlrsd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wdorkxizld .gt_font_normal {
+#uozbqnlrsd .gt_font_normal {
   font-weight: normal;
 }
 
-#wdorkxizld .gt_font_bold {
+#uozbqnlrsd .gt_font_bold {
   font-weight: bold;
 }
 
-#wdorkxizld .gt_font_italic {
+#uozbqnlrsd .gt_font_italic {
   font-style: italic;
 }
 
-#wdorkxizld .gt_super {
+#uozbqnlrsd .gt_super {
   font-size: 65%;
 }
 
-#wdorkxizld .gt_footnote_marks {
+#uozbqnlrsd .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
-</style>
-<div id="wdorkxizld" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+&lt;/style&gt;
+&lt;div id="uozbqnlrsd" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"&gt;&lt;table class="gt_table"&gt;
   
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">name</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">style</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">alc_by_volume</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">price_range</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">country</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">star_rating</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">County</td>
-      <td class="gt_row gt_left">Lager</td>
-      <td class="gt_row gt_right">4.2</td>
-      <td class="gt_row gt_left">low</td>
-      <td class="gt_row gt_left">USA</td>
-      <td class="gt_row gt_right">3.40</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Mountain Special</td>
-      <td class="gt_row gt_left">Pale Ale</td>
-      <td class="gt_row gt_right">4.1</td>
-      <td class="gt_row gt_left">low</td>
-      <td class="gt_row gt_left">USA</td>
-      <td class="gt_row gt_right">2.70</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Lagartos</td>
-      <td class="gt_row gt_left">Lager</td>
-      <td class="gt_row gt_right">5.1</td>
-      <td class="gt_row gt_left">mid</td>
-      <td class="gt_row gt_left">Mexico</td>
-      <td class="gt_row gt_right">4.10</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Jealous Hobo</td>
-      <td class="gt_row gt_left">Porter</td>
-      <td class="gt_row gt_right">6.5</td>
-      <td class="gt_row gt_left">mid</td>
-      <td class="gt_row gt_left">USA</td>
-      <td class="gt_row gt_right">3.36</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Strasse</td>
-      <td class="gt_row gt_left">Stout</td>
-      <td class="gt_row gt_right">8.3</td>
-      <td class="gt_row gt_left">high</td>
-      <td class="gt_row gt_left">Germany</td>
-      <td class="gt_row gt_right">4.89</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Arbre</td>
-      <td class="gt_row gt_left">Pale Ale</td>
-      <td class="gt_row gt_right">3.4</td>
-      <td class="gt_row gt_left">low</td>
-      <td class="gt_row gt_left">Belgium</td>
-      <td class="gt_row gt_right">4.01</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">K1997</td>
-      <td class="gt_row gt_left">Lager</td>
-      <td class="gt_row gt_right">4.0</td>
-      <td class="gt_row gt_left">high</td>
-      <td class="gt_row gt_left">Japan</td>
-      <td class="gt_row gt_right">3.88</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Lagartos Cero</td>
-      <td class="gt_row gt_left">Lager</td>
-      <td class="gt_row gt_right">0.0</td>
-      <td class="gt_row gt_left">mid</td>
-      <td class="gt_row gt_left">Mexico</td>
-      <td class="gt_row gt_right">2.00</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Airball</td>
-      <td class="gt_row gt_left">Irish Ale</td>
-      <td class="gt_row gt_right">6.0</td>
-      <td class="gt_row gt_left">high</td>
-      <td class="gt_row gt_left">USA</td>
-      <td class="gt_row gt_right">3.64</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Clean Tackle</td>
-      <td class="gt_row gt_left">Stout</td>
-      <td class="gt_row gt_right">7.2</td>
-      <td class="gt_row gt_left">mid</td>
-      <td class="gt_row gt_left">England</td>
-      <td class="gt_row gt_right">4.20</td>
-    </tr>
-  </tbody>
+  &lt;thead class="gt_col_headings"&gt;
+    &lt;tr&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;name&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;style&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1"&gt;alc_by_volume&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;price_range&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;country&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1"&gt;star_rating&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class="gt_table_body"&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;County&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Lager&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;4.2&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;low&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;USA&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;3.40&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Mountain Special&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Pale Ale&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;4.1&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;low&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;USA&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;2.70&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Lagartos&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Lager&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;5.1&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;mid&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Mexico&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;4.10&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Jealous Hobo&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Porter&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;6.5&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;mid&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;USA&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;3.36&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Strasse&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Stout&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;8.3&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;high&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Germany&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;4.89&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Arbre&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Pale Ale&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;3.4&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;low&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Belgium&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;4.01&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;K1997&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Lager&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;4.0&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;high&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Japan&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;3.88&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Lagartos Cero&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Lager&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;0.0&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;mid&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Mexico&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;2.00&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Airball&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Irish Ale&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;6.0&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;high&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;USA&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;3.64&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Clean Tackle&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Stout&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;7.2&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;mid&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;England&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;4.20&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
   
   
-</table></div>
+&lt;/table&gt;&lt;/div&gt;
+```
 
 ---
 
@@ -1289,27 +1354,56 @@ beers %&gt;% mutate(across(where(is.numeric),sqrt))
 
 ---
 class: my-turn
-# My turn
+# My Turn
+
+--
+
 - .large[Load the _midwest_ data bundled with `ggplot2`]
+
+--
+
 - .large[Keep only rows for Wisconsin (WI)]
+
+--
+
 - .large[Subset the 'county' column and all columns that match the string '_perc_' (hint: use a selection helper)]
+
+--
+
 - .large[log-transform all numeric variables]
+
+--
+
 - .large[Append the suffix "_check" to every value]
 
 ---
 
 class: inverse
-# Your turn
+# Your Turn
+
+--
+
 - .large[Load the _midwest_ data bundled with `ggplot2`]
+
+--
+
 - .large[Keep only rows for Ohio (OH)]
+
+--
+
 - .large[Subset the 'county' column and all columns that match the string '_pop_' (hint: use a selection helper)]
+
+--
+
 - .large[Square-root transform all numeric variables]
 
 ---
+
 class: center, middle, dk-section-title
 background-image:url("images/1024px-Espacio_Escultórico.jpg")
 background-size: cover
-# Pivoting data
+# Pivoting Data
+
 ---
 
 .pull-left[
@@ -1330,7 +1424,7 @@ Maps well to plot axes and aesthetics ]
 ---
 # Reshaping data with 📦 .b.rrured[`tidyr`]
 
-.large[wide to long - .b.orange[`pivot_longer()`]]  
+.large[wide to long: .b.orange[`pivot_longer()`]]  
 
 
 ```r
@@ -1338,7 +1432,7 @@ pivot_longer(data, cols, names_to, values_to)
 ```
 
 &lt;/br&gt;
-.large[long to wide - .b.orange[`pivot_wider()`]] 
+.large[long to wide: .b.orange[`pivot_wider()`]] 
 
 
 ```r
@@ -1350,11 +1444,13 @@ pivot_longer(data, cols, names_from, values_from)
 
 .panelset[
 .panel[.panel-name[critters]
-<style>html {
+
+```{=html}
+&lt;style&gt;html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#lbngqhzekr .gt_table {
+#tckhutyzml .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1379,7 +1475,7 @@ pivot_longer(data, cols, names_from, values_from)
   border-left-color: #D3D3D3;
 }
 
-#lbngqhzekr .gt_heading {
+#tckhutyzml .gt_heading {
   background-color: #f4f4f9;
   text-align: center;
   border-bottom-color: #f4f4f9;
@@ -1391,7 +1487,7 @@ pivot_longer(data, cols, names_from, values_from)
   border-right-color: #D3D3D3;
 }
 
-#lbngqhzekr .gt_title {
+#tckhutyzml .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1401,7 +1497,7 @@ pivot_longer(data, cols, names_from, values_from)
   border-bottom-width: 0;
 }
 
-#lbngqhzekr .gt_subtitle {
+#tckhutyzml .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1411,13 +1507,13 @@ pivot_longer(data, cols, names_from, values_from)
   border-top-width: 0;
 }
 
-#lbngqhzekr .gt_bottom_border {
+#tckhutyzml .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lbngqhzekr .gt_col_headings {
+#tckhutyzml .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1432,7 +1528,7 @@ pivot_longer(data, cols, names_from, values_from)
   border-right-color: #D3D3D3;
 }
 
-#lbngqhzekr .gt_col_heading {
+#tckhutyzml .gt_col_heading {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -1452,7 +1548,7 @@ pivot_longer(data, cols, names_from, values_from)
   overflow-x: hidden;
 }
 
-#lbngqhzekr .gt_column_spanner_outer {
+#tckhutyzml .gt_column_spanner_outer {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -1464,15 +1560,15 @@ pivot_longer(data, cols, names_from, values_from)
   padding-right: 4px;
 }
 
-#lbngqhzekr .gt_column_spanner_outer:first-child {
+#tckhutyzml .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lbngqhzekr .gt_column_spanner_outer:last-child {
+#tckhutyzml .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lbngqhzekr .gt_column_spanner {
+#tckhutyzml .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1484,7 +1580,7 @@ pivot_longer(data, cols, names_from, values_from)
   width: 100%;
 }
 
-#lbngqhzekr .gt_group_heading {
+#tckhutyzml .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #f4f4f9;
@@ -1506,7 +1602,7 @@ pivot_longer(data, cols, names_from, values_from)
   vertical-align: middle;
 }
 
-#lbngqhzekr .gt_empty_group_heading {
+#tckhutyzml .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #f4f4f9;
@@ -1521,15 +1617,15 @@ pivot_longer(data, cols, names_from, values_from)
   vertical-align: middle;
 }
 
-#lbngqhzekr .gt_from_md > :first-child {
+#tckhutyzml .gt_from_md &gt; :first-child {
   margin-top: 0;
 }
 
-#lbngqhzekr .gt_from_md > :last-child {
+#tckhutyzml .gt_from_md &gt; :last-child {
   margin-bottom: 0;
 }
 
-#lbngqhzekr .gt_row {
+#tckhutyzml .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1548,7 +1644,7 @@ pivot_longer(data, cols, names_from, values_from)
   overflow-x: hidden;
 }
 
-#lbngqhzekr .gt_stub {
+#tckhutyzml .gt_stub {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -1560,7 +1656,7 @@ pivot_longer(data, cols, names_from, values_from)
   padding-left: 12px;
 }
 
-#lbngqhzekr .gt_summary_row {
+#tckhutyzml .gt_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -1570,7 +1666,7 @@ pivot_longer(data, cols, names_from, values_from)
   padding-right: 5px;
 }
 
-#lbngqhzekr .gt_first_summary_row {
+#tckhutyzml .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1580,7 +1676,7 @@ pivot_longer(data, cols, names_from, values_from)
   border-top-color: #D3D3D3;
 }
 
-#lbngqhzekr .gt_grand_summary_row {
+#tckhutyzml .gt_grand_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -1590,7 +1686,7 @@ pivot_longer(data, cols, names_from, values_from)
   padding-right: 5px;
 }
 
-#lbngqhzekr .gt_first_grand_summary_row {
+#tckhutyzml .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1600,11 +1696,11 @@ pivot_longer(data, cols, names_from, values_from)
   border-top-color: #D3D3D3;
 }
 
-#lbngqhzekr .gt_striped {
+#tckhutyzml .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lbngqhzekr .gt_table_body {
+#tckhutyzml .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1613,7 +1709,7 @@ pivot_longer(data, cols, names_from, values_from)
   border-bottom-color: #D3D3D3;
 }
 
-#lbngqhzekr .gt_footnotes {
+#tckhutyzml .gt_footnotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -1627,13 +1723,13 @@ pivot_longer(data, cols, names_from, values_from)
   border-right-color: #D3D3D3;
 }
 
-#lbngqhzekr .gt_footnote {
+#tckhutyzml .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#lbngqhzekr .gt_sourcenotes {
+#tckhutyzml .gt_sourcenotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -1647,89 +1743,90 @@ pivot_longer(data, cols, names_from, values_from)
   border-right-color: #D3D3D3;
 }
 
-#lbngqhzekr .gt_sourcenote {
+#tckhutyzml .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#lbngqhzekr .gt_left {
+#tckhutyzml .gt_left {
   text-align: left;
 }
 
-#lbngqhzekr .gt_center {
+#tckhutyzml .gt_center {
   text-align: center;
 }
 
-#lbngqhzekr .gt_right {
+#tckhutyzml .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lbngqhzekr .gt_font_normal {
+#tckhutyzml .gt_font_normal {
   font-weight: normal;
 }
 
-#lbngqhzekr .gt_font_bold {
+#tckhutyzml .gt_font_bold {
   font-weight: bold;
 }
 
-#lbngqhzekr .gt_font_italic {
+#tckhutyzml .gt_font_italic {
   font-style: italic;
 }
 
-#lbngqhzekr .gt_super {
+#tckhutyzml .gt_super {
   font-size: 65%;
 }
 
-#lbngqhzekr .gt_footnote_marks {
+#tckhutyzml .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
-</style>
-<div id="lbngqhzekr" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+&lt;/style&gt;
+&lt;div id="tckhutyzml" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"&gt;&lt;table class="gt_table"&gt;
   
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Habitat</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">County</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Frogs</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Crayfish</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Owls</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">Marsh</td>
-      <td class="gt_row gt_left">Clarkville</td>
-      <td class="gt_row gt_center">7</td>
-      <td class="gt_row gt_center">5</td>
-      <td class="gt_row gt_center">4</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Urban</td>
-      <td class="gt_row gt_left">Smith</td>
-      <td class="gt_row gt_center">0</td>
-      <td class="gt_row gt_center">0</td>
-      <td class="gt_row gt_center">2</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Wetland</td>
-      <td class="gt_row gt_left">Wilson</td>
-      <td class="gt_row gt_center">9</td>
-      <td class="gt_row gt_center">2</td>
-      <td class="gt_row gt_center">1</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Forest</td>
-      <td class="gt_row gt_left">Smith</td>
-      <td class="gt_row gt_center">4</td>
-      <td class="gt_row gt_center">0</td>
-      <td class="gt_row gt_center">7</td>
-    </tr>
-  </tbody>
+  &lt;thead class="gt_col_headings"&gt;
+    &lt;tr&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;Habitat&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;County&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"&gt;Frogs&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"&gt;Crayfish&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"&gt;Owls&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class="gt_table_body"&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Marsh&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Clarkville&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;7&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;5&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;4&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Urban&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Smith&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;0&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;0&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Wetland&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Wilson&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;9&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;2&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Forest&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Smith&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;4&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;0&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;7&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
   
   
-</table></div>
+&lt;/table&gt;&lt;/div&gt;
+```
 ]
 
 .panel[.panel-name[Data setup]
@@ -1777,7 +1874,11 @@ critters_long &lt;-
 
 .b[`cols`] Which columns have data in their names  
 
+--
+
 **`names_to`** Name for the new column to be created from `cols`  
+
+--
 
 **`values_to`** Name of the column to be created from the contents of the cells in **`cols`**  
 
@@ -1823,6 +1924,8 @@ critters_long %&gt;%
 
 .b[`names_from`] Which column's values will be used for new column names
 
+--
+
 **`values_from`** Which column has the cell values for the new output columns
 
 ---
@@ -1852,31 +1955,49 @@ class: center
 ---
 
 class: my-turn
-# My turn
+# My Turn
+
+--
+
 - .large[Load the dog ranks data ("dogranks_mine.csv")]  
+
+--
 
 - .large[Pivot the data (wide to long and back to wide)]
 
 ---
 
 class: inverse
-# Your turn
+# Your Turn
+
+--
+
 - .large[Load the dog ranks data ("dogranks_your.csv")]  
+
+--
 
 - .large[Pivot the data (wide to long and back to wide)]
 
 ---
+
 class: center, middle, dk-section-title
 background-image:url("images/drew-dau-dXxsLrlg9qY-unsplash.jpg")
 background-size: cover
-# Coalescing columns
+# Coalescing Columns
+
 ---
 
 ## .b.orange[coalesce()] from 📦 .b.rrured[`dplyr`]  
 
+--
+
 - Find and return the first non-NA value at each position for a set of vectors
 
+--
+
 - Returns a single vector with the non-NA values that appear first 
+
+--
 
 
 ```r
@@ -1896,6 +2017,7 @@ coalesce(x, y, z)
 ## [1] 1 2 3 4 5
 ```
 
+--
 
 
 ```r
@@ -1912,11 +2034,13 @@ coalesce(z,x,y)
 
 .panelset[
 .panel[.panel-name[sensors]
-<style>html {
+
+```{=html}
+&lt;style&gt;html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#zwhpqrpvbm .gt_table {
+#kvujtuzmoa .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1941,7 +2065,7 @@ coalesce(z,x,y)
   border-left-color: #D3D3D3;
 }
 
-#zwhpqrpvbm .gt_heading {
+#kvujtuzmoa .gt_heading {
   background-color: #f4f4f9;
   text-align: center;
   border-bottom-color: #f4f4f9;
@@ -1953,7 +2077,7 @@ coalesce(z,x,y)
   border-right-color: #D3D3D3;
 }
 
-#zwhpqrpvbm .gt_title {
+#kvujtuzmoa .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1963,7 +2087,7 @@ coalesce(z,x,y)
   border-bottom-width: 0;
 }
 
-#zwhpqrpvbm .gt_subtitle {
+#kvujtuzmoa .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1973,13 +2097,13 @@ coalesce(z,x,y)
   border-top-width: 0;
 }
 
-#zwhpqrpvbm .gt_bottom_border {
+#kvujtuzmoa .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zwhpqrpvbm .gt_col_headings {
+#kvujtuzmoa .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1994,7 +2118,7 @@ coalesce(z,x,y)
   border-right-color: #D3D3D3;
 }
 
-#zwhpqrpvbm .gt_col_heading {
+#kvujtuzmoa .gt_col_heading {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -2014,7 +2138,7 @@ coalesce(z,x,y)
   overflow-x: hidden;
 }
 
-#zwhpqrpvbm .gt_column_spanner_outer {
+#kvujtuzmoa .gt_column_spanner_outer {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -2026,15 +2150,15 @@ coalesce(z,x,y)
   padding-right: 4px;
 }
 
-#zwhpqrpvbm .gt_column_spanner_outer:first-child {
+#kvujtuzmoa .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zwhpqrpvbm .gt_column_spanner_outer:last-child {
+#kvujtuzmoa .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zwhpqrpvbm .gt_column_spanner {
+#kvujtuzmoa .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2046,7 +2170,7 @@ coalesce(z,x,y)
   width: 100%;
 }
 
-#zwhpqrpvbm .gt_group_heading {
+#kvujtuzmoa .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #f4f4f9;
@@ -2068,7 +2192,7 @@ coalesce(z,x,y)
   vertical-align: middle;
 }
 
-#zwhpqrpvbm .gt_empty_group_heading {
+#kvujtuzmoa .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #f4f4f9;
@@ -2083,15 +2207,15 @@ coalesce(z,x,y)
   vertical-align: middle;
 }
 
-#zwhpqrpvbm .gt_from_md > :first-child {
+#kvujtuzmoa .gt_from_md &gt; :first-child {
   margin-top: 0;
 }
 
-#zwhpqrpvbm .gt_from_md > :last-child {
+#kvujtuzmoa .gt_from_md &gt; :last-child {
   margin-bottom: 0;
 }
 
-#zwhpqrpvbm .gt_row {
+#kvujtuzmoa .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2110,7 +2234,7 @@ coalesce(z,x,y)
   overflow-x: hidden;
 }
 
-#zwhpqrpvbm .gt_stub {
+#kvujtuzmoa .gt_stub {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -2122,7 +2246,7 @@ coalesce(z,x,y)
   padding-left: 12px;
 }
 
-#zwhpqrpvbm .gt_summary_row {
+#kvujtuzmoa .gt_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -2132,7 +2256,7 @@ coalesce(z,x,y)
   padding-right: 5px;
 }
 
-#zwhpqrpvbm .gt_first_summary_row {
+#kvujtuzmoa .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2142,7 +2266,7 @@ coalesce(z,x,y)
   border-top-color: #D3D3D3;
 }
 
-#zwhpqrpvbm .gt_grand_summary_row {
+#kvujtuzmoa .gt_grand_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -2152,7 +2276,7 @@ coalesce(z,x,y)
   padding-right: 5px;
 }
 
-#zwhpqrpvbm .gt_first_grand_summary_row {
+#kvujtuzmoa .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2162,11 +2286,11 @@ coalesce(z,x,y)
   border-top-color: #D3D3D3;
 }
 
-#zwhpqrpvbm .gt_striped {
+#kvujtuzmoa .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zwhpqrpvbm .gt_table_body {
+#kvujtuzmoa .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2175,7 +2299,7 @@ coalesce(z,x,y)
   border-bottom-color: #D3D3D3;
 }
 
-#zwhpqrpvbm .gt_footnotes {
+#kvujtuzmoa .gt_footnotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -2189,13 +2313,13 @@ coalesce(z,x,y)
   border-right-color: #D3D3D3;
 }
 
-#zwhpqrpvbm .gt_footnote {
+#kvujtuzmoa .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#zwhpqrpvbm .gt_sourcenotes {
+#kvujtuzmoa .gt_sourcenotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -2209,90 +2333,91 @@ coalesce(z,x,y)
   border-right-color: #D3D3D3;
 }
 
-#zwhpqrpvbm .gt_sourcenote {
+#kvujtuzmoa .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#zwhpqrpvbm .gt_left {
+#kvujtuzmoa .gt_left {
   text-align: left;
 }
 
-#zwhpqrpvbm .gt_center {
+#kvujtuzmoa .gt_center {
   text-align: center;
 }
 
-#zwhpqrpvbm .gt_right {
+#kvujtuzmoa .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zwhpqrpvbm .gt_font_normal {
+#kvujtuzmoa .gt_font_normal {
   font-weight: normal;
 }
 
-#zwhpqrpvbm .gt_font_bold {
+#kvujtuzmoa .gt_font_bold {
   font-weight: bold;
 }
 
-#zwhpqrpvbm .gt_font_italic {
+#kvujtuzmoa .gt_font_italic {
   font-style: italic;
 }
 
-#zwhpqrpvbm .gt_super {
+#kvujtuzmoa .gt_super {
   font-size: 65%;
 }
 
-#zwhpqrpvbm .gt_footnote_marks {
+#kvujtuzmoa .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
-</style>
-<div id="zwhpqrpvbm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+&lt;/style&gt;
+&lt;div id="kvujtuzmoa" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"&gt;&lt;table class="gt_table"&gt;
   
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Sample</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Main.Sensor</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Backup.Sensor</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Manual.Reading</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">A</td>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_right">12.1</td>
-      <td class="gt_row gt_right">12.0</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">B</td>
-      <td class="gt_row gt_center">12</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">11.9</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">C</td>
-      <td class="gt_row gt_center">16</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">D</td>
-      <td class="gt_row gt_center">3</td>
-      <td class="gt_row gt_right">9.5</td>
-      <td class="gt_row gt_right">NA</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">E</td>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_right">13.0</td>
-      <td class="gt_row gt_right">12.0</td>
-    </tr>
-  </tbody>
+  &lt;thead class="gt_col_headings"&gt;
+    &lt;tr&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;Sample&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"&gt;Main.Sensor&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1"&gt;Backup.Sensor&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1"&gt;Manual.Reading&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class="gt_table_body"&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;A&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;12.1&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;12.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;B&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;12&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;11.9&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;C&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;16&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;NA&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;D&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;3&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;9.5&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;NA&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;E&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;13.0&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;12.0&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
   
   
-</table></div>
+&lt;/table&gt;&lt;/div&gt;
+```
 ]
 
 .panel[.panel-name[Data setup]
@@ -2336,10 +2461,11 @@ class: center
 ![](images/coalesce.gif)
 
 ---
+
 class: center, middle, dk-section-title
 background-image:url("images/sen-sathyamony-4RkmVyBMO5Q-unsplash.jpg")
 background-size: cover
-# Filling adjacent values
+# Filling Adjacent Values
 
 ---
 
@@ -2347,11 +2473,13 @@ background-size: cover
 
 
 .fl.w-40[
-<style>html {
+
+```{=html}
+&lt;style&gt;html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#uighomduut .gt_table {
+#nevwehkdsq .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2376,7 +2504,7 @@ background-size: cover
   border-left-color: #D3D3D3;
 }
 
-#uighomduut .gt_heading {
+#nevwehkdsq .gt_heading {
   background-color: #f4f4f9;
   text-align: center;
   border-bottom-color: #f4f4f9;
@@ -2388,7 +2516,7 @@ background-size: cover
   border-right-color: #D3D3D3;
 }
 
-#uighomduut .gt_title {
+#nevwehkdsq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2398,7 +2526,7 @@ background-size: cover
   border-bottom-width: 0;
 }
 
-#uighomduut .gt_subtitle {
+#nevwehkdsq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2408,13 +2536,13 @@ background-size: cover
   border-top-width: 0;
 }
 
-#uighomduut .gt_bottom_border {
+#nevwehkdsq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#uighomduut .gt_col_headings {
+#nevwehkdsq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2429,7 +2557,7 @@ background-size: cover
   border-right-color: #D3D3D3;
 }
 
-#uighomduut .gt_col_heading {
+#nevwehkdsq .gt_col_heading {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -2449,7 +2577,7 @@ background-size: cover
   overflow-x: hidden;
 }
 
-#uighomduut .gt_column_spanner_outer {
+#nevwehkdsq .gt_column_spanner_outer {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -2461,15 +2589,15 @@ background-size: cover
   padding-right: 4px;
 }
 
-#uighomduut .gt_column_spanner_outer:first-child {
+#nevwehkdsq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#uighomduut .gt_column_spanner_outer:last-child {
+#nevwehkdsq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#uighomduut .gt_column_spanner {
+#nevwehkdsq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2481,7 +2609,7 @@ background-size: cover
   width: 100%;
 }
 
-#uighomduut .gt_group_heading {
+#nevwehkdsq .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #f4f4f9;
@@ -2503,7 +2631,7 @@ background-size: cover
   vertical-align: middle;
 }
 
-#uighomduut .gt_empty_group_heading {
+#nevwehkdsq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #f4f4f9;
@@ -2518,15 +2646,15 @@ background-size: cover
   vertical-align: middle;
 }
 
-#uighomduut .gt_from_md > :first-child {
+#nevwehkdsq .gt_from_md &gt; :first-child {
   margin-top: 0;
 }
 
-#uighomduut .gt_from_md > :last-child {
+#nevwehkdsq .gt_from_md &gt; :last-child {
   margin-bottom: 0;
 }
 
-#uighomduut .gt_row {
+#nevwehkdsq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2545,7 +2673,7 @@ background-size: cover
   overflow-x: hidden;
 }
 
-#uighomduut .gt_stub {
+#nevwehkdsq .gt_stub {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -2557,7 +2685,7 @@ background-size: cover
   padding-left: 12px;
 }
 
-#uighomduut .gt_summary_row {
+#nevwehkdsq .gt_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -2567,7 +2695,7 @@ background-size: cover
   padding-right: 5px;
 }
 
-#uighomduut .gt_first_summary_row {
+#nevwehkdsq .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2577,7 +2705,7 @@ background-size: cover
   border-top-color: #D3D3D3;
 }
 
-#uighomduut .gt_grand_summary_row {
+#nevwehkdsq .gt_grand_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -2587,7 +2715,7 @@ background-size: cover
   padding-right: 5px;
 }
 
-#uighomduut .gt_first_grand_summary_row {
+#nevwehkdsq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2597,11 +2725,11 @@ background-size: cover
   border-top-color: #D3D3D3;
 }
 
-#uighomduut .gt_striped {
+#nevwehkdsq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#uighomduut .gt_table_body {
+#nevwehkdsq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2610,7 +2738,7 @@ background-size: cover
   border-bottom-color: #D3D3D3;
 }
 
-#uighomduut .gt_footnotes {
+#nevwehkdsq .gt_footnotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -2624,13 +2752,13 @@ background-size: cover
   border-right-color: #D3D3D3;
 }
 
-#uighomduut .gt_footnote {
+#nevwehkdsq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#uighomduut .gt_sourcenotes {
+#nevwehkdsq .gt_sourcenotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -2644,106 +2772,114 @@ background-size: cover
   border-right-color: #D3D3D3;
 }
 
-#uighomduut .gt_sourcenote {
+#nevwehkdsq .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#uighomduut .gt_left {
+#nevwehkdsq .gt_left {
   text-align: left;
 }
 
-#uighomduut .gt_center {
+#nevwehkdsq .gt_center {
   text-align: center;
 }
 
-#uighomduut .gt_right {
+#nevwehkdsq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#uighomduut .gt_font_normal {
+#nevwehkdsq .gt_font_normal {
   font-weight: normal;
 }
 
-#uighomduut .gt_font_bold {
+#nevwehkdsq .gt_font_bold {
   font-weight: bold;
 }
 
-#uighomduut .gt_font_italic {
+#nevwehkdsq .gt_font_italic {
   font-style: italic;
 }
 
-#uighomduut .gt_super {
+#nevwehkdsq .gt_super {
   font-size: 65%;
 }
 
-#uighomduut .gt_footnote_marks {
+#nevwehkdsq .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
-</style>
-<div id="uighomduut" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+&lt;/style&gt;
+&lt;div id="nevwehkdsq" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"&gt;&lt;table class="gt_table"&gt;
   
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">animal</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">population</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">Bird</td>
-      <td class="gt_row gt_right">21</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_right">5</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_right">7</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_right">23</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_right">74</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Frog</td>
-      <td class="gt_row gt_right">23</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_right">65</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_right">12</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_right">5</td>
-    </tr>
-  </tbody>
+  &lt;thead class="gt_col_headings"&gt;
+    &lt;tr&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;animal&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1"&gt;population&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class="gt_table_body"&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Bird&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;21&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;7&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;23&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;74&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Frog&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;23&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;65&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;12&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
   
   
-</table></div>
+&lt;/table&gt;&lt;/div&gt;
+```
 ]
 
 &lt;/br&gt;
 `animal_populations`
+
+--
+j
 .large[- Fill missing values in a column (top to bottom by default)]   
 
+--
+
 .large[- Contiguous/adjacent values assumed to be the same]   
+
+--
 
 .large[- Values only appear when they change along a column]
 
 ---
-class: center, middle
+class: middle
 
 
 ```r
@@ -2768,22 +2904,34 @@ animal_populations %&gt;%
 
 ---
 class: my-turn
-# My turn
+# My Turn
+
+--
 
 .large[- Load the fish landings data 'fish-landings.csv']
 
+--
+
 .large[- Fill the 'Fish' and 'Lake' columns]
+
+--
 
 .large[- Create a new column, coalescing the three numeric variables]
 
 ---
 
 class: inverse
-# Your turn
+# Your Turn
+
+--
 
 .large[- Load the fish landings data 'fish-landings.csv']
 
+--
+
 .large[- Fill the 'Fish' and 'Lake' columns]
+
+--
 
 .large[- Reorder the numeric variables ('Comission reported total' first) and create a new column, coalescing the three numeric variables]
     </textarea>
