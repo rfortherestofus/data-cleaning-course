@@ -32,7 +32,7 @@ library(gt)
 class: center, middle, dk-section-title
 background-image:url("images/gawn-australia-_OUvt8kLf0s-unsplash.jpg")
 background-size: cover
-# What is data cleaning?
+# What is Data Cleaning?
 ---
 class: center, middle
 
@@ -88,7 +88,7 @@ Has no single end product, because different systems and methods consume differe
 
 ---
 
-# Common issues
+# Common Issues
 
 .fl.w-50[
 .large[
@@ -213,7 +213,7 @@ source: `gt:gtcars` Luxury Automobiles Dataset
 class: center, middle, dk-section-title
 background-image:url("images/willian-justen-de-vasconcellos-JJEQ1SQhkEg-unsplash.jpg")
 background-size: cover
-# Data cleaning is analysis
+# Data cleaning is Analysis
 
 ---
 
@@ -245,10 +245,12 @@ class: center
 >.large[Data cleaning is an important stage in most data analyses, not a single-use task of lesser importance.]
 
 ---
+
 class: center, middle, dk-section-title
 background-image:url("images/endri-killo-tvWqbeOaJnw-unsplash.jpg")
 background-size: cover
-# The Data Cleaning process
+# The Data Cleaning Process
+
 ---
 
 ```{r, eval=TRUE, out.width = "110%", echo=FALSE}
@@ -259,7 +261,7 @@ knitr::include_graphics("images/workflow.png")
 class: center, middle, dk-section-title
 background-image:url("images/bence-boros-l3_9j916sh0-unsplash.jpg")
 background-size: cover
-# Course requirements and prerequisites
+# Course Requirements and Prerequisites
 
 ---
 
@@ -276,10 +278,12 @@ background-size: cover
 ]
 
 ---
+
 class: center, middle, dk-section-title
 background-image:url("images/endri-killo-tvWqbeOaJnw-unsplash.jpg")
 background-size: cover
-# Course conventions and setup
+# Course Conventions and Setup
+
 ---
 
 ## Course conventions

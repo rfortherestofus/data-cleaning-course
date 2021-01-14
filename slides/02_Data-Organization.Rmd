@@ -27,7 +27,8 @@ xaringanExtra::use_tachyons()
 class: center, middle, dk-section-title
 background-image:url("images/road-trip-with-raj-ywJx2-ZD8UU-unsplash.jpg")
 background-size: cover
-# Data organization good practices
+# Data Organization Best Practices
+
 ---
 
 
@@ -51,15 +52,19 @@ but also to identify and solve problems in existing data.
 
 ---
 
-# Good Practices in Data Organization
+# Best Practices in Data Organization
 </br>
 .large[
 - Consistency in names layouts, abbreviations, units, etc.
 ]
 
+--
+
 .large[
 - Good names for objects, files, and variables
 ]
+
+--
 
 .large[
 - Rectangular data
@@ -75,7 +80,7 @@ knitr::include_graphics("images/consistency.png")
 
 ---
 
-# Good names
+# Good Names
 
 .right.large.b[
 For files, objects in our R environment, and variables in a table
@@ -150,10 +155,12 @@ knitr::include_graphics("images/transposed.png", error = FALSE)
 ```
 
 ---
+
 class: center, middle, dk-section-title
 background-image:url("images/max-bohme--bz-MQOrd18-unsplash.jpg")
 background-size: cover
 # Tidy Data and Data Rectangling
+
 ---
 
 .pull-left[## Data imported to R ✅]    
@@ -268,10 +275,12 @@ Variables feed directly into model specifications and plotting parameters
 Not ideal for data entry, or for tables that will be embedded in a text document]
 
 ---
+
 class: center, middle, dk-section-title
 background-image:url("images/jahongir-ismoilov-RcjvFd1k18o-unsplash.jpg")
 background-size: cover
-# Grouping and indicator variables
+# Grouping and Indicator Variables
+
 ---
 
 .large[
@@ -285,10 +294,12 @@ knitr::include_graphics("images/indgroups.png")
 ```
 
 ---
+
 class: center, middle, dk-section-title
 background-image:url("images/anatoliu-WYrb7rzthBQ-unsplash.jpg")
 background-size: cover
-# NA and empty values
+# NA and Empty Values
+
 ---
 
 ### Missing data are still data
@@ -327,7 +338,7 @@ knitr::include_graphics("images/NAblank.png")
 class: center, middle, dk-section-title
 background-image:url("images/aleksei-zaitcev-Nc34cnxcfH0-unsplash.jpg")
 background-size: cover
-# Data sharing good practices
+# Data Sharing Best Practices
 
 ---
 
