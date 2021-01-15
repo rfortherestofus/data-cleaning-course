@@ -20,7 +20,6 @@ xaringanExtra::use_panelset()
 
 ```{r imgs setup, echo=FALSE, eval=TRUE}
 knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
-
 ```
 
 ```{r xaringan-tachyons, echo=FALSE, eval=TRUE}
@@ -68,16 +67,21 @@ Flexible, but developed around built-in features that support a particular way o
 
 To perform multiple operations in sequence:
 
+--
 
 - Nested code  
 
+--
+
 - Intermediate objects  
+
+--
 
 - Pipes  
 
 ---
 
-# Nested code
+## Nested code
 
 ```{r, eval=TRUE}
 grades <- c(7,8,8,10,6,9,5,9,8)
@@ -107,6 +111,7 @@ For structuring sequential operations left-to-right:
 .bt.bb[
 Left Hand Side  
 (.avenir[LHS])
+<br>&nbsp;
 ]]
 
 
@@ -120,11 +125,13 @@ Left Hand Side
 .bt.bb[
 Right Hand Side  
 (.avenir[RHS])
+<br>&nbsp;
 ]]
 
---
+---
 
-</br></br></br></br>
+## Pipes
+
 - Take an **object** on the .avenir[Left Hand Side] of the pipe and insert it into a **function** as an argument on the .avenir[Right Hand Side] 
 
 --
@@ -134,6 +141,7 @@ Right Hand Side
 --
 
 - Packages in the `tidyverse`  load .b.orange[`%>%`] automatically
+
 ---
 
 ## Pipes 
@@ -165,19 +173,29 @@ grades %>%
 
 ---
 
-# Useful 📦 .b.rrured[`dplyr`] functions
-
-</br></br>
+## Useful 📦 .b.rrured[`dplyr`] functions
 
 - Individual functions for the most common operations
+
+--
 
 - Each function does one only thing, but does it well  
 
 --
-- Intuitive, user-friendly functions for data manipulation
-   - Subset columns
-   - Subset rows
-   - Create or modify columns  
+
+- Intuitive, user-friendly functions for common data manipulation tasks:
+
+--
+
+  - Subset columns
+   
+--
+
+  - Subset rows
+   
+--
+
+  - Create or modify columns  
  
 ---
 
@@ -278,25 +296,26 @@ beers %>% select(name, style, star_rating) %>%
 
 ![filter animation](images/filter.gif)
 ]
+
 ---
 class: my-turn
-# My Turn
+## My Turn
 
 --
 
-- .large[Load the mammal sleep data bundled with `ggplot2`]
+- Load the mammal sleep data bundled with `ggplot2`
 
 --
 
-- .large[Select the "name" and "conservation" columns, as well as all numeric variables]
+- Select the "name" and "conservation" columns, as well as all numeric variables
 
 --
 
-- .large[Create a new column that contains the values of _'awake'_ multiplied by the values in _'brainwt'_]  
+- Create a new column that contains the values of _'awake'_ multiplied by the values in _'brainwt'_
 
 --
 
-- .large[Filter the data to keep only rows with _'sleep_total'_ > 4]
+- Filter the data to keep only rows with _'sleep_total'_ > 4
 
 --
 
@@ -305,23 +324,23 @@ class: my-turn
 ---
 
 class: inverse
-# Your Turn
+## Your Turn
 
 --
 
-- .large[Load the mammal sleep data bundled with `ggplot2`]
+- Load the mammal sleep data bundled with `ggplot2`
 
 --
 
-- .large[Select "name" and "conservation" columns and those that include the string _'sleep'_ in their name]
+- Select "name" and "conservation" columns and those that include the string _'sleep'_ in their name
 
 --
 
-- .large[Create a new column that contains the values of _'sleep_total'_ multiplied by 3]  
+- Create a new column that contains the values of _'sleep_total'_ multiplied by 3
 
 --
 
-- .large[Filter the data to remove domesticated mammals]
+- Filter the data to remove domesticated mammals
 
 --
 
@@ -342,7 +361,7 @@ background-size: cover
 
 --
 
-.large[`filter`, `mutate`, or `summarize` multiple columns]
+`filter`, `mutate`, or `summarize` multiple columns
 
 - By position, name, or type  
 
@@ -365,7 +384,7 @@ background-size: cover
 
 --
 
-\* Expects a function, so function name and arguments can be passed separately
+> Expects a function, so function name and arguments can be passed separately
 
 --
 
@@ -377,48 +396,59 @@ beers %>%
 ---
 
 ## Useful column selection helpers
+
 .ba.ph4[
-.b.large.orange[`everything()`] Match all variables
+.b.orange[`everything()`] Match all variables
 ]
 </br>
 
---
+---
+
+### Useful column selection helpers (continued)
 
 .ba.ph4[
-.b.large.orange[`!`] Take the complement of a set of variables (negate a selection)
+.b.orange[`!`] Take the complement of a set of variables (negate a selection)
 ]
 </br>
 
---
+
+---
+
+### Useful column selection helpers (continued)
+
 
 .ba.ph4.mt1.mb1[
-.b.large.orange[`where()`] Selects variables for which a predicate function returns `TRUE`  
-> e.g. subset or transform all numeric variables, determined by `is.numeric()`
+.b.orange[`where()`] Selects variables for which a predicate function returns `TRUE`  
+> e.g. subset or transform all numeric variables, determined by `is.numeric()`]
+
+---
+
+### Useful column selection helpers (continued)
+
+.ba.ph4[
+.b.orange[`matches()`] Match variable names with a regular expression
+> e.g. drop variables with numbers in their name
+
 ]
 
 ---
 
 ### Useful column selection helpers (continued)
-.ba.ph4[
-.b.large.orange[`matches()`] Match variable names with a regular expression
-> e.g. drop variables with numbers in their name
 
+.ba.ph4[
+.b.orange[`:`] Select a range of consecutive variables
 ]
-</br>
+<br>
 
---
+---
 
-.ba.ph4[
-.b.large.orange[`:`] Select a range of consecutive variables
-]
-</br>
-
---
+### Useful column selection helpers (continued)
 
 .ba.ph4[
-.b.large.orange[`-`]   Exclude variables   
+.b.orange[`-`]   Exclude variables   
 (return all elements except the one preceded by the subtraction operator)
 ]
+
 ---
 
 `beers`
@@ -430,63 +460,67 @@ beers %>% gt() %>%
 
 ---
 
-#### Square root (.orange.b[`sqrt()`]) of `alc_by_volume` and `star_rating`
-```{r, eval=TRUE}
-beers %>% mutate(across(c(alc_by_volume,star_rating),sqrt))
+### Square root (.orange.b[`sqrt()`]) of `alc_by_volume` and `star_rating`
 
+```{r, eval=TRUE}
+beers %>% 
+  mutate(across(c(alc_by_volume,star_rating), sqrt))
 ```
 
 ---
 
-#### Square root (.orange.b[`sqrt()`]) of all numeric variables
+### Square root (.orange.b[`sqrt()`]) of all numeric variables
+
 ```{r, eval=TRUE}
-beers %>% mutate(across(where(is.numeric),sqrt))
+beers %>% 
+  mutate(across(where(is.numeric), sqrt))
 ```
 
 ---
+
 class: my-turn
-# My Turn
+## My Turn
 
 --
 
-- .large[Load the _midwest_ data bundled with `ggplot2`]
+- Load the _midwest_ data bundled with `ggplot2`
 
 --
 
-- .large[Keep only rows for Wisconsin (WI)]
+- Keep only rows for Wisconsin (WI)
 
 --
 
-- .large[Subset the 'county' column and all columns that match the string '_perc_' (hint: use a selection helper)]
+- Subset the 'county' column and all columns that match the string '_perc_' (hint: use a selection helper)
 
 --
 
-- .large[log-transform all numeric variables]
+- log-transform all numeric variables
 
 --
 
-- .large[Append the suffix "_check" to every value]
+- Append the suffix "_check" to every value
 
 ---
 
 class: inverse
-# Your Turn
+## Your Turn
 
 --
 
-- .large[Load the _midwest_ data bundled with `ggplot2`]
+- Load the _midwest_ data bundled with `ggplot2`
 
 --
 
-- .large[Keep only rows for Ohio (OH)]
+- Keep only rows for Ohio (OH)
 
 --
 
-- .large[Subset the 'county' column and all columns that match the string '_pop_' (hint: use a selection helper)]
+- Subset the 'county' column and all columns that match the string '_pop_' (hint: use a selection helper)
 
 --
 
-- .large[Square-root transform all numeric variables]
+- Square-root transform all numeric variables
 
 ---
 
@@ -521,7 +555,8 @@ Maps well to plot axes and aesthetics ]
 pivot_longer(data, cols, names_to, values_to)
 ```
 
-</br>
+--
+
 .large[long to wide: .b.orange[`pivot_wider()`]] 
 
 ```{r}
@@ -575,8 +610,7 @@ Variables:
 # Wide to long
 
 ```{r}
-critters_long <-
-  critters %>%
+critters_long <- critters %>%
   pivot_longer(
     cols = c(Frogs, Crayfish, Owls),
     names_to = "critter_type",
@@ -585,8 +619,7 @@ critters_long <-
 ```
 
 ```{r, echo=FALSE, eval=TRUE}
-critters_long <-
-  critters %>%
+critters_long <- critters %>%
   pivot_longer(
     cols = c(Frogs, Crayfish, Owls),
     names_to = "critter_type",
@@ -627,11 +660,11 @@ critters_long %>%
 
 --
 
-.b[`names_from`] Which column's values will be used for new column names
+.b[`names_from`] Which columns' values will be used for new .b[column names]
 
 --
 
-**`values_from`** Which column has the cell values for the new output columns
+.b[`values_from`] Which column has the .b[cell values] for the new output columns
 
 ---
 
@@ -642,6 +675,7 @@ critters_long %>%
 ```
 
 ---
+
 class: center
 
 ![](images/pivoting.gif)
@@ -691,7 +725,9 @@ background-size: cover
 
 - Returns a single vector with the non-NA values that appear first 
 
---
+---
+
+## .b.orange[coalesce()] from 📦 .b.rrured[`dplyr`]  
 
 ```{r, eval=TRUE}
 x <- c(1, 2, NA, NA, 5)
@@ -703,6 +739,16 @@ z <- c(1, 4, 3, 5, 3)
 
 ```{r, eval=TRUE}
 coalesce(x, y, z)
+```
+
+---
+
+## .b.orange[coalesce()] from 📦 .b.rrured[`dplyr`]  
+
+```{r, eval=TRUE}
+x <- c(1, 2, NA, NA, 5)
+y <- c(NA, NA, 3, 4, 5)
+z <- c(1, 4, 3, 5, 3)
 ```
 
 --
@@ -747,6 +793,7 @@ tibble::tribble(
 ```
 ]
 ]
+
 ---
 
 </br>
@@ -787,7 +834,7 @@ animal_populations %>% gt() %>%
 `animal_populations`
 
 --
-j
+
 .large[- Fill missing values in a column (top to bottom by default)]   
 
 --
@@ -799,12 +846,21 @@ j
 .large[- Values only appear when they change along a column]
 
 ---
-class: middle
 
+## fill()
+
+.pull-left[
+```{r eval = TRUE}
+animal_populations
+```
+]
+
+.pull-right[
 ```{r, eval=TRUE}
 animal_populations %>% 
   fill(animal)
 ```
+]
 
 ---
 class: my-turn
