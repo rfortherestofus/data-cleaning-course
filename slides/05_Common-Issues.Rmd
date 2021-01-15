@@ -379,12 +379,13 @@ RrU %>%
 
 --
 
-Count words then spaces
-
+Count words, then spaces
 
 ```{r, eval=TRUE}
 str_count(RrU$strings, '\\w+')
+```
 
+```{r, eval=TRUE}
 str_count(RrU$strings, '\\s')
 ```
 
@@ -489,7 +490,7 @@ RrU %>% mutate(across(where(is.character),
 
 ```{r, eval=TRUE}
 RrU %>% 
-  mutate(strings=str_squish(strings)) %>% 
+  mutate(strings = str_squish(strings)) %>% 
   distinct()
 ```
 
@@ -522,12 +523,23 @@ background-size: fill
 
 ### Strings in R are case sensitive
 
-.large[Changing letter case:
+Changing letter case:
+
+--
 
 - Removes unwanted variation
+
+--
+
 - Improves noise/signal ratio
+
+--
+
 - Adds consistency 
-- Improves readability (more shape contrast in lower vs. upper case, for many popular fonts)]
+
+--
+
+- Improves readability (more shape contrast in lower vs. upper case, for many popular fonts)
 
 ---
 ```{r, echo=FALSE, eval=TRUE}
@@ -557,8 +569,7 @@ districts %>% gt() %>%
 
 .panel[.panel-name[Data setup]
 ```{r panel-chunk, fig.show='hide'}
-districts <- 
-  tibble::tribble(
+districts <- tibble::tribble(
     ~District, ~`Contribution.(USD)`, ~Constituents,
     "Orange walk",                10990L,           12L,
     "TOLEDO",                30000L,            7L,
@@ -570,7 +581,6 @@ districts <-
     "stann creek",                22999L,            9L,
     "Toledo",                 4900L,            7L
   )
-
 ```
 ]
 ]
@@ -580,44 +590,47 @@ districts <-
 ## Total contributions by district
 ```{r, eval=TRUE}
 districts %>% group_by(District) %>% 
-  summarize(total_contribution=sum(`Contribution.(USD)`))
+  summarize(total_contribution = sum(`Contribution.(USD)`))
 ```
 
 ---
 
 ## Detecting lower and upper case
+
 ```{r, eval=TRUE}
-districts %>% mutate(lowercase=str_detect(District,"^[a-z\\s]+$"),
-                     uppercase=str_detect(District,"^[A-Z\\s]+$")) %>% 
-  select(District,lowercase,uppercase)
+districts %>% 
+  mutate(lowercase = str_detect(District,"^[a-z\\s]+$"),
+                     uppercase = str_detect(District,"^[A-Z\\s]+$")) %>% 
+  select(District, lowercase, uppercase)
 ```
 
 ---
 
-## Parsing and converting strings
-📦 .rrured.b[`snakecase`]    
+## Changing case with 📦 .rrured.b[`snakecase`]    
 
 ```{r, eval=FALSE}
 to_any_case(strings, case)
 ```
 
+.pull-left[
 **camelCase** - capitalize all words following the first word, no spaces  
 
 **snake_case** - all lowercase, underscores between words  
 
 **slug-case** - all lowercase, dashes between words  
+]
 
+.pull-right[
 **Title case** - All words capitalized except articles (_a_, _the_, _and_, etc.)  
 
 **Sentence case** - First word capitalized, spaces between words  
+]
 
 ---
 
-## Total contributions by district
+## Convert case first with `to_any_case()`
 
-.large[
-Convert case first
-]
+
 ```{r, eval=TRUE}
 districts %>%
   mutate(District_clean = to_any_case(District, "title",
@@ -630,9 +643,9 @@ districts %>%
 > `?to_any_case()` for details on parsing options
 ---
 
-## Total contributions by district
+## 📦 .rrured.b[`snakecase`] shortcuts
 
-📦 .rrured.b[`snakecase`] shortcuts
+
 ```{r, eval=TRUE}
 districts %>% 
   mutate(District_clean = to_title_case(District, #<<
@@ -666,11 +679,17 @@ background-size: cover
 
 ### Missing ... 🤷
 
+---
+
 ### Implicit or misplaced
+
+--
 
 .large[
 - Embedded as subheaders  
+]
 
+.large[
 - Part of a compound value (next lesson)
 ]
 
@@ -691,13 +710,12 @@ Beer
 ]
 .right-column[
 
-.large[
 - Rows that correspond to values in grouping variables   
 
 - Embedded in the data rectangle instead of in their own column   
 
 - Human-readable, but hard to work with (for example: calculating group-wise summaries)
-]
+
 ]
 
 ---
@@ -789,17 +807,21 @@ cafeteria_tidy <-
 
 **`untangle2()`** function 
 
-.large[
+
 1. Match with a .orange.b[regular expression]
 
 2. Position (sometimes) identifiable as the rows with NAs in all the variables except for the one with the subheaders
-]
+
 
 ---
+
+## `untangle2()`
 
 ```{r, echo=FALSE, eval=TRUE}
 cafeteria
 ```
+
+--
 
 ```{r, eval= FALSE}
 untangle2(df,
@@ -808,37 +830,56 @@ untangle2(df,
           new)   # name of the new variable with the group values
 ```
 
+---
+
+## `untangle2()`
+
 Match using .orange.b[regex]
 ```{r, eval= FALSE}
 cafeteria %>% 
-  *  untangle2("Drinks$",Item,drink_type) %>%
+  untangle2("Drinks$", Item, drink_type) %>% #<<
   clean_names()
 ```
 
 ---
 
+## `untangle2()`
+
 .orange.b[Regexp] match and summarize
 ```{r, eval=TRUE}
-cafeteria %>% untangle2("Drinks$", Item, drink_type) %>% clean_names()
+cafeteria %>% 
+  untangle2("Drinks$", Item, drink_type) %>% 
+  clean_names()
 ```
 
 
 ```{r, eval=TRUE}
-cafeteria %>% untangle2("Drinks$", Item, drink_type) %>% 
-  clean_names() %>% group_by(drink_type) %>% 
+cafeteria %>% 
+  untangle2("Drinks$", Item, drink_type) %>% 
+  clean_names() %>% 
+  group_by(drink_type) %>% 
   summarize(mean_price=mean(price))
 ```
 
 ---
 
-Alternation
-```{r, eval=TRUE}
-cafeteria %>% untangle2("Hot Drinks|Cold Drinks", Item, drink_type) %>% clean_names()
-```
+### Alternation
 
 ```{r, eval=TRUE}
-cafeteria %>% untangle2("Hot Drinks|Cold Drinks", Item, drink_type) %>% 
-  clean_names() %>% group_by(drink_type) %>% 
+cafeteria %>% 
+  untangle2("Hot Drinks|Cold Drinks", Item, drink_type) %>% 
+  clean_names()
+```
+
+---
+
+### Alternation
+
+```{r, eval=TRUE}
+cafeteria %>% 
+  untangle2("Hot Drinks|Cold Drinks", Item, drink_type) %>% 
+  clean_names() %>% 
+  group_by(drink_type) %>% 
   summarize(mean_price=mean(price))
 ```
 
@@ -859,25 +900,31 @@ cafeteria %>%
 
 ---
 
-.pull-left[
+
 ```{r, eval=TRUE}
 cafeteria %>%
   filter(across(-Item, is.na)) %>%
   select(Item) %>%
   mutate(tag = paste0("subheader_", Item)) 
 ```
-]
 
-.pull-right[
-</br>
+
+--
+
 Filter rows with NAs in all columns except the one holding the subheaders  
+
+--
 
 Keep only the column with subheaders  
 
-Create a new variable that includes a pattern that can be matched with .orange.b[regex]
-]
+--
 
-.pull-left[
+Create a new variable that includes a pattern that can be matched with .orange.b[regex]
+
+
+---
+
+
 ```{r, eval=FALSE}
 ... %>%    
   right_join(cafeteria) %>%
@@ -885,24 +932,26 @@ Create a new variable that includes a pattern that can be matched with .orange.b
   select(-tag) %>%
   mutate(drink_type = stringr::str_remove(drink_type, "^subheader_"))
 ```
-]
 
+--
 
-.pull-right[
-<br/>
 Join resulting object with original data
+
+--
 
 Put implicit grouping variable into its own column
 
+--
+
 Clean up resulting data
-]
+
 
 ---
 
 class: my-turn
 ## My turn
 .large[
-- Load the `primates2017` dataset bundled with 📦 .rrured.b[`unheadr`] and create a new column that groups the different species by geographic region. 
+- Load the `primates2017` dataset bundled with 📦 `unheadr` and create a new column that groups the different species by geographic region. 
 ]
 
 ---
@@ -910,7 +959,7 @@ class: my-turn
 class: inverse
 ## Your turn
 .large[
-- Load the `primates2017` dataset bundled with 📦 .rrured.b[`unheadr`] and create a new column that groups the different species by taxonomic family.  
+- Load the `primates2017` dataset bundled with 📦 `unheadr` and create a new column that groups the different species by taxonomic family.  
 ]
 
 > In biology, taxonomic families all end in the suffix "_DAE_"  
@@ -927,15 +976,15 @@ background-size: fill
 
 ---
 
-### Compound values
+## Compound values
 
-.large[
-* Not tidy  
-
-* Potential loss of variables or observations  
-]
+.large[* Not tidy]  
 
 --
+
+.large[* Potential loss of variables or observations]
+
+---
 
 ### Tidying compound values 
 
@@ -1012,7 +1061,7 @@ households %>%
 ]
 ```{r, eval=TRUE}
 households %>% 
-  mutate(Pet = str_extract(households$Residence,"\\b\\w+$"))
+  mutate(Pet = str_extract(Residence,"\\b\\w+$"))
 ```
 
 ---
@@ -1022,6 +1071,7 @@ households %>%
 **`str_split()`** from 📦 **.rrured.b[`stringr`]**  
 - Split the compound value at the separator "`, `"   
 
+--
 
 **`unnest()`** from 📦 **.rrured.b[`tidyr`]** 
 - Flatten each element from the split into a row
@@ -1068,8 +1118,11 @@ class: my-turn
 ## My turn
 
 .large[
-- Import the Marine Protected Areas dataset (MPAS-mine.csv), separate the country codes variable (ISO3 and UN scheme) and unnest the Reference variable.
+- Import the Marine Protected Areas dataset (MPAS-mine.csv), separate the country codes variable (ISO3 and UN scheme) and unnest the Reference variable.]
 
+--
+
+.large[
 - Which Reference appears the most?
 ]
 
@@ -1079,10 +1132,15 @@ class: inverse
 ## Your turn
 
 .large[
-- Import the Marine Protected Areas dataset (MPAS-your.csv), separate the country codes variable (ISO3 and UN scheme) and unnest the Reference variable.
+- Import the Marine Protected Areas dataset (MPAS-your.csv), separate the country codes variable (ISO3 and UN scheme) and unnest the Reference variable.]
+
+--
 
 > Keep an eye on the separators
 
+--
+
+.large[
 - Optional: Arrange the data by ISO3 country code
 ]
 
@@ -1095,37 +1153,47 @@ background-size: cover
 
 ---
 
-### Duplicates
+## Problems with duplicates
 
-.large[
-- Bloat our data  
+--
 
-- Unintentional repetition can be costly  
+.large[- Bloat our data]  
 
-- Inaccurate reporting (double counting, inflated or biased summary statistics)  
-]
+--
+
+.large[- Unintentional repetition can be costly]  
+
+--
+
+.large[- Inaccurate reporting (double counting, inflated or biased summary statistics)]
 
 ---
 
-### What can we do?
+## What can we do?
 
-.large[
+
 Identify with `get_dupes()` from 📦 .rrured.b[`janitor`]  
 
+--
+
 Discard with `distinct()` from 📦 .rrured.b[`dplyr`]  
-]
+
 
 ---
 
-### Duplicated values  
+## Duplicated values  
 
-.large[
+
 - Across all variables  
+
+--
 
 - Across the variable(s) defining the observational units  
 
+--
+
 - Across arbitrary sets of variables
-]
+
 
 ---
 
@@ -1171,11 +1239,9 @@ pizza_orders <-
 
 ---
 
-### Identify with **`get_dupes()`** from 📦 .rrured.b[`janitor`]  
+## Identify with **`get_dupes()`** from 📦 .rrured.b[`janitor`]  
 
-.large[
-All variables
-]
+
 ```{r, eval=TRUE}
 pizza_orders %>% 
   get_dupes() # all variables by default
@@ -1183,16 +1249,14 @@ pizza_orders %>%
 
 --
 
-.large[
 * Adds a `dupe_count` variable showing the number of rows sharing the duplicated values  
 * Puts the input variables at the beginning of the resulting data frame 
-]
+
 ---
 
-</br></br>
-.large[
-Variable with chosen observational unit
-]
+### `get_dupes()` using variable with chosen observational unit
+
+
 ```{r, eval=TRUE}
 pizza_orders %>% 
   get_dupes(CustomerID)
@@ -1200,24 +1264,19 @@ pizza_orders %>%
 
 ---
 
-</br></br>
-.large[
-Custom combination
-]
+### `get_dupes()` using custom combination
 
 > now accepts 📦 `tidyselect` helpers
 
 ```{r, eval=TRUE}
-pizza_orders %>% get_dupes(Address,starts_with("Cit")) 
+pizza_orders %>% 
+  get_dupes(Address, starts_with("Cit")) 
 ```
 
 ---
 
-### Discard with `distinct()` from 📦 .rrured.b[`dplyr`]
+## Discard with `distinct()` from 📦 .rrured.b[`dplyr`]
 
-.large[
-All variables
-]
 
 ```{r, eval=TRUE}
 pizza_orders %>% 
@@ -1226,31 +1285,28 @@ pizza_orders %>%
 
 ---
 
-</br></br>
-.large[
-Variable with chosen observational unit
-]
+### `distinct()` using variable with chosen observational unit
+
 
 ```{r, eval=TRUE}
 pizza_orders %>% 
-  distinct(CustomerID,.keep_all = TRUE)
+  distinct(CustomerID, .keep_all = TRUE)
 ```
+
 --
 
 > Use `.keep_all = FALSE` (default) to drop all other variables
 
 ---
 
-</br></br>
-.large[
-Custom combination
-]
+### `distinct()` using custom combination
+
 
 >  📦 `tidyselect` helpers enabled by using `across` semantics
 
 ```{r, eval=TRUE}
 pizza_orders %>% 
-  distinct(across(c(Address,starts_with("Cit")))) 
+  distinct(across(c(Address, starts_with("Cit")))) 
 ```
 
 ---
@@ -1262,52 +1318,66 @@ pizza_orders %>%
 
 ```{r, eval=TRUE}
 pizza_orders %>% 
-  distinct(across(c(Address,starts_with("City"))),.keep_all = TRUE) 
+  distinct(across(c(Address,starts_with("City"))), .keep_all = TRUE) 
 ```
 
 ---
+
 class: my-turn
+
 ## My turn
 
-.large[
-- Load the messy Age of Empires units dataset bundled with .rrured.b[`unheadr`] (AOEunits_raw) and discard units that are not of Type "Archer".
+--
+
+- Load the messy Age of Empires units dataset bundled with `unheadr` (AOEunits_raw) and discard units that are not of Type "Archer".
+
+--
 
 - Identify duplicated records across all variables.
 
+--
+
 - Remove duplicated records across all variables.
-]
+
 
 ---
 
 class: inverse
 ## Your turn
 
-.large[
-- Load the messy Age of Empires units dataset bundled with .rrured.b[`unheadr`] (AOEunits_raw) and keep only units of Type "Cavalry".
+- Load the messy Age of Empires units dataset bundled with `unheadr` (AOEunits_raw) and keep only units of Type "Cavalry".
+
+--
 
 - Identify duplicated records across all variables.
 
+--
+
 - Remove duplicated records across all variables.
-]
+
 
 ---
 
 class: center, middle, dk-section-title
 background-image:url("images/jonathan-safa-YcxOAC5DpDA-unsplash.jpg")
 background-size: cover
-# Broken values
+# Broken Values
 
 ---
 
-### Broken values
+## Broken values
 
-.large[
+
 Values broken across rows, often to save horizontal space on a page or column, and carried over onto machine-readable data
+
+--
 
 `NA` or blank values introduced  
 
+--
+
 Problematic when grouping variables or observational units are broken
-]
+
 
 ---
 
@@ -1364,11 +1434,17 @@ olympics <-
 
 ## 'Unbreaking' values 
 
-.large[
+--
+
 Values broken up across **two consecutive rows**
 
+--
+
 Match trailing or leading half of the value with a .orange.b[regexp] and 📦 .rrured.b[`unheadr`]
-]
+
+---
+
+## 'Unbreaking' values 
 
 .pull-left[
 Fast  
@@ -1394,11 +1470,6 @@ Poodle
 
 ## 'Unbreaking' values
 
-.large[
-Values broken up across **two consecutive rows**
-
-Match _trailing_ or _leading_ half of the value with a .orange.b[regexp] and 📦 .rrured.b[`unheadr`]
-]  
 .pull-left[
 Fast  
 **food**  
@@ -1439,42 +1510,37 @@ unbreak_vals(df,
 
 ---
 
-</br></br>
-.large[
-Trailing row
-]
+## Trailing row
+
 
 ```{r, eval=TRUE}
-olympics %>% unbreak_vals(regex = "^\\d", # numbers at start of string
-                          ogcol = Edition,
-                          newcol = Edition_ub,
-                          sep = " ")
+olympics %>% 
+  unbreak_vals(regex = "^\\d", # numbers at start of string
+               ogcol = Edition,
+               newcol = Edition_ub,
+               sep = " ")
 ```
 
 ---
 
 ### **`unbreak_rows()`**  
 
-.large[
+
 Verb for merging rows from 📦 .rrured.b[`unheadr`]
 
 Match the leading half of the broken value with .orange.b[regular expression]
-]
+
 
 ```{r, eval=FALSE}
 unbreak_rows(df, 
              regex, 
              ogcol, 
-             sep = " ",
-)
+             sep = " ")
 ```
 
 ---
 
-</br></br>
-.large[
-Leading row
-]
+## Leading row
 
 ```{r, eval=TRUE}
 olympics %>% unbreak_rows(regex = "^weight", # numbers at start of string
@@ -1483,41 +1549,50 @@ olympics %>% unbreak_rows(regex = "^weight", # numbers at start of string
 ```
 
 ---
-.large[
-Leading and trailing rows
-]
+
+## Leading and trailing rows
+
 ```{r, eval=TRUE}
 olympics %>%
   unbreak_rows(
     regex = "^weight",
     ogcol = `Wrestling.(men.middleweight)`) %>%
-  unbreak_vals(
-    regex = "^\\d", # numbers at start of string
-    ogcol = Edition,
-    newcol = Edition_ub)
+  unbreak_vals(regex = "^\\d", # numbers at start of string
+               ogcol = Edition,
+               newcol = Edition_ub)
 ```
 
 ---
+
 class: my-turn
+
 ## My turn
 
-.large[
+--
+
 - Load the messy Age of Empires units dataset from csv (aoe_raw.csv)
 
+--
+
 - Identify the broken values in the 'Type' column and unbreak them
-]
+
 
 ---
 class: inverse
 ## Your turn
 
-.large[
+--
+
 - Load the messy Age of Empires units dataset from csv (aoe_raw.csv)
+
+--
 
 - Identify the broken values in both the 'Type' and 'Name' columns and unbreak them
 
+--
+
 - Clean up any separator-related issues arising from the 'unbreaking'
-]
+
 
 ---
 
@@ -1525,28 +1600,35 @@ class: center, middle, dk-section-title
 background-image:url("images/david-hertle-8HAhmMk9HJI-unsplash.jpg")
 background-size: cover
 
-# Empty rows and columns
+# Empty Rows and Columns
 
 ---
 
-### Empty rows and columns
+### Problems with empty rows and columns
 
-.large[
+--
+
 - Common when importing files
+
+--
 
 - Problematic when referring to variables by position or ranges of consecutive variables  (`:`)  
 
-- Potentially disruptive when filling adjacent cells
-]
 --
+
+- Potentially disruptive when filling adjacent cells
+
+---
 
 ### What can we do?
 
-.large[
-Identify with 📦 .rrured.b[`dplyr`]  
+--
 
-Discard with **`remove_empty()`** from 📦 .rrured.b[`janitor`]
-]
+**Identify** with 📦 .rrured.b[`dplyr`]  
+
+--
+
+**Discard** with **`remove_empty()`** from 📦 .rrured.b[`janitor`]
 
 ---
 
@@ -1599,28 +1681,22 @@ universities <-
 ```
 ]
 ]
-source: US Integrated Postsecondary Education Data System (IPEDS)
+.small[source: US Integrated Postsecondary Education Data System (IPEDS)]
 
 ---
 
-</br>
-.large[
-Identify empty rows with 📦 .rrured.b[`dplyr`] (and 📦 .rrured.b[`tibble`])  
-]
+
+## Identify empty rows with 📦 .rrured.b[`dplyr`] (and 📦 .rrured.b[`tibble`])  
+
 ```{r, eval=TRUE}
 universities %>% filter(across(everything(), is.na))
 universities %>% filter(across(everything(), is.na)) %>% nrow()
-
 ```
 
 ---
 
-</br>
-.large[
-Identify empty rows with 📦 .rrured.b[`dplyr`] (and 📦 .rrured.b[`tibble`])  
-]
+### Add unique identifier first
 
-**Add unique identifier first**
 ```{r, eval=TRUE}
 universities %>% 
   rowid_to_column() %>% #<<
@@ -1629,24 +1705,23 @@ universities %>%
 
 ---
 
-</br>
-.large[Negate the condition and discard empty rows]  
+### Negate the condition and discard empty rows
+
 ```{r, eval=TRUE}
-universities %>% filter(!across(everything(), is.na))
+universities %>% 
+  filter(!across(everything(), is.na))
 ```
 
 ---
 
-</br>
-.large[
-Discard empty rows with with **`remove_empty()`** from 📦 .rrured.b[`janitor`]  
-]
+### Discard empty rows with with **`remove_empty()`** from 📦 .rrured.b[`janitor`]  
 
 > `quiet = FALSE` prints a statement about the rows that were removed
 
 ```{r message=TRUE, eval=TRUE}
-universities %>% remove_empty(which = "rows",
-                              quiet = FALSE) 
+universities %>% 
+  remove_empty(which = "rows",
+               quiet = FALSE) 
 ```
 
 ---
@@ -1658,15 +1733,13 @@ Identify with 📦 .rrured.b[`dplyr`] and **`all_na()`** from 📦 .rrured.b[`na
 ]
 
 ```{r, eval=TRUE}
-universities %>% select(where(all_na))
+universities %>% 
+  select(where(all_na))
 ```
 
 ---
 
-</br>
-.large[
-Identify and get names
-]
+### Identify and get names
 
 ```{r, eval=TRUE}
 universities %>% 
@@ -1674,9 +1747,10 @@ universities %>%
   names()
 ```
 
-.large[
-Negate condition for selection, get names
-]
+---
+
+### Negate condition for selection, get names
+
 
 ```{r, eval=TRUE}
 universities %>% 
@@ -1686,20 +1760,14 @@ universities %>%
 
 ---
 
-.large[
-Discard empty columns with with **`remove_empty()`** from 📦 .rrured.b[`janitor`]  
-]
+### Discard empty columns with with **`remove_empty()`** from 📦 .rrured.b[`janitor`]  
+
 
 ```{r, eval=TRUE, message=TRUE}
-universities %>% remove_empty(which= "cols", quiet = FALSE) 
+universities %>% 
+  remove_empty(which= "cols", quiet = FALSE) 
 ```
 
----
-
-### Discard empty rows and columns
-```{r message=TRUE}
-universities %>% remove_empty(which = c("rows","cols"), quiet = FALSE) 
-```
 
 ---
 
@@ -1707,50 +1775,70 @@ class: my-turn
 
 ## My turn
 
-.large[
+--
+
 - Import the Marine Protected Areas dataset (MPAS-mine.csv)
+
+--
 
 - Identify the empty rows and columns, and create a new object with only the empty rows and columns 
 
+--
+
 - Remove the empty rows and columns 
-]
+
 
 ---
 class: inverse
 
 ## Your turn
 
-.large[
+--
+
 - Import the Marine Protected Areas dataset (MPAS-your.csv)
+
+--
 
 - Identify the empty rows and columns, and create a new object with only the empty rows and columns 
 
+--
+
 - Remove the empty rows and columns
-]
+
+--
 
 ---
 
 class: center, middle, dk-section-title
 background-image:url("images/markus-spiske-4jiR57y3jgY-unsplash.jpg")
 background-size: cover
-# Parsing numbers
+# Parsing Numbers
 
 ---
 class: middle
 
 .large[
-- Vectors must have all their values of the same mode (_character, numeric, logical_)  
+- Vectors must have all their values of the same mode (_character, numeric, logical_)]
 
+--
+
+.large[
 - If there is a character string is present in a vector, everything else in the vector will be converted to character strings
 ]
 
 ---
-</br></br>
+
 ### We cannot perform arithmetic operations on:
+
+--
 
 - **Numbers stored as text**
 
+--
+
 - **Strings with non-digits**
+
+--
 
 ```{r message=TRUE, warning=TRUE, eval=TRUE}
 test_scores <- c(8.8,9,10,7.2,8.4)
@@ -1762,21 +1850,23 @@ class(c(test_scores,"a"))
 
 ## Numbers stored as text
 
-.large[
+
 1. **`type_convert()`** the whole object (📦 .rrured.b[`readr`])
 
+--
+
 2. Coerce one or more variables to `numeric` with 📦 .rrured.b[`dplyr`]
-]
+
 
 ---
 
 ## Strings with non-digits
 
-.large[
+
 1. Parse with 📦 .rrured.b[`readr`]  
 
 2. Clean with .orange.b[regular expressions]
-]
+
 
 ---
 ```{r, include=FALSE, eval=TRUE}
@@ -1826,19 +1916,22 @@ burger_prices <-
 
 ## Numbers stored as text  
 
-.large[Parse all columns] 
+Parse all columns
+
 ```{r, eval=TRUE}
-burger_prices %>% type_convert()
+burger_prices %>% 
+  type_convert()
 ```
 
 ---
 
 ## Numbers stored as text  
 
-.large[Coerce variables to `numeric`]
+Coerce variables to `numeric`
 
 ```{r, eval=TRUE}
-burger_prices %>% mutate(Rank= as.numeric(Rank))
+burger_prices %>% 
+  mutate(Rank = as.numeric(Rank))
 ```
 
 > ⚠ be careful of problems when coercing strings with non-digits
@@ -1847,23 +1940,23 @@ burger_prices %>% mutate(Rank= as.numeric(Rank))
 
 ## Strings with non-digits
 
-.large[
 Parse with 📦 .rrured.b[`readr`]
-]
-
-```{r, eval=TRUE}
-burger_prices %>% mutate(across(c(Rank,Price,Price.ARS),parse_number))
-```
 
 > ⚠ be careful of problems when parsing strings with non-digits
+
+```{r, eval=TRUE}
+burger_prices %>% 
+  mutate(across(c(Rank, Price, Price.ARS), parse_number))
+```
+
+
 
 ---
 
 ## Strings with non-digits
 
-.large[
 Clean with .orange.b[regular expressions] and `type_convert()`
-]
+
 
 ```{r, echo=FALSE, eval=TRUE}
 options(pillar.sigfig=5)
@@ -1874,36 +1967,55 @@ options(pillar.sigfig=5)
 burger_prices %>%
   mutate(across(c(Rank, Price, Price.ARS), str_remove_all, "\\[.+\\]|\\(.+\\)")) %>%
   mutate(across(c(Rank, Price, Price.ARS), str_remove_all, "[^0-9.,]")) %>%
-  mutate(Price.ARS = str_replace(Price.ARS, ",", ".")) %>% type_convert()
+  mutate(Price.ARS = str_replace(Price.ARS, ",", ".")) %>% 
+  type_convert()
 ```
 
 ---
 class: my-turn
 ## My turn
 
-.large[
+--
+
 - Import the Marine Protected Areas dataset (MPAS-mine.csv)
 
+--
+
 - Make the columns that hold the MPA extent into usable numeric variables
-]
+
 
 ---
 class: inverse
 ## Your turn
 
-.large[
+--
+
 - Import the Marine Protected Areas dataset (MPAS-mine.csv)
+
+--
 
 - Subset to keep only the MPA names and columns with extent data
 
+--
+
 - Make the columns that hold the MPA extent into usable numeric variables
 
+--
+
 - Watch out for the decimals
-]
+
 
 ---
 
-### Putting everything together
+class: center, middle, dk-section-title
+background-image:url("images/ryan-quintal-US9Tc9pKNBU-unsplash.jpg")
+background-size: cover
 
-.large[
-Demonstration: Load and wrangle the messy Age of Empires units dataset into a usable, tidy object]
+
+# Putting Everything Together
+
+---
+
+## Demonstration
+
+.large[Watch me load and wrangle the messy Age of Empires units dataset into a usable, tidy object]
