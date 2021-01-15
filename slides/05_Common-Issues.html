@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Common issues in data cleaning</title>
+    <title>Common Issues in Data Cleaning</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.5/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/panelset-0.2.4/panelset.css" rel="stylesheet" />
     <script src="libs/panelset-0.2.4/panelset.js"></script>
@@ -14,7 +13,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Common issues in data cleaning
+# Common Issues in Data Cleaning
 
 ---
 
@@ -44,38 +43,35 @@ layout: true
 class: center, middle, dk-section-title
 background-image:url("images/michael-We2t3suGiYk-unsplash.jpg")
 background-size: cover
-# Common issues in real-word data and their consequences
+# Common Issues in Real-World Data and Their Consequences
+
 ---
 
 ## Real-world data
 
-&lt;br/&gt;
 --
 
-.large[
 - May not be readily imported  
-]
+
 
 --
 
-.large[
+
 - May not function properly within analysis software  
-]
+
 
 --
 
-.large[
 - Often contains issues that go unnoticed until they: 
-]
-    - break a workflow
-    - introduce biases
-    - waste resources (computational, $)  
+
+- break a workflow
+- introduce biases
+- waste resources (computational, $)  
 
 ---
 
-# General data cleaning workflows 
+## General data cleaning workflows 
 
-&lt;br/&gt;
 .large[
 0\. Rectangular data
 ]
@@ -107,19 +103,22 @@ Cleaning numeric variables, unbreaking values, extracting target data
 class: center, middle, dk-section-title
 background-image:url("images/james-rathmell-t0iwmK0WC0Y-unsplash.jpg")
 background-size: cover
-# Unusable headers 
+# Unusable Headers 
+
 ---
 
 ## Unusable headers 
 
-.large[
+
 Inconsistent or uninformative names  
-]
-<style>html {
+
+
+```{=html}
+&lt;style&gt;html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#zlwtycaytk .gt_table {
+#clbxvfbzju .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -144,7 +143,7 @@ Inconsistent or uninformative names
   border-left-color: #D3D3D3;
 }
 
-#zlwtycaytk .gt_heading {
+#clbxvfbzju .gt_heading {
   background-color: #f4f4f9;
   text-align: center;
   border-bottom-color: #f4f4f9;
@@ -156,7 +155,7 @@ Inconsistent or uninformative names
   border-right-color: #D3D3D3;
 }
 
-#zlwtycaytk .gt_title {
+#clbxvfbzju .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -166,7 +165,7 @@ Inconsistent or uninformative names
   border-bottom-width: 0;
 }
 
-#zlwtycaytk .gt_subtitle {
+#clbxvfbzju .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -176,13 +175,13 @@ Inconsistent or uninformative names
   border-top-width: 0;
 }
 
-#zlwtycaytk .gt_bottom_border {
+#clbxvfbzju .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zlwtycaytk .gt_col_headings {
+#clbxvfbzju .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -197,7 +196,7 @@ Inconsistent or uninformative names
   border-right-color: #D3D3D3;
 }
 
-#zlwtycaytk .gt_col_heading {
+#clbxvfbzju .gt_col_heading {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -217,7 +216,7 @@ Inconsistent or uninformative names
   overflow-x: hidden;
 }
 
-#zlwtycaytk .gt_column_spanner_outer {
+#clbxvfbzju .gt_column_spanner_outer {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -229,15 +228,15 @@ Inconsistent or uninformative names
   padding-right: 4px;
 }
 
-#zlwtycaytk .gt_column_spanner_outer:first-child {
+#clbxvfbzju .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zlwtycaytk .gt_column_spanner_outer:last-child {
+#clbxvfbzju .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zlwtycaytk .gt_column_spanner {
+#clbxvfbzju .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -249,7 +248,7 @@ Inconsistent or uninformative names
   width: 100%;
 }
 
-#zlwtycaytk .gt_group_heading {
+#clbxvfbzju .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #f4f4f9;
@@ -271,7 +270,7 @@ Inconsistent or uninformative names
   vertical-align: middle;
 }
 
-#zlwtycaytk .gt_empty_group_heading {
+#clbxvfbzju .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #f4f4f9;
@@ -286,15 +285,15 @@ Inconsistent or uninformative names
   vertical-align: middle;
 }
 
-#zlwtycaytk .gt_from_md > :first-child {
+#clbxvfbzju .gt_from_md &gt; :first-child {
   margin-top: 0;
 }
 
-#zlwtycaytk .gt_from_md > :last-child {
+#clbxvfbzju .gt_from_md &gt; :last-child {
   margin-bottom: 0;
 }
 
-#zlwtycaytk .gt_row {
+#clbxvfbzju .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -313,7 +312,7 @@ Inconsistent or uninformative names
   overflow-x: hidden;
 }
 
-#zlwtycaytk .gt_stub {
+#clbxvfbzju .gt_stub {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -325,7 +324,7 @@ Inconsistent or uninformative names
   padding-left: 12px;
 }
 
-#zlwtycaytk .gt_summary_row {
+#clbxvfbzju .gt_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -335,7 +334,7 @@ Inconsistent or uninformative names
   padding-right: 5px;
 }
 
-#zlwtycaytk .gt_first_summary_row {
+#clbxvfbzju .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -345,7 +344,7 @@ Inconsistent or uninformative names
   border-top-color: #D3D3D3;
 }
 
-#zlwtycaytk .gt_grand_summary_row {
+#clbxvfbzju .gt_grand_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -355,7 +354,7 @@ Inconsistent or uninformative names
   padding-right: 5px;
 }
 
-#zlwtycaytk .gt_first_grand_summary_row {
+#clbxvfbzju .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -365,11 +364,11 @@ Inconsistent or uninformative names
   border-top-color: #D3D3D3;
 }
 
-#zlwtycaytk .gt_striped {
+#clbxvfbzju .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zlwtycaytk .gt_table_body {
+#clbxvfbzju .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -378,7 +377,7 @@ Inconsistent or uninformative names
   border-bottom-color: #D3D3D3;
 }
 
-#zlwtycaytk .gt_footnotes {
+#clbxvfbzju .gt_footnotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -392,13 +391,13 @@ Inconsistent or uninformative names
   border-right-color: #D3D3D3;
 }
 
-#zlwtycaytk .gt_footnote {
+#clbxvfbzju .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#zlwtycaytk .gt_sourcenotes {
+#clbxvfbzju .gt_sourcenotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -412,102 +411,111 @@ Inconsistent or uninformative names
   border-right-color: #D3D3D3;
 }
 
-#zlwtycaytk .gt_sourcenote {
+#clbxvfbzju .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#zlwtycaytk .gt_left {
+#clbxvfbzju .gt_left {
   text-align: left;
 }
 
-#zlwtycaytk .gt_center {
+#clbxvfbzju .gt_center {
   text-align: center;
 }
 
-#zlwtycaytk .gt_right {
+#clbxvfbzju .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zlwtycaytk .gt_font_normal {
+#clbxvfbzju .gt_font_normal {
   font-weight: normal;
 }
 
-#zlwtycaytk .gt_font_bold {
+#clbxvfbzju .gt_font_bold {
   font-weight: bold;
 }
 
-#zlwtycaytk .gt_font_italic {
+#clbxvfbzju .gt_font_italic {
   font-style: italic;
 }
 
-#zlwtycaytk .gt_super {
+#clbxvfbzju .gt_super {
   font-size: 65%;
 }
 
-#zlwtycaytk .gt_footnote_marks {
+#clbxvfbzju .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
-</style>
-<div id="zlwtycaytk" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+&lt;/style&gt;
+&lt;div id="clbxvfbzju" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"&gt;&lt;table class="gt_table"&gt;
   
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">X</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">X1</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">X2</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">mean_Score</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">AVERAGE.SCORE</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">UMN</td>
-      <td class="gt_row gt_left">EAST</td>
-      <td class="gt_row gt_left">A</td>
-      <td class="gt_row gt_right">7.7</td>
-      <td class="gt_row gt_right">7.701</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">UV</td>
-      <td class="gt_row gt_left">WEST</td>
-      <td class="gt_row gt_left">B</td>
-      <td class="gt_row gt_right">8.9</td>
-      <td class="gt_row gt_right">8.890</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">UNLV</td>
-      <td class="gt_row gt_left">EAST</td>
-      <td class="gt_row gt_left">C</td>
-      <td class="gt_row gt_right">9.2</td>
-      <td class="gt_row gt_right">9.199</td>
-    </tr>
-  </tbody>
+  &lt;thead class="gt_col_headings"&gt;
+    &lt;tr&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;X&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;X1&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;X2&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1"&gt;mean_Score&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1"&gt;AVERAGE.SCORE&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class="gt_table_body"&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;UMN&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;EAST&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;A&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;7.7&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;7.701&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;UV&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;WEST&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;B&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;8.9&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;8.890&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;UNLV&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;EAST&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;C&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;9.2&lt;/td&gt;
+      &lt;td class="gt_row gt_right"&gt;9.199&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
   
   
-</table></div>
+&lt;/table&gt;&lt;/div&gt;
+```
 
-.large[
-- Distinct != informative  
+
+- Distinct != informative 
+
+--
+
 - More difficult to remember and specify  
+
+--
+
 - Do not sort well  
-]
+
 
 ---
 
 ## Unusable headers
 
-.large[
-Names broken across rows
-]
 
-<style>html {
+Names broken across rows
+
+
+
+```{=html}
+&lt;style&gt;html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#ocwrrknktg .gt_table {
+#rksstlarxo .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -532,7 +540,7 @@ Names broken across rows
   border-left-color: #D3D3D3;
 }
 
-#ocwrrknktg .gt_heading {
+#rksstlarxo .gt_heading {
   background-color: #f4f4f9;
   text-align: center;
   border-bottom-color: #f4f4f9;
@@ -544,7 +552,7 @@ Names broken across rows
   border-right-color: #D3D3D3;
 }
 
-#ocwrrknktg .gt_title {
+#rksstlarxo .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -554,7 +562,7 @@ Names broken across rows
   border-bottom-width: 0;
 }
 
-#ocwrrknktg .gt_subtitle {
+#rksstlarxo .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -564,13 +572,13 @@ Names broken across rows
   border-top-width: 0;
 }
 
-#ocwrrknktg .gt_bottom_border {
+#rksstlarxo .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ocwrrknktg .gt_col_headings {
+#rksstlarxo .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -585,7 +593,7 @@ Names broken across rows
   border-right-color: #D3D3D3;
 }
 
-#ocwrrknktg .gt_col_heading {
+#rksstlarxo .gt_col_heading {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -605,7 +613,7 @@ Names broken across rows
   overflow-x: hidden;
 }
 
-#ocwrrknktg .gt_column_spanner_outer {
+#rksstlarxo .gt_column_spanner_outer {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -617,15 +625,15 @@ Names broken across rows
   padding-right: 4px;
 }
 
-#ocwrrknktg .gt_column_spanner_outer:first-child {
+#rksstlarxo .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ocwrrknktg .gt_column_spanner_outer:last-child {
+#rksstlarxo .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ocwrrknktg .gt_column_spanner {
+#rksstlarxo .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -637,7 +645,7 @@ Names broken across rows
   width: 100%;
 }
 
-#ocwrrknktg .gt_group_heading {
+#rksstlarxo .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #f4f4f9;
@@ -659,7 +667,7 @@ Names broken across rows
   vertical-align: middle;
 }
 
-#ocwrrknktg .gt_empty_group_heading {
+#rksstlarxo .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #f4f4f9;
@@ -674,15 +682,15 @@ Names broken across rows
   vertical-align: middle;
 }
 
-#ocwrrknktg .gt_from_md > :first-child {
+#rksstlarxo .gt_from_md &gt; :first-child {
   margin-top: 0;
 }
 
-#ocwrrknktg .gt_from_md > :last-child {
+#rksstlarxo .gt_from_md &gt; :last-child {
   margin-bottom: 0;
 }
 
-#ocwrrknktg .gt_row {
+#rksstlarxo .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -701,7 +709,7 @@ Names broken across rows
   overflow-x: hidden;
 }
 
-#ocwrrknktg .gt_stub {
+#rksstlarxo .gt_stub {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -713,7 +721,7 @@ Names broken across rows
   padding-left: 12px;
 }
 
-#ocwrrknktg .gt_summary_row {
+#rksstlarxo .gt_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -723,7 +731,7 @@ Names broken across rows
   padding-right: 5px;
 }
 
-#ocwrrknktg .gt_first_summary_row {
+#rksstlarxo .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -733,7 +741,7 @@ Names broken across rows
   border-top-color: #D3D3D3;
 }
 
-#ocwrrknktg .gt_grand_summary_row {
+#rksstlarxo .gt_grand_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -743,7 +751,7 @@ Names broken across rows
   padding-right: 5px;
 }
 
-#ocwrrknktg .gt_first_grand_summary_row {
+#rksstlarxo .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -753,11 +761,11 @@ Names broken across rows
   border-top-color: #D3D3D3;
 }
 
-#ocwrrknktg .gt_striped {
+#rksstlarxo .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ocwrrknktg .gt_table_body {
+#rksstlarxo .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -766,7 +774,7 @@ Names broken across rows
   border-bottom-color: #D3D3D3;
 }
 
-#ocwrrknktg .gt_footnotes {
+#rksstlarxo .gt_footnotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -780,13 +788,13 @@ Names broken across rows
   border-right-color: #D3D3D3;
 }
 
-#ocwrrknktg .gt_footnote {
+#rksstlarxo .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#ocwrrknktg .gt_sourcenotes {
+#rksstlarxo .gt_sourcenotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -800,94 +808,104 @@ Names broken across rows
   border-right-color: #D3D3D3;
 }
 
-#ocwrrknktg .gt_sourcenote {
+#rksstlarxo .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#ocwrrknktg .gt_left {
+#rksstlarxo .gt_left {
   text-align: left;
 }
 
-#ocwrrknktg .gt_center {
+#rksstlarxo .gt_center {
   text-align: center;
 }
 
-#ocwrrknktg .gt_right {
+#rksstlarxo .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ocwrrknktg .gt_font_normal {
+#rksstlarxo .gt_font_normal {
   font-weight: normal;
 }
 
-#ocwrrknktg .gt_font_bold {
+#rksstlarxo .gt_font_bold {
   font-weight: bold;
 }
 
-#ocwrrknktg .gt_font_italic {
+#rksstlarxo .gt_font_italic {
   font-style: italic;
 }
 
-#ocwrrknktg .gt_super {
+#rksstlarxo .gt_super {
   font-size: 65%;
 }
 
-#ocwrrknktg .gt_footnote_marks {
+#rksstlarxo .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
-</style>
-<div id="ocwrrknktg" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+&lt;/style&gt;
+&lt;div id="rksstlarxo" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"&gt;&lt;table class="gt_table"&gt;
   
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">X</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">X1</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">X2</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">mean</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">AVERAGE</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_left">Score</td>
-      <td class="gt_row gt_left">SCORE</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">UMN</td>
-      <td class="gt_row gt_left">EAST</td>
-      <td class="gt_row gt_left">A</td>
-      <td class="gt_row gt_left">7.7</td>
-      <td class="gt_row gt_left">7.701</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">UV</td>
-      <td class="gt_row gt_left">WEST</td>
-      <td class="gt_row gt_left">B</td>
-      <td class="gt_row gt_left">8.9</td>
-      <td class="gt_row gt_left">8.89</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">UNLV</td>
-      <td class="gt_row gt_left">EAST</td>
-      <td class="gt_row gt_left">C</td>
-      <td class="gt_row gt_left">9.2</td>
-      <td class="gt_row gt_left">9.199</td>
-    </tr>
-  </tbody>
+  &lt;thead class="gt_col_headings"&gt;
+    &lt;tr&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;X&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;X1&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;X2&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;mean&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;AVERAGE&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class="gt_table_body"&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Score&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;SCORE&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;UMN&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;EAST&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;A&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;7.7&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;7.701&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;UV&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;WEST&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;B&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;8.9&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;8.89&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;UNLV&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;EAST&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;C&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;9.2&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;9.199&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
   
   
-</table></div>
+&lt;/table&gt;&lt;/div&gt;
+```
 
 
 - Variable names appear in &gt;1 rows  
+
+--
+
 - Header fragments mixed with data
+
+--
+
 - Separators become implicit  
+
+--
+
 - `NAs` introduced
 
 ---
@@ -896,13 +914,17 @@ Names broken across rows
 
 ### Syntactically valid variable names
 
-.large[
+
 - Contain only letters, numbers, dots or underscores
+
+--
 
 - Start with a letter or a dot (not followed by a number)
 
+--
+
 - Not reserved words (_if_, _else_, _for_, _in_, _TRUE_, _NaN_, etc.)  
-]
+
 
 ---
 
@@ -929,6 +951,7 @@ Clean names with 📦 **.rrured.b[`janitor`]**
 ---
 
 
+
 ```r
 badnames
 ```
@@ -944,7 +967,8 @@ badnames
 
 
 ```r
-badnames %&gt;% clean_names()
+badnames %&gt;% 
+  clean_names()
 ```
 
 ```
@@ -977,6 +1001,10 @@ badheaders
 ## 4 UNLV  EAST  C     9.2   9.199
 ```
 
+---
+
+## Broken headers
+
 .large[
 Mash the top _n_ data rows column-wise with 📦 .rrured.b[`unheadr`]
 ]
@@ -984,8 +1012,8 @@ Mash the top _n_ data rows column-wise with 📦 .rrured.b[`unheadr`]
 
 ```r
 badheaders %&gt;% 
-*  mash_colnames(n_name_rows = 1, # number of data rows with header fragments
-                sep = "_") # separator for collapsing header fragments
+  *  mash_colnames(n_name_rows = 1, # number of data rows with header fragments
+                   sep = "_") # separator for collapsing header fragments
 ```
 
 ---
@@ -1023,33 +1051,47 @@ badheaders %&gt;%
 ## 2 UV    WEST  B     8.9        8.89         
 ## 3 UNLV  EAST  C     9.2        9.199
 ```
+
 ---
+
 class: my-turn
 ## My turn
 
-.large[
 - Import a .csv file with problematic headers (MPAS-mine.csv)
 
+--
+
 - Make the variable names usable by placing all header fragments in a single header row  
+
+--
 
 - Clean the names for consistency, using snake case
-]
+
+
 ---
+
 class: inverse
+
 ## Your turn
 
-.large[
+
 - Import a .csv file with problematic headers (MPAS-your.csv)
+
+--
 
 - Make the variable names usable by placing all header fragments in a single header row  
 
+--
+
 - Clean the names for consistency
-]
+
+
 ---
 class: center, middle, dk-section-title
 background-image:url("images/farnoosh-abdollahi-vIkABUsLEDY-unsplash.jpg")
 background-size: cover
 # Whitespace
+
 ---
 
 ## Whitespace
@@ -1057,6 +1099,9 @@ background-size: cover
 .large[
 Does not correspond to a visible character, but occupies space in a string.
 ]
+
+--
+
 
 ```r
 string_a &lt;- "This string starts with a T"
@@ -1077,6 +1122,7 @@ tibble(strings=c(string_a,string_b,string_c))
 ---
 
 class: middle
+
 
 ```r
 string_a &lt;- "R for the rest of us"
@@ -1103,7 +1149,8 @@ RrU
 
 
 ```r
-RrU %&gt;% distinct(strings)
+RrU %&gt;% 
+  distinct(strings)
 ```
 
 ```
@@ -1116,22 +1163,32 @@ RrU %&gt;% distinct(strings)
 ## 4 " R for the rest of us "
 ## 5 "R for the   rest of us"
 ```
+
+---
+
 ### Issues
 
-.large[
 - Leading whitespace
+
+--
+
 - Trailing whitespace
+
+--
+
 - Duplicated whitespace within strings
-]
+
+
 ---
 
 ## Diagnosing whitespace issues
 &gt;**"R for the rest of us"**   
 (six words, five spaces)  
 
-.large[
+--
+
 Count words then spaces
-]
+
 
 
 ```r
@@ -1149,10 +1206,10 @@ str_count(RrU$strings, '\\s')
 ```
 ## [1] 5 6 6 7 7
 ```
+
 ---
 
 ### Ambiguous strings
-
 
 **`is.ambiguous_string()`**  
 
@@ -1165,7 +1222,7 @@ str_count(RrU$strings, '\\s')
 ```r
 function (x) 
 {
-    !is.na(x) &amp; grepl("^$|^ | $|\\\\|\"", x)
+  !is.na(x) &amp; grepl("^$|^ | $|\\\\|\"", x)
 }
 ```
 
@@ -1205,9 +1262,8 @@ RrU %&gt;% mutate(is_ambiguous = str_detect(strings,"^$|^ | $"))
 
 ---
 
-.large[
-Check **all** columns of type _character_
-]
+### Check **all** columns of type _character_
+
 
 
 ```r
@@ -1225,6 +1281,10 @@ RrU %&gt;% mutate(across(where(is.character),pillar:::is_ambiguous_string))
 ## 5 FALSE
 ```
 
+---
+
+### Check **all** columns of type _character_
+
 
 ```r
 RrU %&gt;% mutate(across(where(is.character),
@@ -1244,28 +1304,28 @@ RrU %&gt;% mutate(across(where(is.character),
 
 ---
 
-## Removing whitespace
+## Removing whitespace: `trim_ws()`
 
-### **`trim_ws`** 
 .large[
 Argument to `read_x` functions in 📦 .rrured.b[`readr`]
 
 Trims leading and trailing whitespace from each field during import. 
 ]
-`TRUE`  for **`read_csv()`** and **`read_tsv()`**  
-`FALSE` for **`read_delim()`**
+`TRUE` by default for **`read_csv()`** and **`read_tsv()`**  
+`FALSE` by default for **`read_delim()`**
 
 ---
 
-#### Removing whitespace
-### **`str_squish()`**  
+## Removing whitespace: `str_squish()`
+
 String manipulation function from 📦 **.rrured.b[`stringr`]**   
 
 Removes whitespace from the start and end of a string and reduces repeated whitespace inside the string
 
 
 ```r
-RrU$strings_sq &lt;- str_squish(RrU$strings); RrU
+RrU %&gt;% 
+  mutate(strings_sq = str_squish(strings))
 ```
 
 ```
@@ -1278,13 +1338,11 @@ RrU$strings_sq &lt;- str_squish(RrU$strings); RrU
 ## 4 " R for the rest of us " R for the rest of us
 ## 5 "R for the   rest of us" R for the rest of us
 ```
+
 ---
 
-&lt;/br&gt;
-&lt;/br&gt;
-.large[
-Count words and spaces (again)  
-]
+## Count words and spaces (again)  
+
 .large[
 **"R for the rest of us"** (six words, five spaces)
 ]
@@ -1295,7 +1353,7 @@ str_count(RrU$strings_sq, '\\w+')
 ```
 
 ```
-## [1] 6 6 6 6 6
+## integer(0)
 ```
 
 ```r
@@ -1303,15 +1361,13 @@ str_count(RrU$strings_sq, '\\s')
 ```
 
 ```
-## [1] 5 5 5 5 5
+## integer(0)
 ```
 
 ---
 
-&lt;br/&gt;&lt;br/&gt;
-.large[
-Check ambiguous strings (again)
-]
+## Check ambiguous strings (again)
+
 
 
 
@@ -1321,47 +1377,59 @@ RrU %&gt;% mutate(across(where(is.character),
 ```
 
 ```
-## # A tibble: 5 x 2
-##   strings strings_sq
-##   &lt;lgl&gt;   &lt;lgl&gt;     
-## 1 FALSE   FALSE     
-## 2 TRUE    FALSE     
-## 3 TRUE    FALSE     
-## 4 TRUE    FALSE     
-## 5 FALSE   FALSE
+## # A tibble: 5 x 1
+##   strings
+##   &lt;lgl&gt;  
+## 1 FALSE  
+## 2 TRUE   
+## 3 TRUE   
+## 4 TRUE   
+## 5 FALSE
 ```
 
 ---
 
 
 ```r
-RrU %&gt;% mutate(strings=str_squish(strings)) %&gt;% distinct()
+RrU %&gt;% 
+  mutate(strings=str_squish(strings)) %&gt;% 
+  distinct()
 ```
 
 ```
-## # A tibble: 1 x 2
-##   strings              strings_sq          
-##   &lt;chr&gt;                &lt;chr&gt;               
-## 1 R for the rest of us R for the rest of us
+## # A tibble: 1 x 1
+##   strings             
+##   &lt;chr&gt;               
+## 1 R for the rest of us
 ```
 
 ---
+
 class: my-turn
+
 ## My turn
+
 - In the Marine Protected Areas dataset from the previous lesson (MPAS-mine.csv), check the _geographic_location_ variable for leading or trailing whitespace and remove it if necessary.
 
 ---
+
 class: inverse
+
 ## Your turn
+
 - In the Marine Protected Areas dataset from the previous lesson (MPAS-your.csv), check the _Country_ variable for leading or trailing whitespace and remove it if necessary.
+
 ---
+
 class: center, middle, dk-section-title
 background-image:url("images/snake-mylene2401.jpg")
 background-size: fill
-# Letter case 
+# Letter Case 
+
 ---
 
 ## Letter case
+
 ### Strings in R are case sensitive
 
 .large[Changing letter case:
@@ -1377,11 +1445,13 @@ background-size: fill
 
 .panelset[
 .panel[.panel-name[Districts]
-<style>html {
+
+```{=html}
+&lt;style&gt;html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#gwbggxjwlj .gt_table {
+#buneptpflm .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1406,7 +1476,7 @@ background-size: fill
   border-left-color: #D3D3D3;
 }
 
-#gwbggxjwlj .gt_heading {
+#buneptpflm .gt_heading {
   background-color: #f4f4f9;
   text-align: center;
   border-bottom-color: #f4f4f9;
@@ -1418,7 +1488,7 @@ background-size: fill
   border-right-color: #D3D3D3;
 }
 
-#gwbggxjwlj .gt_title {
+#buneptpflm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1428,7 +1498,7 @@ background-size: fill
   border-bottom-width: 0;
 }
 
-#gwbggxjwlj .gt_subtitle {
+#buneptpflm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1438,13 +1508,13 @@ background-size: fill
   border-top-width: 0;
 }
 
-#gwbggxjwlj .gt_bottom_border {
+#buneptpflm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#gwbggxjwlj .gt_col_headings {
+#buneptpflm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1459,7 +1529,7 @@ background-size: fill
   border-right-color: #D3D3D3;
 }
 
-#gwbggxjwlj .gt_col_heading {
+#buneptpflm .gt_col_heading {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -1479,7 +1549,7 @@ background-size: fill
   overflow-x: hidden;
 }
 
-#gwbggxjwlj .gt_column_spanner_outer {
+#buneptpflm .gt_column_spanner_outer {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -1491,15 +1561,15 @@ background-size: fill
   padding-right: 4px;
 }
 
-#gwbggxjwlj .gt_column_spanner_outer:first-child {
+#buneptpflm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#gwbggxjwlj .gt_column_spanner_outer:last-child {
+#buneptpflm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#gwbggxjwlj .gt_column_spanner {
+#buneptpflm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1511,7 +1581,7 @@ background-size: fill
   width: 100%;
 }
 
-#gwbggxjwlj .gt_group_heading {
+#buneptpflm .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #f4f4f9;
@@ -1533,7 +1603,7 @@ background-size: fill
   vertical-align: middle;
 }
 
-#gwbggxjwlj .gt_empty_group_heading {
+#buneptpflm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #f4f4f9;
@@ -1548,15 +1618,15 @@ background-size: fill
   vertical-align: middle;
 }
 
-#gwbggxjwlj .gt_from_md > :first-child {
+#buneptpflm .gt_from_md &gt; :first-child {
   margin-top: 0;
 }
 
-#gwbggxjwlj .gt_from_md > :last-child {
+#buneptpflm .gt_from_md &gt; :last-child {
   margin-bottom: 0;
 }
 
-#gwbggxjwlj .gt_row {
+#buneptpflm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1575,7 +1645,7 @@ background-size: fill
   overflow-x: hidden;
 }
 
-#gwbggxjwlj .gt_stub {
+#buneptpflm .gt_stub {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -1587,7 +1657,7 @@ background-size: fill
   padding-left: 12px;
 }
 
-#gwbggxjwlj .gt_summary_row {
+#buneptpflm .gt_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -1597,7 +1667,7 @@ background-size: fill
   padding-right: 5px;
 }
 
-#gwbggxjwlj .gt_first_summary_row {
+#buneptpflm .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1607,7 +1677,7 @@ background-size: fill
   border-top-color: #D3D3D3;
 }
 
-#gwbggxjwlj .gt_grand_summary_row {
+#buneptpflm .gt_grand_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -1617,7 +1687,7 @@ background-size: fill
   padding-right: 5px;
 }
 
-#gwbggxjwlj .gt_first_grand_summary_row {
+#buneptpflm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1627,11 +1697,11 @@ background-size: fill
   border-top-color: #D3D3D3;
 }
 
-#gwbggxjwlj .gt_striped {
+#buneptpflm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#gwbggxjwlj .gt_table_body {
+#buneptpflm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1640,7 +1710,7 @@ background-size: fill
   border-bottom-color: #D3D3D3;
 }
 
-#gwbggxjwlj .gt_footnotes {
+#buneptpflm .gt_footnotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -1654,13 +1724,13 @@ background-size: fill
   border-right-color: #D3D3D3;
 }
 
-#gwbggxjwlj .gt_footnote {
+#buneptpflm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#gwbggxjwlj .gt_sourcenotes {
+#buneptpflm .gt_sourcenotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -1674,125 +1744,127 @@ background-size: fill
   border-right-color: #D3D3D3;
 }
 
-#gwbggxjwlj .gt_sourcenote {
+#buneptpflm .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#gwbggxjwlj .gt_left {
+#buneptpflm .gt_left {
   text-align: left;
 }
 
-#gwbggxjwlj .gt_center {
+#buneptpflm .gt_center {
   text-align: center;
 }
 
-#gwbggxjwlj .gt_right {
+#buneptpflm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#gwbggxjwlj .gt_font_normal {
+#buneptpflm .gt_font_normal {
   font-weight: normal;
 }
 
-#gwbggxjwlj .gt_font_bold {
+#buneptpflm .gt_font_bold {
   font-weight: bold;
 }
 
-#gwbggxjwlj .gt_font_italic {
+#buneptpflm .gt_font_italic {
   font-style: italic;
 }
 
-#gwbggxjwlj .gt_super {
+#buneptpflm .gt_super {
   font-size: 65%;
 }
 
-#gwbggxjwlj .gt_footnote_marks {
+#buneptpflm .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
-</style>
-<div id="gwbggxjwlj" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+&lt;/style&gt;
+&lt;div id="buneptpflm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"&gt;&lt;table class="gt_table"&gt;
   
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">District</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Contribution.(USD)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Constituents</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">Orange walk</td>
-      <td class="gt_row gt_center">10990</td>
-      <td class="gt_row gt_center">12</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">TOLEDO</td>
-      <td class="gt_row gt_center">30000</td>
-      <td class="gt_row gt_center">7</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Stann Creek</td>
-      <td class="gt_row gt_center">3400</td>
-      <td class="gt_row gt_center">9</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Toledo</td>
-      <td class="gt_row gt_center">21999</td>
-      <td class="gt_row gt_center">7</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Orange WalK</td>
-      <td class="gt_row gt_center">8800</td>
-      <td class="gt_row gt_center">12</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Orange Walk</td>
-      <td class="gt_row gt_center">800</td>
-      <td class="gt_row gt_center">12</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Orange Walk</td>
-      <td class="gt_row gt_center">55000</td>
-      <td class="gt_row gt_center">12</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">stann creek</td>
-      <td class="gt_row gt_center">22999</td>
-      <td class="gt_row gt_center">9</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Toledo</td>
-      <td class="gt_row gt_center">4900</td>
-      <td class="gt_row gt_center">7</td>
-    </tr>
-  </tbody>
+  &lt;thead class="gt_col_headings"&gt;
+    &lt;tr&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;District&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"&gt;Contribution.(USD)&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"&gt;Constituents&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class="gt_table_body"&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Orange walk&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;10990&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;12&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;TOLEDO&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;30000&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;7&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Stann Creek&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;3400&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;9&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Toledo&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;21999&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;7&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Orange WalK&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;8800&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;12&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Orange Walk&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;800&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;12&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Orange Walk&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;55000&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;12&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;stann creek&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;22999&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;9&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Toledo&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;4900&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;7&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
   
   
-</table></div>
+&lt;/table&gt;&lt;/div&gt;
+```
 ]
 
 .panel[.panel-name[Data setup]
 
 ```r
 districts &lt;- 
-tibble::tribble(
-      ~District, ~`Contribution.(USD)`, ~Constituents,
-  "Orange walk",                10990L,           12L,
-       "TOLEDO",                30000L,            7L,
-  "Stann Creek",                 3400L,            9L,
-       "Toledo",                21999L,            7L,
-  "Orange WalK",                 8800L,           12L,
-  "Orange Walk",                  800L,           12L,
-  "Orange Walk",                55000L,           12L,
-  "stann creek",                22999L,            9L,
-       "Toledo",                 4900L,            7L
+  tibble::tribble(
+    ~District, ~`Contribution.(USD)`, ~Constituents,
+    "Orange walk",                10990L,           12L,
+    "TOLEDO",                30000L,            7L,
+    "Stann Creek",                 3400L,            9L,
+    "Toledo",                21999L,            7L,
+    "Orange WalK",                 8800L,           12L,
+    "Orange Walk",                  800L,           12L,
+    "Orange Walk",                55000L,           12L,
+    "stann creek",                22999L,            9L,
+    "Toledo",                 4900L,            7L
   )
 ```
 ]
 ]
+
 ---
 
 ## Total contributions by district
@@ -1817,12 +1889,12 @@ districts %&gt;% group_by(District) %&gt;%
 
 ---
 
-# Detecting lower and upper case
+## Detecting lower and upper case
 
 ```r
 districts %&gt;% mutate(lowercase=str_detect(District,"^[a-z\\s]+$"),
                      uppercase=str_detect(District,"^[A-Z\\s]+$")) %&gt;% 
-                     select(District,lowercase,uppercase)
+  select(District,lowercase,uppercase)
 ```
 
 ```
@@ -1871,7 +1943,7 @@ Convert case first
 ```r
 districts %&gt;%
   mutate(District_clean = to_any_case(District, "title",
-*   parsing_option = 0
+*                                     parsing_option = 0
   )) %&gt;%  
   group_by(District_clean) %&gt;%
   summarize(total_contribution = sum(`Contribution.(USD)`))
@@ -1895,8 +1967,8 @@ districts %&gt;%
 
 ```r
 districts %&gt;% 
-*mutate(District_clean = to_title_case(District,
-*   parsing_option = 0
+* mutate(District_clean = to_title_case(District,
+*                                       parsing_option = 0
   )) %&gt;% 
   group_by(District_clean) %&gt;%
   summarize(total_contribution = sum(`Contribution.(USD)`))
@@ -1912,6 +1984,7 @@ districts %&gt;%
 ```
 
 ---
+
 class: my-turn
 ## My turn
 
@@ -1924,10 +1997,12 @@ class: inverse
 - Import the Marine Protected Areas dataset (MPAS-your.csv), and summarize the number of Marine Protected Areas by country (_Country full_).
 
 ---
+
 class: center, middle, dk-section-title
 background-image:url("images/hans-heiner-buhr-OKe4Q8azVNU-unsplash.jpg")
 background-size: cover
-# Missing, implicit, or misplaced grouping variables
+# Missing, Implicit, or Misplaced Grouping Variables
+
 ---
 
 ### Missing ... 🤷
@@ -1939,6 +2014,7 @@ background-size: cover
 
 - Part of a compound value (next lesson)
 ]
+
 ---
 
 ## Embedded subheaders
@@ -1971,11 +2047,13 @@ Beer
 
 .panelset[
 .panel[.panel-name[Cafeteria Menu]
-<style>html {
+
+```{=html}
+&lt;style&gt;html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#jktnnfabdn .gt_table {
+#oyudqtzywh .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2000,7 +2078,7 @@ Beer
   border-left-color: #D3D3D3;
 }
 
-#jktnnfabdn .gt_heading {
+#oyudqtzywh .gt_heading {
   background-color: #f4f4f9;
   text-align: center;
   border-bottom-color: #f4f4f9;
@@ -2012,7 +2090,7 @@ Beer
   border-right-color: #D3D3D3;
 }
 
-#jktnnfabdn .gt_title {
+#oyudqtzywh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2022,7 +2100,7 @@ Beer
   border-bottom-width: 0;
 }
 
-#jktnnfabdn .gt_subtitle {
+#oyudqtzywh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2032,13 +2110,13 @@ Beer
   border-top-width: 0;
 }
 
-#jktnnfabdn .gt_bottom_border {
+#oyudqtzywh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#jktnnfabdn .gt_col_headings {
+#oyudqtzywh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2053,7 +2131,7 @@ Beer
   border-right-color: #D3D3D3;
 }
 
-#jktnnfabdn .gt_col_heading {
+#oyudqtzywh .gt_col_heading {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -2073,7 +2151,7 @@ Beer
   overflow-x: hidden;
 }
 
-#jktnnfabdn .gt_column_spanner_outer {
+#oyudqtzywh .gt_column_spanner_outer {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -2085,15 +2163,15 @@ Beer
   padding-right: 4px;
 }
 
-#jktnnfabdn .gt_column_spanner_outer:first-child {
+#oyudqtzywh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#jktnnfabdn .gt_column_spanner_outer:last-child {
+#oyudqtzywh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#jktnnfabdn .gt_column_spanner {
+#oyudqtzywh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2105,7 +2183,7 @@ Beer
   width: 100%;
 }
 
-#jktnnfabdn .gt_group_heading {
+#oyudqtzywh .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #f4f4f9;
@@ -2127,7 +2205,7 @@ Beer
   vertical-align: middle;
 }
 
-#jktnnfabdn .gt_empty_group_heading {
+#oyudqtzywh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #f4f4f9;
@@ -2142,15 +2220,15 @@ Beer
   vertical-align: middle;
 }
 
-#jktnnfabdn .gt_from_md > :first-child {
+#oyudqtzywh .gt_from_md &gt; :first-child {
   margin-top: 0;
 }
 
-#jktnnfabdn .gt_from_md > :last-child {
+#oyudqtzywh .gt_from_md &gt; :last-child {
   margin-bottom: 0;
 }
 
-#jktnnfabdn .gt_row {
+#oyudqtzywh .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2169,7 +2247,7 @@ Beer
   overflow-x: hidden;
 }
 
-#jktnnfabdn .gt_stub {
+#oyudqtzywh .gt_stub {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -2181,7 +2259,7 @@ Beer
   padding-left: 12px;
 }
 
-#jktnnfabdn .gt_summary_row {
+#oyudqtzywh .gt_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -2191,7 +2269,7 @@ Beer
   padding-right: 5px;
 }
 
-#jktnnfabdn .gt_first_summary_row {
+#oyudqtzywh .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2201,7 +2279,7 @@ Beer
   border-top-color: #D3D3D3;
 }
 
-#jktnnfabdn .gt_grand_summary_row {
+#oyudqtzywh .gt_grand_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -2211,7 +2289,7 @@ Beer
   padding-right: 5px;
 }
 
-#jktnnfabdn .gt_first_grand_summary_row {
+#oyudqtzywh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2221,11 +2299,11 @@ Beer
   border-top-color: #D3D3D3;
 }
 
-#jktnnfabdn .gt_striped {
+#oyudqtzywh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#jktnnfabdn .gt_table_body {
+#oyudqtzywh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2234,7 +2312,7 @@ Beer
   border-bottom-color: #D3D3D3;
 }
 
-#jktnnfabdn .gt_footnotes {
+#oyudqtzywh .gt_footnotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -2248,13 +2326,13 @@ Beer
   border-right-color: #D3D3D3;
 }
 
-#jktnnfabdn .gt_footnote {
+#oyudqtzywh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#jktnnfabdn .gt_sourcenotes {
+#oyudqtzywh .gt_sourcenotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -2268,121 +2346,124 @@ Beer
   border-right-color: #D3D3D3;
 }
 
-#jktnnfabdn .gt_sourcenote {
+#oyudqtzywh .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#jktnnfabdn .gt_left {
+#oyudqtzywh .gt_left {
   text-align: left;
 }
 
-#jktnnfabdn .gt_center {
+#oyudqtzywh .gt_center {
   text-align: center;
 }
 
-#jktnnfabdn .gt_right {
+#oyudqtzywh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#jktnnfabdn .gt_font_normal {
+#oyudqtzywh .gt_font_normal {
   font-weight: normal;
 }
 
-#jktnnfabdn .gt_font_bold {
+#oyudqtzywh .gt_font_bold {
   font-weight: bold;
 }
 
-#jktnnfabdn .gt_font_italic {
+#oyudqtzywh .gt_font_italic {
   font-style: italic;
 }
 
-#jktnnfabdn .gt_super {
+#oyudqtzywh .gt_super {
   font-size: 65%;
 }
 
-#jktnnfabdn .gt_footnote_marks {
+#oyudqtzywh .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
-</style>
-<div id="jktnnfabdn" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+&lt;/style&gt;
+&lt;div id="oyudqtzywh" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"&gt;&lt;table class="gt_table"&gt;
   
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Item</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Price</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">Hot Drinks</td>
-      <td class="gt_row gt_center">NA</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Coffee</td>
-      <td class="gt_row gt_center">12</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Tea</td>
-      <td class="gt_row gt_center">9</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Hot chocolate</td>
-      <td class="gt_row gt_center">9</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Cold Drinks</td>
-      <td class="gt_row gt_center">NA</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Soda</td>
-      <td class="gt_row gt_center">10</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Juice</td>
-      <td class="gt_row gt_center">13</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Water</td>
-      <td class="gt_row gt_center">8</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Beer</td>
-      <td class="gt_row gt_center">8</td>
-    </tr>
-  </tbody>
+  &lt;thead class="gt_col_headings"&gt;
+    &lt;tr&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;Item&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"&gt;Price&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class="gt_table_body"&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Hot Drinks&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Coffee&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;12&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Tea&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;9&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Hot chocolate&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;9&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Cold Drinks&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Soda&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;10&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Juice&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;13&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Water&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;8&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Beer&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;8&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
   
   
-</table></div>
+&lt;/table&gt;&lt;/div&gt;
+```
 ]
 
 .panel[.panel-name[Data setup]
 
 ```r
 cafeteria &lt;- 
-tibble::tribble(
-            ~Item, ~Price,
-     "Hot Drinks",     NA,
-         "Coffee",    12L,
-            "Tea",     9L,
-  "Hot chocolate",     9L,
+  tibble::tribble(
+    ~Item, ~Price,
+    "Hot Drinks",     NA,
+    "Coffee",    12L,
+    "Tea",     9L,
+    "Hot chocolate",     9L,
     "Cold Drinks",     NA,
-           "Soda",    10L,
-          "Juice",    13L,
-          "Water",     8L,
-           "Beer",     8L
+    "Soda",    10L,
+    "Juice",    13L,
+    "Water",     8L,
+    "Beer",     8L
   )
 ```
 ]
 
 .panel[.panel-name[Cafeteria Menu (tidy)]
-<style>html {
+
+```{=html}
+&lt;style&gt;html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#krmdmeaibv .gt_table {
+#vvvushnltj .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2407,7 +2488,7 @@ tibble::tribble(
   border-left-color: #D3D3D3;
 }
 
-#krmdmeaibv .gt_heading {
+#vvvushnltj .gt_heading {
   background-color: #f4f4f9;
   text-align: center;
   border-bottom-color: #f4f4f9;
@@ -2419,7 +2500,7 @@ tibble::tribble(
   border-right-color: #D3D3D3;
 }
 
-#krmdmeaibv .gt_title {
+#vvvushnltj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2429,7 +2510,7 @@ tibble::tribble(
   border-bottom-width: 0;
 }
 
-#krmdmeaibv .gt_subtitle {
+#vvvushnltj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2439,13 +2520,13 @@ tibble::tribble(
   border-top-width: 0;
 }
 
-#krmdmeaibv .gt_bottom_border {
+#vvvushnltj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#krmdmeaibv .gt_col_headings {
+#vvvushnltj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2460,7 +2541,7 @@ tibble::tribble(
   border-right-color: #D3D3D3;
 }
 
-#krmdmeaibv .gt_col_heading {
+#vvvushnltj .gt_col_heading {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -2480,7 +2561,7 @@ tibble::tribble(
   overflow-x: hidden;
 }
 
-#krmdmeaibv .gt_column_spanner_outer {
+#vvvushnltj .gt_column_spanner_outer {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -2492,15 +2573,15 @@ tibble::tribble(
   padding-right: 4px;
 }
 
-#krmdmeaibv .gt_column_spanner_outer:first-child {
+#vvvushnltj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#krmdmeaibv .gt_column_spanner_outer:last-child {
+#vvvushnltj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#krmdmeaibv .gt_column_spanner {
+#vvvushnltj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2512,7 +2593,7 @@ tibble::tribble(
   width: 100%;
 }
 
-#krmdmeaibv .gt_group_heading {
+#vvvushnltj .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #f4f4f9;
@@ -2534,7 +2615,7 @@ tibble::tribble(
   vertical-align: middle;
 }
 
-#krmdmeaibv .gt_empty_group_heading {
+#vvvushnltj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #f4f4f9;
@@ -2549,15 +2630,15 @@ tibble::tribble(
   vertical-align: middle;
 }
 
-#krmdmeaibv .gt_from_md > :first-child {
+#vvvushnltj .gt_from_md &gt; :first-child {
   margin-top: 0;
 }
 
-#krmdmeaibv .gt_from_md > :last-child {
+#vvvushnltj .gt_from_md &gt; :last-child {
   margin-bottom: 0;
 }
 
-#krmdmeaibv .gt_row {
+#vvvushnltj .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2576,7 +2657,7 @@ tibble::tribble(
   overflow-x: hidden;
 }
 
-#krmdmeaibv .gt_stub {
+#vvvushnltj .gt_stub {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -2588,7 +2669,7 @@ tibble::tribble(
   padding-left: 12px;
 }
 
-#krmdmeaibv .gt_summary_row {
+#vvvushnltj .gt_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -2598,7 +2679,7 @@ tibble::tribble(
   padding-right: 5px;
 }
 
-#krmdmeaibv .gt_first_summary_row {
+#vvvushnltj .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2608,7 +2689,7 @@ tibble::tribble(
   border-top-color: #D3D3D3;
 }
 
-#krmdmeaibv .gt_grand_summary_row {
+#vvvushnltj .gt_grand_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -2618,7 +2699,7 @@ tibble::tribble(
   padding-right: 5px;
 }
 
-#krmdmeaibv .gt_first_grand_summary_row {
+#vvvushnltj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2628,11 +2709,11 @@ tibble::tribble(
   border-top-color: #D3D3D3;
 }
 
-#krmdmeaibv .gt_striped {
+#vvvushnltj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#krmdmeaibv .gt_table_body {
+#vvvushnltj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2641,7 +2722,7 @@ tibble::tribble(
   border-bottom-color: #D3D3D3;
 }
 
-#krmdmeaibv .gt_footnotes {
+#vvvushnltj .gt_footnotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -2655,13 +2736,13 @@ tibble::tribble(
   border-right-color: #D3D3D3;
 }
 
-#krmdmeaibv .gt_footnote {
+#vvvushnltj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#krmdmeaibv .gt_sourcenotes {
+#vvvushnltj .gt_sourcenotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -2675,109 +2756,110 @@ tibble::tribble(
   border-right-color: #D3D3D3;
 }
 
-#krmdmeaibv .gt_sourcenote {
+#vvvushnltj .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#krmdmeaibv .gt_left {
+#vvvushnltj .gt_left {
   text-align: left;
 }
 
-#krmdmeaibv .gt_center {
+#vvvushnltj .gt_center {
   text-align: center;
 }
 
-#krmdmeaibv .gt_right {
+#vvvushnltj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#krmdmeaibv .gt_font_normal {
+#vvvushnltj .gt_font_normal {
   font-weight: normal;
 }
 
-#krmdmeaibv .gt_font_bold {
+#vvvushnltj .gt_font_bold {
   font-weight: bold;
 }
 
-#krmdmeaibv .gt_font_italic {
+#vvvushnltj .gt_font_italic {
   font-style: italic;
 }
 
-#krmdmeaibv .gt_super {
+#vvvushnltj .gt_super {
   font-size: 65%;
 }
 
-#krmdmeaibv .gt_footnote_marks {
+#vvvushnltj .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
-</style>
-<div id="krmdmeaibv" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+&lt;/style&gt;
+&lt;div id="vvvushnltj" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"&gt;&lt;table class="gt_table"&gt;
   
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Item</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Price</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">drink_type</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">Coffee</td>
-      <td class="gt_row gt_center">12</td>
-      <td class="gt_row gt_left">Hot Drinks</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Tea</td>
-      <td class="gt_row gt_center">9</td>
-      <td class="gt_row gt_left">Hot Drinks</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Hot chocolate</td>
-      <td class="gt_row gt_center">9</td>
-      <td class="gt_row gt_left">Hot Drinks</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Soda</td>
-      <td class="gt_row gt_center">10</td>
-      <td class="gt_row gt_left">Cold Drinks</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Juice</td>
-      <td class="gt_row gt_center">13</td>
-      <td class="gt_row gt_left">Cold Drinks</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Water</td>
-      <td class="gt_row gt_center">8</td>
-      <td class="gt_row gt_left">Cold Drinks</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Beer</td>
-      <td class="gt_row gt_center">8</td>
-      <td class="gt_row gt_left">Cold Drinks</td>
-    </tr>
-  </tbody>
+  &lt;thead class="gt_col_headings"&gt;
+    &lt;tr&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;Item&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"&gt;Price&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;drink_type&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class="gt_table_body"&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Coffee&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;12&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Hot Drinks&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Tea&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;9&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Hot Drinks&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Hot chocolate&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;9&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Hot Drinks&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Soda&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;10&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Cold Drinks&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Juice&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;13&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Cold Drinks&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Water&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;8&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Cold Drinks&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Beer&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;8&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Cold Drinks&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
   
   
-</table></div>
+&lt;/table&gt;&lt;/div&gt;
+```
 ]
 
 .panel[.panel-name[Data setup (tidy)]
 
 ```r
 cafeteria_tidy &lt;- 
-tibble::tribble(
-            ~Item, ~Price,   ~drink_type,
-         "Coffee",    12L,  "Hot Drinks",
-            "Tea",     9L,  "Hot Drinks",
-  "Hot chocolate",     9L,  "Hot Drinks",
-           "Soda",    10L, "Cold Drinks",
-          "Juice",    13L, "Cold Drinks",
-          "Water",     8L, "Cold Drinks",
-           "Beer",     8L, "Cold Drinks"
+  tibble::tribble(
+    ~Item, ~Price,   ~drink_type,
+    "Coffee",    12L,  "Hot Drinks",
+    "Tea",     9L,  "Hot Drinks",
+    "Hot chocolate",     9L,  "Hot Drinks",
+    "Soda",    10L, "Cold Drinks",
+    "Juice",    13L, "Cold Drinks",
+    "Water",     8L, "Cold Drinks",
+    "Beer",     8L, "Cold Drinks"
   )
 ```
 ]
@@ -2826,7 +2908,7 @@ Match using .orange.b[regex]
 
 ```r
 cafeteria %&gt;% 
-*  untangle2("Drinks$",Item,drink_type) %&gt;%
+  *  untangle2("Drinks$",Item,drink_type) %&gt;%
   clean_names()
 ```
 
@@ -2866,6 +2948,7 @@ cafeteria %&gt;% untangle2("Drinks$", Item, drink_type) %&gt;%
 ## 1 Cold Drinks       9.75
 ## 2 Hot Drinks       10
 ```
+
 ---
 
 Alternation
@@ -2909,13 +2992,13 @@ cafeteria %&gt;% untangle2("Hot Drinks|Cold Drinks", Item, drink_type) %&gt;%
 
 ```r
 cafeteria %&gt;%
-    filter(across(-Item, is.na)) %&gt;%
-    select(Item) %&gt;%
-    mutate(tag = paste0("subheader_", Item)) %&gt;% 
-    right_join(cafeteria) %&gt;%
-    untangle2("^subheader", tag, drink_type) %&gt;%
-    select(-tag) %&gt;%
-    mutate(drink_type = stringr::str_remove(drink_type, "^subheader_"))
+  filter(across(-Item, is.na)) %&gt;%
+  select(Item) %&gt;%
+  mutate(tag = paste0("subheader_", Item)) %&gt;% 
+  right_join(cafeteria) %&gt;%
+  untangle2("^subheader", tag, drink_type) %&gt;%
+  select(-tag) %&gt;%
+  mutate(drink_type = stringr::str_remove(drink_type, "^subheader_"))
 ```
 
 ```
@@ -2937,9 +3020,9 @@ cafeteria %&gt;%
 
 ```r
 cafeteria %&gt;%
-    filter(across(-Item, is.na)) %&gt;%
-    select(Item) %&gt;%
-    mutate(tag = paste0("subheader_", Item)) 
+  filter(across(-Item, is.na)) %&gt;%
+  select(Item) %&gt;%
+  mutate(tag = paste0("subheader_", Item)) 
 ```
 
 ```
@@ -2964,10 +3047,10 @@ Create a new variable that includes a pattern that can be matched with .orange.b
 
 ```r
 ... %&gt;%    
-    right_join(cafeteria) %&gt;%
-    untangle2("^subheader", tag, drink_type) %&gt;%
-    select(-tag) %&gt;%
-    mutate(drink_type = stringr::str_remove(drink_type, "^subheader_"))
+  right_join(cafeteria) %&gt;%
+  untangle2("^subheader", tag, drink_type) %&gt;%
+  select(-tag) %&gt;%
+  mutate(drink_type = stringr::str_remove(drink_type, "^subheader_"))
 ```
 ]
 
@@ -2982,12 +3065,15 @@ Clean up resulting data
 ]
 
 ---
+
 class: my-turn
 ## My turn
 .large[
 - Load the `primates2017` dataset bundled with 📦 .rrured.b[`unheadr`] and create a new column that groups the different species by geographic region. 
 ]
+
 ---
+
 class: inverse
 ## Your turn
 .large[
@@ -2998,11 +3084,14 @@ class: inverse
 
 .large[- How many different ways can you identify the embedded subheaders in these data?
 ]
+
 ---
+
 class: center, middle, dk-section-title
 background-image:url("images/max-vertsanov-qvRuue12Huw-unsplash.jpg")
 background-size: fill
-# Compound values  
+# Compound Values  
+
 ---
 
 ### Compound values
@@ -3029,6 +3118,7 @@ Match with .orange.b[regex], then:
 
 **`str_extract()`** substrings into new columns
 ]
+
 ---
 
 
@@ -3036,11 +3126,13 @@ Match with .orange.b[regex], then:
 
 .panelset[
 .panel[.panel-name[Households]
-<style>html {
+
+```{=html}
+&lt;style&gt;html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#gjrzxkzbzg .gt_table {
+#kuccdrbgao .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -3065,7 +3157,7 @@ Match with .orange.b[regex], then:
   border-left-color: #D3D3D3;
 }
 
-#gjrzxkzbzg .gt_heading {
+#kuccdrbgao .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3077,7 +3169,7 @@ Match with .orange.b[regex], then:
   border-right-color: #D3D3D3;
 }
 
-#gjrzxkzbzg .gt_title {
+#kuccdrbgao .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3087,7 +3179,7 @@ Match with .orange.b[regex], then:
   border-bottom-width: 0;
 }
 
-#gjrzxkzbzg .gt_subtitle {
+#kuccdrbgao .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3097,13 +3189,13 @@ Match with .orange.b[regex], then:
   border-top-width: 0;
 }
 
-#gjrzxkzbzg .gt_bottom_border {
+#kuccdrbgao .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#gjrzxkzbzg .gt_col_headings {
+#kuccdrbgao .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3118,7 +3210,7 @@ Match with .orange.b[regex], then:
   border-right-color: #D3D3D3;
 }
 
-#gjrzxkzbzg .gt_col_heading {
+#kuccdrbgao .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3138,7 +3230,7 @@ Match with .orange.b[regex], then:
   overflow-x: hidden;
 }
 
-#gjrzxkzbzg .gt_column_spanner_outer {
+#kuccdrbgao .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3150,15 +3242,15 @@ Match with .orange.b[regex], then:
   padding-right: 4px;
 }
 
-#gjrzxkzbzg .gt_column_spanner_outer:first-child {
+#kuccdrbgao .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#gjrzxkzbzg .gt_column_spanner_outer:last-child {
+#kuccdrbgao .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#gjrzxkzbzg .gt_column_spanner {
+#kuccdrbgao .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3170,7 +3262,7 @@ Match with .orange.b[regex], then:
   width: 100%;
 }
 
-#gjrzxkzbzg .gt_group_heading {
+#kuccdrbgao .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3192,7 +3284,7 @@ Match with .orange.b[regex], then:
   vertical-align: middle;
 }
 
-#gjrzxkzbzg .gt_empty_group_heading {
+#kuccdrbgao .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3207,15 +3299,15 @@ Match with .orange.b[regex], then:
   vertical-align: middle;
 }
 
-#gjrzxkzbzg .gt_from_md > :first-child {
+#kuccdrbgao .gt_from_md &gt; :first-child {
   margin-top: 0;
 }
 
-#gjrzxkzbzg .gt_from_md > :last-child {
+#kuccdrbgao .gt_from_md &gt; :last-child {
   margin-bottom: 0;
 }
 
-#gjrzxkzbzg .gt_row {
+#kuccdrbgao .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3234,7 +3326,7 @@ Match with .orange.b[regex], then:
   overflow-x: hidden;
 }
 
-#gjrzxkzbzg .gt_stub {
+#kuccdrbgao .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3246,7 +3338,7 @@ Match with .orange.b[regex], then:
   padding-left: 12px;
 }
 
-#gjrzxkzbzg .gt_summary_row {
+#kuccdrbgao .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3256,7 +3348,7 @@ Match with .orange.b[regex], then:
   padding-right: 5px;
 }
 
-#gjrzxkzbzg .gt_first_summary_row {
+#kuccdrbgao .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3266,7 +3358,7 @@ Match with .orange.b[regex], then:
   border-top-color: #D3D3D3;
 }
 
-#gjrzxkzbzg .gt_grand_summary_row {
+#kuccdrbgao .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3276,7 +3368,7 @@ Match with .orange.b[regex], then:
   padding-right: 5px;
 }
 
-#gjrzxkzbzg .gt_first_grand_summary_row {
+#kuccdrbgao .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3286,11 +3378,11 @@ Match with .orange.b[regex], then:
   border-top-color: #D3D3D3;
 }
 
-#gjrzxkzbzg .gt_striped {
+#kuccdrbgao .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#gjrzxkzbzg .gt_table_body {
+#kuccdrbgao .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3299,7 +3391,7 @@ Match with .orange.b[regex], then:
   border-bottom-color: #D3D3D3;
 }
 
-#gjrzxkzbzg .gt_footnotes {
+#kuccdrbgao .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3313,13 +3405,13 @@ Match with .orange.b[regex], then:
   border-right-color: #D3D3D3;
 }
 
-#gjrzxkzbzg .gt_footnote {
+#kuccdrbgao .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#gjrzxkzbzg .gt_sourcenotes {
+#kuccdrbgao .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3333,117 +3425,118 @@ Match with .orange.b[regex], then:
   border-right-color: #D3D3D3;
 }
 
-#gjrzxkzbzg .gt_sourcenote {
+#kuccdrbgao .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#gjrzxkzbzg .gt_left {
+#kuccdrbgao .gt_left {
   text-align: left;
 }
 
-#gjrzxkzbzg .gt_center {
+#kuccdrbgao .gt_center {
   text-align: center;
 }
 
-#gjrzxkzbzg .gt_right {
+#kuccdrbgao .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#gjrzxkzbzg .gt_font_normal {
+#kuccdrbgao .gt_font_normal {
   font-weight: normal;
 }
 
-#gjrzxkzbzg .gt_font_bold {
+#kuccdrbgao .gt_font_bold {
   font-weight: bold;
 }
 
-#gjrzxkzbzg .gt_font_italic {
+#kuccdrbgao .gt_font_italic {
   font-style: italic;
 }
 
-#gjrzxkzbzg .gt_super {
+#kuccdrbgao .gt_super {
   font-size: 65%;
 }
 
-#gjrzxkzbzg .gt_footnote_marks {
+#kuccdrbgao .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
-</style>
-<div id="gjrzxkzbzg" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+&lt;/style&gt;
+&lt;div id="kuccdrbgao" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"&gt;&lt;table class="gt_table"&gt;
   
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Participant.ID</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Education</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Residence</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Bonus</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">GHC21</td>
-      <td class="gt_row gt_left">Vocational</td>
-      <td class="gt_row gt_left">Living Alone-Cat</td>
-      <td class="gt_row gt_center">500</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">MYL11</td>
-      <td class="gt_row gt_left">High School</td>
-      <td class="gt_row gt_left">Family Home-Cat</td>
-      <td class="gt_row gt_center">400</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">LLB16</td>
-      <td class="gt_row gt_left">Graduate</td>
-      <td class="gt_row gt_left">Family Home-Dog</td>
-      <td class="gt_row gt_center">400</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">AAH08</td>
-      <td class="gt_row gt_left">Vocational</td>
-      <td class="gt_row gt_left">Shared Housing-None</td>
-      <td class="gt_row gt_center">450</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">PCG91</td>
-      <td class="gt_row gt_left">Vocational</td>
-      <td class="gt_row gt_left">Family Home-Other</td>
-      <td class="gt_row gt_center">500</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">ACC22, PMM02</td>
-      <td class="gt_row gt_left">High School</td>
-      <td class="gt_row gt_left">Shared Housing-None</td>
-      <td class="gt_row gt_center">400</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">MJM13</td>
-      <td class="gt_row gt_left">Postgraduate</td>
-      <td class="gt_row gt_left">Living Alone-Dog</td>
-      <td class="gt_row gt_center">500</td>
-    </tr>
-  </tbody>
+  &lt;thead class="gt_col_headings"&gt;
+    &lt;tr&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;Participant.ID&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;Education&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;Residence&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"&gt;Bonus&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class="gt_table_body"&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;GHC21&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Vocational&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Living Alone-Cat&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;500&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;MYL11&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;High School&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Family Home-Cat&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;400&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;LLB16&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Graduate&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Family Home-Dog&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;400&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;AAH08&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Vocational&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Shared Housing-None&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;450&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;PCG91&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Vocational&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Family Home-Other&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;500&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;ACC22, PMM02&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;High School&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Shared Housing-None&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;400&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;MJM13&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Postgraduate&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Living Alone-Dog&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;500&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
   
   
-</table></div>
+&lt;/table&gt;&lt;/div&gt;
+```
 ]
 
 .panel[.panel-name[Data setup]
 
 ```r
 households &lt;- 
-tibble::tribble(
-  ~Participant.ID,     ~Education,            ~Residence, ~Bonus,
-          "GHC21",   "Vocational",    "Living Alone-Cat",   500L,
-          "MYL11",  "High School",     "Family Home-Cat",   400L,
-          "LLB16",     "Graduate",     "Family Home-Dog",   400L,
-          "AAH08",   "Vocational", "Shared Housing-None",   450L,
-          "PCG91",   "Vocational",   "Family Home-Other",   500L,
-   "ACC22, PMM02",  "High School", "Shared Housing-None",   400L,
-          "MJM13", "Postgraduate",    "Living Alone-Dog",   500L
+  tibble::tribble(
+    ~Participant.ID,     ~Education,            ~Residence, ~Bonus,
+    "GHC21",   "Vocational",    "Living Alone-Cat",   500L,
+    "MYL11",  "High School",     "Family Home-Cat",   400L,
+    "LLB16",     "Graduate",     "Family Home-Dog",   400L,
+    "AAH08",   "Vocational", "Shared Housing-None",   450L,
+    "PCG91",   "Vocational",   "Family Home-Other",   500L,
+    "ACC22, PMM02",  "High School", "Shared Housing-None",   400L,
+    "MJM13", "Postgraduate",    "Living Alone-Dog",   500L
   )
 ```
 ]
@@ -3570,8 +3663,8 @@ households %&gt;%
 
 ```r
 households %&gt;% 
-    mutate(Participant.ID=str_split(Participant.ID,", ")) %&gt;% 
-*   unnest(cols = Participant.ID)
+  mutate(Participant.ID=str_split(Participant.ID,", ")) %&gt;% 
+* unnest(cols = Participant.ID)
 ```
 
 ```
@@ -3595,8 +3688,8 @@ households %&gt;%
 ```r
 households %&gt;% 
   separate(col = Residence, into =  c("Residence", "Pet"),sep = "-") %&gt;%  
-    mutate(Participant.ID=str_split(Participant.ID,", ")) %&gt;% 
-    unnest(cols = Participant.ID) 
+  mutate(Participant.ID=str_split(Participant.ID,", ")) %&gt;% 
+  unnest(cols = Participant.ID) 
 ```
 
 ```
@@ -3612,6 +3705,7 @@ households %&gt;%
 ## 7 PMM02          High School  Shared Housing None    400
 ## 8 MJM13          Postgraduate Living Alone   Dog     500
 ```
+
 ---
 
 class: my-turn
@@ -3635,12 +3729,14 @@ class: inverse
 
 - Optional: Arrange the data by ISO3 country code
 ]
+
 ---
 
 class: center, middle, dk-section-title
 background-image:url("images/armelle-danjour-kwGqIuNrM5E-unsplash.jpg")
 background-size: cover
 # Duplicates  
+
 ---
 
 ### Duplicates
@@ -3652,6 +3748,7 @@ background-size: cover
 
 - Inaccurate reporting (double counting, inflated or biased summary statistics)  
 ]
+
 ---
 
 ### What can we do?
@@ -3661,6 +3758,7 @@ Identify with `get_dupes()` from 📦 .rrured.b[`janitor`]
 
 Discard with `distinct()` from 📦 .rrured.b[`dplyr`]  
 ]
+
 ---
 
 ### Duplicated values  
@@ -3748,19 +3846,20 @@ Discard with `distinct()` from 📦 .rrured.b[`dplyr`]
 
 ```r
 pizza_orders &lt;- 
-tibble::tribble(
-  ~CustomerID,                             ~Address,           ~City,     ~State, ~Country,
-     "Newman", "Apartment 5E, 129 West 81st Street", "New York City", "New York",    "USA",
+  tibble::tribble(
+    ~CustomerID,                             ~Address,           ~City,     ~State, ~Country,
+    "Newman", "Apartment 5E, 129 West 81st Street", "New York City", "New York",    "USA",
     "susan_A",               "185 West 74th Street", "New York City", "New York",    "USA",
     "susan_A",               "185 West 74th Street", "New York City", "New York",    "USA",
-     "js1994", "Apartment 5A, 129 West 81st Street", "New York City", "New York",    "USA",
-       "Eric",    "Unit 1B, 4186 Willoughby Avenue",      "Brooklyn", "New York",    "USA",
-       "Dash",    "Unit 1B, 4186 Willoughby Avenue",      "Brooklyn", "New York",    "USA",
-     "Rakeem",    "Unit 1B, 4186 Willoughby Avenue",      "Brooklyn", "New York",    "USA"
+    "js1994", "Apartment 5A, 129 West 81st Street", "New York City", "New York",    "USA",
+    "Eric",    "Unit 1B, 4186 Willoughby Avenue",      "Brooklyn", "New York",    "USA",
+    "Dash",    "Unit 1B, 4186 Willoughby Avenue",      "Brooklyn", "New York",    "USA",
+    "Rakeem",    "Unit 1B, 4186 Willoughby Avenue",      "Brooklyn", "New York",    "USA"
   )
 ```
 ]
 ]
+
 ---
 
 ### Identify with **`get_dupes()`** from 📦 .rrured.b[`janitor`]  
@@ -3824,14 +3923,15 @@ pizza_orders %&gt;% get_dupes(Address,starts_with("Cit"))
 
 ```
 ## # A tibble: 5 x 6
-##   Address                    City        dupe_count CustomerID State   Country
-##   &lt;chr&gt;                      &lt;chr&gt;            &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;  
-## 1 185 West 74th Street       New York C…          2 susan_A    New Yo… USA    
-## 2 185 West 74th Street       New York C…          2 susan_A    New Yo… USA    
-## 3 Unit 1B, 4186 Willoughby … Brooklyn             3 Eric       New Yo… USA    
-## 4 Unit 1B, 4186 Willoughby … Brooklyn             3 Dash       New Yo… USA    
-## 5 Unit 1B, 4186 Willoughby … Brooklyn             3 Rakeem     New Yo… USA
+##   Address                     City         dupe_count CustomerID State   Country
+##   &lt;chr&gt;                       &lt;chr&gt;             &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;  
+## 1 185 West 74th Street        New York Ci…          2 susan_A    New Yo… USA    
+## 2 185 West 74th Street        New York Ci…          2 susan_A    New Yo… USA    
+## 3 Unit 1B, 4186 Willoughby A… Brooklyn              3 Eric       New Yo… USA    
+## 4 Unit 1B, 4186 Willoughby A… Brooklyn              3 Dash       New Yo… USA    
+## 5 Unit 1B, 4186 Willoughby A… Brooklyn              3 Rakeem     New Yo… USA
 ```
+
 ---
 
 ### Discard with `distinct()` from 📦 .rrured.b[`dplyr`]
@@ -3857,6 +3957,7 @@ pizza_orders %&gt;%
 ## 5 Dash       Unit 1B, 4186 Willoughby Avenue    Brooklyn      New York USA    
 ## 6 Rakeem     Unit 1B, 4186 Willoughby Avenue    Brooklyn      New York USA
 ```
+
 ---
 
 &lt;/br&gt;&lt;/br&gt;
@@ -3959,10 +4060,12 @@ class: inverse
 ]
 
 ---
+
 class: center, middle, dk-section-title
 background-image:url("images/jonathan-safa-YcxOAC5DpDA-unsplash.jpg")
 background-size: cover
 # Broken values
+
 ---
 
 ### Broken values
@@ -3982,11 +4085,13 @@ Problematic when grouping variables or observational units are broken
 
 .panelset[
 .panel[.panel-name[olympics]
-<style>html {
+
+```{=html}
+&lt;style&gt;html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#pvpdnvfttw .gt_table {
+#wbngfescxz .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -4011,7 +4116,7 @@ Problematic when grouping variables or observational units are broken
   border-left-color: #D3D3D3;
 }
 
-#pvpdnvfttw .gt_heading {
+#wbngfescxz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -4023,7 +4128,7 @@ Problematic when grouping variables or observational units are broken
   border-right-color: #D3D3D3;
 }
 
-#pvpdnvfttw .gt_title {
+#wbngfescxz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -4033,7 +4138,7 @@ Problematic when grouping variables or observational units are broken
   border-bottom-width: 0;
 }
 
-#pvpdnvfttw .gt_subtitle {
+#wbngfescxz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -4043,13 +4148,13 @@ Problematic when grouping variables or observational units are broken
   border-top-width: 0;
 }
 
-#pvpdnvfttw .gt_bottom_border {
+#wbngfescxz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pvpdnvfttw .gt_col_headings {
+#wbngfescxz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4064,7 +4169,7 @@ Problematic when grouping variables or observational units are broken
   border-right-color: #D3D3D3;
 }
 
-#pvpdnvfttw .gt_col_heading {
+#wbngfescxz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4084,7 +4189,7 @@ Problematic when grouping variables or observational units are broken
   overflow-x: hidden;
 }
 
-#pvpdnvfttw .gt_column_spanner_outer {
+#wbngfescxz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4096,15 +4201,15 @@ Problematic when grouping variables or observational units are broken
   padding-right: 4px;
 }
 
-#pvpdnvfttw .gt_column_spanner_outer:first-child {
+#wbngfescxz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pvpdnvfttw .gt_column_spanner_outer:last-child {
+#wbngfescxz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pvpdnvfttw .gt_column_spanner {
+#wbngfescxz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -4116,7 +4221,7 @@ Problematic when grouping variables or observational units are broken
   width: 100%;
 }
 
-#pvpdnvfttw .gt_group_heading {
+#wbngfescxz .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -4138,7 +4243,7 @@ Problematic when grouping variables or observational units are broken
   vertical-align: middle;
 }
 
-#pvpdnvfttw .gt_empty_group_heading {
+#wbngfescxz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -4153,15 +4258,15 @@ Problematic when grouping variables or observational units are broken
   vertical-align: middle;
 }
 
-#pvpdnvfttw .gt_from_md > :first-child {
+#wbngfescxz .gt_from_md &gt; :first-child {
   margin-top: 0;
 }
 
-#pvpdnvfttw .gt_from_md > :last-child {
+#wbngfescxz .gt_from_md &gt; :last-child {
   margin-bottom: 0;
 }
 
-#pvpdnvfttw .gt_row {
+#wbngfescxz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4180,7 +4285,7 @@ Problematic when grouping variables or observational units are broken
   overflow-x: hidden;
 }
 
-#pvpdnvfttw .gt_stub {
+#wbngfescxz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4192,7 +4297,7 @@ Problematic when grouping variables or observational units are broken
   padding-left: 12px;
 }
 
-#pvpdnvfttw .gt_summary_row {
+#wbngfescxz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4202,7 +4307,7 @@ Problematic when grouping variables or observational units are broken
   padding-right: 5px;
 }
 
-#pvpdnvfttw .gt_first_summary_row {
+#wbngfescxz .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4212,7 +4317,7 @@ Problematic when grouping variables or observational units are broken
   border-top-color: #D3D3D3;
 }
 
-#pvpdnvfttw .gt_grand_summary_row {
+#wbngfescxz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4222,7 +4327,7 @@ Problematic when grouping variables or observational units are broken
   padding-right: 5px;
 }
 
-#pvpdnvfttw .gt_first_grand_summary_row {
+#wbngfescxz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4232,11 +4337,11 @@ Problematic when grouping variables or observational units are broken
   border-top-color: #D3D3D3;
 }
 
-#pvpdnvfttw .gt_striped {
+#wbngfescxz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pvpdnvfttw .gt_table_body {
+#wbngfescxz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4245,7 +4350,7 @@ Problematic when grouping variables or observational units are broken
   border-bottom-color: #D3D3D3;
 }
 
-#pvpdnvfttw .gt_footnotes {
+#wbngfescxz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4259,13 +4364,13 @@ Problematic when grouping variables or observational units are broken
   border-right-color: #D3D3D3;
 }
 
-#pvpdnvfttw .gt_footnote {
+#wbngfescxz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#pvpdnvfttw .gt_sourcenotes {
+#wbngfescxz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4279,145 +4384,146 @@ Problematic when grouping variables or observational units are broken
   border-right-color: #D3D3D3;
 }
 
-#pvpdnvfttw .gt_sourcenote {
+#wbngfescxz .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#pvpdnvfttw .gt_left {
+#wbngfescxz .gt_left {
   text-align: left;
 }
 
-#pvpdnvfttw .gt_center {
+#wbngfescxz .gt_center {
   text-align: center;
 }
 
-#pvpdnvfttw .gt_right {
+#wbngfescxz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pvpdnvfttw .gt_font_normal {
+#wbngfescxz .gt_font_normal {
   font-weight: normal;
 }
 
-#pvpdnvfttw .gt_font_bold {
+#wbngfescxz .gt_font_bold {
   font-weight: bold;
 }
 
-#pvpdnvfttw .gt_font_italic {
+#wbngfescxz .gt_font_italic {
   font-style: italic;
 }
 
-#pvpdnvfttw .gt_super {
+#wbngfescxz .gt_super {
   font-size: 65%;
 }
 
-#pvpdnvfttw .gt_footnote_marks {
+#wbngfescxz .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
-</style>
-<div id="pvpdnvfttw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+&lt;/style&gt;
+&lt;div id="wbngfescxz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"&gt;&lt;table class="gt_table"&gt;
   
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Edition</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Country</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Soccer.gold.medal.(men)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Wrestling.(men.middleweight)</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_left">weight class limit:</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_left">82 kg</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Los Angeles 1984</td>
-      <td class="gt_row gt_left">USA</td>
-      <td class="gt_row gt_left">France</td>
-      <td class="gt_row gt_left">USA</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Barcelona</td>
-      <td class="gt_row gt_left">Spain</td>
-      <td class="gt_row gt_left">Spain</td>
-      <td class="gt_row gt_left">USA</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">1992</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_left">NA</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Atlanta 1996</td>
-      <td class="gt_row gt_left">USA</td>
-      <td class="gt_row gt_left">Nigeria</td>
-      <td class="gt_row gt_left">Russia</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_left">weight class limit:</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_left">85 kg</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Sydney 2000</td>
-      <td class="gt_row gt_left">Australia</td>
-      <td class="gt_row gt_left">Cameroon</td>
-      <td class="gt_row gt_left">Russia</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">London</td>
-      <td class="gt_row gt_left">UK</td>
-      <td class="gt_row gt_left">Mexico</td>
-      <td class="gt_row gt_left">Azerbaijan</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">2012</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_left">NA</td>
-    </tr>
-  </tbody>
+  &lt;thead class="gt_col_headings"&gt;
+    &lt;tr&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;Edition&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;Country&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;Soccer.gold.medal.(men)&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;Wrestling.(men.middleweight)&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class="gt_table_body"&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;weight class limit:&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;82 kg&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Los Angeles 1984&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;USA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;France&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;USA&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Barcelona&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Spain&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Spain&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;USA&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;1992&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Atlanta 1996&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;USA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Nigeria&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Russia&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;weight class limit:&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;85 kg&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;Sydney 2000&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Australia&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Cameroon&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Russia&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;London&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;UK&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Mexico&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Azerbaijan&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;2012&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
   
   
-</table></div>
+&lt;/table&gt;&lt;/div&gt;
+```
 ]
 
 .panel[.panel-name[Data setup]
 
 ```r
 olympics &lt;- 
-tibble::tribble(
-            ~Edition,    ~Country, ~`Soccer.gold.medal.(men)`, ~`Wrestling.(men.middleweight)`,
-                  NA,          NA,                         NA,           "weight class limit:",
-                  NA,          NA,                         NA,                         "82 kg",
-  "Los Angeles 1984",       "USA",                   "France",                           "USA",
-         "Barcelona",     "Spain",                    "Spain",                           "USA",
-              "1992",          NA,                         NA,                              NA,
-      "Atlanta 1996",       "USA",                  "Nigeria",                        "Russia",
-                  NA,          NA,                         NA,           "weight class limit:",
-                  NA,          NA,                         NA,                         "85 kg",
-       "Sydney 2000", "Australia",                 "Cameroon",                        "Russia",
-            "London",        "UK",                   "Mexico",                    "Azerbaijan",
-              "2012",          NA,                         NA,                              NA
+  tibble::tribble(
+    ~Edition,    ~Country, ~`Soccer.gold.medal.(men)`, ~`Wrestling.(men.middleweight)`,
+    NA,          NA,                         NA,           "weight class limit:",
+    NA,          NA,                         NA,                         "82 kg",
+    "Los Angeles 1984",       "USA",                   "France",                           "USA",
+    "Barcelona",     "Spain",                    "Spain",                           "USA",
+    "1992",          NA,                         NA,                              NA,
+    "Atlanta 1996",       "USA",                  "Nigeria",                        "Russia",
+    NA,          NA,                         NA,           "weight class limit:",
+    NA,          NA,                         NA,                         "85 kg",
+    "Sydney 2000", "Australia",                 "Cameroon",                        "Russia",
+    "London",        "UK",                   "Mexico",                    "Azerbaijan",
+    "2012",          NA,                         NA,                              NA
   )
 ```
 ]
@@ -4498,7 +4604,7 @@ unbreak_vals(df,
              ogcol, 
              newcol, 
              sep = " ",
-             )
+)
 ```
 
 ---
@@ -4518,17 +4624,17 @@ olympics %&gt;% unbreak_vals(regex = "^\\d", # numbers at start of string
 
 ```
 ## # A tibble: 9 x 4
-##   Edition_ub      Country   `Soccer.gold.medal.(me… `Wrestling.(men.middlewei…
-##   &lt;chr&gt;           &lt;chr&gt;     &lt;chr&gt;                   &lt;chr&gt;                     
-## 1 &lt;NA&gt;            &lt;NA&gt;      &lt;NA&gt;                    weight class limit:       
-## 2 &lt;NA&gt;            &lt;NA&gt;      &lt;NA&gt;                    82 kg                     
-## 3 Los Angeles 19… USA       France                  USA                       
-## 4 Barcelona 1992  Spain     Spain                   USA                       
-## 5 Atlanta 1996    USA       Nigeria                 Russia                    
-## 6 &lt;NA&gt;            &lt;NA&gt;      &lt;NA&gt;                    weight class limit:       
-## 7 &lt;NA&gt;            &lt;NA&gt;      &lt;NA&gt;                    85 kg                     
-## 8 Sydney 2000     Australia Cameroon                Russia                    
-## 9 London 2012     UK        Mexico                  Azerbaijan
+##   Edition_ub       Country   `Soccer.gold.medal.(me… `Wrestling.(men.middleweig…
+##   &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;                   &lt;chr&gt;                      
+## 1 &lt;NA&gt;             &lt;NA&gt;      &lt;NA&gt;                    weight class limit:        
+## 2 &lt;NA&gt;             &lt;NA&gt;      &lt;NA&gt;                    82 kg                      
+## 3 Los Angeles 1984 USA       France                  USA                        
+## 4 Barcelona 1992   Spain     Spain                   USA                        
+## 5 Atlanta 1996     USA       Nigeria                 Russia                     
+## 6 &lt;NA&gt;             &lt;NA&gt;      &lt;NA&gt;                    weight class limit:        
+## 7 &lt;NA&gt;             &lt;NA&gt;      &lt;NA&gt;                    85 kg                      
+## 8 Sydney 2000      Australia Cameroon                Russia                     
+## 9 London 2012      UK        Mexico                  Azerbaijan
 ```
 
 ---
@@ -4547,7 +4653,7 @@ unbreak_rows(df,
              regex, 
              ogcol, 
              sep = " ",
-             )
+)
 ```
 
 ---
@@ -4566,17 +4672,17 @@ olympics %&gt;% unbreak_rows(regex = "^weight", # numbers at start of string
 
 ```
 ## # A tibble: 9 x 4
-##   Edition         Country  `Soccer.gold.medal.(me… `Wrestling.(men.middleweig…
-##   &lt;chr&gt;           &lt;chr&gt;    &lt;chr&gt;                   &lt;chr&gt;                      
-## 1 &lt;NA&gt;            &lt;NA&gt;     &lt;NA&gt;                    weight class limit: 82 kg  
-## 2 Los Angeles 19… USA      France                  USA                        
-## 3 Barcelona       Spain    Spain                   USA                        
-## 4 1992            &lt;NA&gt;     &lt;NA&gt;                    &lt;NA&gt;                       
-## 5 Atlanta 1996    USA      Nigeria                 Russia                     
-## 6 &lt;NA&gt;            &lt;NA&gt;     &lt;NA&gt;                    weight class limit: 85 kg  
-## 7 Sydney 2000     Austral… Cameroon                Russia                     
-## 8 London          UK       Mexico                  Azerbaijan                 
-## 9 2012            &lt;NA&gt;     &lt;NA&gt;                    &lt;NA&gt;
+##   Edition          Country     `Soccer.gold.medal.(m… `Wrestling.(men.middlewei…
+##   &lt;chr&gt;            &lt;chr&gt;       &lt;chr&gt;                  &lt;chr&gt;                     
+## 1 ""               ""          ""                     weight class limit: 82 kg 
+## 2 "Los Angeles 19… "USA"       "France"               USA                       
+## 3 "Barcelona"      "Spain"     "Spain"                USA                       
+## 4  &lt;NA&gt;             &lt;NA&gt;        &lt;NA&gt;                  &lt;NA&gt;                      
+## 5 "Atlanta 1996"   "USA"       "Nigeria"              Russia                    
+## 6 ""               ""          ""                     weight class limit: 85 kg 
+## 7 "Sydney 2000"    "Australia" "Cameroon"             Russia                    
+## 8 "London"         "UK"        "Mexico"               Azerbaijan                
+## 9  &lt;NA&gt;             &lt;NA&gt;        &lt;NA&gt;                  &lt;NA&gt;
 ```
 
 ---
@@ -4596,16 +4702,9 @@ olympics %&gt;%
 ```
 
 ```
-## # A tibble: 7 x 4
-##   Edition_ub      Country   `Soccer.gold.medal.(me… `Wrestling.(men.middlewei…
-##   &lt;chr&gt;           &lt;chr&gt;     &lt;chr&gt;                   &lt;chr&gt;                     
-## 1 &lt;NA&gt;            &lt;NA&gt;      &lt;NA&gt;                    weight class limit: 82 kg 
-## 2 Los Angeles 19… USA       France                  USA                       
-## 3 Barcelona 1992  Spain     Spain                   USA                       
-## 4 Atlanta 1996    USA       Nigeria                 Russia                    
-## 5 &lt;NA&gt;            &lt;NA&gt;      &lt;NA&gt;                    weight class limit: 85 kg 
-## 6 Sydney 2000     Australia Cameroon                Russia                    
-## 7 London 2012     UK        Mexico                  Azerbaijan
+## # A tibble: 0 x 4
+## # … with 4 variables: Edition_ub &lt;chr&gt;, Country &lt;chr&gt;,
+## #   `Soccer.gold.medal.(men)` &lt;chr&gt;, `Wrestling.(men.middleweight)` &lt;chr&gt;
 ```
 
 ---
@@ -4617,6 +4716,7 @@ class: my-turn
 
 - Identify the broken values in the 'Type' column and unbreak them
 ]
+
 ---
 class: inverse
 ## Your turn
@@ -4628,11 +4728,15 @@ class: inverse
 
 - Clean up any separator-related issues arising from the 'unbreaking'
 ]
+
 ---
+
 class: center, middle, dk-section-title
 background-image:url("images/david-hertle-8HAhmMk9HJI-unsplash.jpg")
 background-size: cover
+
 # Empty rows and columns
+
 ---
 
 ### Empty rows and columns
@@ -4650,20 +4754,23 @@ background-size: cover
 
 .large[
 Identify with 📦 .rrured.b[`dplyr`]  
- 
+
 Discard with **`remove_empty()`** from 📦 .rrured.b[`janitor`]
 ]
+
 ---
 
 
 
 .panelset[
 .panel[.panel-name[universities]
-<style>html {
+
+```{=html}
+&lt;style&gt;html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#vtchcofgkf .gt_table {
+#sxibtoplcy .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -4688,7 +4795,7 @@ Discard with **`remove_empty()`** from 📦 .rrured.b[`janitor`]
   border-left-color: #D3D3D3;
 }
 
-#vtchcofgkf .gt_heading {
+#sxibtoplcy .gt_heading {
   background-color: #f4f4f9;
   text-align: center;
   border-bottom-color: #f4f4f9;
@@ -4700,7 +4807,7 @@ Discard with **`remove_empty()`** from 📦 .rrured.b[`janitor`]
   border-right-color: #D3D3D3;
 }
 
-#vtchcofgkf .gt_title {
+#sxibtoplcy .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -4710,7 +4817,7 @@ Discard with **`remove_empty()`** from 📦 .rrured.b[`janitor`]
   border-bottom-width: 0;
 }
 
-#vtchcofgkf .gt_subtitle {
+#sxibtoplcy .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -4720,13 +4827,13 @@ Discard with **`remove_empty()`** from 📦 .rrured.b[`janitor`]
   border-top-width: 0;
 }
 
-#vtchcofgkf .gt_bottom_border {
+#sxibtoplcy .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vtchcofgkf .gt_col_headings {
+#sxibtoplcy .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4741,7 +4848,7 @@ Discard with **`remove_empty()`** from 📦 .rrured.b[`janitor`]
   border-right-color: #D3D3D3;
 }
 
-#vtchcofgkf .gt_col_heading {
+#sxibtoplcy .gt_col_heading {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -4761,7 +4868,7 @@ Discard with **`remove_empty()`** from 📦 .rrured.b[`janitor`]
   overflow-x: hidden;
 }
 
-#vtchcofgkf .gt_column_spanner_outer {
+#sxibtoplcy .gt_column_spanner_outer {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -4773,15 +4880,15 @@ Discard with **`remove_empty()`** from 📦 .rrured.b[`janitor`]
   padding-right: 4px;
 }
 
-#vtchcofgkf .gt_column_spanner_outer:first-child {
+#sxibtoplcy .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vtchcofgkf .gt_column_spanner_outer:last-child {
+#sxibtoplcy .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vtchcofgkf .gt_column_spanner {
+#sxibtoplcy .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -4793,7 +4900,7 @@ Discard with **`remove_empty()`** from 📦 .rrured.b[`janitor`]
   width: 100%;
 }
 
-#vtchcofgkf .gt_group_heading {
+#sxibtoplcy .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #f4f4f9;
@@ -4815,7 +4922,7 @@ Discard with **`remove_empty()`** from 📦 .rrured.b[`janitor`]
   vertical-align: middle;
 }
 
-#vtchcofgkf .gt_empty_group_heading {
+#sxibtoplcy .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #f4f4f9;
@@ -4830,15 +4937,15 @@ Discard with **`remove_empty()`** from 📦 .rrured.b[`janitor`]
   vertical-align: middle;
 }
 
-#vtchcofgkf .gt_from_md > :first-child {
+#sxibtoplcy .gt_from_md &gt; :first-child {
   margin-top: 0;
 }
 
-#vtchcofgkf .gt_from_md > :last-child {
+#sxibtoplcy .gt_from_md &gt; :last-child {
   margin-bottom: 0;
 }
 
-#vtchcofgkf .gt_row {
+#sxibtoplcy .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4857,7 +4964,7 @@ Discard with **`remove_empty()`** from 📦 .rrured.b[`janitor`]
   overflow-x: hidden;
 }
 
-#vtchcofgkf .gt_stub {
+#sxibtoplcy .gt_stub {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -4869,7 +4976,7 @@ Discard with **`remove_empty()`** from 📦 .rrured.b[`janitor`]
   padding-left: 12px;
 }
 
-#vtchcofgkf .gt_summary_row {
+#sxibtoplcy .gt_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -4879,7 +4986,7 @@ Discard with **`remove_empty()`** from 📦 .rrured.b[`janitor`]
   padding-right: 5px;
 }
 
-#vtchcofgkf .gt_first_summary_row {
+#sxibtoplcy .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4889,7 +4996,7 @@ Discard with **`remove_empty()`** from 📦 .rrured.b[`janitor`]
   border-top-color: #D3D3D3;
 }
 
-#vtchcofgkf .gt_grand_summary_row {
+#sxibtoplcy .gt_grand_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -4899,7 +5006,7 @@ Discard with **`remove_empty()`** from 📦 .rrured.b[`janitor`]
   padding-right: 5px;
 }
 
-#vtchcofgkf .gt_first_grand_summary_row {
+#sxibtoplcy .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4909,11 +5016,11 @@ Discard with **`remove_empty()`** from 📦 .rrured.b[`janitor`]
   border-top-color: #D3D3D3;
 }
 
-#vtchcofgkf .gt_striped {
+#sxibtoplcy .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vtchcofgkf .gt_table_body {
+#sxibtoplcy .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4922,7 +5029,7 @@ Discard with **`remove_empty()`** from 📦 .rrured.b[`janitor`]
   border-bottom-color: #D3D3D3;
 }
 
-#vtchcofgkf .gt_footnotes {
+#sxibtoplcy .gt_footnotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -4936,13 +5043,13 @@ Discard with **`remove_empty()`** from 📦 .rrured.b[`janitor`]
   border-right-color: #D3D3D3;
 }
 
-#vtchcofgkf .gt_footnote {
+#sxibtoplcy .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#vtchcofgkf .gt_sourcenotes {
+#sxibtoplcy .gt_sourcenotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -4956,171 +5063,172 @@ Discard with **`remove_empty()`** from 📦 .rrured.b[`janitor`]
   border-right-color: #D3D3D3;
 }
 
-#vtchcofgkf .gt_sourcenote {
+#sxibtoplcy .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#vtchcofgkf .gt_left {
+#sxibtoplcy .gt_left {
   text-align: left;
 }
 
-#vtchcofgkf .gt_center {
+#sxibtoplcy .gt_center {
   text-align: center;
 }
 
-#vtchcofgkf .gt_right {
+#sxibtoplcy .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vtchcofgkf .gt_font_normal {
+#sxibtoplcy .gt_font_normal {
   font-weight: normal;
 }
 
-#vtchcofgkf .gt_font_bold {
+#sxibtoplcy .gt_font_bold {
   font-weight: bold;
 }
 
-#vtchcofgkf .gt_font_italic {
+#sxibtoplcy .gt_font_italic {
   font-style: italic;
 }
 
-#vtchcofgkf .gt_super {
+#sxibtoplcy .gt_super {
   font-size: 65%;
 }
 
-#vtchcofgkf .gt_footnote_marks {
+#sxibtoplcy .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
-</style>
-<div id="vtchcofgkf" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+&lt;/style&gt;
+&lt;div id="sxibtoplcy" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"&gt;&lt;table class="gt_table"&gt;
   
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">ID</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Institution</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">year</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">ZIP.code</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Highest.degree.offered</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">County.name</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Religious.affiliation</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_left">NA</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_center">100663</td>
-      <td class="gt_row gt_left">University of Alabama at Birmingham</td>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_left">35294-0110</td>
-      <td class="gt_row gt_left">Doctor's degree</td>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_left">Not applicable</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_center">100690</td>
-      <td class="gt_row gt_left">Amridge University</td>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_left">36117-3553</td>
-      <td class="gt_row gt_left">Doctor's degree</td>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_left">Churches of Christ</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_center">100706</td>
-      <td class="gt_row gt_left">University of Alabama in Huntsville</td>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_left">35899</td>
-      <td class="gt_row gt_left">Doctor's degree</td>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_left">Not applicable</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_left">NA</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_center">100751</td>
-      <td class="gt_row gt_left">The University of Alabama</td>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_left">35487-0166</td>
-      <td class="gt_row gt_left">Doctor's degree</td>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_left">Not applicable</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_left">NA</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_left">NA</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_center">101541</td>
-      <td class="gt_row gt_left">Judson College</td>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_left">36756</td>
-      <td class="gt_row gt_left">Bachelor's degree</td>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_left">Baptist</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_center">101587</td>
-      <td class="gt_row gt_left">University of West Alabama</td>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_left">35470</td>
-      <td class="gt_row gt_left">Master's degree</td>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_left">Not applicable</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_left">NA</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_center">101693</td>
-      <td class="gt_row gt_left">University of Mobile</td>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_left">36613-2842</td>
-      <td class="gt_row gt_left">Master's degree</td>
-      <td class="gt_row gt_center">NA</td>
-      <td class="gt_row gt_left">Southern Baptist</td>
-    </tr>
-  </tbody>
+  &lt;thead class="gt_col_headings"&gt;
+    &lt;tr&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"&gt;ID&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;Institution&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"&gt;year&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;ZIP.code&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;Highest.degree.offered&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"&gt;County.name&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;Religious.affiliation&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class="gt_table_body"&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_center"&gt;100663&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;University of Alabama at Birmingham&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;35294-0110&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Doctor's degree&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Not applicable&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_center"&gt;100690&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Amridge University&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;36117-3553&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Doctor's degree&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Churches of Christ&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_center"&gt;100706&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;University of Alabama in Huntsville&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;35899&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Doctor's degree&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Not applicable&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_center"&gt;100751&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;The University of Alabama&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;35487-0166&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Doctor's degree&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Not applicable&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_center"&gt;101541&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Judson College&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;36756&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Bachelor's degree&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Baptist&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_center"&gt;101587&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;University of West Alabama&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;35470&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Master's degree&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Not applicable&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_center"&gt;101693&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;University of Mobile&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;36613-2842&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Master's degree&lt;/td&gt;
+      &lt;td class="gt_row gt_center"&gt;NA&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Southern Baptist&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
   
   
-</table></div>
+&lt;/table&gt;&lt;/div&gt;
+```
 ]
 
 .panel[.panel-name[Data setup]
@@ -5128,20 +5236,20 @@ Discard with **`remove_empty()`** from 📦 .rrured.b[`janitor`]
 ```r
 universities &lt;- 
   tibble::tribble(
-        ~ID,                          ~Institution, ~year,    ~ZIP.code, ~Highest.degree.offered, ~County.name, ~Religious.affiliation,
-         NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
+    ~ID,                          ~Institution, ~year,    ~ZIP.code, ~Highest.degree.offered, ~County.name, ~Religious.affiliation,
+    NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
     100663L, "University of Alabama at Birmingham",    NA, "35294-0110",       "Doctor's degree",           NA,       "Not applicable",
     100690L,                  "Amridge University",    NA, "36117-3553",       "Doctor's degree",           NA,   "Churches of Christ",
     100706L, "University of Alabama in Huntsville",    NA,      "35899",       "Doctor's degree",           NA,       "Not applicable",
-         NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
+    NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
     100751L,           "The University of Alabama",    NA, "35487-0166",       "Doctor's degree",           NA,       "Not applicable",
-         NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
-         NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
+    NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
+    NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
     101541L,                      "Judson College",    NA,      "36756",     "Bachelor's degree",           NA,              "Baptist",
     101587L,          "University of West Alabama",    NA,      "35470",       "Master's degree",           NA,       "Not applicable",
-         NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
+    NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
     101693L,                "University of Mobile",    NA, "36613-2842",       "Master's degree",           NA,     "Southern Baptist"
-    )
+  )
 ```
 ]
 ]
@@ -5160,14 +5268,13 @@ universities %&gt;% filter(across(everything(), is.na))
 
 ```
 ## # A tibble: 5 x 7
-##      ID Institution year  ZIP.code Highest.degree.… County.name
-##   &lt;int&gt; &lt;chr&gt;       &lt;lgl&gt; &lt;chr&gt;    &lt;chr&gt;            &lt;lgl&gt;      
-## 1    NA &lt;NA&gt;        NA    &lt;NA&gt;     &lt;NA&gt;             NA         
-## 2    NA &lt;NA&gt;        NA    &lt;NA&gt;     &lt;NA&gt;             NA         
-## 3    NA &lt;NA&gt;        NA    &lt;NA&gt;     &lt;NA&gt;             NA         
-## 4    NA &lt;NA&gt;        NA    &lt;NA&gt;     &lt;NA&gt;             NA         
-## 5    NA &lt;NA&gt;        NA    &lt;NA&gt;     &lt;NA&gt;             NA         
-## # … with 1 more variable: Religious.affiliation &lt;chr&gt;
+##      ID Institution year  ZIP.code Highest.degree.… County.name Religious.affil…
+##   &lt;int&gt; &lt;chr&gt;       &lt;lgl&gt; &lt;chr&gt;    &lt;chr&gt;            &lt;lgl&gt;       &lt;chr&gt;           
+## 1    NA &lt;NA&gt;        NA    &lt;NA&gt;     &lt;NA&gt;             NA          &lt;NA&gt;            
+## 2    NA &lt;NA&gt;        NA    &lt;NA&gt;     &lt;NA&gt;             NA          &lt;NA&gt;            
+## 3    NA &lt;NA&gt;        NA    &lt;NA&gt;     &lt;NA&gt;             NA          &lt;NA&gt;            
+## 4    NA &lt;NA&gt;        NA    &lt;NA&gt;     &lt;NA&gt;             NA          &lt;NA&gt;            
+## 5    NA &lt;NA&gt;        NA    &lt;NA&gt;     &lt;NA&gt;             NA          &lt;NA&gt;
 ```
 
 ```r
@@ -5325,6 +5432,7 @@ universities %&gt;%
 ## [1] "ID"                     "Institution"            "ZIP.code"              
 ## [4] "Highest.degree.offered" "Religious.affiliation"
 ```
+
 ---
 
 .large[
@@ -5342,20 +5450,20 @@ universities %&gt;% remove_empty(which= "cols", quiet = FALSE)
 
 ```
 ## # A tibble: 12 x 5
-##        ID Institution           ZIP.code  Highest.degree.of… Religious.affili…
-##     &lt;int&gt; &lt;chr&gt;                 &lt;chr&gt;     &lt;chr&gt;              &lt;chr&gt;            
-##  1     NA &lt;NA&gt;                  &lt;NA&gt;      &lt;NA&gt;               &lt;NA&gt;             
-##  2 100663 University of Alabam… 35294-01… Doctor's degree    Not applicable   
-##  3 100690 Amridge University    36117-35… Doctor's degree    Churches of Chri…
-##  4 100706 University of Alabam… 35899     Doctor's degree    Not applicable   
-##  5     NA &lt;NA&gt;                  &lt;NA&gt;      &lt;NA&gt;               &lt;NA&gt;             
-##  6 100751 The University of Al… 35487-01… Doctor's degree    Not applicable   
-##  7     NA &lt;NA&gt;                  &lt;NA&gt;      &lt;NA&gt;               &lt;NA&gt;             
-##  8     NA &lt;NA&gt;                  &lt;NA&gt;      &lt;NA&gt;               &lt;NA&gt;             
-##  9 101541 Judson College        36756     Bachelor's degree  Baptist          
-## 10 101587 University of West A… 35470     Master's degree    Not applicable   
-## 11     NA &lt;NA&gt;                  &lt;NA&gt;      &lt;NA&gt;               &lt;NA&gt;             
-## 12 101693 University of Mobile  36613-28… Master's degree    Southern Baptist
+##        ID Institution            ZIP.code  Highest.degree.of… Religious.affilia…
+##     &lt;int&gt; &lt;chr&gt;                  &lt;chr&gt;     &lt;chr&gt;              &lt;chr&gt;             
+##  1     NA &lt;NA&gt;                   &lt;NA&gt;      &lt;NA&gt;               &lt;NA&gt;              
+##  2 100663 University of Alabama… 35294-01… Doctor's degree    Not applicable    
+##  3 100690 Amridge University     36117-35… Doctor's degree    Churches of Christ
+##  4 100706 University of Alabama… 35899     Doctor's degree    Not applicable    
+##  5     NA &lt;NA&gt;                   &lt;NA&gt;      &lt;NA&gt;               &lt;NA&gt;              
+##  6 100751 The University of Ala… 35487-01… Doctor's degree    Not applicable    
+##  7     NA &lt;NA&gt;                   &lt;NA&gt;      &lt;NA&gt;               &lt;NA&gt;              
+##  8     NA &lt;NA&gt;                   &lt;NA&gt;      &lt;NA&gt;               &lt;NA&gt;              
+##  9 101541 Judson College         36756     Bachelor's degree  Baptist           
+## 10 101587 University of West Al… 35470     Master's degree    Not applicable    
+## 11     NA &lt;NA&gt;                   &lt;NA&gt;      &lt;NA&gt;               &lt;NA&gt;              
+## 12 101693 University of Mobile   36613-28… Master's degree    Southern Baptist
 ```
 
 ---
@@ -5365,8 +5473,11 @@ universities %&gt;% remove_empty(which= "cols", quiet = FALSE)
 ```r
 universities %&gt;% remove_empty(which = c("rows","cols"), quiet = FALSE) 
 ```
+
 ---
+
 class: my-turn
+
 ## My turn
 
 .large[
@@ -5376,8 +5487,10 @@ class: my-turn
 
 - Remove the empty rows and columns 
 ]
+
 ---
 class: inverse
+
 ## Your turn
 
 .large[
@@ -5387,11 +5500,14 @@ class: inverse
 
 - Remove the empty rows and columns
 ]
+
 ---
+
 class: center, middle, dk-section-title
 background-image:url("images/markus-spiske-4jiR57y3jgY-unsplash.jpg")
 background-size: cover
 # Parsing numbers
+
 ---
 class: middle
 
@@ -5400,6 +5516,7 @@ class: middle
 
 - If there is a character string is present in a vector, everything else in the vector will be converted to character strings
 ]
+
 ---
 &lt;/br&gt;&lt;/br&gt;
 ### We cannot perform arithmetic operations on:
@@ -5451,11 +5568,13 @@ class(c(test_scores,"a"))
 
 .panelset[
 .panel[.panel-name[Burger Prices]
-<style>html {
+
+```{=html}
+&lt;style&gt;html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#eqovardiuy .gt_table {
+#qzrziahten .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -5480,7 +5599,7 @@ class(c(test_scores,"a"))
   border-left-color: #D3D3D3;
 }
 
-#eqovardiuy .gt_heading {
+#qzrziahten .gt_heading {
   background-color: #f4f4f9;
   text-align: center;
   border-bottom-color: #f4f4f9;
@@ -5492,7 +5611,7 @@ class(c(test_scores,"a"))
   border-right-color: #D3D3D3;
 }
 
-#eqovardiuy .gt_title {
+#qzrziahten .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -5502,7 +5621,7 @@ class(c(test_scores,"a"))
   border-bottom-width: 0;
 }
 
-#eqovardiuy .gt_subtitle {
+#qzrziahten .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -5512,13 +5631,13 @@ class(c(test_scores,"a"))
   border-top-width: 0;
 }
 
-#eqovardiuy .gt_bottom_border {
+#qzrziahten .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#eqovardiuy .gt_col_headings {
+#qzrziahten .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -5533,7 +5652,7 @@ class(c(test_scores,"a"))
   border-right-color: #D3D3D3;
 }
 
-#eqovardiuy .gt_col_heading {
+#qzrziahten .gt_col_heading {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -5553,7 +5672,7 @@ class(c(test_scores,"a"))
   overflow-x: hidden;
 }
 
-#eqovardiuy .gt_column_spanner_outer {
+#qzrziahten .gt_column_spanner_outer {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -5565,15 +5684,15 @@ class(c(test_scores,"a"))
   padding-right: 4px;
 }
 
-#eqovardiuy .gt_column_spanner_outer:first-child {
+#qzrziahten .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#eqovardiuy .gt_column_spanner_outer:last-child {
+#qzrziahten .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#eqovardiuy .gt_column_spanner {
+#qzrziahten .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -5585,7 +5704,7 @@ class(c(test_scores,"a"))
   width: 100%;
 }
 
-#eqovardiuy .gt_group_heading {
+#qzrziahten .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #f4f4f9;
@@ -5607,7 +5726,7 @@ class(c(test_scores,"a"))
   vertical-align: middle;
 }
 
-#eqovardiuy .gt_empty_group_heading {
+#qzrziahten .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #f4f4f9;
@@ -5622,15 +5741,15 @@ class(c(test_scores,"a"))
   vertical-align: middle;
 }
 
-#eqovardiuy .gt_from_md > :first-child {
+#qzrziahten .gt_from_md &gt; :first-child {
   margin-top: 0;
 }
 
-#eqovardiuy .gt_from_md > :last-child {
+#qzrziahten .gt_from_md &gt; :last-child {
   margin-bottom: 0;
 }
 
-#eqovardiuy .gt_row {
+#qzrziahten .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5649,7 +5768,7 @@ class(c(test_scores,"a"))
   overflow-x: hidden;
 }
 
-#eqovardiuy .gt_stub {
+#qzrziahten .gt_stub {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -5661,7 +5780,7 @@ class(c(test_scores,"a"))
   padding-left: 12px;
 }
 
-#eqovardiuy .gt_summary_row {
+#qzrziahten .gt_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -5671,7 +5790,7 @@ class(c(test_scores,"a"))
   padding-right: 5px;
 }
 
-#eqovardiuy .gt_first_summary_row {
+#qzrziahten .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5681,7 +5800,7 @@ class(c(test_scores,"a"))
   border-top-color: #D3D3D3;
 }
 
-#eqovardiuy .gt_grand_summary_row {
+#qzrziahten .gt_grand_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -5691,7 +5810,7 @@ class(c(test_scores,"a"))
   padding-right: 5px;
 }
 
-#eqovardiuy .gt_first_grand_summary_row {
+#qzrziahten .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5701,11 +5820,11 @@ class(c(test_scores,"a"))
   border-top-color: #D3D3D3;
 }
 
-#eqovardiuy .gt_striped {
+#qzrziahten .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#eqovardiuy .gt_table_body {
+#qzrziahten .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -5714,7 +5833,7 @@ class(c(test_scores,"a"))
   border-bottom-color: #D3D3D3;
 }
 
-#eqovardiuy .gt_footnotes {
+#qzrziahten .gt_footnotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -5728,13 +5847,13 @@ class(c(test_scores,"a"))
   border-right-color: #D3D3D3;
 }
 
-#eqovardiuy .gt_footnote {
+#qzrziahten .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#eqovardiuy .gt_sourcenotes {
+#qzrziahten .gt_sourcenotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -5748,132 +5867,133 @@ class(c(test_scores,"a"))
   border-right-color: #D3D3D3;
 }
 
-#eqovardiuy .gt_sourcenote {
+#qzrziahten .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#eqovardiuy .gt_left {
+#qzrziahten .gt_left {
   text-align: left;
 }
 
-#eqovardiuy .gt_center {
+#qzrziahten .gt_center {
   text-align: center;
 }
 
-#eqovardiuy .gt_right {
+#qzrziahten .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#eqovardiuy .gt_font_normal {
+#qzrziahten .gt_font_normal {
   font-weight: normal;
 }
 
-#eqovardiuy .gt_font_bold {
+#qzrziahten .gt_font_bold {
   font-weight: bold;
 }
 
-#eqovardiuy .gt_font_italic {
+#qzrziahten .gt_font_italic {
   font-style: italic;
 }
 
-#eqovardiuy .gt_super {
+#qzrziahten .gt_super {
   font-size: 65%;
 }
 
-#eqovardiuy .gt_footnote_marks {
+#qzrziahten .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
-</style>
-<div id="eqovardiuy" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+&lt;/style&gt;
+&lt;div id="qzrziahten" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"&gt;&lt;table class="gt_table"&gt;
   
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Rank</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Country</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Price</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Price.ARS</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Region</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">1</td>
-      <td class="gt_row gt_left">Switzerland</td>
-      <td class="gt_row gt_left">6.8</td>
-      <td class="gt_row gt_left">$544.50</td>
-      <td class="gt_row gt_left">Europe</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">2</td>
-      <td class="gt_row gt_left">Norway</td>
-      <td class="gt_row gt_left">6.2</td>
-      <td class="gt_row gt_left">496</td>
-      <td class="gt_row gt_left">Europe</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">3</td>
-      <td class="gt_row gt_left">Sweden</td>
-      <td class="gt_row gt_left">6.1</td>
-      <td class="gt_row gt_left">488</td>
-      <td class="gt_row gt_left">Europe</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">4</td>
-      <td class="gt_row gt_left">Finland</td>
-      <td class="gt_row gt_left">5.6</td>
-      <td class="gt_row gt_left">448</td>
-      <td class="gt_row gt_left">Europe</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">5</td>
-      <td class="gt_row gt_left">United States</td>
-      <td class="gt_row gt_left">5.3[1]</td>
-      <td class="gt_row gt_left">$424.50</td>
-      <td class="gt_row gt_left">America</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">8</td>
-      <td class="gt_row gt_left">Italy</td>
-      <td class="gt_row gt_left">5.1</td>
-      <td class="gt_row gt_left">408</td>
-      <td class="gt_row gt_left">Europe</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">7</td>
-      <td class="gt_row gt_left">France</td>
-      <td class="gt_row gt_left">5.1</td>
-      <td class="gt_row gt_left">408,50</td>
-      <td class="gt_row gt_left">Europe</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">6</td>
-      <td class="gt_row gt_left">Canada</td>
-      <td class="gt_row gt_left">5.3</td>
-      <td class="gt_row gt_left">424</td>
-      <td class="gt_row gt_left">America</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">9</td>
-      <td class="gt_row gt_left">Brazil</td>
-      <td class="gt_row gt_left">5.1*</td>
-      <td class="gt_row gt_left">408</td>
-      <td class="gt_row gt_left">America</td>
-    </tr>
-  </tbody>
+  &lt;thead class="gt_col_headings"&gt;
+    &lt;tr&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;Rank&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;Country&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;Price&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;Price.ARS&lt;/th&gt;
+      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"&gt;Region&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class="gt_table_body"&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;1&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Switzerland&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;6.8&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;$544.50&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Europe&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;2&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Norway&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;6.2&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;496&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Europe&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;3&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Sweden&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;6.1&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;488&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Europe&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;4&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Finland&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;5.6&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;448&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Europe&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;5&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;United States&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;5.3[1]&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;$424.50&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;America&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;8&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Italy&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;5.1&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;408&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Europe&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;7&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;France&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;5.1&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;408,50&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Europe&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;6&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Canada&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;5.3&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;424&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;America&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gt_row gt_left"&gt;9&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;Brazil&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;5.1*&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;408&lt;/td&gt;
+      &lt;td class="gt_row gt_left"&gt;America&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
   
   
-</table></div>
+&lt;/table&gt;&lt;/div&gt;
+```
 ]
 
 .panel[.panel-name[Data setup]
 
 ```r
 burger_prices &lt;- 
-tibble::tribble(
-  ~Rank,        ~Country,   ~Price, ~Price.ARS,   ~Region,
+  tibble::tribble(
+    ~Rank,        ~Country,   ~Price, ~Price.ARS,   ~Region,
     "1",   "Switzerland",    "6.8",  "$544.50",  "Europe",
     "2",        "Norway",    "6.2",      "496",  "Europe",
     "3",        "Sweden",    "6.1",      "488",  "Europe",
@@ -5887,6 +6007,7 @@ tibble::tribble(
 ```
 ]
 ]
+
 ---
 
 ## Numbers stored as text  
@@ -6013,6 +6134,7 @@ class: my-turn
 
 - Make the columns that hold the MPA extent into usable numeric variables
 ]
+
 ---
 class: inverse
 ## Your turn
@@ -6026,6 +6148,7 @@ class: inverse
 
 - Watch out for the decimals
 ]
+
 ---
 
 ### Putting everything together

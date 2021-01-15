@@ -1,5 +1,5 @@
 ---
-title: "Common issues in data cleaning"
+title: "Common Issues in Data Cleaning"
 output:
   xaringan::moon_reader:
     css: ["style.css", "default"]
@@ -42,38 +42,35 @@ library(gt)
 class: center, middle, dk-section-title
 background-image:url("images/michael-We2t3suGiYk-unsplash.jpg")
 background-size: cover
-# Common issues in real-word data and their consequences
+# Common Issues in Real-World Data and Their Consequences
+
 ---
 
 ## Real-world data
 
-<br/>
 --
 
-.large[
 - May not be readily imported  
-]
+
 
 --
 
-.large[
+
 - May not function properly within analysis software  
-]
+
 
 --
 
-.large[
 - Often contains issues that go unnoticed until they: 
-]
-    - break a workflow
-    - introduce biases
-    - waste resources (computational, $)  
+
+- break a workflow
+- introduce biases
+- waste resources (computational, $)  
 
 ---
 
-# General data cleaning workflows 
+## General data cleaning workflows 
 
-<br/>
 .large[
 0\. Rectangular data
 ]
@@ -105,55 +102,72 @@ Cleaning numeric variables, unbreaking values, extracting target data
 class: center, middle, dk-section-title
 background-image:url("images/james-rathmell-t0iwmK0WC0Y-unsplash.jpg")
 background-size: cover
-# Unusable headers 
+# Unusable Headers 
+
 ---
 
 ## Unusable headers 
 
-.large[
+
 Inconsistent or uninformative names  
-]
+
 ```{r, echo=FALSE, eval=TRUE}
 useless <- tibble::tribble(
-      ~X,    ~X1, ~X2, ~mean_Score, ~AVERAGE.SCORE,
-   "UMN", "EAST", "A",         7.7,          7.701,
-    "UV", "WEST", "B",         8.9,           8.89,
+  ~X,    ~X1, ~X2, ~mean_Score, ~AVERAGE.SCORE,
+  "UMN", "EAST", "A",         7.7,          7.701,
+  "UV", "WEST", "B",         8.9,           8.89,
   "UNLV", "EAST", "C",         9.2,          9.199
-  )
-gt(useless) %>% 
+)
+useless %>% 
+  gt() %>% 
   tab_options(table.background.color="#f4f4f9")
 ```
 
-.large[
-- Distinct != informative  
+
+- Distinct != informative 
+
+--
+
 - More difficult to remember and specify  
+
+--
+
 - Do not sort well  
-]
+
 
 ---
 
 ## Unusable headers
 
-.large[
+
 Names broken across rows
-]
+
 
 ```{r, echo=FALSE, eval=TRUE}
 tibble::tribble(
-      ~X,    ~X1, ~X2,   ~mean,     ~AVERAGE,
-      NA,     NA,  NA, "Score",      "SCORE",
-   "UMN", "EAST", "A",   "7.7",      "7.701",
-    "UV", "WEST", "B",   "8.9",       "8.89",
+  ~X,    ~X1, ~X2,   ~mean,     ~AVERAGE,
+  NA,     NA,  NA, "Score",      "SCORE",
+  "UMN", "EAST", "A",   "7.7",      "7.701",
+  "UV", "WEST", "B",   "8.9",       "8.89",
   "UNLV", "EAST", "C",   "9.2",      "9.199"
-  ) %>% gt(useless) %>% 
+) %>% 
+  gt(useless) %>% 
   tab_options(table.background.color="#f4f4f9")
-
 ```
 
 
 - Variable names appear in >1 rows  
+
+--
+
 - Header fragments mixed with data
+
+--
+
 - Separators become implicit  
+
+--
+
 - `NAs` introduced
 
 ---
@@ -162,13 +176,17 @@ tibble::tribble(
 
 ### Syntactically valid variable names
 
-.large[
+
 - Contain only letters, numbers, dots or underscores
+
+--
 
 - Start with a letter or a dot (not followed by a number)
 
+--
+
 - Not reserved words (_if_, _else_, _for_, _in_, _TRUE_, _NaN_, etc.)  
-]
+
 
 ---
 
@@ -195,18 +213,20 @@ Clean names with 📦 **.rrured.b[`janitor`]**
 ---
 ```{r, echo=FALSE, eval=TRUE}
 badnames <- tibble::tribble(
-      ~X,    ~X1, ~X2, ~mean_Score, ~AVERAGE.SCORE,
-   "UMN", "EAST", "A",         7.7,          7.701,
-    "UV", "WEST", "B",         8.9,           8.89,
+  ~X,    ~X1, ~X2, ~mean_Score, ~AVERAGE.SCORE,
+  "UMN", "EAST", "A",         7.7,          7.701,
+  "UV", "WEST", "B",         8.9,           8.89,
   "UNLV", "EAST", "C",         9.2,          9.199
-  )
+)
 ```
+
 ```{r, eval=TRUE}
 badnames
 ```
 
 ```{r, eval=TRUE}
-badnames %>% clean_names()
+badnames %>% 
+  clean_names()
 ```
 
 ---
@@ -214,14 +234,13 @@ badnames %>% clean_names()
 ## Broken headers
 
 ```{r, echo=FALSE, eval=TRUE}
-badheaders <- 
-tibble::tribble(
-      ~X,    ~X1, ~X2,   ~mean,     ~AVERAGE,
-      NA,     NA,  NA, "Score",      "SCORE",
-   "UMN", "EAST", "A",   "7.7",      "7.701",
-    "UV", "WEST", "B",   "8.9",       "8.89",
+badheaders <- tibble::tribble(
+  ~X,    ~X1, ~X2,   ~mean,     ~AVERAGE,
+  NA,     NA,  NA, "Score",      "SCORE",
+  "UMN", "EAST", "A",   "7.7",      "7.701",
+  "UV", "WEST", "B",   "8.9",       "8.89",
   "UNLV", "EAST", "C",   "9.2",      "9.199"
-  )
+)
 
 ```
 
@@ -229,14 +248,18 @@ tibble::tribble(
 badheaders
 ```
 
+---
+
+## Broken headers
+
 .large[
 Mash the top _n_ data rows column-wise with 📦 .rrured.b[`unheadr`]
 ]
 
 ```{r, eval=FALSE}
 badheaders %>% 
-*  mash_colnames(n_name_rows = 1, # number of data rows with header fragments
-                sep = "_") # separator for collapsing header fragments
+  *  mash_colnames(n_name_rows = 1, # number of data rows with header fragments
+                   sep = "_") # separator for collapsing header fragments
 ```
 
 ---
@@ -254,33 +277,47 @@ badheaders %>%
                 sep = "_") %>% 
   clean_names()
 ```
+
 ---
+
 class: my-turn
 ## My turn
 
-.large[
 - Import a .csv file with problematic headers (MPAS-mine.csv)
 
+--
+
 - Make the variable names usable by placing all header fragments in a single header row  
+
+--
 
 - Clean the names for consistency, using snake case
-]
+
+
 ---
+
 class: inverse
+
 ## Your turn
 
-.large[
+
 - Import a .csv file with problematic headers (MPAS-your.csv)
+
+--
 
 - Make the variable names usable by placing all header fragments in a single header row  
 
+--
+
 - Clean the names for consistency
-]
+
+
 ---
 class: center, middle, dk-section-title
 background-image:url("images/farnoosh-abdollahi-vIkABUsLEDY-unsplash.jpg")
 background-size: cover
 # Whitespace
+
 ---
 
 ## Whitespace
@@ -288,6 +325,9 @@ background-size: cover
 .large[
 Does not correspond to a visible character, but occupies space in a string.
 ]
+
+--
+
 ```{r, eval=TRUE}
 string_a <- "This string starts with a T"
 string_b <- " This string starts with a space"
@@ -298,6 +338,7 @@ tibble(strings=c(string_a,string_b,string_c))
 ---
 
 class: middle
+
 ```{r, eval=TRUE}
 string_a <- "R for the rest of us"
 string_b <- " R for the rest of us"
@@ -311,33 +352,45 @@ RrU
 ---
 
 ```{r, eval=TRUE}
-RrU %>% distinct(strings)
+RrU %>% 
+  distinct(strings)
 ```
+
+---
+
 ### Issues
 
-.large[
 - Leading whitespace
+
+--
+
 - Trailing whitespace
+
+--
+
 - Duplicated whitespace within strings
-]
+
+
 ---
 
 ## Diagnosing whitespace issues
 >**"R for the rest of us"**   
 (six words, five spaces)  
 
-.large[
+--
+
 Count words then spaces
-]
+
 
 ```{r, eval=TRUE}
 str_count(RrU$strings, '\\w+')
+
 str_count(RrU$strings, '\\s')
 ```
+
 ---
 
 ### Ambiguous strings
-
 
 **`is.ambiguous_string()`**  
 
@@ -349,9 +402,8 @@ str_count(RrU$strings, '\\s')
 ```{r, eval=FALSE}
 function (x) 
 {
-    !is.na(x) & grepl("^$|^ | $|\\\\|\"", x)
+  !is.na(x) & grepl("^$|^ | $|\\\\|\"", x)
 }
-
 ```
 
 ---
@@ -366,13 +418,16 @@ RrU %>% mutate(is_ambiguous = str_detect(strings,"^$|^ | $"))
 
 ---
 
-.large[
-Check **all** columns of type _character_
-]
+### Check **all** columns of type _character_
+
 
 ```{r, eval=TRUE}
 RrU %>% mutate(across(where(is.character),pillar:::is_ambiguous_string))
 ```
+
+---
+
+### Check **all** columns of type _character_
 
 ```{r, eval=TRUE}
 RrU %>% mutate(across(where(is.character),
@@ -381,35 +436,33 @@ RrU %>% mutate(across(where(is.character),
 
 ---
 
-## Removing whitespace
+## Removing whitespace: `trim_ws()`
 
-### **`trim_ws`** 
 .large[
 Argument to `read_x` functions in 📦 .rrured.b[`readr`]
 
 Trims leading and trailing whitespace from each field during import. 
 ]
-`TRUE`  for **`read_csv()`** and **`read_tsv()`**  
-`FALSE` for **`read_delim()`**
+`TRUE` by default for **`read_csv()`** and **`read_tsv()`**  
+`FALSE` by default for **`read_delim()`**
 
 ---
 
-#### Removing whitespace
-### **`str_squish()`**  
+## Removing whitespace: `str_squish()`
+
 String manipulation function from 📦 **.rrured.b[`stringr`]**   
 
 Removes whitespace from the start and end of a string and reduces repeated whitespace inside the string
 
 ```{r, eval=TRUE}
-RrU$strings_sq <- str_squish(RrU$strings); RrU
+RrU %>% 
+  mutate(strings_sq = str_squish(strings))
 ```
+
 ---
 
-</br>
-</br>
-.large[
-Count words and spaces (again)  
-]
+## Count words and spaces (again)  
+
 .large[
 **"R for the rest of us"** (six words, five spaces)
 ]
@@ -421,10 +474,8 @@ str_count(RrU$strings_sq, '\\s')
 
 ---
 
-<br/><br/>
-.large[
-Check ambiguous strings (again)
-]
+## Check ambiguous strings (again)
+
 ```{r, echo=FALSE}
 RrU
 ```
@@ -437,26 +488,38 @@ RrU %>% mutate(across(where(is.character),
 ---
 
 ```{r, eval=TRUE}
-RrU %>% mutate(strings=str_squish(strings)) %>% distinct()
+RrU %>% 
+  mutate(strings=str_squish(strings)) %>% 
+  distinct()
 ```
 
 ---
+
 class: my-turn
+
 ## My turn
+
 - In the Marine Protected Areas dataset from the previous lesson (MPAS-mine.csv), check the _geographic_location_ variable for leading or trailing whitespace and remove it if necessary.
 
 ---
+
 class: inverse
+
 ## Your turn
+
 - In the Marine Protected Areas dataset from the previous lesson (MPAS-your.csv), check the _Country_ variable for leading or trailing whitespace and remove it if necessary.
+
 ---
+
 class: center, middle, dk-section-title
 background-image:url("images/snake-mylene2401.jpg")
 background-size: fill
-# Letter case 
+# Letter Case 
+
 ---
 
 ## Letter case
+
 ### Strings in R are case sensitive
 
 .large[Changing letter case:
@@ -469,17 +532,17 @@ background-size: fill
 ---
 ```{r, echo=FALSE, eval=TRUE}
 districts <- 
-tibble::tribble(
-      ~District, ~`Contribution.(USD)`, ~Constituents,
-  "Orange walk",                10990L,           12L,
-       "TOLEDO",                30000L,            7L,
-  "Stann Creek",                 3400L,            9L,
-       "Toledo",                21999L,            7L,
-  "Orange WalK",                 8800L,           12L,
-  "Orange Walk",                  800L,           12L,
-  "Orange Walk",                55000L,           12L,
-  "stann creek",                22999L,            9L,
-       "Toledo",                 4900L,            7L
+  tibble::tribble(
+    ~District, ~`Contribution.(USD)`, ~Constituents,
+    "Orange walk",                10990L,           12L,
+    "TOLEDO",                30000L,            7L,
+    "Stann Creek",                 3400L,            9L,
+    "Toledo",                21999L,            7L,
+    "Orange WalK",                 8800L,           12L,
+    "Orange Walk",                  800L,           12L,
+    "Orange Walk",                55000L,           12L,
+    "stann creek",                22999L,            9L,
+    "Toledo",                 4900L,            7L
   )
 ```
 
@@ -495,22 +558,23 @@ districts %>% gt() %>%
 .panel[.panel-name[Data setup]
 ```{r panel-chunk, fig.show='hide'}
 districts <- 
-tibble::tribble(
-      ~District, ~`Contribution.(USD)`, ~Constituents,
-  "Orange walk",                10990L,           12L,
-       "TOLEDO",                30000L,            7L,
-  "Stann Creek",                 3400L,            9L,
-       "Toledo",                21999L,            7L,
-  "Orange WalK",                 8800L,           12L,
-  "Orange Walk",                  800L,           12L,
-  "Orange Walk",                55000L,           12L,
-  "stann creek",                22999L,            9L,
-       "Toledo",                 4900L,            7L
+  tibble::tribble(
+    ~District, ~`Contribution.(USD)`, ~Constituents,
+    "Orange walk",                10990L,           12L,
+    "TOLEDO",                30000L,            7L,
+    "Stann Creek",                 3400L,            9L,
+    "Toledo",                21999L,            7L,
+    "Orange WalK",                 8800L,           12L,
+    "Orange Walk",                  800L,           12L,
+    "Orange Walk",                55000L,           12L,
+    "stann creek",                22999L,            9L,
+    "Toledo",                 4900L,            7L
   )
 
 ```
 ]
 ]
+
 ---
 
 ## Total contributions by district
@@ -521,11 +585,11 @@ districts %>% group_by(District) %>%
 
 ---
 
-# Detecting lower and upper case
+## Detecting lower and upper case
 ```{r, eval=TRUE}
 districts %>% mutate(lowercase=str_detect(District,"^[a-z\\s]+$"),
                      uppercase=str_detect(District,"^[A-Z\\s]+$")) %>% 
-                     select(District,lowercase,uppercase)
+  select(District,lowercase,uppercase)
 ```
 
 ---
@@ -557,7 +621,7 @@ Convert case first
 ```{r, eval=TRUE}
 districts %>%
   mutate(District_clean = to_any_case(District, "title",
-    parsing_option = 0 #<<
+                                      parsing_option = 0 #<<
   )) %>%  
   group_by(District_clean) %>%
   summarize(total_contribution = sum(`Contribution.(USD)`))
@@ -571,14 +635,15 @@ districts %>%
 📦 .rrured.b[`snakecase`] shortcuts
 ```{r, eval=TRUE}
 districts %>% 
- mutate(District_clean = to_title_case(District, #<<
-    parsing_option = 0 #<<
+  mutate(District_clean = to_title_case(District, #<<
+                                        parsing_option = 0 #<<
   )) %>% 
   group_by(District_clean) %>%
   summarize(total_contribution = sum(`Contribution.(USD)`))
 ```
 
 ---
+
 class: my-turn
 ## My turn
 
@@ -591,10 +656,12 @@ class: inverse
 - Import the Marine Protected Areas dataset (MPAS-your.csv), and summarize the number of Marine Protected Areas by country (_Country full_).
 
 ---
+
 class: center, middle, dk-section-title
 background-image:url("images/hans-heiner-buhr-OKe4Q8azVNU-unsplash.jpg")
 background-size: cover
-# Missing, implicit, or misplaced grouping variables
+# Missing, Implicit, or Misplaced Grouping Variables
+
 ---
 
 ### Missing ... 🤷
@@ -606,6 +673,7 @@ background-size: cover
 
 - Part of a compound value (next lesson)
 ]
+
 ---
 
 ## Embedded subheaders
@@ -636,28 +704,28 @@ Beer
 
 ```{r, echo=FALSE, eval=TRUE}
 cafeteria <- 
-tibble::tribble(
-            ~Item, ~Price,
-     "Hot Drinks",     NA,
-         "Coffee",    12L,
-            "Tea",     9L,
-  "Hot chocolate",     9L,
+  tibble::tribble(
+    ~Item, ~Price,
+    "Hot Drinks",     NA,
+    "Coffee",    12L,
+    "Tea",     9L,
+    "Hot chocolate",     9L,
     "Cold Drinks",     NA,
-           "Soda",    10L,
-          "Juice",    13L,
-          "Water",     8L,
-           "Beer",     8L
+    "Soda",    10L,
+    "Juice",    13L,
+    "Water",     8L,
+    "Beer",     8L
   )
 cafeteria_tidy <- 
-tibble::tribble(
-            ~Item, ~Price,   ~drink_type,
-         "Coffee",    12L,  "Hot Drinks",
-            "Tea",     9L,  "Hot Drinks",
-  "Hot chocolate",     9L,  "Hot Drinks",
-           "Soda",    10L, "Cold Drinks",
-          "Juice",    13L, "Cold Drinks",
-          "Water",     8L, "Cold Drinks",
-           "Beer",     8L, "Cold Drinks"
+  tibble::tribble(
+    ~Item, ~Price,   ~drink_type,
+    "Coffee",    12L,  "Hot Drinks",
+    "Tea",     9L,  "Hot Drinks",
+    "Hot chocolate",     9L,  "Hot Drinks",
+    "Soda",    10L, "Cold Drinks",
+    "Juice",    13L, "Cold Drinks",
+    "Water",     8L, "Cold Drinks",
+    "Beer",     8L, "Cold Drinks"
   )
 
 ```
@@ -673,17 +741,17 @@ cafeteria %>% gt() %>%
 .panel[.panel-name[Data setup]
 ```{r panel-chunk2, fig.show='hide'}
 cafeteria <- 
-tibble::tribble(
-            ~Item, ~Price,
-     "Hot Drinks",     NA,
-         "Coffee",    12L,
-            "Tea",     9L,
-  "Hot chocolate",     9L,
+  tibble::tribble(
+    ~Item, ~Price,
+    "Hot Drinks",     NA,
+    "Coffee",    12L,
+    "Tea",     9L,
+    "Hot chocolate",     9L,
     "Cold Drinks",     NA,
-           "Soda",    10L,
-          "Juice",    13L,
-          "Water",     8L,
-           "Beer",     8L
+    "Soda",    10L,
+    "Juice",    13L,
+    "Water",     8L,
+    "Beer",     8L
   )
 
 ```
@@ -699,15 +767,15 @@ cafeteria_tidy %>% gt() %>%
 .panel[.panel-name[Data setup (tidy)]
 ```{r panel-chunk3, fig.show='hide'}
 cafeteria_tidy <- 
-tibble::tribble(
-            ~Item, ~Price,   ~drink_type,
-         "Coffee",    12L,  "Hot Drinks",
-            "Tea",     9L,  "Hot Drinks",
-  "Hot chocolate",     9L,  "Hot Drinks",
-           "Soda",    10L, "Cold Drinks",
-          "Juice",    13L, "Cold Drinks",
-          "Water",     8L, "Cold Drinks",
-           "Beer",     8L, "Cold Drinks"
+  tibble::tribble(
+    ~Item, ~Price,   ~drink_type,
+    "Coffee",    12L,  "Hot Drinks",
+    "Tea",     9L,  "Hot Drinks",
+    "Hot chocolate",     9L,  "Hot Drinks",
+    "Soda",    10L, "Cold Drinks",
+    "Juice",    13L, "Cold Drinks",
+    "Water",     8L, "Cold Drinks",
+    "Beer",     8L, "Cold Drinks"
   )
 
 ```
@@ -743,7 +811,7 @@ untangle2(df,
 Match using .orange.b[regex]
 ```{r, eval= FALSE}
 cafeteria %>% 
-*  untangle2("Drinks$",Item,drink_type) %>%
+  *  untangle2("Drinks$",Item,drink_type) %>%
   clean_names()
 ```
 
@@ -760,6 +828,7 @@ cafeteria %>% untangle2("Drinks$", Item, drink_type) %>%
   clean_names() %>% group_by(drink_type) %>% 
   summarize(mean_price=mean(price))
 ```
+
 ---
 
 Alternation
@@ -779,13 +848,13 @@ cafeteria %>% untangle2("Hot Drinks|Cold Drinks", Item, drink_type) %>%
 
 ```{r, eval=TRUE}
 cafeteria %>%
-    filter(across(-Item, is.na)) %>%
-    select(Item) %>%
-    mutate(tag = paste0("subheader_", Item)) %>% 
-    right_join(cafeteria) %>%
-    untangle2("^subheader", tag, drink_type) %>%
-    select(-tag) %>%
-    mutate(drink_type = stringr::str_remove(drink_type, "^subheader_"))
+  filter(across(-Item, is.na)) %>%
+  select(Item) %>%
+  mutate(tag = paste0("subheader_", Item)) %>% 
+  right_join(cafeteria) %>%
+  untangle2("^subheader", tag, drink_type) %>%
+  select(-tag) %>%
+  mutate(drink_type = stringr::str_remove(drink_type, "^subheader_"))
 ```
 
 ---
@@ -793,9 +862,9 @@ cafeteria %>%
 .pull-left[
 ```{r, eval=TRUE}
 cafeteria %>%
-    filter(across(-Item, is.na)) %>%
-    select(Item) %>%
-    mutate(tag = paste0("subheader_", Item)) 
+  filter(across(-Item, is.na)) %>%
+  select(Item) %>%
+  mutate(tag = paste0("subheader_", Item)) 
 ```
 ]
 
@@ -811,10 +880,10 @@ Create a new variable that includes a pattern that can be matched with .orange.b
 .pull-left[
 ```{r, eval=FALSE}
 ... %>%    
-    right_join(cafeteria) %>%
-    untangle2("^subheader", tag, drink_type) %>%
-    select(-tag) %>%
-    mutate(drink_type = stringr::str_remove(drink_type, "^subheader_"))
+  right_join(cafeteria) %>%
+  untangle2("^subheader", tag, drink_type) %>%
+  select(-tag) %>%
+  mutate(drink_type = stringr::str_remove(drink_type, "^subheader_"))
 ```
 ]
 
@@ -829,12 +898,15 @@ Clean up resulting data
 ]
 
 ---
+
 class: my-turn
 ## My turn
 .large[
 - Load the `primates2017` dataset bundled with 📦 .rrured.b[`unheadr`] and create a new column that groups the different species by geographic region. 
 ]
+
 ---
+
 class: inverse
 ## Your turn
 .large[
@@ -845,11 +917,14 @@ class: inverse
 
 .large[- How many different ways can you identify the embedded subheaders in these data?
 ]
+
 ---
+
 class: center, middle, dk-section-title
 background-image:url("images/max-vertsanov-qvRuue12Huw-unsplash.jpg")
 background-size: fill
-# Compound values  
+# Compound Values  
+
 ---
 
 ### Compound values
@@ -876,19 +951,20 @@ Match with .orange.b[regex], then:
 
 **`str_extract()`** substrings into new columns
 ]
+
 ---
 
 ```{r, include=FALSE, eval=TRUE}
 households <- 
-tibble::tribble(
-  ~Participant.ID,     ~Education,            ~Residence, ~Bonus,
-          "GHC21",   "Vocational",    "Living Alone-Cat",   500L,
-          "MYL11",  "High School",     "Family Home-Cat",   400L,
-          "LLB16",     "Graduate",     "Family Home-Dog",   400L,
-          "AAH08",   "Vocational", "Shared Housing-None",   450L,
-          "PCG91",   "Vocational",   "Family Home-Other",   500L,
-   "ACC22, PMM02",  "High School", "Shared Housing-None",   400L,
-          "MJM13", "Postgraduate",    "Living Alone-Dog",   500L
+  tibble::tribble(
+    ~Participant.ID,     ~Education,            ~Residence, ~Bonus,
+    "GHC21",   "Vocational",    "Living Alone-Cat",   500L,
+    "MYL11",  "High School",     "Family Home-Cat",   400L,
+    "LLB16",     "Graduate",     "Family Home-Dog",   400L,
+    "AAH08",   "Vocational", "Shared Housing-None",   450L,
+    "PCG91",   "Vocational",   "Family Home-Other",   500L,
+    "ACC22, PMM02",  "High School", "Shared Housing-None",   400L,
+    "MJM13", "Postgraduate",    "Living Alone-Dog",   500L
   )
 ```
 
@@ -903,15 +979,15 @@ gt(households)
 .panel[.panel-name[Data setup]
 ```{r householdsetup, fig.show='hide'}
 households <- 
-tibble::tribble(
-  ~Participant.ID,     ~Education,            ~Residence, ~Bonus,
-          "GHC21",   "Vocational",    "Living Alone-Cat",   500L,
-          "MYL11",  "High School",     "Family Home-Cat",   400L,
-          "LLB16",     "Graduate",     "Family Home-Dog",   400L,
-          "AAH08",   "Vocational", "Shared Housing-None",   450L,
-          "PCG91",   "Vocational",   "Family Home-Other",   500L,
-   "ACC22, PMM02",  "High School", "Shared Housing-None",   400L,
-          "MJM13", "Postgraduate",    "Living Alone-Dog",   500L
+  tibble::tribble(
+    ~Participant.ID,     ~Education,            ~Residence, ~Bonus,
+    "GHC21",   "Vocational",    "Living Alone-Cat",   500L,
+    "MYL11",  "High School",     "Family Home-Cat",   400L,
+    "LLB16",     "Graduate",     "Family Home-Dog",   400L,
+    "AAH08",   "Vocational", "Shared Housing-None",   450L,
+    "PCG91",   "Vocational",   "Family Home-Other",   500L,
+    "ACC22, PMM02",  "High School", "Shared Housing-None",   400L,
+    "MJM13", "Postgraduate",    "Living Alone-Dog",   500L
   )
 ```
 ]
@@ -971,8 +1047,8 @@ households %>%
 #### Flatten to rows
 ```{r, eval=TRUE}
 households %>% 
-    mutate(Participant.ID=str_split(Participant.ID,", ")) %>% 
-    unnest(cols = Participant.ID) #<<
+  mutate(Participant.ID=str_split(Participant.ID,", ")) %>% 
+  unnest(cols = Participant.ID) #<<
 ```
 
 ---
@@ -981,10 +1057,11 @@ households %>%
 ```{r, eval=TRUE}
 households %>% 
   separate(col = Residence, into =  c("Residence", "Pet"),sep = "-") %>%  
-    mutate(Participant.ID=str_split(Participant.ID,", ")) %>% 
-    unnest(cols = Participant.ID) 
+  mutate(Participant.ID=str_split(Participant.ID,", ")) %>% 
+  unnest(cols = Participant.ID) 
 
 ```
+
 ---
 
 class: my-turn
@@ -1008,12 +1085,14 @@ class: inverse
 
 - Optional: Arrange the data by ISO3 country code
 ]
+
 ---
 
 class: center, middle, dk-section-title
 background-image:url("images/armelle-danjour-kwGqIuNrM5E-unsplash.jpg")
 background-size: cover
 # Duplicates  
+
 ---
 
 ### Duplicates
@@ -1025,6 +1104,7 @@ background-size: cover
 
 - Inaccurate reporting (double counting, inflated or biased summary statistics)  
 ]
+
 ---
 
 ### What can we do?
@@ -1034,6 +1114,7 @@ Identify with `get_dupes()` from 📦 .rrured.b[`janitor`]
 
 Discard with `distinct()` from 📦 .rrured.b[`dplyr`]  
 ]
+
 ---
 
 ### Duplicated values  
@@ -1050,15 +1131,15 @@ Discard with `distinct()` from 📦 .rrured.b[`dplyr`]
 
 ```{r, include=FALSE, eval=TRUE}
 pizza_orders <- 
-tibble::tribble(
-  ~CustomerID,                             ~Address,           ~City,     ~State, ~Country,
-     "Newman", "Apartment 5E, 129 West 81st Street", "New York City", "New York",    "USA",
+  tibble::tribble(
+    ~CustomerID,                             ~Address,           ~City,     ~State, ~Country,
+    "Newman", "Apartment 5E, 129 West 81st Street", "New York City", "New York",    "USA",
     "susan_A",               "185 West 74th Street", "New York City", "New York",    "USA",
     "susan_A",               "185 West 74th Street", "New York City", "New York",    "USA",
-     "js1994", "Apartment 5A, 129 West 81st Street", "New York City", "New York",    "USA",
-       "Eric",    "Unit 1B, 4186 Willoughby Avenue",      "Brooklyn", "New York",    "USA",
-       "Dash",    "Unit 1B, 4186 Willoughby Avenue",      "Brooklyn", "New York",    "USA",
-     "Rakeem",    "Unit 1B, 4186 Willoughby Avenue",      "Brooklyn", "New York",    "USA"
+    "js1994", "Apartment 5A, 129 West 81st Street", "New York City", "New York",    "USA",
+    "Eric",    "Unit 1B, 4186 Willoughby Avenue",      "Brooklyn", "New York",    "USA",
+    "Dash",    "Unit 1B, 4186 Willoughby Avenue",      "Brooklyn", "New York",    "USA",
+    "Rakeem",    "Unit 1B, 4186 Willoughby Avenue",      "Brooklyn", "New York",    "USA"
   )
 ```
 
@@ -1073,20 +1154,21 @@ pizza_orders %>% kableExtra::kable()
 .panel[.panel-name[Data setup]
 ```{r pizzasetup, fig.show='hide'}
 pizza_orders <- 
-tibble::tribble(
-  ~CustomerID,                             ~Address,           ~City,     ~State, ~Country,
-     "Newman", "Apartment 5E, 129 West 81st Street", "New York City", "New York",    "USA",
+  tibble::tribble(
+    ~CustomerID,                             ~Address,           ~City,     ~State, ~Country,
+    "Newman", "Apartment 5E, 129 West 81st Street", "New York City", "New York",    "USA",
     "susan_A",               "185 West 74th Street", "New York City", "New York",    "USA",
     "susan_A",               "185 West 74th Street", "New York City", "New York",    "USA",
-     "js1994", "Apartment 5A, 129 West 81st Street", "New York City", "New York",    "USA",
-       "Eric",    "Unit 1B, 4186 Willoughby Avenue",      "Brooklyn", "New York",    "USA",
-       "Dash",    "Unit 1B, 4186 Willoughby Avenue",      "Brooklyn", "New York",    "USA",
-     "Rakeem",    "Unit 1B, 4186 Willoughby Avenue",      "Brooklyn", "New York",    "USA"
+    "js1994", "Apartment 5A, 129 West 81st Street", "New York City", "New York",    "USA",
+    "Eric",    "Unit 1B, 4186 Willoughby Avenue",      "Brooklyn", "New York",    "USA",
+    "Dash",    "Unit 1B, 4186 Willoughby Avenue",      "Brooklyn", "New York",    "USA",
+    "Rakeem",    "Unit 1B, 4186 Willoughby Avenue",      "Brooklyn", "New York",    "USA"
   )
 
 ```
 ]
 ]
+
 ---
 
 ### Identify with **`get_dupes()`** from 📦 .rrured.b[`janitor`]  
@@ -1128,6 +1210,7 @@ Custom combination
 ```{r, eval=TRUE}
 pizza_orders %>% get_dupes(Address,starts_with("Cit")) 
 ```
+
 ---
 
 ### Discard with `distinct()` from 📦 .rrured.b[`dplyr`]
@@ -1140,6 +1223,7 @@ All variables
 pizza_orders %>% 
   distinct() # all variables by default
 ```
+
 ---
 
 </br></br>
@@ -1207,10 +1291,12 @@ class: inverse
 ]
 
 ---
+
 class: center, middle, dk-section-title
 background-image:url("images/jonathan-safa-YcxOAC5DpDA-unsplash.jpg")
 background-size: cover
 # Broken values
+
 ---
 
 ### Broken values
@@ -1227,19 +1313,19 @@ Problematic when grouping variables or observational units are broken
 
 ```{r, echo=FALSE, eval=TRUE}
 olympics <- 
-tibble::tribble(
-            ~Edition,    ~Country, ~`Soccer.gold.medal.(men)`, ~`Wrestling.(men.middleweight)`,
-                  NA,          NA,                         NA,           "weight class limit:",
-                  NA,          NA,                         NA,                         "82 kg",
-  "Los Angeles 1984",       "USA",                   "France",                           "USA",
-         "Barcelona",     "Spain",                    "Spain",                           "USA",
-              "1992",          NA,                         NA,                              NA,
-      "Atlanta 1996",       "USA",                  "Nigeria",                        "Russia",
-                  NA,          NA,                         NA,           "weight class limit:",
-                  NA,          NA,                         NA,                         "85 kg",
-       "Sydney 2000", "Australia",                 "Cameroon",                        "Russia",
-            "London",        "UK",                   "Mexico",                    "Azerbaijan",
-              "2012",          NA,                         NA,                              NA
+  tibble::tribble(
+    ~Edition,    ~Country, ~`Soccer.gold.medal.(men)`, ~`Wrestling.(men.middleweight)`,
+    NA,          NA,                         NA,           "weight class limit:",
+    NA,          NA,                         NA,                         "82 kg",
+    "Los Angeles 1984",       "USA",                   "France",                           "USA",
+    "Barcelona",     "Spain",                    "Spain",                           "USA",
+    "1992",          NA,                         NA,                              NA,
+    "Atlanta 1996",       "USA",                  "Nigeria",                        "Russia",
+    NA,          NA,                         NA,           "weight class limit:",
+    NA,          NA,                         NA,                         "85 kg",
+    "Sydney 2000", "Australia",                 "Cameroon",                        "Russia",
+    "London",        "UK",                   "Mexico",                    "Azerbaijan",
+    "2012",          NA,                         NA,                              NA
   )
 
 ```
@@ -1256,19 +1342,19 @@ gt(olympics) %>%
 .panel[.panel-name[Data setup]
 ```{r olympics_setup, fig.show='hide'}
 olympics <- 
-tibble::tribble(
-            ~Edition,    ~Country, ~`Soccer.gold.medal.(men)`, ~`Wrestling.(men.middleweight)`,
-                  NA,          NA,                         NA,           "weight class limit:",
-                  NA,          NA,                         NA,                         "82 kg",
-  "Los Angeles 1984",       "USA",                   "France",                           "USA",
-         "Barcelona",     "Spain",                    "Spain",                           "USA",
-              "1992",          NA,                         NA,                              NA,
-      "Atlanta 1996",       "USA",                  "Nigeria",                        "Russia",
-                  NA,          NA,                         NA,           "weight class limit:",
-                  NA,          NA,                         NA,                         "85 kg",
-       "Sydney 2000", "Australia",                 "Cameroon",                        "Russia",
-            "London",        "UK",                   "Mexico",                    "Azerbaijan",
-              "2012",          NA,                         NA,                              NA
+  tibble::tribble(
+    ~Edition,    ~Country, ~`Soccer.gold.medal.(men)`, ~`Wrestling.(men.middleweight)`,
+    NA,          NA,                         NA,           "weight class limit:",
+    NA,          NA,                         NA,                         "82 kg",
+    "Los Angeles 1984",       "USA",                   "France",                           "USA",
+    "Barcelona",     "Spain",                    "Spain",                           "USA",
+    "1992",          NA,                         NA,                              NA,
+    "Atlanta 1996",       "USA",                  "Nigeria",                        "Russia",
+    NA,          NA,                         NA,           "weight class limit:",
+    NA,          NA,                         NA,                         "85 kg",
+    "Sydney 2000", "Australia",                 "Cameroon",                        "Russia",
+    "London",        "UK",                   "Mexico",                    "Azerbaijan",
+    "2012",          NA,                         NA,                              NA
   )
 ```
 ]
@@ -1348,7 +1434,7 @@ unbreak_vals(df,
              ogcol, 
              newcol, 
              sep = " ",
-             )
+)
 ```
 
 ---
@@ -1380,7 +1466,7 @@ unbreak_rows(df,
              regex, 
              ogcol, 
              sep = " ",
-             )
+)
 ```
 
 ---
@@ -1420,6 +1506,7 @@ class: my-turn
 
 - Identify the broken values in the 'Type' column and unbreak them
 ]
+
 ---
 class: inverse
 ## Your turn
@@ -1431,11 +1518,15 @@ class: inverse
 
 - Clean up any separator-related issues arising from the 'unbreaking'
 ]
+
 ---
+
 class: center, middle, dk-section-title
 background-image:url("images/david-hertle-8HAhmMk9HJI-unsplash.jpg")
 background-size: cover
+
 # Empty rows and columns
+
 ---
 
 ### Empty rows and columns
@@ -1453,28 +1544,29 @@ background-size: cover
 
 .large[
 Identify with 📦 .rrured.b[`dplyr`]  
- 
+
 Discard with **`remove_empty()`** from 📦 .rrured.b[`janitor`]
 ]
+
 ---
 
 ```{r, echo=FALSE, eval=TRUE}
 universities <- 
   tibble::tribble(
-        ~ID,                          ~Institution, ~year,    ~ZIP.code, ~Highest.degree.offered, ~County.name, ~Religious.affiliation,
-         NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
+    ~ID,                          ~Institution, ~year,    ~ZIP.code, ~Highest.degree.offered, ~County.name, ~Religious.affiliation,
+    NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
     100663L, "University of Alabama at Birmingham",    NA, "35294-0110",       "Doctor's degree",           NA,       "Not applicable",
     100690L,                  "Amridge University",    NA, "36117-3553",       "Doctor's degree",           NA,   "Churches of Christ",
     100706L, "University of Alabama in Huntsville",    NA,      "35899",       "Doctor's degree",           NA,       "Not applicable",
-         NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
+    NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
     100751L,           "The University of Alabama",    NA, "35487-0166",       "Doctor's degree",           NA,       "Not applicable",
-         NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
-         NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
+    NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
+    NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
     101541L,                      "Judson College",    NA,      "36756",     "Bachelor's degree",           NA,              "Baptist",
     101587L,          "University of West Alabama",    NA,      "35470",       "Master's degree",           NA,       "Not applicable",
-         NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
+    NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
     101693L,                "University of Mobile",    NA, "36613-2842",       "Master's degree",           NA,     "Southern Baptist"
-    )
+  )
 
 ```
 
@@ -1490,20 +1582,20 @@ universities%>% gt() %>%
 ```{r unissetup, fig.show='hide'}
 universities <- 
   tibble::tribble(
-        ~ID,                          ~Institution, ~year,    ~ZIP.code, ~Highest.degree.offered, ~County.name, ~Religious.affiliation,
-         NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
+    ~ID,                          ~Institution, ~year,    ~ZIP.code, ~Highest.degree.offered, ~County.name, ~Religious.affiliation,
+    NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
     100663L, "University of Alabama at Birmingham",    NA, "35294-0110",       "Doctor's degree",           NA,       "Not applicable",
     100690L,                  "Amridge University",    NA, "36117-3553",       "Doctor's degree",           NA,   "Churches of Christ",
     100706L, "University of Alabama in Huntsville",    NA,      "35899",       "Doctor's degree",           NA,       "Not applicable",
-         NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
+    NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
     100751L,           "The University of Alabama",    NA, "35487-0166",       "Doctor's degree",           NA,       "Not applicable",
-         NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
-         NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
+    NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
+    NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
     101541L,                      "Judson College",    NA,      "36756",     "Bachelor's degree",           NA,              "Baptist",
     101587L,          "University of West Alabama",    NA,      "35470",       "Master's degree",           NA,       "Not applicable",
-         NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
+    NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
     101693L,                "University of Mobile",    NA, "36613-2842",       "Master's degree",           NA,     "Southern Baptist"
-    )
+  )
 ```
 ]
 ]
@@ -1591,6 +1683,7 @@ universities %>%
   select(!where(all_na)) %>% 
   names()
 ```
+
 ---
 
 .large[
@@ -1607,8 +1700,11 @@ universities %>% remove_empty(which= "cols", quiet = FALSE)
 ```{r message=TRUE}
 universities %>% remove_empty(which = c("rows","cols"), quiet = FALSE) 
 ```
+
 ---
+
 class: my-turn
+
 ## My turn
 
 .large[
@@ -1618,8 +1714,10 @@ class: my-turn
 
 - Remove the empty rows and columns 
 ]
+
 ---
 class: inverse
+
 ## Your turn
 
 .large[
@@ -1629,11 +1727,14 @@ class: inverse
 
 - Remove the empty rows and columns
 ]
+
 ---
+
 class: center, middle, dk-section-title
 background-image:url("images/markus-spiske-4jiR57y3jgY-unsplash.jpg")
 background-size: cover
 # Parsing numbers
+
 ---
 class: middle
 
@@ -1642,6 +1743,7 @@ class: middle
 
 - If there is a character string is present in a vector, everything else in the vector will be converted to character strings
 ]
+
 ---
 </br></br>
 ### We cannot perform arithmetic operations on:
@@ -1679,8 +1781,8 @@ class(c(test_scores,"a"))
 ---
 ```{r, include=FALSE, eval=TRUE}
 burger_prices <- 
-tibble::tribble(
-  ~Rank,        ~Country,   ~Price, ~Price.ARS,   ~Region,
+  tibble::tribble(
+    ~Rank,        ~Country,   ~Price, ~Price.ARS,   ~Region,
     "1",   "Switzerland",    "6.8",  "$544.50",  "Europe",
     "2",        "Norway",    "6.2",      "496",  "Europe",
     "3",        "Sweden",    "6.1",      "488",  "Europe",
@@ -1704,8 +1806,8 @@ burger_prices %>% gt() %>% tab_options(table.background.color="#f4f4f9",containe
 .panel[.panel-name[Data setup]
 ```{r burgerssetup, fig.show='hide'}
 burger_prices <- 
-tibble::tribble(
-  ~Rank,        ~Country,   ~Price, ~Price.ARS,   ~Region,
+  tibble::tribble(
+    ~Rank,        ~Country,   ~Price, ~Price.ARS,   ~Region,
     "1",   "Switzerland",    "6.8",  "$544.50",  "Europe",
     "2",        "Norway",    "6.2",      "496",  "Europe",
     "3",        "Sweden",    "6.1",      "488",  "Europe",
@@ -1719,6 +1821,7 @@ tibble::tribble(
 ```
 ]
 ]
+
 ---
 
 ## Numbers stored as text  
@@ -1783,6 +1886,7 @@ class: my-turn
 
 - Make the columns that hold the MPA extent into usable numeric variables
 ]
+
 ---
 class: inverse
 ## Your turn
@@ -1796,6 +1900,7 @@ class: inverse
 
 - Watch out for the decimals
 ]
+
 ---
 
 ### Putting everything together
