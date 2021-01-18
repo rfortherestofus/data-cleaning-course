@@ -18,6 +18,11 @@ output:
 xaringanExtra::use_panelset()
 ```
 
+```{r html output, eval=TRUE, include=FALSE}
+options(htmltools.dir.version = FALSE, htmltools.preserve.raw = FALSE)
+```
+
+
 ```{r xaringan-tachyons, echo=FALSE, eval=TRUE}
 xaringanExtra::use_tachyons()
 ```
