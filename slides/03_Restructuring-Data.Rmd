@@ -18,6 +18,10 @@ output:
 xaringanExtra::use_panelset()
 ```
 
+```{r html output, eval=TRUE, include=FALSE}
+options(htmltools.dir.version = FALSE, htmltools.preserve.raw = FALSE)
+```
+
 ```{r imgs setup, echo=FALSE, eval=TRUE}
 knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
 ```
