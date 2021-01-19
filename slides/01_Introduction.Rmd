@@ -247,6 +247,13 @@ background-size: cover
 - What to do about missing data. 
 
 ---
+
+class: inverse
+## Your Turn
+
+*quiz image goes here
+
+---
 class: center, middle
 
 .large[After identifying issues in our data, we decide which tool is best suited to address them.]
@@ -278,13 +285,13 @@ knitr::include_graphics("images/workflow.png")
 class: center, middle, dk-section-title
 background-image:url("images/bence-boros-l3_9j916sh0-unsplash.jpg")
 background-size: cover
-# Course Requirements and Prerequisites
+# Course Logistics
 
 ---
 
-## You: 
+## Requirements and Prerequisites
+### You: 
 
-.large[
 - are familiar with basic data types and objects in R  
 
 - can use functions and arguments  
@@ -292,20 +299,13 @@ background-size: cover
 - have R and RStudio running  
 
 - can install and load packages
-]
 
----
-
-class: center, middle, dk-section-title
-background-image:url("images/endri-killo-tvWqbeOaJnw-unsplash.jpg")
-background-size: cover
-# Course Conventions and Setup
 
 ---
 
 ## Course conventions
 
-- All packages available on CRAN   
+- All packages available on **CRAN** (can be installed with .orange[`install.packages()`])   
 
 --
 
@@ -323,6 +323,18 @@ background-size: cover
 
 - Relevant example data is provided in slides (see '**data-setup**' panels)  
 
+
+---
+
+# My setup
+
+- R v4.0.3  
+
+- RStudio v1.4.1103  
+
+- Default theme and pane layout  
+
+- Linux Mint 20.1
 
 ---
 
