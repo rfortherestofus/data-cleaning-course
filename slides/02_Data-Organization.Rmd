@@ -28,6 +28,11 @@ knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
 xaringanExtra::use_tachyons()
 ```
 
+```{r, echo=FALSE, eval=TRUE}
+library(dplyr)
+library(gt)
+```
+
 class: center, middle, dk-section-title
 background-image:url("images/road-trip-with-raj-ywJx2-ZD8UU-unsplash.jpg")
 background-size: cover
@@ -268,21 +273,47 @@ knitr::include_graphics("images/tidydata.png", error=FALSE)
 
 --
 
+.fl.w-40[
 .large[
-Observations are preserved across functions and operations
-]
+Easy to reshape into other structures after cleaning or transforming.
+]]    
+
+```{r, echo=FALSE, eval=TRUE,out.width="50%"}
+knitr::include_graphics("images/pivotingintro.gif", error=FALSE)
+```
+
+---
+
+## Why tidy?
 
 --
 
 .large[
-Easy to reshape into other structures after cleaning or transforming
+In row-wise operations, each value in an observation will be paired with other values that appear in the same row.
 ]
+
+```{r, echo=FALSE, eval=TRUE,out.width="60%", fig.align='center'}
+knitr::include_graphics("images/discounts.png", error=FALSE)
+```
+
+
+---
+
+## Why tidy?
 
 --
 
-.large[
-Variables feed directly into model specifications and plotting parameters
+.fl.w-40[
+```{r, echo=FALSE, eval=TRUE,out.width="80%", fig.align='left'}
+knitr::include_graphics("images/tidyvarsmap.png", error=FALSE)
+```
 ]
+
+
+.fl.w-60[
+.large[
+Variables feed directly into model specifications and plotting parameters.
+]]
 
 ---
 
