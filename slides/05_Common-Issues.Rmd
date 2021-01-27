@@ -1067,7 +1067,7 @@ background-size: fill
 
 **`separate()`** columns  
 
-**`unnest()`** rows
+**`separate_rows()`**
 ]
 
 .pull-right[
@@ -1125,7 +1125,7 @@ households <-
 households %>% 
   separate(col = Residence, # columns to separate
            into = c("Residence", "Pet"), # names of new variables to create 
-           sep = "-") # separator between columns
+           sep = "-") #<< # separator between columns
 ```
 
 ---
@@ -1141,49 +1141,19 @@ households %>%
 
 ---
 
-## Unnest Participant IDs
+## Separate Participant IDs
 
-**`str_split()`** from 📦 **.rrured.b[`stringr`]**  
-- Split the compound value at the separator "`, `"   
-
---
-
-**`unnest()`** from 📦 **.rrured.b[`tidyr`]** 
-- Flatten each element from the split into a row
-
----
-
-#### List of vectors  
-```{r, eval=TRUE}
-str_split(households$Participant.ID,", ")
-```
-
----
-
-#### Within the data rectangle:
-
-```{r, eval=TRUE}
-households %>%
-  mutate(Participant.ID=str_split(households$Participant.ID,", "))
-```
-
----
-
-#### Flatten to rows
-```{r, eval=TRUE}
-households %>% 
-  mutate(Participant.ID=str_split(Participant.ID,", ")) %>% 
-  unnest(cols = Participant.ID) #<<
-```
+.large[
+**`separate_rows()`** from 📦 **.rrured.b[`tidyr`]** 
+- Separates multiple delimited observations within a column and places each one in its own row.]
 
 ---
 
 #### Separate and unnest
 ```{r, eval=TRUE}
 households %>% 
-  separate(col = Residence, into =  c("Residence", "Pet"),sep = "-") %>%  
-  mutate(Participant.ID=str_split(Participant.ID,", ")) %>% 
-  unnest(cols = Participant.ID) 
+  separate_rows(Participant.ID,
+                sep = ", ") #<<  
 
 ```
 
@@ -1193,7 +1163,7 @@ class: my-turn
 ## My turn
 
 .large[
-- Import the Marine Protected Areas dataset (MPAS-mine.csv), separate the country codes variable (ISO3 and UN scheme) and unnest the Reference variable.]
+- Import the Marine Protected Areas dataset (MPAS-mine.csv), separate the country codes variable (ISO3 and UN scheme) into columns the Reference variable into rows.]
 
 --
 
@@ -1207,7 +1177,7 @@ class: inverse
 ## Your turn
 
 .large[
-- Import the Marine Protected Areas dataset (MPAS-your.csv), separate the country codes variable (ISO3 and UN scheme) and unnest the Reference variable.]
+- Import the Marine Protected Areas dataset (MPAS-your.csv), separate the country codes variable (ISO3 and UN scheme) into columns and the Reference variable into rows.]
 
 --
 
