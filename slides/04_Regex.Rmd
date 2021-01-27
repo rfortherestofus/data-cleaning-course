@@ -71,7 +71,7 @@ pets <-  c("dog","cat","parrot")
 
 ---
 
-### Strings
+## Strings
 
 .pull-left[
 .large[Headers and values in a data frame can also be strings:]]
@@ -101,7 +101,7 @@ drinks_df %>%
 
 ---
 
-### Strings in R are _case sensitive_
+## Strings in R are _case sensitive_
 
 Uppercase and lowercase letters are treated as distinct
 
@@ -118,7 +118,6 @@ Uppercase and lowercase letters are treated as distinct
 
 
 ---
-
 ### Regex searches are case sensitive by default
 
 Our options:   
@@ -137,7 +136,7 @@ Our options:
 
 ---
 
-### Regex searches are case sensitive by default
+## Regex searches are case sensitive by default
 
 Our options:   
 
@@ -155,14 +154,10 @@ Our options:
 
 ---
 
-class: center, middle, dk-section-title
-background-image:url("images/jorge-balleza-vtvwNNjYBz4-unsplash.jpg")
-background-size: cover
+class: center, middle
+
 ## Why Learn Regular Expressions?
 
----
-
-class: center, middle
 
 .xl[🕰]
 
@@ -171,6 +166,8 @@ class: center, middle
 ---
 
 class: center, middle
+
+## Why Learn Regular Expressions?
 
 .xl[💻]
 
@@ -188,12 +185,14 @@ Regex is **not specific to any particular programming language or command-line t
 
 
 
+
+
 ---
 
 class: center, middle, dk-section-title
-background-image:url("images/dan-gold-4YAhiaZkUfs-unsplash.jpg")
+background-image:url("images/jorge-balleza-vtvwNNjYBz4-unsplash.jpg")
 background-size: cover
-# Literal Characters and Metacharacters
+# Understanding and Testing Regular Expressions
 
 ---
 
@@ -220,21 +219,16 @@ The .bg-yellow[dog] is fat.
 ]
 
 ---
+
 class: center, middle
 
 .xl[🛑 Hold on]
 
 .large[✋ How can we tell if the regular expression is matching anything?]
 
----
-
-class: center, middle, dk-section-title
-background-image:url("images/dfkt-nkynQWagL-s-unsplash.jpg")
-background-size: cover
-# Understanding and Testing Regular Expressions
-
----
   
+---
+
 ## Online regex testers
 
 --
@@ -265,7 +259,7 @@ background-size: cover
 - `str_view()` from 📦 .b.rrured[`stringr`]
 
 ---
-# Regex Testers
+## Regex Testers
 
 ```{r, echo=FALSE, eval=TRUE, fig.align='left',out.width="100%"}
 knitr::include_graphics("images/regextester.png")
@@ -273,21 +267,37 @@ knitr::include_graphics("images/regextester.png")
 
 ---
 class: inverse
-# Your turn
+## Your Turn
 
-- Navigate to an online Regex Tester 
-- Get familiarized with the user interface 
-- Input the following text into the test string field
+--
+
+Navigate to 
+[regex101](https://regex101.com/), [regexr](https://regexr.com/), or [regexpal](https://www.regexpal.com/) and familiarize yourself with the user interface
+
+--
+
+Input the following text into the test string field: 
+
+--
 
 `
 2 cups whole milk  
 1 cup white rice (uncooked)  
 1 pinch salt  
 1/2 cup water  
-1/4 cup dark brown sugar  
+1/4 cup dark brown sugar
 `  
 
-- Write regular expressions (one at a time) to match the wet ingredients and look at the match results
+--
+
+Write regular expressions (one at a time) to match the wet ingredients and look at the match results
+
+---
+
+class: center, middle, dk-section-title
+background-image:url("images/dfkt-nkynQWagL-s-unsplash.jpg")
+background-size: cover
+# Literal Characters and Metacharacters
 
 ---
 
@@ -390,9 +400,11 @@ Metacharacters include: .b.orange[[]\^$.|?*+()], which are reserved for unique m
 ---
 class: center, middle
 
-# Most metacharacters fit into major "families"
+## Most metacharacters fit into major "families"
 
 ---
+
+### Wildcards
 
 .large[
 .b[Wildcards] stand in for unknown characters  
@@ -406,6 +418,8 @@ class: center, middle
 
 .b.orange[f..l] matches ".b.bg-yellow[fill]" and ".b.bg-yellow[fool]", but not "flail"  
 
+--
+
 .b.orange[.top] matches ".b.bg-yellow[stop]" and "is.b.bg-yellow[otop]e", but not "topple"  
 
 --
@@ -413,6 +427,8 @@ class: center, middle
 > note the substring match in "is**otop**e" 
 
 ---
+
+### Character sets
 
 .large[
 .b[Character sets] match one or more characters inside the square brackets 
@@ -428,9 +444,13 @@ class: center, middle
 
 .b.orange[[cb]at] matches ".b.bg-yellow[cat]", and ".b.bg-yellow[bat]", but not "rat"
 
+--
+
 .b.orange[[CK]at[iey]] matches ".b.bg-yellow[Caty]", ".b.bg-yellow[Kati]", ".b.bg-yellow[Kati]", and ".b.bg-yellow[Kate]"
 
 ---
+
+### Negation tokens
 
 .large[
 .b[Negation tokens]&nbsp;  
@@ -445,6 +465,8 @@ class: center, middle
 
 .b.orange[[^aoeio]] matches consonants
 
+--
+
 .b.orange[[^R]] matches everything except capital R
 
 ---
@@ -458,8 +480,14 @@ Dash (.b.orange[\-]) inside a character set abbreviates alphabetical or numeric 
 
 --
 
-.b.orange[[A-D]]  matches any single letter from A,B,C, or D (uppercase)  
+.b.orange[[A-D]]  matches any single letter from A,B,C, or D (uppercase)
+
+--
+
 .b.orange[[5-8]]  &nbsp;matches any single digit between 5 and 8  
+
+--
+
 .b.orange[[A-Za-z]]  matches all alphabetical characters
 
 --
@@ -479,7 +507,11 @@ Dash (.b.orange[\-]) inside a character set abbreviates alphabetical or numeric 
 
 .b.orange[^mil] matches ".b.bg-yellow[mil]kshake" but not "family"  
 
+--
+
 .b.orange[ing$] matches "go.b.bg-yellow[ing]" but not "ingest"  
+
+--
 
 > note the substring matches
 
@@ -488,6 +520,7 @@ Dash (.b.orange[\-]) inside a character set abbreviates alphabetical or numeric 
 class: inverse
 ### Your Turn
 1\. Write a regexp that can match **tail**, **tool**, **tall**, and **toil**  
+--
 
 2\. How can we match **Jocelyn**, **Jocelin**, and **Joselyn** but not Jozelyn using character sets?
 
@@ -500,6 +533,8 @@ b) Jo[sc^z]el[yi]n
 .fl.w-third.pa0[.tc[
 c) Jo[sc]el[yi]n
 ]]
+
+--
 
 3\. Which of these regular expressions matches **`food`** at the beginning of a string?
 .fl.w-25[.tl[
@@ -536,6 +571,8 @@ d) food^
 
 > zero or one `els (l)`
 
+--
+
 .b.orange[ya*y!] matches ".b.bg-yellow[yy!]", ".b.bg-yellow[yay!]", ".b.bg-yellow[yaaay!]", ".b.bg-yellow[yaaaaaay!]", etc.
 
 > zero or more `aes (a)`
@@ -547,6 +584,8 @@ d) food^
 .b.orange[no+] matches “.bg-yellow.b[no]”, “.bg-yellow.b[nooo]", ".bg-yellow.b[noooooo]", etc, but not “n”  
 
 > one or more `oes (o)`
+
+--
  
 .b.orange[e{2}] matches .“k.b.purple.bg-yellow[ee]p” and “b.b.purple.bg-yellow[ee]" but not “meat” 
 
@@ -554,9 +593,11 @@ d) food^
 
 ---
 class: inverse
-# Your Turn
+### Your Turn
 
 1\. Use a wildcard and a quantifier to match **cute**, **cuuute**, **cuuuuuute**, and **cuuuuuuuuute**  
+
+--
 
 2\. How can we match only Computer, computer, Computers, and computers?
 .fl.w-third.pa0[.tc[
@@ -572,6 +613,8 @@ c) [cC]omputer[s]+
 
 ---
 
+### Alternation
+
 .large[
 .b[Alternation] tokens separate a series of alternatives]  
 .large[.orange.b.pre[&nbsp;|&nbsp;] &nbsp;&nbsp; either or
@@ -586,14 +629,16 @@ c) [cC]omputer[s]+
 
 ---
 
+### Special sequences and escapes
+
 .large[
 .b[Special sequences and escapes]<br>
 .b.orange.pre[&nbsp;\\&nbsp;] 	&nbsp;&nbsp; signals a shorthand sequence or gives special characters a literal meaning
 ]
 
---
+---
 
-#### Escapes
+### Escapes
 .b.orange[\\\\\\\\(hello\\\\\\\\)] matches ".b.purple.bg-yellow[(hello)]"
 
 > parentheses treated as literal characters but escape the parenthesis first
@@ -603,6 +648,8 @@ c) [cC]omputer[s]+
 _Metacharacters inside a character set are stripped of their special nature_
 
 ---
+
+### Shorthand sequences
 
 .large[.b[Shorthand sequences] are available to refer to commonly-used character sets
 ]
@@ -637,34 +684,44 @@ Match positions between a _word_ character (letter, digit or underscore) and a n
 
 ---
 class: inverse
-# Your Turn
+### Your Turn
 
- - Enter "That athlete is at the squat rack" as the test string in a regex tester.
+Enter "That athlete is at the squat rack" as the test string in a regex tester.
 
- Why are the matches different with the following three regular expressions?
+--
+
+Why are the matches different with the following three regular expressions?
  
  a) at  
  b) \bat  
  c) at\b
 
 ---
+
+---
+
+class: center, middle, dk-section-title
+background-image:url("images/dan-gold-4YAhiaZkUfs-unsplash.jpg")
+background-size: cover
 # Combining metacharacters 
 
-### Anchor, wildcard with quantifier (0 or more)
+---
+
+## Anchor, wildcard with quantifier (0 or more)
 
 .b.orange[^can.\\\*] matches ".b.purple.bg-yellow[can]", ".b.purple.bg-yellow[can]ine", ".b.purple.bg-yellow[can]oli", and ".b.purple.bg-yellow[can]adian"
 
-###  Word boundaries, wildcard and quantifier
+##  Word boundaries, wildcard and quantifier
 .b.orange[A.\\*x] words that start with "**A**" and end with "**x**"
 
 ---
 
-### Shorthand sequence (space) and quantifier
+## Shorthand sequence (space) and quantifier
 
 .b.orange[\\s{3}] matches three spaces 
 
 
-### Anchors, character set, and quantifier (one or more) 
+## Anchors, character set, and quantifier (one or more) 
 
 .b.orange[^[a-z]+$] matches a lowercase string
 
@@ -673,7 +730,7 @@ class: inverse
 class: my-turn
 ## My Turn
 
-1. Write regular expressions for the patterns below and test them in an interactive tool
+Write regular expressions for the patterns below and test them in an interactive tool:
 
 * "dogs" but only if string begins with "dogs"  
 * strings that start with digits  
@@ -684,9 +741,9 @@ class: my-turn
 
 ---
 class: inverse
-# Your Turn
+## Your Turn
 
-Write regular expressions to match the following, making sure they work in an interactive regex tester
+Write regular expressions to match the following, making sure they work in an interactive regex tester:
 
 1. cute, cuuute, cuuuuuute, and cuuuuuuuuute 
 2. strings with both letters and digits
@@ -700,6 +757,7 @@ class: center, middle, dk-section-title
 background-image:url("images/joakim-honkasalo-1LEq1hqDxEg-unsplash.jpg")
 background-size: cover
 # Regex in R
+
 ---
 
 # 📦 .rrured[`stringr`]
@@ -768,14 +826,14 @@ str_replace(string = c("colOur", "neighboUr", "honOUr"),
 
 class: inverse
 
-## Your turn
+## Your Turn
 
 Match the following regular expressions against the test vector below using `str_detect`.  Can you explain the matches?
 
 Regular expressions
-1. .b.black[^dog] 
-2. .b.black[^[a-z]+$]
-3. .b.black[\\\\\d]
+1. ^dog
+2. ^[a-z]+$
+3. \\\\\d
 
 
 ```{r}
@@ -886,8 +944,11 @@ To select variables in 📦 .b.rrured[`dplyr`] and 📦 .b.rrured[`tidyr`], we:
 names(penguins)
 ```
 
+--
+
 ```{r, eval=TRUE}
-penguins %>% select(species, bill_length_mm, flipper_length_mm) %>% 
+penguins %>% 
+  select(species, bill_length_mm, flipper_length_mm) %>% 
   sample_n(3)
 ```
  
@@ -900,7 +961,9 @@ names(penguins)
 ```
 
 ```{r, eval=TRUE}
-penguins %>% select(species, matches("length")) %>% sample_n(3)
+penguins %>% 
+  select(species, matches("length")) %>% 
+  sample_n(3)
 ```
 
 ---
@@ -924,7 +987,8 @@ msleep %>% select(name,genus) %>% sample_n(7)
 Filter to keep rats only
 
 ```{r, eval=TRUE}
-msleep %>% select(name,genus) %>% 
+msleep %>% 
+  select(name,genus) %>% 
   filter(str_detect(string = name,pattern = "rat"))
 ```
 
@@ -937,7 +1001,8 @@ class: inverse
 .large[🐀 After running the code below, how can we exclude muskrats from the matches?]
 
 ```{r, eval=FALSE}
-msleep %>% select(name,genus) %>% 
+msleep %>% 
+  select(name,genus) %>% 
   filter(str_detect(string = name,pattern = "rat"))
 ```
 
@@ -983,7 +1048,7 @@ companies <- data.frame(
 
 ---
 
-### Substitute or recode values
+## Substitute or recode values
 .i[(correct name should be Olsson)]  
 ```{r, eval=TRUE}
 companies %>% 
@@ -1050,8 +1115,7 @@ tibble::tribble(
 
 ```{r, eval=TRUE}
 team_record %>%
-  mutate(result_comment = str_extract(
-    string = result, pattern = "\\(.+\\)"))
+  mutate(result_comment = str_extract(string = result, pattern = "\\(.+\\)"))
 ```
 
 
@@ -1065,9 +1129,8 @@ team_record %>%
 .large.b[`str_remove_all()`]
 ```{r, eval=TRUE}
 team_record %>%
-  mutate(result_comment = str_extract(
-    string = result, pattern = "\\(.+\\)")) %>% 
-  mutate(result_comment=str_remove_all(result_comment,"[()]"))
+  mutate(result_comment = str_extract(string = result, pattern = "\\(.+\\)")) %>% 
+  mutate(result_comment = str_remove_all(result_comment,"[()]"))
 ```
 
 ---
