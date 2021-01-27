@@ -68,9 +68,9 @@ background-size: cover
 
 - Often contains issues that go unnoticed until they: 
 
-  - break a workflow
-  - introduce biases
-  - waste resources (computational, $)  
+- break a workflow
+- introduce biases
+- waste resources (computational, $)  
 
 ---
 
@@ -79,12 +79,21 @@ background-size: cover
 .large[
 **0\.** Rectangular data
 ]
+
+--
+
 .large[
 1\. Variable names
 ]
+
+--
+
 .large[
 2\. Observational units
 ]
+
+--
+
 .large[
 3\. Grouping variables
 ]
@@ -96,6 +105,8 @@ background-size: cover
 .large[
 Whitespace, duplication, letter case
 ]
+
+--
 
 ## More interpretation
 
@@ -126,11 +137,13 @@ useless <- tibble::tribble(
 useless %>% 
   gt() %>% 
   tab_style(
-  cell_text(size = '17px'),
-            locations = list(cells_body(),
-                             cells_column_labels(everything()),
-                             cells_title()))
+    cell_text(size = '17px'),
+    locations = list(cells_body(),
+                     cells_column_labels(everything()),
+                     cells_title()))
 ```
+
+--
 
 
 - Distinct != informative 
@@ -161,11 +174,11 @@ tibble::tribble(
   "UNLV", "EAST", "C",   "9.2",      "9.199"
 ) %>% 
   gt(useless) %>% 
-    tab_style(
-  cell_text(size = '17px'),
-            locations = list(cells_body(),
-                             cells_column_labels(everything()),
-                             cells_title()))
+  tab_style(
+    cell_text(size = '17px'),
+    locations = list(cells_body(),
+                     cells_column_labels(everything()),
+                     cells_title()))
 ```
 ]
 
@@ -408,6 +421,8 @@ Count words, then spaces
 str_count(RrU$strings, '\\w+')
 ```
 
+--
+
 ```{r, eval=TRUE}
 str_count(RrU$strings, '\\s')
 ```
@@ -446,7 +461,8 @@ RrU %>% mutate(is_ambiguous = str_detect(strings,"^$|^ | $"))
 
 
 ```{r, eval=TRUE}
-RrU %>% mutate(across(where(is.character),pillar:::is_ambiguous_string))
+RrU %>% 
+  mutate(across(where(is.character), pillar:::is_ambiguous_string))
 ```
 
 ---
@@ -454,8 +470,8 @@ RrU %>% mutate(across(where(is.character),pillar:::is_ambiguous_string))
 ### Check **all** columns of type _character_
 
 ```{r, eval=TRUE}
-RrU %>% mutate(across(where(is.character),
-                      str_detect,"^$|^ | $"))
+RrU %>% 
+  mutate(across(where(is.character), str_detect,"^$|^ | $"))
 ```
 
 ---
@@ -464,10 +480,20 @@ RrU %>% mutate(across(where(is.character),
 
 .large[
 Argument to `read_x` functions in 📦 .rrured.b[`readr`]
+]
 
+--
+
+.large[
 Trims leading and trailing whitespace from each field during import. 
 ]
+
+--
+
 `TRUE` by default for **`read_csv()`** and **`read_tsv()`**  
+
+--
+
 `FALSE` by default for **`read_delim()`**
 
 ---
@@ -477,6 +503,8 @@ Trims leading and trailing whitespace from each field during import.
 String manipulation function from 📦 **.rrured.b[`stringr`]**   
 
 Removes whitespace from the start and end of a string and reduces repeated whitespace inside the string
+
+--
 
 ```{r, eval=TRUE}
 RrU %>% 
@@ -505,11 +533,12 @@ RrU
 ```
 
 ```{r, eval=TRUE}
-RrU %>% mutate(across(where(is.character),
-                      str_detect,"^$|^ | $"))
+RrU %>% mutate(across(where(is.character), str_detect,"^$|^ | $"))
 ```
 
 ---
+
+## Check ambiguous strings (again)
 
 ```{r, eval=TRUE}
 RrU %>% 
@@ -586,11 +615,11 @@ districts <-
 .panel[.panel-name[Districts]
 ```{r, echo=FALSE, eval=TRUE}
 districts %>% gt() %>% 
-    tab_style(
-  cell_text(size = '22px'),
-            locations = list(cells_body(),
-                             cells_column_labels(everything()),
-                             cells_title())) %>% 
+  tab_style(
+    cell_text(size = '22px'),
+    locations = list(cells_body(),
+                     cells_column_labels(everything()),
+                     cells_title())) %>% 
   tab_options(table.background.color="#f4f4f9")
 ```
 ]
@@ -598,17 +627,17 @@ districts %>% gt() %>%
 .panel[.panel-name[Data setup]
 ```{r panel-chunk, fig.show='hide'}
 districts <- tibble::tribble(
-    ~District, ~`Contribution.(USD)`, ~Constituents,
-    "Orange walk",                10990L,           12L,
-    "TOLEDO",                30000L,            7L,
-    "Stann Creek",                 3400L,            9L,
-    "Toledo",                21999L,            7L,
-    "Orange WalK",                 8800L,           12L,
-    "Orange Walk",                  800L,           12L,
-    "Orange Walk",                55000L,           12L,
-    "stann creek",                22999L,            9L,
-    "Toledo",                 4900L,            7L
-  )
+  ~District, ~`Contribution.(USD)`, ~Constituents,
+  "Orange walk",                10990L,           12L,
+  "TOLEDO",                30000L,            7L,
+  "Stann Creek",                 3400L,            9L,
+  "Toledo",                21999L,            7L,
+  "Orange WalK",                 8800L,           12L,
+  "Orange Walk",                  800L,           12L,
+  "Orange Walk",                55000L,           12L,
+  "stann creek",                22999L,            9L,
+  "Toledo",                 4900L,            7L
+)
 ```
 ]
 ]
@@ -617,7 +646,8 @@ districts <- tibble::tribble(
 
 ## Total contributions by district
 ```{r, eval=TRUE}
-districts %>% group_by(District) %>% 
+districts %>% 
+  group_by(District) %>% 
   summarize(total_contribution = sum(`Contribution.(USD)`))
 ```
 
@@ -628,7 +658,7 @@ districts %>% group_by(District) %>%
 ```{r, eval=TRUE}
 districts %>% 
   mutate(lowercase = str_detect(District,"^[a-z\\s]+$"),
-                     uppercase = str_detect(District,"^[A-Z\\s]+$")) %>% 
+         uppercase = str_detect(District,"^[A-Z\\s]+$")) %>% 
   select(District, lowercase, uppercase)
 ```
 
@@ -639,6 +669,7 @@ districts %>%
 ```{r, eval=FALSE}
 to_any_case(strings, case)
 ```
+--
 
 .pull-left[
 **camelCase** - capitalize all words following the first word, no spaces  
@@ -736,6 +767,9 @@ Juice
 Water  
 Beer  
 ]
+
+--
+
 .right-column[
 
 - Rows that correspond to values in grouping variables   
@@ -780,11 +814,11 @@ cafeteria_tidy <-
 .panel[.panel-name[Menu]
 ```{r, echo=FALSE, eval=TRUE}
 cafeteria %>% gt() %>%
-    tab_style(
-  cell_text(size = '22px'),
-            locations = list(cells_body(),
-                             cells_column_labels(everything()),
-                             cells_title())) %>% 
+  tab_style(
+    cell_text(size = '22px'),
+    locations = list(cells_body(),
+                     cells_column_labels(everything()),
+                     cells_title())) %>% 
   tab_options(table.background.color="#f4f4f9")
 ```
 ]
@@ -811,11 +845,11 @@ cafeteria <-
 .panel[.panel-name[Menu (tidy)]
 ```{r, echo=FALSE, eval=TRUE}
 cafeteria_tidy %>% gt() %>% 
-    tab_style(
-  cell_text(size = '22px'),
-            locations = list(cells_body(),
-                             cells_column_labels(everything()),
-                             cells_title())) %>% 
+  tab_style(
+    cell_text(size = '22px'),
+    locations = list(cells_body(),
+                     cells_column_labels(everything()),
+                     cells_title())) %>% 
   tab_options(table.background.color="#f4f4f9")
 ```
 ]
@@ -845,8 +879,11 @@ cafeteria_tidy <-
 
 **`untangle2()`** function 
 
+--
 
 1. Match with a .orange.b[regular expression]
+
+--
 
 2. Position (sometimes) identifiable as the rows with NAs in all the variables except for the one with the subheaders
 
@@ -1442,11 +1479,11 @@ olympics <-
 .panel[.panel-name[olympics]
 ```{r olympicsgt, echo=FALSE, eval=TRUE}
 gt(olympics) %>% 
-    tab_style(
-  cell_text(size = '20px'),
-            locations = list(cells_body(),
-                             cells_column_labels(everything()),
-                             cells_title()))
+  tab_style(
+    cell_text(size = '20px'),
+    locations = list(cells_body(),
+                     cells_column_labels(everything()),
+                     cells_title()))
 ```
 ]
 
@@ -1697,11 +1734,11 @@ universities <-
 .panel[.panel-name[universities]
 ```{r, echo=FALSE, eval=TRUE}
 universities%>% gt() %>% 
-    tab_style(
-  cell_text(size = '14px'),
-            locations = list(cells_body(),
-                             cells_column_labels(everything()),
-                             cells_title())) %>%  
+  tab_style(
+    cell_text(size = '14px'),
+    locations = list(cells_body(),
+                     cells_column_labels(everything()),
+                     cells_title())) %>%  
   tab_options(table.background.color="#f4f4f9")
 ```
 ]
@@ -1760,7 +1797,7 @@ universities %>%
 
 ---
 
-### Discard empty rows with with **`remove_empty()`** from 📦 .rrured.b[`janitor`]  
+### Discard empty rows with **`remove_empty()`** from 📦 .rrured.b[`janitor`]  
 
 > `quiet = FALSE` prints a statement about the rows that were removed
 
@@ -1936,11 +1973,11 @@ burger_prices <-
 .panel[.panel-name[Burger Prices]
 ```{r, echo=FALSE, eval=TRUE}
 burger_prices %>% gt() %>%
-    tab_style(
-  cell_text(size = '24px'),
-            locations = list(cells_body(),
-                             cells_column_labels(everything()),
-                             cells_title())) %>% 
+  tab_style(
+    cell_text(size = '24px'),
+    locations = list(cells_body(),
+                     cells_column_labels(everything()),
+                     cells_title())) %>% 
   tab_options(table.background.color="#f4f4f9",container.overflow.x = TRUE, container.overflow.y = TRUE)
 ```
 ]
