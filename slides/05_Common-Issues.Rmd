@@ -68,16 +68,16 @@ background-size: cover
 
 - Often contains issues that go unnoticed until they: 
 
-- break a workflow
-- introduce biases
-- waste resources (computational, $)  
+  - break a workflow
+  - introduce biases
+  - waste resources (computational, $)  
 
 ---
 
 ## General data cleaning workflows 
 
 .large[
-0\. Rectangular data
+**0\.** Rectangular data
 ]
 .large[
 1\. Variable names
@@ -125,7 +125,11 @@ useless <- tibble::tribble(
 )
 useless %>% 
   gt() %>% 
-  tab_options(table.background.color="#f4f4f9")
+  tab_style(
+  cell_text(size = '17px'),
+            locations = list(cells_body(),
+                             cells_column_labels(everything()),
+                             cells_title()))
 ```
 
 
@@ -144,7 +148,7 @@ useless %>%
 
 ## Unusable headers
 
-
+.pull-left[
 Names broken across rows
 
 
@@ -157,23 +161,37 @@ tibble::tribble(
   "UNLV", "EAST", "C",   "9.2",      "9.199"
 ) %>% 
   gt(useless) %>% 
-  tab_options(table.background.color="#f4f4f9")
+    tab_style(
+  cell_text(size = '17px'),
+            locations = list(cells_body(),
+                             cells_column_labels(everything()),
+                             cells_title()))
 ```
-
-
-- Variable names appear in >1 rows  
+]
 
 --
 
-- Header fragments mixed with data
+.tr[
+Variable names appear in >1 rows  
+]
 
 --
 
-- Separators become implicit  
+.tr[
+Header fragments mixed with data
+]
 
 --
 
-- `NAs` introduced
+.tr[
+Separators become implicit  
+]
+
+--
+
+.tr[
+`NAs` introduced
+]
 
 ---
 
@@ -568,6 +586,11 @@ districts <-
 .panel[.panel-name[Districts]
 ```{r, echo=FALSE, eval=TRUE}
 districts %>% gt() %>% 
+    tab_style(
+  cell_text(size = '22px'),
+            locations = list(cells_body(),
+                             cells_column_labels(everything()),
+                             cells_title())) %>% 
   tab_options(table.background.color="#f4f4f9")
 ```
 ]
@@ -754,9 +777,14 @@ cafeteria_tidy <-
 ```
 
 .panelset[
-.panel[.panel-name[Cafeteria Menu]
+.panel[.panel-name[Menu]
 ```{r, echo=FALSE, eval=TRUE}
-cafeteria %>% gt() %>% 
+cafeteria %>% gt() %>%
+    tab_style(
+  cell_text(size = '22px'),
+            locations = list(cells_body(),
+                             cells_column_labels(everything()),
+                             cells_title())) %>% 
   tab_options(table.background.color="#f4f4f9")
 ```
 ]
@@ -780,9 +808,14 @@ cafeteria <-
 ```
 ]
 
-.panel[.panel-name[Cafeteria Menu (tidy)]
+.panel[.panel-name[Menu (tidy)]
 ```{r, echo=FALSE, eval=TRUE}
 cafeteria_tidy %>% gt() %>% 
+    tab_style(
+  cell_text(size = '22px'),
+            locations = list(cells_body(),
+                             cells_column_labels(everything()),
+                             cells_title())) %>% 
   tab_options(table.background.color="#f4f4f9")
 ```
 ]
@@ -1409,7 +1442,11 @@ olympics <-
 .panel[.panel-name[olympics]
 ```{r olympicsgt, echo=FALSE, eval=TRUE}
 gt(olympics) %>% 
-  tab_options(table.font.size = 2)
+    tab_style(
+  cell_text(size = '20px'),
+            locations = list(cells_body(),
+                             cells_column_labels(everything()),
+                             cells_title()))
 ```
 ]
 
@@ -1660,7 +1697,12 @@ universities <-
 .panel[.panel-name[universities]
 ```{r, echo=FALSE, eval=TRUE}
 universities%>% gt() %>% 
-  tab_options(table.background.color="#f4f4f9", table.font.size = pct(8))
+    tab_style(
+  cell_text(size = '14px'),
+            locations = list(cells_body(),
+                             cells_column_labels(everything()),
+                             cells_title())) %>%  
+  tab_options(table.background.color="#f4f4f9")
 ```
 ]
 
@@ -1893,7 +1935,13 @@ burger_prices <-
 .panelset[
 .panel[.panel-name[Burger Prices]
 ```{r, echo=FALSE, eval=TRUE}
-burger_prices %>% gt() %>% tab_options(table.background.color="#f4f4f9",container.overflow.x = TRUE, container.overflow.y = TRUE)
+burger_prices %>% gt() %>%
+    tab_style(
+  cell_text(size = '24px'),
+            locations = list(cells_body(),
+                             cells_column_labels(everything()),
+                             cells_title())) %>% 
+  tab_options(table.background.color="#f4f4f9",container.overflow.x = TRUE, container.overflow.y = TRUE)
 ```
 ]
 
