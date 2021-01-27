@@ -34,12 +34,10 @@ MPAs <- MPAs %>% separate(
 ) # two spaces
 
 
-# unnest rows -------------------------------------------------------------
-# unnest the 'reference' variable
+# separate rows -------------------------------------------------------------
+# separate the 'reference' variable
 MPAs <- MPAs %>%
-  mutate(reference = str_split(reference, "\\|")) %>%
-  unnest(cols = reference)
-
+  separate_rows(reference, sep = "\\|") 
 
 # arrange by ISO3 country codes ---------------------------------------------
 MPAs <- MPAs %>% arrange(country_code_ISO3)
