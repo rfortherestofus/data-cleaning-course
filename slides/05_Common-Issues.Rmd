@@ -27,6 +27,12 @@ options(htmltools.dir.version = FALSE, htmltools.preserve.raw = FALSE)
 xaringanExtra::use_tachyons()
 ```
 
+```{r xaringan-extra-styles, eval=TRUE}
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,     
+)
+```
+
 ```{r imgs setup, echo=FALSE, eval=TRUE}
 knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
 ```
@@ -48,6 +54,12 @@ class: center, middle, dk-section-title
 background-image:url("images/michael-We2t3suGiYk-unsplash.jpg")
 background-size: cover
 # Common Issues in Real-World Data and Their Consequences
+
+???
+
+For this part of the course, we’ll go over most common issues that we encounter in real-world data. The files and datasets that we receive or come across for day-to-day use are never as usable as the ones we use when we’re learning.
+
+So, in the following lessons, we will learn how to identify these issues, and more importantly, how to fix them.
 
 ---
 
@@ -71,6 +83,17 @@ background-size: cover
   - break a workflow
   - introduce biases
   - waste resources (computational, $)  
+
+???
+
+The thing with real-world data is that files and tables vary in how messy they are, and these issues can vary in how much they affect our workflows.
+
+In some cases we might not be able to load the data into our software of choice, or maybe we can, but they will not be immediately usable and we will not be able to get things done in the first place.
+
+Alternatively, real world data can have small issues that can go unnoticed until 
+they either break something, or they introduce biases and errors. At this point it is likely that going back and fixing these issues will mean wasting time or resources.  
+
+The good news is that most issues can be fixed before they trip up any data analysis or visualization, and simply by being aware of the most common issues we can make data usable more efficiently.
 
 ---
 
@@ -98,6 +121,18 @@ background-size: cover
 3\. Grouping variables
 ]
 
+???
+
+There is no single sequence for cleaning data, but I recommend this general workflow because these broad steps make our data more usable without 
+
+The first prerequisite would be to make sure we have rectangular data, with usable rows and columns.
+
+After that, it is advisable to have column names that mean something to us, and preferably that follow a consistent naming scheme. 
+
+For the rows in our data, we want to be able to identify the observational units, and have one row for each observation.
+
+Once we have usable rows and columns, then we can make sure that any variable that aggregates our observations into groups is doing so adequately.
+
 ---
 
 ## Less interpretation
@@ -114,11 +149,25 @@ Whitespace, duplication, letter case
 Cleaning numeric variables, unbreaking values, extracting target data
 ]
 
+???
+
+Although there is no specific recipe to follow for cleaning data, there are some steps that we can do first because they will not interfere with the rest of our work. If we recognize any of these issues in our data, we can usually fix them first because they need less interpretation from us about why these issues are present in the first place.
+
+For example, extra spaces between words are rarely intentional and present in our data because they mean something. More likely, they are typing mistakes or artifacts from prior data transformations, so we can just get rid of any spaces that we determine to be unwanted. This can also apply to inconsistencies in letter case, and unless we are specifically interested in how capitalization varies within our data, we can usually fix this straight away.  Same with duplicate entries.
+
+On the other hand, there are issues in our data for which we need to stop and make a more careful interpretation. For example, we might need to figure out what it means if a numeric variable has inconsistent decimal symbols or annotations, or if values are broken across more than one row or column, what criteria were used to break them. This will become clear as we go over the most common issues.
+
 ---
 class: center, middle, dk-section-title
 background-image:url("images/james-rathmell-t0iwmK0WC0Y-unsplash.jpg")
 background-size: cover
 # Unusable Headers 
+
+???
+
+Whether our data has a only handful of rows and columns, or millions of observations for hundreds of columns, we need ways of referring to each column. To refer efficiently to 2 or 2000 columns, we need them to have usable, informative names.
+
+The names for the columns in our data are in the first row, or the header. If the headers have issues, we need to address them before we proceed.  This is why sorting out headers is the first general step in our workflow.
 
 ---
 
@@ -156,6 +205,15 @@ useless %>%
 
 - Do not sort well  
 
+???
+
+There are many ways for headers to be unusable. The most common issue with headers is when they have Inconsistent or uninformative names.
+
+In this example, column names in the header are all distinct, but they do not tell us much. This name has a dot between words and this one an underscore.
+
+Names like these are more difficult to remember, and to refer to them  in functions. Another consequence of inconsistent naming is that columns will not sort well if we want to sort them alphabetically.
+
+Inconsistent names are fixable with string manipulation, which we will do later on.
 
 ---
 
@@ -206,12 +264,25 @@ Separators become implicit
 `NAs` introduced
 ]
 
+???
+
+Another common issue that makes headers unusable is when column names are broken across rows. This means that the header row only contains part of the column names, and the remaining parts are embedded in the first few rows which should only contain data. I’ve seen this a lot when working with spreadsheets.
+
+As we can see in this example, variable names appear outside of the header row, and fragments of the headers are mixed in data rows. The separator between fragments is nowhere to be seen, so we dont know if it was originally a space, a dot, a dash, underscore, or nothing. 
+
+To make things worse, there are NA or empty values introduced for names that aren’t broken.
+
+This can also fixed, but before we do so, let’s go over some good practices for naming variables.
+
 ---
 
 ## Cleaning column names
 
+--
+
 ### Syntactically valid variable names
 
+--
 
 - Contain only letters, numbers, dots or underscores
 
@@ -223,6 +294,11 @@ Separators become implicit
 
 - Not reserved words (_if_, _else_, _for_, _in_, _TRUE_, _NaN_, etc.)  
 
+???
+
+In the data organization section, we discussed good names for files, objects, and variables, but lets go a little deeper. Syntactically valid means that R will understand these names and that they will not cause any functions to fail. 
+
+Valid names should not have special characters or reserved words meant for other uses, and start with a letter or a dot. Many of the functions that are involved in creating tables, data frames, and variables protect us from making invalid names, but we still need them to be informative and consistent.
 
 ---
 
@@ -236,8 +312,9 @@ Rename or clean with .orange.b[regex]
 ]
 .right-column[
 .large[
-Clean names with 📦 **.rrured.b[`janitor`]**  
+Clean with .b.purple[`clean_names()`] from 📦 **.rrured.b[`janitor`]**  
 ]
+
 - Strips special characters
 
 - Changes spaces and dots to underscores
@@ -246,7 +323,15 @@ Clean names with 📦 **.rrured.b[`janitor`]**
 
 ]
 
+???
+
+To clean column names, we can always perform string manipulations on the names and use regular expressions, but the JANITOR package has a useful purpose-built function  for cleaning names. 
+
+The clean names function will strip any special characters, replace spaces and dots with underscores, and apply a consistent letter case. 
+
+
 ---
+
 ```{r, echo=FALSE, eval=TRUE}
 badnames <- tibble::tribble(
   ~X,    ~X1, ~X2, ~mean_Score, ~AVERAGE.SCORE,
@@ -264,6 +349,10 @@ badnames
 badnames %>% 
   clean_names()
 ```
+
+???
+
+Here, this tibble object called badnames is piped into the clean names function, with no additional arguments, and in the resulting object all the names have consistent spacing and letter case.
 
 ---
 
@@ -284,12 +373,16 @@ badheaders <- tibble::tribble(
 badheaders
 ```
 
+???
+
+Clean names make headers usable, but if they are broken across rows, we can also use a purpose-built tool to put them together. This tibble object called badheaders has its headers broken across rows
+
 ---
 
 ## Broken headers
 
 .large[
-Mash the top _n_ data rows column-wise with 📦 .rrured.b[`unheadr`]
+Mash the top _n_ data rows column-wise with .b.purple[`mash_colnames()`] from 📦 .rrured.b[`unheadr`]
 ]
 
 ```{r, eval=FALSE}
@@ -297,6 +390,14 @@ badheaders %>%
     mash_colnames(n_name_rows = 1, # number of data rows with header fragments #<<
                    sep = "_") # separator for collapsing header fragments
 ```
+
+> Data rows exclude the header row
+
+???
+
+If we encounter this issue, we can use the mash colnames function from the unheadr package. 
+
+Mash colnames has an n name rows argument, where we specify how many data rows have name fragments, we can also specify what to use as a separator when collapsing the header fragments. 
 
 ---
 
@@ -313,6 +414,12 @@ badheaders %>%
                 sep = "_") %>% 
   clean_names()
 ```
+
+???
+
+In this case there is one row with parts of the names, and we want to use an underscore for the new names.
+
+After that, we can pipe the resulting object into clean names, which will give us consistent letter case.
 
 ---
 
