@@ -27,7 +27,7 @@ options(htmltools.dir.version = FALSE, htmltools.preserve.raw = FALSE)
 xaringanExtra::use_tachyons()
 ```
 
-```{r xaringan-extra-styles, eval=TRUE}
+```{r xaringan-extra-styles, eval=TRUE, echo=FALSE}
 xaringanExtra::use_extra_styles(
   hover_code_line = TRUE,     
 )

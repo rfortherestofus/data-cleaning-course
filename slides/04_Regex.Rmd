@@ -26,6 +26,12 @@ options(htmltools.dir.version = FALSE, htmltools.preserve.raw = FALSE)
 xaringanExtra::use_panelset()
 ```
 
+```{r xaringan-extra-styles, eval=TRUE, echo=FALSE}
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,     
+)
+```
+
 ```{r imgs setup, echo=FALSE, eval=TRUE}
 knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
 
@@ -404,8 +410,6 @@ class: center, middle
 
 ---
 
-### Wildcards
-
 .large[
 .b[Wildcards] stand in for unknown characters  
 ]
@@ -428,8 +432,6 @@ class: center, middle
 
 ---
 
-### Character sets
-
 .large[
 .b[Character sets] match one or more characters inside the square brackets 
 ]
@@ -440,17 +442,14 @@ class: center, middle
 ***
 
 --
-</br>
 
 .b.orange[[cb]at] matches ".b.bg-yellow[cat]", and ".b.bg-yellow[bat]", but not "rat"
 
 --
 
-.b.orange[[CK]at[iey]] matches ".b.bg-yellow[Caty]", ".b.bg-yellow[Kati]", ".b.bg-yellow[Kati]", and ".b.bg-yellow[Kate]"
+.b.orange[[CK]at[iey]] matches ".b.bg-yellow[Caty]", ".b.bg-yellow[Kati]", ".b.bg-yellow[Katy]", and ".b.bg-yellow[Kate]"
 
 ---
-
-### Negation tokens
 
 .large[
 .b[Negation tokens]&nbsp;  
@@ -463,7 +462,7 @@ class: center, middle
 
 --
 
-.b.orange[[^aoeio]] matches consonants
+.b.orange[[^aoeiou]] matches consonants
 
 --
 
@@ -613,8 +612,6 @@ c) [cC]omputer[s]+
 
 ---
 
-### Alternation
-
 .large[
 .b[Alternation] tokens separate a series of alternatives]  
 .large[.orange.b.pre[&nbsp;|&nbsp;] &nbsp;&nbsp; either or
@@ -625,11 +622,9 @@ c) [cC]omputer[s]+
 .b.orange[dog|bird] matches ".b.purple.bg-yellow[dog]" or ".b.purple.bg-yellow[bird]"
 
 .b.orange[gr(a|e)y] matches ".b.purple.bg-yellow[gray]" and ".b.purple.bg-yellow[grey]"
-> alternation is enclosed in brackets
+> note the alternation enclosed in brackets
 
 ---
-
-### Special sequences and escapes
 
 .large[
 .b[Special sequences and escapes]<br>
@@ -641,7 +636,9 @@ c) [cC]omputer[s]+
 ### Escapes
 .b.orange[\\\\\\\\(hello\\\\\\\\)] matches ".b.purple.bg-yellow[(hello)]"
 
+.large[
 > parentheses treated as literal characters but escape the parenthesis first
+]
 
 --
 
@@ -649,26 +646,29 @@ _Metacharacters inside a character set are stripped of their special nature_
 
 ---
 
-### Shorthand sequences
-
 .large[.b[Shorthand sequences] are available to refer to commonly-used character sets
 ]
-.b.orange[\w] &nbsp;all letters and numbers   <br>
-.b.orange[\d] &nbsp;digits<br>
-.orange.b[\t]  &nbsp;tab <br>
-.orange.b[\n]  &nbsp;new line<br>
-.orange.b[\s]  &nbsp;space<br>
-.orange.b[\b]  &nbsp;word boundary<br>
-
----
-
-### Word boundaries
 
 --
 
-Match positions between a _word_ character (letter, digit or underscore) and a non-word character (usually a space or the start/end of a string).
-***  
+.b.orange[\w] &nbsp;letters, underscore, and numbers  <br>
+.b.orange[\d] &nbsp;digits<br>
+.orange.b[\t]  &nbsp;&nbsp; tab &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .orange.b[\n]  &nbsp; new line &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .orange.b[\s]  &nbsp;space<br>
+.orange.b[\b]  &nbsp;word boundary<br>
 
+>.small[Predefined character classes help us avoid malformed character sets]
+
+---
+
+### Word boundaries .b.orange[`\\b`]
+
+--
+
+Match **positions** between a _word_ character (letter, digit or underscore) and a non-word character (usually a space or the start/end of a string).
+*** 
+
+???
+zero width
 --
 
 > Before a sequence of word characters
@@ -683,6 +683,26 @@ Match positions between a _word_ character (letter, digit or underscore) and a n
 
 
 ---
+### _Word_ characters .b.orange[`\\w`]
+
+--
+
+Matches any character (letter, digit or underscore). Useful in combination with word boundaries and quantifiers.
+***  
+
+--
+
+Equivalent to .orange[\[a-zA-Z0-9_\]]
+
+--
+
+.b.orange[\\w] matches letters (case insensitive), numbers, and underscores in:
+
+.b.bg-yellow.purple[F33d].%.b.bg-yellow.purple[the_mÖusE] .b.bg-yellow.purple[pl]@.b.bg-yellow.purple[ase]!!# 
+
+
+---
+
 class: inverse
 ### Your Turn
 
@@ -695,8 +715,6 @@ Why are the matches different with the following three regular expressions?
  a) at  
  b) \bat  
  c) at\b
-
----
 
 ---
 
@@ -727,16 +745,37 @@ background-size: cover
 
 ---
 
+## Word characters, quantifiers, word boundaries, and anchors
+
+.b.orange[\w+\b$] matches the last word in a string
+
+"Fix the .b.purple.bg-yellow[car]."  
+"12 .b.purple.bg-yellow[eggs]"
+
+.b.orange[^\w+\b] matches the first word in a string
+
+".b.purple.bg-yellow[Fix] the car."  
+".b.purple.bg-yellow[12] eggs"
+
+---
+
+```{r, echo=FALSE, eval=TRUE, fig.align='center', out.width='66%'}
+knitr::include_graphics("images/regular-expressions.svg")
+```
+</br>
+.center.small[Modified from '[Regular Expressions](https://github.com/rstudio/concept-maps/#regular-expressions)' concept map by Greg Wilson]
+---
+
 class: my-turn
 ## My Turn
 
 Write regular expressions for the patterns below and test them in an interactive tool:
 
-* "dogs" but only if string begins with "dogs"  
-* strings that start with digits  
-* UPPERCASE strings  
-* numbers in brackets  
-* strings that end in “at” but longer than 3 characters   
+1. "dogs" but only if string begins with "dogs"  
+2. strings that start with digits  
+3. UPPERCASE strings  
+4. numbers in brackets  
+5. strings that end in “at” but longer than 3 characters   
 
 
 ---
@@ -757,6 +796,15 @@ class: center, middle, dk-section-title
 background-image:url("images/joakim-honkasalo-1LEq1hqDxEg-unsplash.jpg")
 background-size: cover
 # Regex in R
+
+---
+
+Variable names and columns of type `character` can be matched with regular expressions in common data transformations, including data cleaning.
+--
+
+```{r, echo=FALSE, eval=TRUE, fig.align='center', out.width='95%'}
+knitr::include_graphics("images/regexsubsetting.png")
+```
 
 ---
 
@@ -948,8 +996,7 @@ names(penguins)
 
 ```{r, eval=TRUE}
 penguins %>% 
-  select(species, bill_length_mm, flipper_length_mm) %>% 
-  sample_n(3)
+  select(species, bill_length_mm, flipper_length_mm) %>% sample_n(3)
 ```
  
 ---
@@ -1027,7 +1074,11 @@ companies <- data.frame(
 .panel[.panel-name[companies]
 
 ```{r panel-chunk comps, fig.show='hide', eval=TRUE, echo=FALSE}
-companies %>% gt::gt() %>% gt::tab_options(table.font.size = 4)
+companies %>% gt::gt() %>%   tab_style(
+    cell_text(size = '17px'),
+    locations = list(cells_body(),
+                     cells_column_labels(everything()),
+                     cells_title()))
 ```
 ]
 
@@ -1088,7 +1139,11 @@ tibble::tribble(
 .panelset[
 .panel[.panel-name[team_record]
 ```{r, fig.show='hide', eval=TRUE, echo=FALSE}
-team_record %>% gt::gt()
+team_record %>% gt::gt()  %>% tab_style(
+    cell_text(size = '17px'),
+    locations = list(cells_body(),
+                     cells_column_labels(everything()),
+                     cells_title()))
 ```
 ]
 .panel[.panel-name[Data setup]
@@ -1106,8 +1161,8 @@ tibble::tribble(
 ]
 ]
 
-.b[`str_extract()`] extracts matching patterns  
-.b[`str_remove()`]  removes matched patterns
+.b.purple[`str_extract()`] extracts matching patterns  
+.b.purple[`str_remove()`]  removes matched patterns
 
 ---
 
@@ -1126,7 +1181,7 @@ team_record %>%
 ---
 
 ### Extract substrings
-.large.b[`str_remove_all()`]
+.large.b.purple[`str_remove_all()`]
 ```{r, eval=TRUE}
 team_record %>%
   mutate(result_comment = str_extract(string = result, pattern = "\\(.+\\)")) %>% 
