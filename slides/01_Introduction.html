@@ -8,6 +8,7 @@
     <link href="libs/pagedtable/css/pagedtable.css" rel="stylesheet" />
     <script src="libs/pagedtable/js/pagedtable.js"></script>
     <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link href="libs/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" type="text/css" />
   </head>
   <body>
@@ -41,26 +42,36 @@ layout: true
 
 
 
+
+
 class: center, middle, dk-section-title
 background-image:url("images/gawn-australia-_OUvt8kLf0s-unsplash.jpg")
 background-size: cover
 # What is Data Cleaning?
 
+???
+Hello and welcome to the Data Cleaning with R course.
+Before we begin, let's define Data Cleaning. The following are quotes from some of the more common definitions.
 ---
 
 class: center, middle
 
 &gt;.large["Mechanistic, time consuming process of identifying and fixing incomplete, inaccurate, irrelevant, or duplicated data"]
 
+???
+One popular definition describes data cleaning as a Mechanistic, time consuming process of identifying and fixing incomplete, inaccurate, irrelevant, or duplicated data
 --
 
 &gt;.large["Tedious tasks that get in the way of extracting true value and insights from data"]
 
-
+???
+Others mention a series of annoying tasks that get in the way of extracting true insights from data
 --
 
 &gt; .large["Not difficult, not _real_ work. Done (grudgingly) before the main analyses"]
 
+???
+and some say it is not difficult and not real work. that it is done grudgingly before the actual analyses.
 ---
 
 class: center, middle
@@ -71,6 +82,11 @@ class: center, middle
 
 &gt; .large["~~.gray[Not difficult, not _real_ work. Done (grudgingly) before the main analyses"]~~]
 
+???
+I'd like to refute some of that. 
+Data cleaning involves fixing issues with our data to make them more usable. 
+
+It is real work, and it is not trivial.
 ---
 
 ## Data cleaning:
@@ -78,29 +94,47 @@ class: center, middle
 .large[
 A spectrum of **reusable data transformations**  to make data **usable** and to obtain more meaningful results from our analysis or visualization methods.] 
 
+???
+
+Let's try again. We can define data cleaning as a spectrum of data transformation steps to make data usable and to obtain more meaningful results from our workflows.
+
 --
 
 .large[
 Has no single end product, because different systems and methods consume different input data formats and structures.] 
 
+???
+
+There is no one particular end product when we're cleaning data, because different programs take different inputs, and we need to adjust our approach for each one. Still, clean data has certan things in common that we will be discussing throughout this course.  
+
 ---
 
 ## Cleaning data involves:
+
+???
+When we need to clean our data, these are the three main steps in the process.
 
 --
 
 .large[
 **1\.** Identifying specific **issues** that hinder an analysis, visualization, or reporting workflow.]  
 
+???
+First, we identify the issues that hinder our workflows
 --
 
 .large[
 **2\.** Determining which approach or tool is needed to address each issue.] 
 
+???
+Then we determine which approach or tool we need to fix each issue
 --
 .large[
-**3\.** Transforming the data, making it more appropriate and valuable for a variety of downstream purposes.
+**3\.** Transforming the data, making them more appropriate and valuable for a variety of downstream purposes.
 ]
+
+???
+Finally, we transform the data, making them more useful for various different purposes.
 
 ---
 
@@ -123,27 +157,45 @@ Has no single end product, because different systems and methods consume differe
 - Numbers stored as text  
 ]
 
+???
+Most of the existing definitions of data cleaning mention fixing issues with the data, but these so colled issues are often mentioned without descriptions. I have tried to collect and describe the most common ones here.
+
+Data in the real world usually have these issues. This list here is for reference, and we will deal with all of the most common issues in a later section of this course.
 ---
 
 ## Why data cleaning
+
+???
+We often need to clean our data simply to get our software to import the data, and behave as we expect it to.
 
 --
 .large[
 - Enables downstream tasks by making data readable &amp; usable  
 ]
+???
+Clean data makes downstream tasks possible.
 --
 .large[
 - Saves time (rows and columns in a data object ready for use)  
 ]
+???
+Having clean data saves time, for example, by having tables with rows and columns on which we can immediately perform operations.
 --
 .large[
 - Avoid potentially costly delays, or misinterpretations
 ]
 
+???
+After that, clean data is important to avoid delays, biases, or misinterpretations.
+
 ---
 
 ## Why data cleaning in R
 
+???
+Why should we use R for data cleaning.
+
+Because, by working with code and not interactively with pointing and clicking, we leave a record of our actions which we can revisit whenever we want.
 --
 .large[
 - Document and reproduce the process  
@@ -152,27 +204,47 @@ Has no single end product, because different systems and methods consume differe
 .large[
 - Less time editing manually  
 ]
+???
+with R, we can work on large files or with many files at once, which saves us time and might not even be feasible if done by hand.
 --
 .large[
 - Purpose-built tools available and well documented
 ]
+???
+One of the main reasons I like R so much for data cleaning is because there are a number of tools and packages built specifically for this, which have good documentation and a large community of helpful users.
 --
 .large[
 - Code can be reproduced and repurposed
 ] 
-
+???
+Finally, the code we write can be run many times and repurposed for new projects.
 ---
+class: center, middle
 
+# Examples
+
+???
+Now, let me show you some examples of what can happen when we don't clean our data.
+---
 class: middle, center
 
 &lt;img src="images/drugs.png" width="96%" /&gt;
+
+???
+This graph is entirely fictional, but it is based on a real one I saw on an internal dashboard used by a pharmaceutical company. This chart shows drug sales in a year, taller bars mean more sales and the bars are ordered in decreasing value. If an executive is simply interested in knowing which was the top selling drug that year, this plot can be misleading. 
+
+Why is that?
+
+Well, there are minor variations in how the drug names were stored in the original data, and this issue made it onto a final product. Look at the labels. There are two drugs with duplicate entries because the plotting software does not realize that a name with underscores between names should be the same as a name with spaces. Same with two drugs that vary in letter case, one is in all upper case.
+
+In this situation, the top-selling drug is not the one the chart is showing, so this is misleading. This looks obvious, but these kinds of issues are common and they can go unnoticed if we are working, for example with many years worth of data for hundreds of drugs.
 
 ---
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#zcirjbidrc .gt_table {
+#cwdgwgtinn .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -197,7 +269,7 @@ class: middle, center
   border-left-color: #D3D3D3;
 }
 
-#zcirjbidrc .gt_heading {
+#cwdgwgtinn .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -209,7 +281,7 @@ class: middle, center
   border-right-color: #D3D3D3;
 }
 
-#zcirjbidrc .gt_title {
+#cwdgwgtinn .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -219,7 +291,7 @@ class: middle, center
   border-bottom-width: 0;
 }
 
-#zcirjbidrc .gt_subtitle {
+#cwdgwgtinn .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -229,13 +301,13 @@ class: middle, center
   border-top-width: 0;
 }
 
-#zcirjbidrc .gt_bottom_border {
+#cwdgwgtinn .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zcirjbidrc .gt_col_headings {
+#cwdgwgtinn .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -250,7 +322,7 @@ class: middle, center
   border-right-color: #D3D3D3;
 }
 
-#zcirjbidrc .gt_col_heading {
+#cwdgwgtinn .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -270,7 +342,7 @@ class: middle, center
   overflow-x: hidden;
 }
 
-#zcirjbidrc .gt_column_spanner_outer {
+#cwdgwgtinn .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -282,15 +354,15 @@ class: middle, center
   padding-right: 4px;
 }
 
-#zcirjbidrc .gt_column_spanner_outer:first-child {
+#cwdgwgtinn .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zcirjbidrc .gt_column_spanner_outer:last-child {
+#cwdgwgtinn .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zcirjbidrc .gt_column_spanner {
+#cwdgwgtinn .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -302,7 +374,7 @@ class: middle, center
   width: 100%;
 }
 
-#zcirjbidrc .gt_group_heading {
+#cwdgwgtinn .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -324,7 +396,7 @@ class: middle, center
   vertical-align: middle;
 }
 
-#zcirjbidrc .gt_empty_group_heading {
+#cwdgwgtinn .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -339,15 +411,15 @@ class: middle, center
   vertical-align: middle;
 }
 
-#zcirjbidrc .gt_from_md > :first-child {
+#cwdgwgtinn .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#zcirjbidrc .gt_from_md > :last-child {
+#cwdgwgtinn .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#zcirjbidrc .gt_row {
+#cwdgwgtinn .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -366,7 +438,7 @@ class: middle, center
   overflow-x: hidden;
 }
 
-#zcirjbidrc .gt_stub {
+#cwdgwgtinn .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -378,7 +450,7 @@ class: middle, center
   padding-left: 12px;
 }
 
-#zcirjbidrc .gt_summary_row {
+#cwdgwgtinn .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -388,7 +460,7 @@ class: middle, center
   padding-right: 5px;
 }
 
-#zcirjbidrc .gt_first_summary_row {
+#cwdgwgtinn .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -398,7 +470,7 @@ class: middle, center
   border-top-color: #D3D3D3;
 }
 
-#zcirjbidrc .gt_grand_summary_row {
+#cwdgwgtinn .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -408,7 +480,7 @@ class: middle, center
   padding-right: 5px;
 }
 
-#zcirjbidrc .gt_first_grand_summary_row {
+#cwdgwgtinn .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -418,11 +490,11 @@ class: middle, center
   border-top-color: #D3D3D3;
 }
 
-#zcirjbidrc .gt_striped {
+#cwdgwgtinn .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zcirjbidrc .gt_table_body {
+#cwdgwgtinn .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -431,7 +503,7 @@ class: middle, center
   border-bottom-color: #D3D3D3;
 }
 
-#zcirjbidrc .gt_footnotes {
+#cwdgwgtinn .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -445,13 +517,13 @@ class: middle, center
   border-right-color: #D3D3D3;
 }
 
-#zcirjbidrc .gt_footnote {
+#cwdgwgtinn .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#zcirjbidrc .gt_sourcenotes {
+#cwdgwgtinn .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -465,52 +537,52 @@ class: middle, center
   border-right-color: #D3D3D3;
 }
 
-#zcirjbidrc .gt_sourcenote {
+#cwdgwgtinn .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#zcirjbidrc .gt_left {
+#cwdgwgtinn .gt_left {
   text-align: left;
 }
 
-#zcirjbidrc .gt_center {
+#cwdgwgtinn .gt_center {
   text-align: center;
 }
 
-#zcirjbidrc .gt_right {
+#cwdgwgtinn .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zcirjbidrc .gt_font_normal {
+#cwdgwgtinn .gt_font_normal {
   font-weight: normal;
 }
 
-#zcirjbidrc .gt_font_bold {
+#cwdgwgtinn .gt_font_bold {
   font-weight: bold;
 }
 
-#zcirjbidrc .gt_font_italic {
+#cwdgwgtinn .gt_font_italic {
   font-style: italic;
 }
 
-#zcirjbidrc .gt_super {
+#cwdgwgtinn .gt_super {
   font-size: 65%;
 }
 
-#zcirjbidrc .gt_footnote_marks {
+#cwdgwgtinn .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="zcirjbidrc" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="cwdgwgtinn" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   <thead class="gt_header">
     <tr>
       <th colspan="2" class="gt_heading gt_title gt_font_normal" style>Faculty Productivity Bonuses</th>
     </tr>
     <tr>
-      <th colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>2017 - School of Engineering</th>
+      <th colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>2020 - School of Engineering</th>
     </tr>
   </thead>
   <thead class="gt_col_headings">
@@ -570,6 +642,11 @@ class: middle, center
   </tfoot>
 </table></div>
 
+???
+This other example is also fictional, but it is based on a report used at a university to award the most productive faculty member each year with a cash bonus. This is a simplified made up version, but it is another good example of the consequences of not cleaning data before making calculations.
+
+Here, the same faculty members appears twice in the data, because for whatever reason some entries include  titles while the rest of the entries do not. This is also a simple fix, which could have avoided the administrative hassle and embarrassment of amending the award after it had already been paid to the wrong person. 
+
 ---
 
 class: middle, center
@@ -577,6 +654,12 @@ class: middle, center
 &lt;img src="images/fishlandings.png" width="100%" /&gt;
 
 .small[Source: [Kenya Ministry of Agriculture, Livestock and Fisheries](https://africaopendata.org/organization/kenya-ministry-of-agriculture-livestock-and-fisheries)]
+
+???
+
+This next example is real data, describing fisheries data for a lake in Kenya in 2016. There are no mistakes in the values, but the data are structured in a way that makes sense to humans but is harder to feed into any analysis. 
+
+If we had to restructure multiple files with this complicated structure, say, for many lakes and many years, the process can become time consuming. Fortunately, we can do this more efficiently in R, and will do so in a later lesson.
 
 ---
 
@@ -587,13 +670,17 @@ class: middle, center
 
 .small[Source: Ojeda _et al._ [(1999)](https://doi.org/10.1006/jare.1999.0496)]
 
+???
+This next example is a table from a scientific publication. A lot of information is being presented here and if we were to try and import the contents of this table into our analysis software, we would most likely run into some trouble. 
+
+Again, nothing is inherently wrong with this table, but sometimes we might be forced to import and work with these kinds of data sources
 ---
 
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#xqeehgkiyo .gt_table {
+#cymnhrtiuq .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -618,7 +705,7 @@ class: middle, center
   border-left-color: #D3D3D3;
 }
 
-#xqeehgkiyo .gt_heading {
+#cymnhrtiuq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -630,7 +717,7 @@ class: middle, center
   border-right-color: #D3D3D3;
 }
 
-#xqeehgkiyo .gt_title {
+#cymnhrtiuq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -640,7 +727,7 @@ class: middle, center
   border-bottom-width: 0;
 }
 
-#xqeehgkiyo .gt_subtitle {
+#cymnhrtiuq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -650,13 +737,13 @@ class: middle, center
   border-top-width: 0;
 }
 
-#xqeehgkiyo .gt_bottom_border {
+#cymnhrtiuq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xqeehgkiyo .gt_col_headings {
+#cymnhrtiuq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -671,7 +758,7 @@ class: middle, center
   border-right-color: #D3D3D3;
 }
 
-#xqeehgkiyo .gt_col_heading {
+#cymnhrtiuq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -691,7 +778,7 @@ class: middle, center
   overflow-x: hidden;
 }
 
-#xqeehgkiyo .gt_column_spanner_outer {
+#cymnhrtiuq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -703,15 +790,15 @@ class: middle, center
   padding-right: 4px;
 }
 
-#xqeehgkiyo .gt_column_spanner_outer:first-child {
+#cymnhrtiuq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xqeehgkiyo .gt_column_spanner_outer:last-child {
+#cymnhrtiuq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xqeehgkiyo .gt_column_spanner {
+#cymnhrtiuq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -723,7 +810,7 @@ class: middle, center
   width: 100%;
 }
 
-#xqeehgkiyo .gt_group_heading {
+#cymnhrtiuq .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -745,7 +832,7 @@ class: middle, center
   vertical-align: middle;
 }
 
-#xqeehgkiyo .gt_empty_group_heading {
+#cymnhrtiuq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -760,15 +847,15 @@ class: middle, center
   vertical-align: middle;
 }
 
-#xqeehgkiyo .gt_from_md > :first-child {
+#cymnhrtiuq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xqeehgkiyo .gt_from_md > :last-child {
+#cymnhrtiuq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xqeehgkiyo .gt_row {
+#cymnhrtiuq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -787,7 +874,7 @@ class: middle, center
   overflow-x: hidden;
 }
 
-#xqeehgkiyo .gt_stub {
+#cymnhrtiuq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -799,7 +886,7 @@ class: middle, center
   padding-left: 12px;
 }
 
-#xqeehgkiyo .gt_summary_row {
+#cymnhrtiuq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -809,7 +896,7 @@ class: middle, center
   padding-right: 5px;
 }
 
-#xqeehgkiyo .gt_first_summary_row {
+#cymnhrtiuq .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -819,7 +906,7 @@ class: middle, center
   border-top-color: #D3D3D3;
 }
 
-#xqeehgkiyo .gt_grand_summary_row {
+#cymnhrtiuq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -829,7 +916,7 @@ class: middle, center
   padding-right: 5px;
 }
 
-#xqeehgkiyo .gt_first_grand_summary_row {
+#cymnhrtiuq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -839,11 +926,11 @@ class: middle, center
   border-top-color: #D3D3D3;
 }
 
-#xqeehgkiyo .gt_striped {
+#cymnhrtiuq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xqeehgkiyo .gt_table_body {
+#cymnhrtiuq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -852,7 +939,7 @@ class: middle, center
   border-bottom-color: #D3D3D3;
 }
 
-#xqeehgkiyo .gt_footnotes {
+#cymnhrtiuq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -866,13 +953,13 @@ class: middle, center
   border-right-color: #D3D3D3;
 }
 
-#xqeehgkiyo .gt_footnote {
+#cymnhrtiuq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#xqeehgkiyo .gt_sourcenotes {
+#cymnhrtiuq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -886,55 +973,55 @@ class: middle, center
   border-right-color: #D3D3D3;
 }
 
-#xqeehgkiyo .gt_sourcenote {
+#cymnhrtiuq .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#xqeehgkiyo .gt_left {
+#cymnhrtiuq .gt_left {
   text-align: left;
 }
 
-#xqeehgkiyo .gt_center {
+#cymnhrtiuq .gt_center {
   text-align: center;
 }
 
-#xqeehgkiyo .gt_right {
+#cymnhrtiuq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xqeehgkiyo .gt_font_normal {
+#cymnhrtiuq .gt_font_normal {
   font-weight: normal;
 }
 
-#xqeehgkiyo .gt_font_bold {
+#cymnhrtiuq .gt_font_bold {
   font-weight: bold;
 }
 
-#xqeehgkiyo .gt_font_italic {
+#cymnhrtiuq .gt_font_italic {
   font-style: italic;
 }
 
-#xqeehgkiyo .gt_super {
+#cymnhrtiuq .gt_super {
   font-size: 65%;
 }
 
-#xqeehgkiyo .gt_footnote_marks {
+#cymnhrtiuq .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="xqeehgkiyo" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="cymnhrtiuq" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">mfr</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">model</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">year</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">bdy_style</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">hp</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">trq</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-size: 18px;">mfr</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-size: 18px;">model</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-size: 18px;">year</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-size: 18px;">bdy_style</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-size: 18px;">hp</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-size: 18px;">trq</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -942,71 +1029,71 @@ class: middle, center
       <td colspan="6" class="gt_group_heading">Germany</td>
     </tr>
     <tr>
-      <td class="gt_row gt_left">Audi</td>
-      <td class="gt_row gt_left">S8</td>
-      <td class="gt_row gt_right">2016</td>
-      <td class="gt_row gt_left">sedan</td>
-      <td class="gt_row gt_right">520</td>
-      <td class="gt_row gt_right">481</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">Audi</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">R8</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">2015</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">coupe</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">430</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">317</td>
     </tr>
     <tr>
-      <td class="gt_row gt_left">BMW</td>
-      <td class="gt_row gt_left">M6</td>
-      <td class="gt_row gt_right">2016</td>
-      <td class="gt_row gt_left">coupe</td>
-      <td class="gt_row gt_right">560</td>
-      <td class="gt_row gt_right">500</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">Porsche</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">911</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">2016</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">coupe</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">350</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">287</td>
     </tr>
     <tr>
-      <td class="gt_row gt_left">Audi</td>
-      <td class="gt_row gt_left">R8</td>
-      <td class="gt_row gt_right">2015</td>
-      <td class="gt_row gt_left">coupe</td>
-      <td class="gt_row gt_right">430</td>
-      <td class="gt_row gt_right">317</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">Mercedes-Benz</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">AMG GT</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">2016</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">coupe</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">503</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">479</td>
     </tr>
     <tr>
-      <td class="gt_row gt_left">BMW</td>
-      <td class="gt_row gt_left">M5</td>
-      <td class="gt_row gt_right">2016</td>
-      <td class="gt_row gt_left">sedan</td>
-      <td class="gt_row gt_right">560</td>
-      <td class="gt_row gt_right">500</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">Audi</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">S6</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">2016</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">sedan</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">450</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">406</td>
     </tr>
     <tr class="gt_group_heading_row">
       <td colspan="6" class="gt_group_heading">Italy</td>
     </tr>
     <tr>
-      <td class="gt_row gt_left">Ferrari</td>
-      <td class="gt_row gt_left">FF</td>
-      <td class="gt_row gt_right">2015</td>
-      <td class="gt_row gt_left">coupe</td>
-      <td class="gt_row gt_right">652</td>
-      <td class="gt_row gt_right">504</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">Ferrari</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">458 Spider</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">2015</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">convertible</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">562</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">398</td>
     </tr>
     <tr>
-      <td class="gt_row gt_left">Maserati</td>
-      <td class="gt_row gt_left">Ghibli</td>
-      <td class="gt_row gt_right">2016</td>
-      <td class="gt_row gt_left">sedan</td>
-      <td class="gt_row gt_right">345</td>
-      <td class="gt_row gt_right">369</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">Ferrari</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">LaFerrari</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">2015</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">coupe</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">949</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">664</td>
     </tr>
     <tr>
-      <td class="gt_row gt_left">Ferrari</td>
-      <td class="gt_row gt_left">458 Speciale</td>
-      <td class="gt_row gt_right">2015</td>
-      <td class="gt_row gt_left">coupe</td>
-      <td class="gt_row gt_right">597</td>
-      <td class="gt_row gt_right">398</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">Maserati</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">Ghibli</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">2016</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">sedan</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">345</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">369</td>
     </tr>
     <tr>
-      <td class="gt_row gt_left">Lamborghini</td>
-      <td class="gt_row gt_left">Huracan</td>
-      <td class="gt_row gt_right">2015</td>
-      <td class="gt_row gt_left">coupe</td>
-      <td class="gt_row gt_right">610</td>
-      <td class="gt_row gt_right">413</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">Maserati</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">Quattroporte</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">2016</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">sedan</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">404</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">406</td>
     </tr>
   </tbody>
   
@@ -1014,6 +1101,23 @@ class: middle, center
 </table></div>
 
 .small[source: `gt:gtcars` Luxury Automobiles Dataset]
+
+???
+
+This last example describes some fancy cars. Things are OK for the most part, but notice these rows that group the cars by their country of their manufacturer. This is informative and readable, but not ideal from an analysis perspective, and we will see why later on in the course.
+
+
+These were just some examples, but hopefully you were able to recognize some of the more common issue in the data and relate them to things you may have seen in your own work.
+
+---
+class: inverse
+
+## Your turn
+
+1. Read this short blog [post](https://www.johndcook.com/blog/2021/01/12/data-pathology/) by John D. Cook.
+.center[https://www.johndcook.com/blog/2021/01/12/data-pathology/]
+
+2. Reflect on the amount (if any) of data cleaning you perform for your day-to-day work.
 
 ---
 
