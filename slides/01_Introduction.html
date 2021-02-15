@@ -50,8 +50,8 @@ background-size: cover
 # What is Data Cleaning?
 
 ???
-Hello and welcome to the Data Cleaning with R course.
-Before we begin, let's define Data Cleaning. The following are quotes from some of the more common definitions.
+Hello and welcome to Data Cleaning with R.
+Before we begin, let's define Data Cleaning. Let's look at some of the more common definitions.
 ---
 
 class: center, middle
@@ -84,7 +84,7 @@ class: center, middle
 
 ???
 I'd like to refute some of that. 
-Data cleaning involves fixing issues with our data to make them more usable. 
+Data cleaning means fixing issues with our data to make them more usable. 
 
 It is real work, and it is not trivial.
 ---
@@ -96,7 +96,7 @@ A spectrum of **reusable data transformations**  to make data **usable** and to 
 
 ???
 
-Let's try again. We can define data cleaning as a spectrum of data transformation steps to make data usable and to obtain more meaningful results from our workflows.
+Let's try again. We can define data cleaning as a spectrum of data transformation steps to make data usable and to get more meaningful results from our workflows.
 
 --
 
@@ -127,7 +127,7 @@ First, we identify the issues that hinder our workflows
 **2\.** Determining which approach or tool is needed to address each issue.] 
 
 ???
-Then we determine which approach or tool we need to fix each issue
+Then we determine which approach or tool we will need
 --
 .large[
 **3\.** Transforming the data, making them more appropriate and valuable for a variety of downstream purposes.
@@ -158,9 +158,10 @@ Finally, we transform the data, making them more useful for various different pu
 ]
 
 ???
-Most of the existing definitions of data cleaning mention fixing issues with the data, but these so colled issues are often mentioned without descriptions. I have tried to collect and describe the most common ones here.
+While I was preparing this class, I noticed that 
+most definitions of data cleaning mention fixing issues with the data, but these issues are often mentioned without descriptions or context. I collected the most common ones here.
 
-Data in the real world usually have these issues. This list here is for reference, and we will deal with all of the most common issues in a later section of this course.
+Data in the real world usually have these issues. This list here is for reference,but we will deal with all of them at a later section of this course.
 ---
 
 ## Why data cleaning
@@ -211,7 +212,7 @@ with R, we can work on large files or with many files at once, which saves us ti
 - Purpose-built tools available and well documented
 ]
 ???
-One of the main reasons I like R so much for data cleaning is because there are a number of tools and packages built specifically for this, which have good documentation and a large community of helpful users.
+I also like R so much for data cleaning because there are a number of tools and packages built specifically for this, which have good documentation and a large community of users ready to help us if we get stuck.
 --
 .large[
 - Code can be reproduced and repurposed
@@ -224,18 +225,18 @@ class: center, middle
 # Examples
 
 ???
-Now, let me show you some examples of what can happen when we don't clean our data.
+Let me show you some examples of what can happen when we don't clean our data.
 ---
 class: middle, center
 
 &lt;img src="images/drugs.png" width="96%" /&gt;
 
 ???
-This graph is entirely fictional, but it is based on a real one I saw on an internal dashboard used by a pharmaceutical company. This chart shows drug sales in a year, taller bars mean more sales and the bars are ordered in decreasing value. If an executive is simply interested in knowing which was the top selling drug that year, this plot can be misleading. 
+This graph is entirely fictional, but it is based on a real used by a pharmaceutical company. This chart shows drug sales in a year. If an executive wants to know which was the top selling drug that year, this plot can be misleading. 
 
 Why is that?
 
-Well, there are minor variations in how the drug names were stored in the original data, and this issue made it onto a final product. Look at the labels. There are two drugs with duplicate entries because the plotting software does not realize that a name with underscores between names should be the same as a name with spaces. Same with two drugs that vary in letter case, one is in all upper case.
+Look at the labels in the axis. There are minor variations in how the drug names were stored in the original data, and this small issue snuck onto a final product.  There are two drugs with duplicate entries because the plotting software does not realize that a name with underscores between words should be the same as a name with spaces between word. The same happened with two names that vary in letter case, is in all upper case and the other one isnt.
 
 In this situation, the top-selling drug is not the one the chart is showing, so this is misleading. This looks obvious, but these kinds of issues are common and they can go unnoticed if we are working, for example with many years worth of data for hundreds of drugs.
 
@@ -244,7 +245,7 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#cwdgwgtinn .gt_table {
+#cqbrbnsrjw .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -269,7 +270,7 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   border-left-color: #D3D3D3;
 }
 
-#cwdgwgtinn .gt_heading {
+#cqbrbnsrjw .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -281,7 +282,7 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   border-right-color: #D3D3D3;
 }
 
-#cwdgwgtinn .gt_title {
+#cqbrbnsrjw .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -291,7 +292,7 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   border-bottom-width: 0;
 }
 
-#cwdgwgtinn .gt_subtitle {
+#cqbrbnsrjw .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -301,13 +302,13 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   border-top-width: 0;
 }
 
-#cwdgwgtinn .gt_bottom_border {
+#cqbrbnsrjw .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#cwdgwgtinn .gt_col_headings {
+#cqbrbnsrjw .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -322,7 +323,7 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   border-right-color: #D3D3D3;
 }
 
-#cwdgwgtinn .gt_col_heading {
+#cqbrbnsrjw .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -342,7 +343,7 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   overflow-x: hidden;
 }
 
-#cwdgwgtinn .gt_column_spanner_outer {
+#cqbrbnsrjw .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -354,15 +355,15 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   padding-right: 4px;
 }
 
-#cwdgwgtinn .gt_column_spanner_outer:first-child {
+#cqbrbnsrjw .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#cwdgwgtinn .gt_column_spanner_outer:last-child {
+#cqbrbnsrjw .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#cwdgwgtinn .gt_column_spanner {
+#cqbrbnsrjw .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -374,7 +375,7 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   width: 100%;
 }
 
-#cwdgwgtinn .gt_group_heading {
+#cqbrbnsrjw .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -396,7 +397,7 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   vertical-align: middle;
 }
 
-#cwdgwgtinn .gt_empty_group_heading {
+#cqbrbnsrjw .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -411,15 +412,15 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   vertical-align: middle;
 }
 
-#cwdgwgtinn .gt_from_md > :first-child {
+#cqbrbnsrjw .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#cwdgwgtinn .gt_from_md > :last-child {
+#cqbrbnsrjw .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#cwdgwgtinn .gt_row {
+#cqbrbnsrjw .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -438,7 +439,7 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   overflow-x: hidden;
 }
 
-#cwdgwgtinn .gt_stub {
+#cqbrbnsrjw .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -450,7 +451,7 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   padding-left: 12px;
 }
 
-#cwdgwgtinn .gt_summary_row {
+#cqbrbnsrjw .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -460,7 +461,7 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   padding-right: 5px;
 }
 
-#cwdgwgtinn .gt_first_summary_row {
+#cqbrbnsrjw .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -470,7 +471,7 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   border-top-color: #D3D3D3;
 }
 
-#cwdgwgtinn .gt_grand_summary_row {
+#cqbrbnsrjw .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -480,7 +481,7 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   padding-right: 5px;
 }
 
-#cwdgwgtinn .gt_first_grand_summary_row {
+#cqbrbnsrjw .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -490,11 +491,11 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   border-top-color: #D3D3D3;
 }
 
-#cwdgwgtinn .gt_striped {
+#cqbrbnsrjw .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#cwdgwgtinn .gt_table_body {
+#cqbrbnsrjw .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -503,7 +504,7 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   border-bottom-color: #D3D3D3;
 }
 
-#cwdgwgtinn .gt_footnotes {
+#cqbrbnsrjw .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -517,13 +518,13 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   border-right-color: #D3D3D3;
 }
 
-#cwdgwgtinn .gt_footnote {
+#cqbrbnsrjw .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#cwdgwgtinn .gt_sourcenotes {
+#cqbrbnsrjw .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -537,46 +538,46 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   border-right-color: #D3D3D3;
 }
 
-#cwdgwgtinn .gt_sourcenote {
+#cqbrbnsrjw .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#cwdgwgtinn .gt_left {
+#cqbrbnsrjw .gt_left {
   text-align: left;
 }
 
-#cwdgwgtinn .gt_center {
+#cqbrbnsrjw .gt_center {
   text-align: center;
 }
 
-#cwdgwgtinn .gt_right {
+#cqbrbnsrjw .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#cwdgwgtinn .gt_font_normal {
+#cqbrbnsrjw .gt_font_normal {
   font-weight: normal;
 }
 
-#cwdgwgtinn .gt_font_bold {
+#cqbrbnsrjw .gt_font_bold {
   font-weight: bold;
 }
 
-#cwdgwgtinn .gt_font_italic {
+#cqbrbnsrjw .gt_font_italic {
   font-style: italic;
 }
 
-#cwdgwgtinn .gt_super {
+#cqbrbnsrjw .gt_super {
   font-size: 65%;
 }
 
-#cwdgwgtinn .gt_footnote_marks {
+#cqbrbnsrjw .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="cwdgwgtinn" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="cqbrbnsrjw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   <thead class="gt_header">
     <tr>
       <th colspan="2" class="gt_heading gt_title gt_font_normal" style>Faculty Productivity Bonuses</th>
