@@ -54,7 +54,7 @@ background-size: cover
 
 ???
 Hello and welcome to Data Cleaning with R.
-Before we begin, let's define Data Cleaning. Let's look at some of the more common definitions.
+Before we begin, let's define Data Cleaning. Let's look at some common definitions.
 ---
 
 class: center, middle
@@ -62,13 +62,13 @@ class: center, middle
 &gt;.large["Mechanistic, time consuming process of identifying and fixing incomplete, inaccurate, irrelevant, or duplicated data"]
 
 ???
-One popular definition describes data cleaning as a Mechanistic, time consuming process of identifying and fixing incomplete, inaccurate, irrelevant, or duplicated data
+One popular definition describes data cleaning as a mechanistic, time consuming process of identifying and fixing incomplete, inaccurate, irrelevant, or duplicated data
 --
 
 &gt;.large["Tedious tasks that get in the way of extracting true value and insights from data"]
 
 ???
-Others mention a series of annoying tasks that get in the way of extracting true insights from data
+Others see it as an obstacle to extracting true insights from data
 --
 
 &gt; .large["Not difficult, not _real_ work. Done (grudgingly) before the main analyses"]
@@ -87,9 +87,7 @@ class: center, middle
 
 ???
 I'd like to refute some of that. 
-Data cleaning means fixing issues with our data to make them more usable. 
-
-It is real work, and it is not trivial.
+yes, data cleaning means fixing issues with our data, but it is real work, and it is not trivial.
 ---
 
 ## Data cleaning:
@@ -235,11 +233,11 @@ class: middle, center
 &lt;img src="images/drugs.png" width="96%" /&gt;
 
 ???
-This graph is entirely fictional, but it is based on a real used by a pharmaceutical company. This chart shows drug sales in a year. If an executive wants to know which was the top selling drug that year, this plot can be misleading. 
+This graph is fictional, but it is based on a real used by a pharmaceutical company. It shows drug sales in a year. If, for example, an executive wants to know which was the top selling drug that year, this plot can be misleading. 
 
 Why is that?
 
-Look at the labels in the axis. There are minor variations in how the drug names were stored in the original data, and this small issue snuck onto a final product.  There are two drugs with duplicate entries because the plotting software does not realize that a name with underscores between words should be the same as a name with spaces between word. The same happened with two names that vary in letter case, is in all upper case and the other one isnt.
+Look at the labels on the x-axis. Each drug should only appear once, but some appear twice. This is because there are small variations in how the drug names were stored. The plotting software does not realize that underscores should be the same as spaces, or that a name in upper or lower case refers to the same drug.
 
 In this situation, the top-selling drug is not the one the chart is showing, so this is misleading. This looks obvious, but these kinds of issues are common and they can go unnoticed if we are working, for example with many years worth of data for hundreds of drugs.
 
@@ -248,7 +246,7 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#wiguwdebyz .gt_table {
+#csglmkzsqz .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -273,7 +271,7 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   border-left-color: #D3D3D3;
 }
 
-#wiguwdebyz .gt_heading {
+#csglmkzsqz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -285,7 +283,7 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   border-right-color: #D3D3D3;
 }
 
-#wiguwdebyz .gt_title {
+#csglmkzsqz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -295,7 +293,7 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   border-bottom-width: 0;
 }
 
-#wiguwdebyz .gt_subtitle {
+#csglmkzsqz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -305,13 +303,13 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   border-top-width: 0;
 }
 
-#wiguwdebyz .gt_bottom_border {
+#csglmkzsqz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wiguwdebyz .gt_col_headings {
+#csglmkzsqz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -326,7 +324,7 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   border-right-color: #D3D3D3;
 }
 
-#wiguwdebyz .gt_col_heading {
+#csglmkzsqz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -346,7 +344,7 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   overflow-x: hidden;
 }
 
-#wiguwdebyz .gt_column_spanner_outer {
+#csglmkzsqz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -358,15 +356,15 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   padding-right: 4px;
 }
 
-#wiguwdebyz .gt_column_spanner_outer:first-child {
+#csglmkzsqz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wiguwdebyz .gt_column_spanner_outer:last-child {
+#csglmkzsqz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wiguwdebyz .gt_column_spanner {
+#csglmkzsqz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -378,7 +376,7 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   width: 100%;
 }
 
-#wiguwdebyz .gt_group_heading {
+#csglmkzsqz .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -400,7 +398,7 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   vertical-align: middle;
 }
 
-#wiguwdebyz .gt_empty_group_heading {
+#csglmkzsqz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -415,15 +413,15 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   vertical-align: middle;
 }
 
-#wiguwdebyz .gt_from_md > :first-child {
+#csglmkzsqz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wiguwdebyz .gt_from_md > :last-child {
+#csglmkzsqz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wiguwdebyz .gt_row {
+#csglmkzsqz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -442,7 +440,7 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   overflow-x: hidden;
 }
 
-#wiguwdebyz .gt_stub {
+#csglmkzsqz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -454,7 +452,7 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   padding-left: 12px;
 }
 
-#wiguwdebyz .gt_summary_row {
+#csglmkzsqz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -464,7 +462,7 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   padding-right: 5px;
 }
 
-#wiguwdebyz .gt_first_summary_row {
+#csglmkzsqz .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -474,7 +472,7 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   border-top-color: #D3D3D3;
 }
 
-#wiguwdebyz .gt_grand_summary_row {
+#csglmkzsqz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -484,7 +482,7 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   padding-right: 5px;
 }
 
-#wiguwdebyz .gt_first_grand_summary_row {
+#csglmkzsqz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -494,11 +492,11 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   border-top-color: #D3D3D3;
 }
 
-#wiguwdebyz .gt_striped {
+#csglmkzsqz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wiguwdebyz .gt_table_body {
+#csglmkzsqz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -507,7 +505,7 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   border-bottom-color: #D3D3D3;
 }
 
-#wiguwdebyz .gt_footnotes {
+#csglmkzsqz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -521,13 +519,13 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   border-right-color: #D3D3D3;
 }
 
-#wiguwdebyz .gt_footnote {
+#csglmkzsqz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#wiguwdebyz .gt_sourcenotes {
+#csglmkzsqz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -541,46 +539,46 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
   border-right-color: #D3D3D3;
 }
 
-#wiguwdebyz .gt_sourcenote {
+#csglmkzsqz .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#wiguwdebyz .gt_left {
+#csglmkzsqz .gt_left {
   text-align: left;
 }
 
-#wiguwdebyz .gt_center {
+#csglmkzsqz .gt_center {
   text-align: center;
 }
 
-#wiguwdebyz .gt_right {
+#csglmkzsqz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wiguwdebyz .gt_font_normal {
+#csglmkzsqz .gt_font_normal {
   font-weight: normal;
 }
 
-#wiguwdebyz .gt_font_bold {
+#csglmkzsqz .gt_font_bold {
   font-weight: bold;
 }
 
-#wiguwdebyz .gt_font_italic {
+#csglmkzsqz .gt_font_italic {
   font-style: italic;
 }
 
-#wiguwdebyz .gt_super {
+#csglmkzsqz .gt_super {
   font-size: 65%;
 }
 
-#wiguwdebyz .gt_footnote_marks {
+#csglmkzsqz .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="wiguwdebyz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="csglmkzsqz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   <thead class="gt_header">
     <tr>
       <th colspan="2" class="gt_heading gt_title gt_font_normal" style>Faculty Productivity Bonuses</th>
@@ -596,22 +594,38 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left">James Wilson</td>
-<td class="gt_row gt_left">19 $$$</td></tr>
-    <tr><td class="gt_row gt_left">Colt Whitman</td>
-<td class="gt_row gt_left">18*</td></tr>
-    <tr><td class="gt_row gt_left">Jane Allen</td>
-<td class="gt_row gt_left">17*</td></tr>
-    <tr><td class="gt_row gt_left">Maria Dias</td>
-<td class="gt_row gt_left">14</td></tr>
-    <tr><td class="gt_row gt_left">Dr. Deavan Smith</td>
-<td class="gt_row gt_left">9</td></tr>
-    <tr><td class="gt_row gt_left">Angie Ramirez</td>
-<td class="gt_row gt_left">7</td></tr>
-    <tr><td class="gt_row gt_left">Ellen Dice</td>
-<td class="gt_row gt_left">5</td></tr>
-    <tr><td class="gt_row gt_left">Dr. Jane Allen</td>
-<td class="gt_row gt_left">4</td></tr>
+    <tr>
+      <td class="gt_row gt_left">James Wilson</td>
+      <td class="gt_row gt_left">19 $$$</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Colt Whitman</td>
+      <td class="gt_row gt_left">18*</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Jane Allen</td>
+      <td class="gt_row gt_left">17*</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Maria Dias</td>
+      <td class="gt_row gt_left">14</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Dr. Deavan Smith</td>
+      <td class="gt_row gt_left">9</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Angie Ramirez</td>
+      <td class="gt_row gt_left">7</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Ellen Dice</td>
+      <td class="gt_row gt_left">5</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Dr. Jane Allen</td>
+      <td class="gt_row gt_left">4</td>
+    </tr>
   </tbody>
   
   <tfoot>
@@ -631,9 +645,9 @@ In this situation, the top-selling drug is not the one the chart is showing, so 
 </table></div>
 
 ???
-This other example is also fictional, but it is based on a report used at a university to award the most productive faculty member each year with a cash bonus. This is a simplified made up version, but it is another good example of the consequences of not cleaning data before making calculations.
+This other example is also simplified and fictional, but it is based on a report used at a real university. Each year, the most productive faculty member receives a cash bonus, based on a report that is generated automatically. This is a good example of the consequences of not cleaning data before making calculations.
 
-Here, the same faculty members appears twice in the data, because for whatever reason some entries include  titles while the rest of the entries do not. This is also a simple fix, which could have avoided the administrative hassle and embarrassment of amending the award after it had already been paid to the wrong person. 
+Here, one faculty members appears twice in the data, because for whatever reason some entries include academic titles while the rest of the entries do not. This is also a simple fix, which could have avoided some embarrassment. 
 
 ---
 
@@ -645,9 +659,9 @@ class: middle, center
 
 ???
 
-This next example is real data, describing fisheries data for a lake in Kenya in 2016. There are no mistakes in the values, but the data are structured in a way that makes sense to humans but is harder to feed into any analysis. 
+This next example is real, describing fisheries data for a lake in Kenya in 2016. There are no mistakes in the values, but the data are structured in a way that makes sense to humans but is harder to feed into any analysis software. 
 
-If we had to restructure multiple files with this complicated structure, say, for many lakes and many years, the process can become time consuming. Fortunately, we can do this more efficiently in R, and will do so in a later lesson.
+If we had to restructure multiple files with this complicated layout, say, for many lakes and many years, the process can become time consuming. Fortunately, we can do this more efficiently in R, and will do so in a later lesson.
 
 ---
 
@@ -659,7 +673,7 @@ If we had to restructure multiple files with this complicated structure, say, fo
 .small[Source: Ojeda _et al._ [(1999)](https://doi.org/10.1006/jare.1999.0496)]
 
 ???
-This next example is a table from a scientific publication. A lot of information is being presented here and let's assume the only version of these data is in a PDF file. if we were to try and work with the contents of this table, we would most likely run into some trouble. 
+This next example is a table from a scientific publication. A lot of information is being presented here, and let's assume the only version of these data is in a PDF file. If wanted to work with the contents of this table, we would most likely run into some trouble. 
 
 Nothing is inherently wrong with this table, but sometimes we might be forced to import and work with these kinds of data sources
 ---
@@ -1016,57 +1030,73 @@ Nothing is inherently wrong with this table, but sometimes we might be forced to
     <tr class="gt_group_heading_row">
       <td colspan="6" class="gt_group_heading">Germany</td>
     </tr>
-    <tr><td class="gt_row gt_left" style="font-size: 18px;">Audi</td>
-<td class="gt_row gt_left" style="font-size: 18px;">R8</td>
-<td class="gt_row gt_right" style="font-size: 18px;">2015</td>
-<td class="gt_row gt_left" style="font-size: 18px;">coupe</td>
-<td class="gt_row gt_right" style="font-size: 18px;">430</td>
-<td class="gt_row gt_right" style="font-size: 18px;">317</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 18px;">Porsche</td>
-<td class="gt_row gt_left" style="font-size: 18px;">911</td>
-<td class="gt_row gt_right" style="font-size: 18px;">2016</td>
-<td class="gt_row gt_left" style="font-size: 18px;">coupe</td>
-<td class="gt_row gt_right" style="font-size: 18px;">350</td>
-<td class="gt_row gt_right" style="font-size: 18px;">287</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 18px;">Mercedes-Benz</td>
-<td class="gt_row gt_left" style="font-size: 18px;">AMG GT</td>
-<td class="gt_row gt_right" style="font-size: 18px;">2016</td>
-<td class="gt_row gt_left" style="font-size: 18px;">coupe</td>
-<td class="gt_row gt_right" style="font-size: 18px;">503</td>
-<td class="gt_row gt_right" style="font-size: 18px;">479</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 18px;">Audi</td>
-<td class="gt_row gt_left" style="font-size: 18px;">S6</td>
-<td class="gt_row gt_right" style="font-size: 18px;">2016</td>
-<td class="gt_row gt_left" style="font-size: 18px;">sedan</td>
-<td class="gt_row gt_right" style="font-size: 18px;">450</td>
-<td class="gt_row gt_right" style="font-size: 18px;">406</td></tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 18px;">Audi</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">R8</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">2015</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">coupe</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">430</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">317</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 18px;">Porsche</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">911</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">2016</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">coupe</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">350</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">287</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 18px;">Mercedes-Benz</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">AMG GT</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">2016</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">coupe</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">503</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">479</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 18px;">Audi</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">S6</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">2016</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">sedan</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">450</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">406</td>
+    </tr>
     <tr class="gt_group_heading_row">
       <td colspan="6" class="gt_group_heading">Italy</td>
     </tr>
-    <tr><td class="gt_row gt_left" style="font-size: 18px;">Ferrari</td>
-<td class="gt_row gt_left" style="font-size: 18px;">458 Spider</td>
-<td class="gt_row gt_right" style="font-size: 18px;">2015</td>
-<td class="gt_row gt_left" style="font-size: 18px;">convertible</td>
-<td class="gt_row gt_right" style="font-size: 18px;">562</td>
-<td class="gt_row gt_right" style="font-size: 18px;">398</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 18px;">Ferrari</td>
-<td class="gt_row gt_left" style="font-size: 18px;">LaFerrari</td>
-<td class="gt_row gt_right" style="font-size: 18px;">2015</td>
-<td class="gt_row gt_left" style="font-size: 18px;">coupe</td>
-<td class="gt_row gt_right" style="font-size: 18px;">949</td>
-<td class="gt_row gt_right" style="font-size: 18px;">664</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 18px;">Maserati</td>
-<td class="gt_row gt_left" style="font-size: 18px;">Ghibli</td>
-<td class="gt_row gt_right" style="font-size: 18px;">2016</td>
-<td class="gt_row gt_left" style="font-size: 18px;">sedan</td>
-<td class="gt_row gt_right" style="font-size: 18px;">345</td>
-<td class="gt_row gt_right" style="font-size: 18px;">369</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 18px;">Maserati</td>
-<td class="gt_row gt_left" style="font-size: 18px;">Quattroporte</td>
-<td class="gt_row gt_right" style="font-size: 18px;">2016</td>
-<td class="gt_row gt_left" style="font-size: 18px;">sedan</td>
-<td class="gt_row gt_right" style="font-size: 18px;">404</td>
-<td class="gt_row gt_right" style="font-size: 18px;">406</td></tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 18px;">Ferrari</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">458 Spider</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">2015</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">convertible</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">562</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">398</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 18px;">Ferrari</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">LaFerrari</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">2015</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">coupe</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">949</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">664</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 18px;">Maserati</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">Ghibli</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">2016</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">sedan</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">345</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">369</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 18px;">Maserati</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">Quattroporte</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">2016</td>
+      <td class="gt_row gt_left" style="font-size: 18px;">sedan</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">404</td>
+      <td class="gt_row gt_right" style="font-size: 18px;">406</td>
+    </tr>
   </tbody>
   
   
@@ -1092,6 +1122,9 @@ class: inverse
 2. Reflect on the amount (if any) of data cleaning you perform for your day-to-day work.
 
 ???
+Before we get to any code, please complete these short tasks. 
+First, read a short text on why we should not consider data cleaning an obstacle to our work.
+Then, reflect on how much time you spent cleaning data in your own work, do you enjoy it? do you find it tedious?
 
 ---
 
@@ -1100,16 +1133,23 @@ background-image:url("images/willian-justen-de-vasconcellos-JJEQ1SQhkEg-unsplash
 background-size: cover
 # Data Cleaning is Analysis
 
+???
+Before moving on, I want to really emphasize that data cleaning is the first step in an analysis. Let me elaborate.
+
 ---
 
-### When we clean data, we make judgements and interpretations
+### When we clean data, we make judgments and interpretations
+
+???
+
+When we clean data, we make judgments and interpretations
 
 --
 
 - Are the data in a usable structure?
 
 ???
-Can we use the data in their current state, or will we need to restructure it first. 
+Can we use the data in their current state?
 
 --
 
@@ -1117,20 +1157,22 @@ Can we use the data in their current state, or will we need to restructure it fi
 
 ???
 Also, what constitutes unwanted variation?
-As we saw earlier in an example, can we consider spaces between words to mean the same as underscores between words? or do we want to keep this kind of variation. It will always depend on the context.
+As we saw earlier in an example, are spaces between words interchangeable with underscores? do we want to keep this kind of variation? It will always depend on the context.
 
 --
 
 - Is there any implicit information that needs to made explicit?
 
 ???
-is there any piece of information that is only implied but not actually recorded within a table, if so, we may need to bring it into the data first.
+Sometimes we need to figure out if there is any information that is only implied but not actually recorded within a dataset. 
+
+Consider the example from earlier with the cars and the country of their makers. The country names show up in the data but it was up to us to interpret what this means. 
 --
 
 - What to do about missing data. 
 
 ???
-Finally, what to do about missing data.  We will go over this in detail later, but it is usually up to us to interpret what missing values mean before moving on with a workflow.
+Finally, what to do about missing data.  We will go over this in detail later, but it is up to us to interpret what missing values mean before moving on with a workflow.
 
 ---
 
@@ -1148,17 +1190,19 @@ class: center, middle
 
 ???
 
-Diagnosing issues with our data and doing something about them is step 1 is data analysis.
+Most of the time, diagnosing issues with our data and doing something about them is the first step in data analysis.
 
 ---
-class: center, middle
-
+.pull-left[
 &lt;blockquote class="twitter-tweet" data-dnt="true"&gt;&lt;p lang="en" dir="ltr"&gt;I will let the data speak for itself when it cleans itself&lt;/p&gt;&amp;mdash; Allison Reichel (@AllisonReichel) &lt;a href="https://twitter.com/AllisonReichel/status/1350107719236247558?ref_src=twsrc%5Etfw"&gt;January 15, 2021&lt;/a&gt;&lt;/blockquote&gt; &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt; 
-
+]
+.pull-right[
 &lt;blockquote class="twitter-tweet" data-dnt="true"&gt;&lt;p lang="en" dir="ltr"&gt;I was recently asked, “are you sure teaching Python &amp;amp; R is right? Isn’t the future all AI and ML?”&lt;br&gt;&lt;br&gt;Munging data is going to be step 1 of analysis for the foreseeable future. &lt;a href="https://t.co/n2tKDwI0wn"&gt;https://t.co/n2tKDwI0wn&lt;/a&gt;&lt;/p&gt;&amp;mdash; JD Long (@CMastication) &lt;a href="https://twitter.com/CMastication/status/1361050957962952705?ref_src=twsrc%5Etfw"&gt;February 14, 2021&lt;/a&gt;&lt;/blockquote&gt; &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt; 
+]
 
 ???
-I agree completely with this tweet by JD Long,  
+
+these two tweets summarize the importance of cleaning data before doing pretty much anything else. Being able to clean data is just as valuable as learning the most novel and complicated analytical methods.
 
 ---
 
@@ -1167,11 +1211,23 @@ background-image:url("images/endri-killo-tvWqbeOaJnw-unsplash.jpg")
 background-size: cover
 # The Data Cleaning Process
 
+???
+
+Now that we defined data cleaning, and that we recognize its importance in most workflows, lets go over the whole process.
+
 ---
 
 class: middle, center
 
 &lt;img src="images/workflow.png" width="110%" /&gt;
+
+???
+
+We start the inputs. R can import pretty much every kind of file from our computer or from a cloud service. We can import the files into R and keep the raw data intact, there is no need to modify it in place. 
+
+With our data loaded into R, we can explore, restructure, and fix any issues before going on to models and plots, or to export a clean version of the data. 
+
+All the while, by working with code and scripts, we are creating a record of what we did at each step.
 
 ---
 class: center, middle, dk-section-title
@@ -1179,6 +1235,8 @@ background-image:url("images/bence-boros-l3_9j916sh0-unsplash.jpg")
 background-size: cover
 # Course Logistics
 
+???
+We are almost ready to start cleaning data but before we do, lets spell out the general logistics for this course.
 ---
 
 ## Requirements and Prerequisites
@@ -1192,29 +1250,48 @@ background-size: cover
 
 - can install and load packages
 
+???
+
+Before you move on, you might want to check if you meet these basic prerequisites, like having R and Rstudio installed and ready. If you don't feel comfortable working with data types, objects, and functions, I suggest the free Fundamentals of R course.
 
 ---
 
 ## Course conventions
 
-- All packages available on **CRAN** (can be installed with .orange[`install.packages()`])   
+???
+Now, some conventions that I use throughout this course. 
 
 --
 
+- All packages available on **CRAN** (can be installed with .orange[`install.packages()`])   
+
+???
+All the packages we will be using are available on CRAN, which should make for easier installation. 
+--
+
 - All slides are available in html format
+
+???
+All the slides are available in html format, which you can open with any web browser. 
 
 --
 
 - Package names in .b.rrured[red], preceded by 📦  
 
+???
+All package names appear in red with a package emoji
 --
 
-- Functions and operators in .b.orange[orange]  
+- Functions and important operators in .b.orange[orange] or .b.purple[purple]  
 
+???
+Important functions and operators appear in orange or purple.
 --
 
 - Relevant example data is provided in slides (see '**data-setup**' panels)  
 
+???
+Finally, there is code for creating the example datasets that appear in the slides whenever a tabbed panel says data-setup.
 
 ---
 
@@ -1226,7 +1303,10 @@ background-size: cover
 
 - Default theme and pane layout  
 
-- Linux Mint 20.1
+- Windows 10
+
+???
+I'm running recent versions of R and Rstudio in Windows 10, and other than making the font slighly larger I made no additional customization.
 
 ---
 
@@ -1236,19 +1316,26 @@ background-size: cover
 **1\.** Create a new RStudio project on your computer
 
 
-**2\.** Download course materials (data needed for "your turn" exercises) with 
+**2\.** Download course materials (slides and data needed for "your turn" exercises) with 
 📦 .b.rrured[`usethis`]
 
 
 
 ```r
 install.packages("usethis") # Install first if necessary
-usethis::use_course("FINALURLHERE") # Download course materials 
+usethis::use_course("rfortherestofus/data-cleaning-course") # Download course materials 
 ```
 
 **3\.** Copy the downloaded materials to the folder containing the RStudio project you created for this course. 
 
+???
 
+For this course, we'll need to download some files.
+First, create a new RStudio project somewhere on your computer where you will be able to find it.
+Then, install the usethis package and call the use course function to download the course materials.
+Finally, copy contents of the new folder into the location of the Rstudio project you created for this course.
+
+I'll demonstrate these steps now.
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
