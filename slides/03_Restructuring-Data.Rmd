@@ -30,6 +30,17 @@ knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
 xaringanExtra::use_tachyons()
 ```
 
+```{r xaringan-animate-all, echo=FALSE, eval=TRUE}
+xaringanExtra::use_animate_all("fade")
+```
+
+```{r xaringan-extra-styles, eval=TRUE, echo=FALSE}
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,     
+)
+```
+
+
 ```{r, eval=TRUE, echo=FALSE}
 library(gt)
 library(dplyr)
@@ -223,7 +234,11 @@ beers <- tibble::tribble(
 .panel[.panel-name[beers]
 ```{r, echo=FALSE, eval=TRUE}
 beers %>% gt() %>% 
-  tab_options(table.background.color="#f4f4f9")
+  tab_style(
+    cell_text(size = '21px'),
+    locations = list(cells_body(),
+                     cells_column_labels(everything()),
+                     cells_title()))
 ```
 ]
 
@@ -459,6 +474,11 @@ beers %>%
 
 ```{r, echo=FALSE, eval=TRUE}
 beers %>% gt() %>% 
+    tab_style(
+    cell_text(size = '21px'),
+    locations = list(cells_body(),
+                     cells_column_labels(everything()),
+                     cells_title())) %>% 
   tab_options(table.background.color="#f4f4f9")
 ```
 
@@ -583,6 +603,11 @@ tibble::tribble(
 .panel[.panel-name[critters]
 ```{r, echo=FALSE, eval=TRUE}
 critters%>% gt() %>% 
+    tab_style(
+    cell_text(size = '17px'),
+    locations = list(cells_body(),
+                     cells_column_labels(everything()),
+                     cells_title())) %>% 
   tab_options(table.background.color="#f4f4f9")
 ```
 ]
@@ -779,6 +804,11 @@ tibble::tribble(
 .panel[.panel-name[sensors]
 ```{r, echo=FALSE, eval=TRUE}
 sensors %>% gt() %>% 
+    tab_style(
+    cell_text(size = '17px'),
+    locations = list(cells_body(),
+                     cells_column_labels(everything()),
+                     cells_title())) %>% 
   tab_options(table.background.color="#f4f4f9")
 ```
 ]
@@ -830,6 +860,11 @@ animal_populations <- tibble(animal=c("Bird",NA,NA,NA,NA,"Frog",NA,NA,NA),
 .fl.w-40[
 ```{r, eval=TRUE, echo=FALSE}
 animal_populations %>% gt() %>% 
+    tab_style(
+    cell_text(size = '21px'),
+    locations = list(cells_body(),
+                     cells_column_labels(everything()),
+                     cells_title())) %>% 
   tab_options(table.background.color="#f4f4f9")
 ```
 ]

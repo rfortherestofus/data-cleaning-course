@@ -37,6 +37,11 @@ knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
 
 ```
 
+```{r xaringan-animate-all, echo=FALSE, eval=TRUE}
+xaringanExtra::use_animate_all("fade")
+```
+
+
 ```{r preloaded data, echo=FALSE, eval=TRUE}
 library(palmerpenguins)
 library(stringr)
