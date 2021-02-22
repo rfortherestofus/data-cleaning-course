@@ -50,7 +50,7 @@ There two reasons for this.
 
 First, because having well-organized data means less time spent cleaning later on. This mostly applies at the data collection stage.
 
-Second, because it is a good idea to have a basic template when we are transforming data into more usable forms. This way, we don’t have to start from scratch constantly, and our clean data will be more likely to just work in future applications.
+Second, because it is a good idea to have a basic template when we are transforming data into more usable forms. This way, we don’t have to always start from scratch, and our clean data will be more likely to just work in future applications.
 
 ---
 
@@ -59,7 +59,7 @@ Second, because it is a good idea to have a basic template when we are transform
 
 ???
 
-Lets go over the more important properties of Well organized data
+Lets go over the more important properties and advantages of well organized data
 
 --
 
@@ -84,7 +84,7 @@ but also to identify and solve problems in existing data.
 
 ???
 
-Following good practices us when we are planning our data collection strategies, but also, being aware of what makes data well-organized can help us identify and solve problems in existing data.
+Following good practices helps us when we are planning our data collection, but also, being aware of what makes data well-organized can help us identify and solve problems in existing data.
 
 ---
 
@@ -134,16 +134,15 @@ knitr::include_graphics("images/consistency.png")
 
 ???
 
-Lets start with consistency
-We should always aim for consistency in names, layouts, abbreviations, and units.
+Lets start with consistency. We should always aim for consistency in names, layouts, abbreviations, and units.
 
 I’ll illustrate this with these two tables from two separate files, but with related information about a bird nest census.
 
-The names of the variables we see on the top row of these two tables have inconsistent capitalization. To make matters worse, when the same variable appears in both tables they appear with different names, for example, ID and BID.
+The names of the variables we see on the top row have inconsistent capitalization. To make matters worse, when the same variable appears in both tables they appear with different names, for example, ID and BID.
 
 We can also find inconsistency in values within the same column. Look at the State column, where a single value (California) appears in four different forms.  
 
-These two tables have at least three more glaring inconsistencies, can you spot them?
+These two tables have at least three more glaring inconsistencies, did you spot any?
 
 
 ---
@@ -162,7 +161,7 @@ For files, objects in our R environment, and variables in a table:
 
 ???
 
-Because some of the most important elements in our workflows have names, and we typically refer to them by name.
+Because some of the most important objects and elements in our workflows take names, and we typically refer to them by name.
 
 For good names, we can follow these three suggestions:
 
@@ -172,7 +171,7 @@ For good names, we can follow these three suggestions:
 
 ???
 
-1. short, informative names
+use short, informative names
 
 --
 
@@ -180,7 +179,7 @@ For good names, we can follow these three suggestions:
 
 ???
 
-2. avoid spaces or special characters, this helps us avoid syntax errors.
+avoid spaces or special characters
 
 --
 
@@ -189,7 +188,7 @@ For good names, we can follow these three suggestions:
 ???
 
 
-3. also, avoid versioning in names. We’ve all done this, but it can be confusing and counterproductive.
+third, avoid versioning in names. We’ve all done this, but it can be confusing and counterproductive.
 
 Let’s look at some examples of this advice in action
 
@@ -351,17 +350,27 @@ If this is not the case, we may need to clean and restructure first, but, is the
 
 ???
 
-Yes there is. We will follow tidy data principles throughout this course.
+Yes there is. We will follow a particular set of data organization principles throughout this course.
 
 ---
 
-## Tidy data 
+<style>
+.fakeh2{
+font-size:50px
+}
+</style>
+
+.fakeh2.b[Tidy data]&nbsp;  &nbsp; (Wickham [2014](https://www.jstatsoft.org/article/view/v059i10/))
 
 ???
+In this course, we will be follow tidy data principles. But what is tidy data?
 
-Tidy data was proposed by Hadley Wickham as a consistent way to structure datasets, making data transformation and visualization more straight forward. Tidy data is an accessible reformulation of existing principles and definitions from statistics and computer science, to ultimately help us structure our data for maximum usability. 
+Tidy data is an accessible reformulation of existing principles and definitions from statistics and computer science, to ultimately help us structure our data for maximum usability. 
+
+Tidy data was proposed by Hadley Wickham as a consistent way to structure datasets, making data transformation and visualization more straight forward. 
 
 Data are tidy when:
+
 --
 
 .center.large[
@@ -411,11 +420,11 @@ knitr::include_graphics("images/varscols.png", error=FALSE)
 
 Lets define variables and observations, and see what this looks like
 
-Variables are all values that measure the same attribute across many subjects
+Variables are all values that measure the same attribute across many subjects. In this example from marine biology, we're recording the tide conditions, our species of interest, and how many individuals we observed. The values for each of these attributes correspond do columns in the data.
 
-observations are all the values measured across different attributes on the same subject 
+**Observations** are all the values measured across different attributes on the same subject 
 
-In this example, we are measuring three different attributes and each observation collects all values across the attributes. This leaves us with values that belong to one variable and one observation. The advantages of tidy data will become more evident as we go on.
+In this example, we are measuring three different attributes and each observation collects all values across the attributes. This leaves us with values that belong to one variable and one observation. 
 
 ---
 
@@ -452,7 +461,7 @@ knitr::include_graphics("images/pivotingintro.gif", error=FALSE)
 
 ???
 
-First, tidy data keeps variables organized, and is easy to restructure without losing sense of what is being stored in a table. Look at his animation. The same data can be reshaped smoothly between a long, tidy structure and a wider, more concise structure.
+First, tidy data keeps variables organized, and is easy to restructure without losing sense of the original information. Look at his animation. The same data can be reshaped smoothly between a long, tidy structure and a wider, more concise structure.
 
 ---
 
@@ -473,9 +482,9 @@ knitr::include_graphics("images/discounts.png", error=FALSE)
 ```
 
 ???
- This example shows two ways of structuring some simple data on clothing items, their retail price, and some applicable discounts. In the tidy data on the left, we can immediately calculate the final price for each item with a basic formula because each variable is in a column and each observation is in a row. 
+This example shows two ways of structuring some simple data on clothing items, their retail price, and some applicable discounts. In the tidy data on the left, we can immediately calculate the final price for each item with a simple formula because each variable is in a column and each observation is in a row. 
 
-It is more complicated to do the same calculation with the data presented on the right, because the values of price and discount are intermingled in the same column.
+It is more complicated to do the same calculation with the data on the right, because the values of price and discount are intermingled in the same column.
 
 ---
 
@@ -501,7 +510,7 @@ Variables feed directly into model specifications and plotting parameters.
 
 ???
 
-With tidy data, variables can be passed directly to models or as elements of a plot. With the tiny table here, we can tell most functions that we want to draw the values of X vs Y as points in a scatterplot, and that we want the points for each observation to be colored according to the variable color.
+With tidy data, variables can be passed directly to models or as elements of a plot. With the tiny table here, we can tell most functions that we want to draw the values of X vs Y as points in a scatterplot, and that we want the points for each observation to be colored according to the variable called color.
 
 ---
 
@@ -527,7 +536,7 @@ Sometimes this structure can be more repetitive and take up more space on a page
 
 For tasks such as data entry or reporting, we can use other more convenient structures.
 
- Still, being aware of tidy data principles can really help us understand what, if anything, is wrong with the structure of a given dataset and what we can do about it.
+Still, being aware of tidy data principles can really help us understand what, if anything, is wrong with the structure of a given dataset and what we can do about it.
 
 To complement the general principles we’ve seen so far, next, we will go over three more specific pieces of advise that will help us organize our data better.
 
@@ -540,6 +549,7 @@ background-size: cover
 
 ???
 Well start with grouping and indicator variables.
+
 ---
 
 
@@ -558,6 +568,7 @@ Use indicator variables instead of encoding information into an existing value.
 Also, use indicator variables instead of encoding extra information into an existing variable.
 
 Ill show you what I mean.
+
 --
 
 ```{r, echo=FALSE, eval=TRUE, fig.align='center',out.width="90%"}
@@ -570,7 +581,7 @@ These tables show data for some students that play sports. The table on the left
 
 Notice how enrollment in either undergraduate or postgraduate programs is intermingled with the data, and how graduation status is encoded with an asterisk and a footnote. 
 
-These two attributes are variables in their own right, and for more usable data, they should appear as separate columns, like they do on the table on the right. This sounds simplistic, but imagine data like these for hundreds of students and having to count how many have graduated or how many are enrolled in each program without these additional columns. 
+These two attributes are variables in their own right, and for more usable data, they should appear as separate columns, like they do on the right. This sounds simplistic, but imagine data like these for hundreds of students and having to count how many have graduated or how many are enrolled in each program without these additional columns. 
 
 ---
 
@@ -624,7 +635,7 @@ We also should avoid using empty cells intentionally as padding to align values,
 
 ???
 
-And more importantly,  avoid missing values in the column headers.
+And more importantly,  avoid missing values in the column headers. We need names for our columns, so NAs here can be confusing.
 
 ---
 
@@ -635,7 +646,7 @@ knitr::include_graphics("images/NAblank.png")
 ???
 
 
-In the first half of this example, missing values are coded in four different ways, like blanks, NA, dashes, and -999. A consistent scheme is better, as shown on the right.
+In the first half of this example, missing values are coded in four different ways, like blanks, NA, dashes, and -999. A consistent scheme is better, as shown on the right. Making these inconsistent missing values into NAs is easy, but we need to be sure that they mean what we think they mean.
 
 ---
 

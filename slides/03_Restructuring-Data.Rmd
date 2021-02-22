@@ -55,7 +55,9 @@ background-size: cover
 
 ---
 
-## Tools for preparing, transforming, and restructuring data
+### Tools for preparing, transforming, and restructuring data
+
+--
 
 .fl.w-40[
 .tc[
