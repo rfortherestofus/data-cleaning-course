@@ -55,9 +55,19 @@ background-image:url("images/casey-horner-KtlTvi8leYQ-unsplash.jpg")
 background-size: cover
 # Toolbox Refresher
 
+???
+
+In previous lessons, we defined data cleaning and learned how to organize our data. Now we can get started with using R for data cleaning, and in particular, on first getting our data into sensible, usable structures.
+
+Let’s begin by going over the tools and packages that we’ll be using for this part and throughout this course in general.
+
 ---
 
 ### Tools for preparing, transforming, and restructuring data
+
+???
+
+When working in R for data cleaning, we’ll be calling on functions from two popular packages: dplyr and tidyr. Both are written and maintained by Rstudio staff with extensive community contributions. They are part of larger set of packages referred to as the tidyverse. 
 
 --
 
@@ -74,11 +84,20 @@ Flexible, but developed around built-in features that support a particular way o
 
 ]    
 
+???
+These tools are meant to be flexible, but they are built around built-in features that support a particular way of doing specific tasks.
+
 --
 
 - Hard to use incorrectly by accident   
 - Less code to achieve a goal  
 - Shared grammar and input/output data structures  
+
+???
+
+Functions in different tidyverse packages follow tidy data principles so they work well together. And, by having specialized purposes, each one does only one thing but they do it well.
+
+Having established that this course is tidyverse-oriented. Let’s go over another tool that we’ll be using to make our code easy to read.
 
 ---
 
@@ -86,17 +105,35 @@ Flexible, but developed around built-in features that support a particular way o
 
 To perform multiple operations in sequence:
 
+???
+
+When we work with functions to perform many sequential operations, we have three options.
+
 --
 
 - Nested code  
+
+???
+
+First we can use nested code, in which function calls are nested inside more function calls so that the results get evaluated from the inside out.
 
 --
 
 - Intermediate objects  
 
+???
+
+We can also assign objects with intermediate results that need to be passed to the next function in our sequence of operations.
+
 --
 
 - Pipes  
+
+???
+
+Or, as we’ll be doing in this course, we can use pipes.
+
+Let me show you how this looks like.
 
 ---
 
@@ -112,6 +149,14 @@ round(mean(grades), digits = 2)
 ```
 ## [1] 7.78
 ```
+
+???
+
+
+Nested code looks like this.
+
+Here, we have a vector ‘grades’ with some numeric values.
+Our sequence of operations is to first get the mean grade, and then round this result. In nested code, the mean function is nested inside the round function.
 
 --
 
@@ -129,6 +174,13 @@ rd_mn_grades
 ```
 ## [1] 7.78
 ```
+
+???
+
+Intermediate objects work in a similar way.
+First we assign an object with the mean of the grades, then we pass this object to the rounding function
+
+Notice how both approaches give us the same result. 
 
 ---
 
@@ -157,39 +209,83 @@ Right Hand Side
 &lt;br&gt;&amp;nbsp;
 ]]
 
+???
+
+Alternatively, we can use pipes to avoid nested function calls or having so assign results to intermediate objects that we don’t really need.
+
+Pipes let us structure sequential operations from left to right.
+
+When we work with pipes, there is always something on the left hand side of a pipe operator, and something else on the right hand side.
+
+The pipe operator appears in orange here. Its originally from the magrittr package 
+
+
 ---
 
 ## Pipes
 
 - Take an **object** on the .avenir[Left Hand Side] of the pipe and insert it into a **function** as an argument on the .avenir[Right Hand Side] 
 
+???
+
+More specifically, pipes take and object on the left hand side of the pipe operator and insert it into a function on the right hand side.
+
 --
 
 - By default, .avenir[LHS] is placed as the **first** argument in the call 
+
+???
+
+By default, the object on the left hand side becomes the first argument in the function call.
+
 
 --
 
 - Packages in the `tidyverse`  load .b.orange[`%&gt;%`] automatically
 
+???
+
+And remember, the pipe operator gets loaded by the tidyverse functions that we’ll be using. 
+
 ---
 
 ## Pipes 
+
+???
+
+Let me summarize the main advantages of using pipes to write code.
 
 --
 
 - Minimize the need for intermediate objects and nested code  
 
+???
+
+First, by chaining our operations with pipes we pass intermediate results onto the next function, so we don’t need nested code or to assign intermediate results to objects we won’t use again.
+
 --
 
 - Make code readable  
+
+???
+
+This makes our code more readable, and 
 
 --
 
 - Easy to add or remove steps at any point in the sequence of operations
 
+???
+
+its also easier to add or remove steps in our sequence of operations.
+
 --
 
 &gt; Insert with `ctrl + shift + M`
+
+???
+
+A useful shortcut to remember is that in Rstudio we can insert pipes using control shift M, or command shift m on a mac.
 
 --
 
@@ -205,32 +301,70 @@ grades %&gt;%
 ## [1] 7.78
 ```
 
+???
+
+The example from earlier looks like this is we use pipes.
+First we load the magrittr package, take the grades object, pass it  to the mean function, and then pass this result to the round function. Note how we don’t have to write the first argument in the function that are on the right hand side of a pipe. 
+
+We can now learn about the functions from dplyr that we’ll use extensively throughout this course. 
+
 ---
 
 ## Useful 📦 .b.rrured[`dplyr`] functions
 
+???
+
+As I mentioned earlier, the dplyr package provides us with separate functions for doing the most common data manipulation tasks.
+
+--
+
 - Individual functions for the most common operations
+
+???
+
+dplyr provides separate functions for the more common operations
 
 --
 
 - Each function does one only thing, but does it well  
 
+???
+
+Each function does one only thing, but does it well  
+
 --
 
 - Intuitive, user-friendly functions for common data manipulation tasks:
 
+???
+
+When we’re cleaning data, we usually do one of these if not all three of the following:
+
 --
 
   - Subset columns
-   
+
+???
+
+subset columns
+
 --
 
+
   - Subset rows
-   
+
+???
+
+Subset rows
+
 --
 
   - Create or modify columns  
- 
+
+???
+
+or create or modify columns
+
 ---
 
 
@@ -241,7 +375,7 @@ grades %&gt;%
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#riguwjcpyu .gt_table {
+#ukubshgghj .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -266,7 +400,7 @@ grades %&gt;%
   border-left-color: #D3D3D3;
 }
 
-#riguwjcpyu .gt_heading {
+#ukubshgghj .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -278,7 +412,7 @@ grades %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#riguwjcpyu .gt_title {
+#ukubshgghj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -288,7 +422,7 @@ grades %&gt;%
   border-bottom-width: 0;
 }
 
-#riguwjcpyu .gt_subtitle {
+#ukubshgghj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -298,13 +432,13 @@ grades %&gt;%
   border-top-width: 0;
 }
 
-#riguwjcpyu .gt_bottom_border {
+#ukubshgghj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#riguwjcpyu .gt_col_headings {
+#ukubshgghj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -319,7 +453,7 @@ grades %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#riguwjcpyu .gt_col_heading {
+#ukubshgghj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -339,7 +473,7 @@ grades %&gt;%
   overflow-x: hidden;
 }
 
-#riguwjcpyu .gt_column_spanner_outer {
+#ukubshgghj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -351,15 +485,15 @@ grades %&gt;%
   padding-right: 4px;
 }
 
-#riguwjcpyu .gt_column_spanner_outer:first-child {
+#ukubshgghj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#riguwjcpyu .gt_column_spanner_outer:last-child {
+#ukubshgghj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#riguwjcpyu .gt_column_spanner {
+#ukubshgghj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -371,7 +505,7 @@ grades %&gt;%
   width: 100%;
 }
 
-#riguwjcpyu .gt_group_heading {
+#ukubshgghj .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -393,7 +527,7 @@ grades %&gt;%
   vertical-align: middle;
 }
 
-#riguwjcpyu .gt_empty_group_heading {
+#ukubshgghj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -408,15 +542,15 @@ grades %&gt;%
   vertical-align: middle;
 }
 
-#riguwjcpyu .gt_from_md > :first-child {
+#ukubshgghj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#riguwjcpyu .gt_from_md > :last-child {
+#ukubshgghj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#riguwjcpyu .gt_row {
+#ukubshgghj .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -435,7 +569,7 @@ grades %&gt;%
   overflow-x: hidden;
 }
 
-#riguwjcpyu .gt_stub {
+#ukubshgghj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -447,7 +581,7 @@ grades %&gt;%
   padding-left: 12px;
 }
 
-#riguwjcpyu .gt_summary_row {
+#ukubshgghj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -457,7 +591,7 @@ grades %&gt;%
   padding-right: 5px;
 }
 
-#riguwjcpyu .gt_first_summary_row {
+#ukubshgghj .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -467,7 +601,7 @@ grades %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#riguwjcpyu .gt_grand_summary_row {
+#ukubshgghj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -477,7 +611,7 @@ grades %&gt;%
   padding-right: 5px;
 }
 
-#riguwjcpyu .gt_first_grand_summary_row {
+#ukubshgghj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -487,11 +621,11 @@ grades %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#riguwjcpyu .gt_striped {
+#ukubshgghj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#riguwjcpyu .gt_table_body {
+#ukubshgghj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -500,7 +634,7 @@ grades %&gt;%
   border-bottom-color: #D3D3D3;
 }
 
-#riguwjcpyu .gt_footnotes {
+#ukubshgghj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -514,13 +648,13 @@ grades %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#riguwjcpyu .gt_footnote {
+#ukubshgghj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#riguwjcpyu .gt_sourcenotes {
+#ukubshgghj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -534,46 +668,46 @@ grades %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#riguwjcpyu .gt_sourcenote {
+#ukubshgghj .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#riguwjcpyu .gt_left {
+#ukubshgghj .gt_left {
   text-align: left;
 }
 
-#riguwjcpyu .gt_center {
+#ukubshgghj .gt_center {
   text-align: center;
 }
 
-#riguwjcpyu .gt_right {
+#ukubshgghj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#riguwjcpyu .gt_font_normal {
+#ukubshgghj .gt_font_normal {
   font-weight: normal;
 }
 
-#riguwjcpyu .gt_font_bold {
+#ukubshgghj .gt_font_bold {
   font-weight: bold;
 }
 
-#riguwjcpyu .gt_font_italic {
+#ukubshgghj .gt_font_italic {
   font-style: italic;
 }
 
-#riguwjcpyu .gt_super {
+#ukubshgghj .gt_super {
   font-size: 65%;
 }
 
-#riguwjcpyu .gt_footnote_marks {
+#ukubshgghj .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="riguwjcpyu" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="ukubshgghj" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -672,6 +806,11 @@ beers &lt;- tibble::tribble(
 ]
 ]
 
+???
+
+
+These data here describe some fictional beers and their properties.
+
 ---
 
 .left-column[
@@ -692,6 +831,14 @@ beers %&gt;% select(name, style, star_rating)
 ![select animation](images/select.gif)
 ]
 
+???
+
+The first thing we might want to try is to subset some variables from the original table. For this we use the select function. Select helps us subset variables, which we can specify by their name, position on the data from left to right, or even by type.
+
+In the example, we’re selecting three variables from the beers object, and we’re doing that with a pipe and by passing their names to the select function. 
+
+The beers object is passed by the pipe as the first argument of the select function, and the other arguments are the names of the variables we want to keep, which are name, style, and star rating.
+
 ---
 .left-column[
 .large.b[`mutate()`]
@@ -710,6 +857,14 @@ beers %&gt;% select(name, style, star_rating) %&gt;%
 
 ![mutate animation](images/mutate.gif)
 ]
+
+???
+
+Next up, is creating new columns of modifying existing ones. We can do this with the mutate function. The syntax for creating new columns is quite flexible, but typically we need to specify its name and what will be in this new column. Lets see whats happening in the example. 
+
+To the transformation from before, in which we selected some variables from the beers object, we are adding an additional step using a pipe. With mutate, we’re creating a new variable called stars, which is itself the result of rounding the values of an existing column. 
+
+When we use mutate, we create new columns, but if the name of the new column is the same as an existing one, it will be overwritten.
 
 ---
 .left-column[
@@ -730,9 +885,19 @@ beers %&gt;% select(name, style, star_rating) %&gt;%
 ![filter animation](images/filter.gif)
 ]
 
+???
+
+Finally, we can also work on rows. To subset rows that meet a condition, we use the filter function. Again, we’re using a pipe to add a new step to the sequence from before. With the new variable stars, we want to keep only the rows in which the values of stars are greater than 3. 
+
+Notice how with the pipes we can keep track of the different steps, and that we didn’t have to work with intermediate objects for the results from each step. This is how we will work throughout this course.
+
 ---
 class: my-turn
 ## My Turn
+
+???
+
+Now, its my turn to use pipes and functions from dplyr to transform a dataset.
 
 --
 
@@ -786,6 +951,10 @@ background-image:url("images/emmanuel-acua-43Tvb651fxE-unsplash.jpg")
 background-size: cover
 # Working with Columns with `across()`
 
+???
+
+In all the previous examples in which we selected or modified columns, we were working on them either one at a time or were having to name each one.
+
 ---
 
 ## Operating on multiple columns
@@ -794,26 +963,52 @@ background-size: cover
 
 --
 
-`filter`, `mutate`, or `summarize` multiple columns
+`filter` or `mutate` multiple columns
+
+???
+
+Thanks to some recent updates to dplyr, we can operate on multiple columns at once using the across function.
+
+--
 
 - By position, name, or type  
+
+???
+
+We can specify many columns at once by position, name, or type. I don’t recommend using positions, because these are likely to change and less meaningful.
 
 --
 
 - Compound selections of columns  
 (e.g. _numeric columns that contain "mass" in their name_)
 
+???
+
+More importantly, we can use across to create compound selections of columns. For example, selecting or mutating all columns of type numeric but only if the contain a specific string in their name.
+
 ---
 
 ## .b.orange[`across()`] arguments:
 
+???
+
+Across has a relatively straight forward syntax.
+
 --
 
 .large.b[`.cols`] Columns to transform
- 
+
+???
+
+Cols is how we specify the columns we want to transform
+
 --
  
 .large.b[`.fns`]  Function to apply to each of the selected columns  
+
+???
+
+and fns is the function to apply to each of the columns
 
 --
 
@@ -827,14 +1022,35 @@ beers %&gt;%
   mutate(across(c(alc_by_volume, star_rating), round, digits = 3))
 ```
 
+???
+
+
+If you recall the beers data from earlier, we can use across to round all the numeric variables at the same time, the cols argument is a vector with the names of the two columns we’re interested in, and after that the function that we wish to apply and any additional arguments. Here, its the round function, with the digits argument passed on as well. Notice we used just the function name without any brackets.
+
 ---
 
 ## Useful column selection helpers
 
+???
+
+To specify sets of columns, there are a number of useful helper functions that we can use alongside or instead of the across function. 
+
+--
 .ba.ph4[
 .b.orange[`everything()`] Match all variables
 ]
 &lt;/br&gt;
+
+
+```r
+beers %&gt;% 
+  mutate(across(everything(), as.character))
+```
+
+???
+
+First up is everything, which matches all variables.
+In the example, we’re transforming every variable in the beers object to character.
 
 ---
 
@@ -846,6 +1062,15 @@ beers %&gt;%
 &lt;/br&gt;
 
 
+```r
+beers %&gt;% 
+  select(!c(style,country))
+```
+
+???
+
+We can also use the exclamation mark to take the complement of a set of variables. In the example, the question mark negates the set of variables that are specified by name, so we get everything except style and country.
+
 ---
 
 ### Useful column selection helpers (continued)
@@ -854,6 +1079,18 @@ beers %&gt;%
 .ba.ph4.mt1.mb1[
 .b.orange[`where()`] Selects variables for which a predicate function returns `TRUE`  
 &gt; e.g. subset or transform all numeric variables, determined by `is.numeric()`]
+
+
+```r
+beers %&gt;% 
+  mutate(across(where(is.numeric), log2))
+```
+
+???
+
+Where is somewhat more elaborate, but it works together with any other function that returns TRUE of FALSE, and then select or mutates only those variables for which the condition is TRUE.
+
+For example, we want to apply a base two logarithm to any variables of type numeric in our beers object. We use the is.numeric function to check all the variables, and then the log2 function will only be applied to variables that meet the condition.
 
 ---
 
@@ -865,6 +1102,18 @@ beers %&gt;%
 
 ]
 
+
+```r
+beers %&gt;% 
+  mutate(across(matches("rating"), log2))
+```
+
+???
+
+Matches is good for working with variable names and working only on those that contain a match for our pattern of interest. This is can be very useful, and we will see the power of regular expressions in a separate lesson.
+
+In the example code, were matching any variables in which the name contains the word rating, and applying a base two log transformation.
+
 ---
 
 ### Useful column selection helpers (continued)
@@ -873,6 +1122,16 @@ beers %&gt;%
 .b.orange[`:`] Select a range of consecutive variables
 ]
 &lt;br&gt;
+
+
+```r
+beers %&gt;% 
+  select(style:country)
+```
+
+???
+
+The colon, when used as a selection helper, matches a range of variables that are next to each other in the data. In the example, we’ll be keeping style, country, and every other variable between these two.
 
 ---
 
@@ -883,6 +1142,15 @@ beers %&gt;%
 (return all elements except the one preceded by the subtraction operator)
 ]
 
+```r
+beers %&gt;% 
+  select(-country)
+```
+
+???
+
+Finally, we can use the minus sign to exclude variables from a selection. In the example, we exclude country and keep everything else.
+
 ---
 
 `beers`
@@ -891,7 +1159,7 @@ beers %&gt;%
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#btlvrzdihx .gt_table {
+#omygfhjune .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -916,7 +1184,7 @@ beers %&gt;%
   border-left-color: #D3D3D3;
 }
 
-#btlvrzdihx .gt_heading {
+#omygfhjune .gt_heading {
   background-color: #f4f4f9;
   text-align: center;
   border-bottom-color: #f4f4f9;
@@ -928,7 +1196,7 @@ beers %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#btlvrzdihx .gt_title {
+#omygfhjune .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -938,7 +1206,7 @@ beers %&gt;%
   border-bottom-width: 0;
 }
 
-#btlvrzdihx .gt_subtitle {
+#omygfhjune .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -948,13 +1216,13 @@ beers %&gt;%
   border-top-width: 0;
 }
 
-#btlvrzdihx .gt_bottom_border {
+#omygfhjune .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#btlvrzdihx .gt_col_headings {
+#omygfhjune .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -969,7 +1237,7 @@ beers %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#btlvrzdihx .gt_col_heading {
+#omygfhjune .gt_col_heading {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -989,7 +1257,7 @@ beers %&gt;%
   overflow-x: hidden;
 }
 
-#btlvrzdihx .gt_column_spanner_outer {
+#omygfhjune .gt_column_spanner_outer {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -1001,15 +1269,15 @@ beers %&gt;%
   padding-right: 4px;
 }
 
-#btlvrzdihx .gt_column_spanner_outer:first-child {
+#omygfhjune .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#btlvrzdihx .gt_column_spanner_outer:last-child {
+#omygfhjune .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#btlvrzdihx .gt_column_spanner {
+#omygfhjune .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1021,7 +1289,7 @@ beers %&gt;%
   width: 100%;
 }
 
-#btlvrzdihx .gt_group_heading {
+#omygfhjune .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #f4f4f9;
@@ -1043,7 +1311,7 @@ beers %&gt;%
   vertical-align: middle;
 }
 
-#btlvrzdihx .gt_empty_group_heading {
+#omygfhjune .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #f4f4f9;
@@ -1058,15 +1326,15 @@ beers %&gt;%
   vertical-align: middle;
 }
 
-#btlvrzdihx .gt_from_md > :first-child {
+#omygfhjune .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#btlvrzdihx .gt_from_md > :last-child {
+#omygfhjune .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#btlvrzdihx .gt_row {
+#omygfhjune .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1085,7 +1353,7 @@ beers %&gt;%
   overflow-x: hidden;
 }
 
-#btlvrzdihx .gt_stub {
+#omygfhjune .gt_stub {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -1097,7 +1365,7 @@ beers %&gt;%
   padding-left: 12px;
 }
 
-#btlvrzdihx .gt_summary_row {
+#omygfhjune .gt_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -1107,7 +1375,7 @@ beers %&gt;%
   padding-right: 5px;
 }
 
-#btlvrzdihx .gt_first_summary_row {
+#omygfhjune .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1117,7 +1385,7 @@ beers %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#btlvrzdihx .gt_grand_summary_row {
+#omygfhjune .gt_grand_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -1127,7 +1395,7 @@ beers %&gt;%
   padding-right: 5px;
 }
 
-#btlvrzdihx .gt_first_grand_summary_row {
+#omygfhjune .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1137,11 +1405,11 @@ beers %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#btlvrzdihx .gt_striped {
+#omygfhjune .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#btlvrzdihx .gt_table_body {
+#omygfhjune .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1150,7 +1418,7 @@ beers %&gt;%
   border-bottom-color: #D3D3D3;
 }
 
-#btlvrzdihx .gt_footnotes {
+#omygfhjune .gt_footnotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -1164,13 +1432,13 @@ beers %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#btlvrzdihx .gt_footnote {
+#omygfhjune .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#btlvrzdihx .gt_sourcenotes {
+#omygfhjune .gt_sourcenotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -1184,46 +1452,46 @@ beers %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#btlvrzdihx .gt_sourcenote {
+#omygfhjune .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#btlvrzdihx .gt_left {
+#omygfhjune .gt_left {
   text-align: left;
 }
 
-#btlvrzdihx .gt_center {
+#omygfhjune .gt_center {
   text-align: center;
 }
 
-#btlvrzdihx .gt_right {
+#omygfhjune .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#btlvrzdihx .gt_font_normal {
+#omygfhjune .gt_font_normal {
   font-weight: normal;
 }
 
-#btlvrzdihx .gt_font_bold {
+#omygfhjune .gt_font_bold {
   font-weight: bold;
 }
 
-#btlvrzdihx .gt_font_italic {
+#omygfhjune .gt_font_italic {
   font-style: italic;
 }
 
-#btlvrzdihx .gt_super {
+#omygfhjune .gt_super {
   font-size: 65%;
 }
 
-#btlvrzdihx .gt_footnote_marks {
+#omygfhjune .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="btlvrzdihx" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="omygfhjune" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -1301,6 +1569,10 @@ beers %&gt;%
   
 </table></div>
 
+???
+
+Lets have another look at the beers data, and apply some transformations to many columns at once. Just looking at this table, we can see two numeric variables: alcohol by volume, and star rating. Just for demonstration, lets use the mutate function to apply a numeric transformation to these two columns.
+
 ---
 
 ### Square root (.orange.b[`sqrt()`]) of `alc_by_volume` and `star_rating`
@@ -1327,6 +1599,10 @@ beers %&gt;%
 ## 10 Clean Tackle     Stout              2.68 mid         England        2.05
 ```
 
+???
+
+To apply the square root function to these two columns, one option would be to refer to them by name inside across.
+
 ---
 
 ### Square root (.orange.b[`sqrt()`]) of all numeric variables
@@ -1352,6 +1628,10 @@ beers %&gt;%
 ##  9 Airball          Irish Ale          2.45 high        USA            1.91
 ## 10 Clean Tackle     Stout              2.68 mid         England        2.05
 ```
+
+???
+
+Or, we can also use the where function and is.numeric to simplify our code and apply the square root function to every numeric variable. The results are both the same.
 
 ---
 
@@ -1406,6 +1686,10 @@ background-image:url("images/1024px-Espacio_Escultórico.jpg")
 background-size: cover
 # Pivoting Data
 
+???
+
+In the lesson on data organization, we went over tidy data principles, and glanced over long and wide structures for data. Now, we can go ahead and use R to reshape and pivot our data between these different structures.
+
 ---
 
 .pull-left[
@@ -1423,8 +1707,24 @@ Maps well to plot axes and aesthetics ]
 
 ![widelong](images/widelong.png)
 
+???
+
+As the names suggest, data can take either wide and long structures. The difference between these two structures goes beyond just having different proportions of rows and columns. This goes back to tidy data principles. 
+
+Wide data is what we see often and what we use for data entry or reporting. This structure is readable, concise, and easy to edit. 
+
+On the other hand, long data is more likely to be tidy and more ready for use in our workflows. The fundamental difference lies with how variables and observations relate to rows and columns.  The good news is that we can transform the data between structures.
+
 ---
 # Reshaping data with 📦 .b.rrured[`tidyr`]
+
+???
+
+To reshape data from wide to long and vice versa, we’ll use functions from the tidyr package, which, if you remember, is part of the tidyverse. 
+
+The names of the relevant functions are also quite easy to remember.
+
+--
 
 .large[wide to long: .b.orange[`pivot_longer()`]]  
 
@@ -1432,6 +1732,10 @@ Maps well to plot axes and aesthetics ]
 ```r
 pivot_longer(data, cols, names_to, values_to)
 ```
+
+???
+
+To go from wide to long, we use pivot_longer
 
 --
 
@@ -1442,6 +1746,10 @@ pivot_longer(data, cols, names_to, values_to)
 pivot_longer(data, cols, names_from, values_from)
 ```
 
+???
+
+To go from long to wide, we use pivot_wider
+
 ---
 
 
@@ -1451,7 +1759,7 @@ pivot_longer(data, cols, names_from, values_from)
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#syiwdgafwm .gt_table {
+#mupquzdyuw .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1476,7 +1784,7 @@ pivot_longer(data, cols, names_from, values_from)
   border-left-color: #D3D3D3;
 }
 
-#syiwdgafwm .gt_heading {
+#mupquzdyuw .gt_heading {
   background-color: #f4f4f9;
   text-align: center;
   border-bottom-color: #f4f4f9;
@@ -1488,7 +1796,7 @@ pivot_longer(data, cols, names_from, values_from)
   border-right-color: #D3D3D3;
 }
 
-#syiwdgafwm .gt_title {
+#mupquzdyuw .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1498,7 +1806,7 @@ pivot_longer(data, cols, names_from, values_from)
   border-bottom-width: 0;
 }
 
-#syiwdgafwm .gt_subtitle {
+#mupquzdyuw .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1508,13 +1816,13 @@ pivot_longer(data, cols, names_from, values_from)
   border-top-width: 0;
 }
 
-#syiwdgafwm .gt_bottom_border {
+#mupquzdyuw .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#syiwdgafwm .gt_col_headings {
+#mupquzdyuw .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1529,7 +1837,7 @@ pivot_longer(data, cols, names_from, values_from)
   border-right-color: #D3D3D3;
 }
 
-#syiwdgafwm .gt_col_heading {
+#mupquzdyuw .gt_col_heading {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -1549,7 +1857,7 @@ pivot_longer(data, cols, names_from, values_from)
   overflow-x: hidden;
 }
 
-#syiwdgafwm .gt_column_spanner_outer {
+#mupquzdyuw .gt_column_spanner_outer {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -1561,15 +1869,15 @@ pivot_longer(data, cols, names_from, values_from)
   padding-right: 4px;
 }
 
-#syiwdgafwm .gt_column_spanner_outer:first-child {
+#mupquzdyuw .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#syiwdgafwm .gt_column_spanner_outer:last-child {
+#mupquzdyuw .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#syiwdgafwm .gt_column_spanner {
+#mupquzdyuw .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1581,7 +1889,7 @@ pivot_longer(data, cols, names_from, values_from)
   width: 100%;
 }
 
-#syiwdgafwm .gt_group_heading {
+#mupquzdyuw .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #f4f4f9;
@@ -1603,7 +1911,7 @@ pivot_longer(data, cols, names_from, values_from)
   vertical-align: middle;
 }
 
-#syiwdgafwm .gt_empty_group_heading {
+#mupquzdyuw .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #f4f4f9;
@@ -1618,15 +1926,15 @@ pivot_longer(data, cols, names_from, values_from)
   vertical-align: middle;
 }
 
-#syiwdgafwm .gt_from_md > :first-child {
+#mupquzdyuw .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#syiwdgafwm .gt_from_md > :last-child {
+#mupquzdyuw .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#syiwdgafwm .gt_row {
+#mupquzdyuw .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1645,7 +1953,7 @@ pivot_longer(data, cols, names_from, values_from)
   overflow-x: hidden;
 }
 
-#syiwdgafwm .gt_stub {
+#mupquzdyuw .gt_stub {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -1657,7 +1965,7 @@ pivot_longer(data, cols, names_from, values_from)
   padding-left: 12px;
 }
 
-#syiwdgafwm .gt_summary_row {
+#mupquzdyuw .gt_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -1667,7 +1975,7 @@ pivot_longer(data, cols, names_from, values_from)
   padding-right: 5px;
 }
 
-#syiwdgafwm .gt_first_summary_row {
+#mupquzdyuw .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1677,7 +1985,7 @@ pivot_longer(data, cols, names_from, values_from)
   border-top-color: #D3D3D3;
 }
 
-#syiwdgafwm .gt_grand_summary_row {
+#mupquzdyuw .gt_grand_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -1687,7 +1995,7 @@ pivot_longer(data, cols, names_from, values_from)
   padding-right: 5px;
 }
 
-#syiwdgafwm .gt_first_grand_summary_row {
+#mupquzdyuw .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1697,11 +2005,11 @@ pivot_longer(data, cols, names_from, values_from)
   border-top-color: #D3D3D3;
 }
 
-#syiwdgafwm .gt_striped {
+#mupquzdyuw .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#syiwdgafwm .gt_table_body {
+#mupquzdyuw .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1710,7 +2018,7 @@ pivot_longer(data, cols, names_from, values_from)
   border-bottom-color: #D3D3D3;
 }
 
-#syiwdgafwm .gt_footnotes {
+#mupquzdyuw .gt_footnotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -1724,13 +2032,13 @@ pivot_longer(data, cols, names_from, values_from)
   border-right-color: #D3D3D3;
 }
 
-#syiwdgafwm .gt_footnote {
+#mupquzdyuw .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#syiwdgafwm .gt_sourcenotes {
+#mupquzdyuw .gt_sourcenotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -1744,77 +2052,77 @@ pivot_longer(data, cols, names_from, values_from)
   border-right-color: #D3D3D3;
 }
 
-#syiwdgafwm .gt_sourcenote {
+#mupquzdyuw .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#syiwdgafwm .gt_left {
+#mupquzdyuw .gt_left {
   text-align: left;
 }
 
-#syiwdgafwm .gt_center {
+#mupquzdyuw .gt_center {
   text-align: center;
 }
 
-#syiwdgafwm .gt_right {
+#mupquzdyuw .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#syiwdgafwm .gt_font_normal {
+#mupquzdyuw .gt_font_normal {
   font-weight: normal;
 }
 
-#syiwdgafwm .gt_font_bold {
+#mupquzdyuw .gt_font_bold {
   font-weight: bold;
 }
 
-#syiwdgafwm .gt_font_italic {
+#mupquzdyuw .gt_font_italic {
   font-style: italic;
 }
 
-#syiwdgafwm .gt_super {
+#mupquzdyuw .gt_super {
   font-size: 65%;
 }
 
-#syiwdgafwm .gt_footnote_marks {
+#mupquzdyuw .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="syiwdgafwm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="mupquzdyuw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-size: 17px;">Habitat</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-size: 17px;">County</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-size: 17px;">Frogs</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-size: 17px;">Crayfish</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-size: 17px;">Owls</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-size: 22px;">Habitat</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-size: 22px;">County</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-size: 22px;">Frogs</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-size: 22px;">Crayfish</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-size: 22px;">Owls</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left" style="font-size: 17px;">Marsh</td>
-<td class="gt_row gt_left" style="font-size: 17px;">Clarkville</td>
-<td class="gt_row gt_right" style="font-size: 17px;">7</td>
-<td class="gt_row gt_right" style="font-size: 17px;">5</td>
-<td class="gt_row gt_right" style="font-size: 17px;">4</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 17px;">Urban</td>
-<td class="gt_row gt_left" style="font-size: 17px;">Smith</td>
-<td class="gt_row gt_right" style="font-size: 17px;">0</td>
-<td class="gt_row gt_right" style="font-size: 17px;">0</td>
-<td class="gt_row gt_right" style="font-size: 17px;">2</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 17px;">Wetland</td>
-<td class="gt_row gt_left" style="font-size: 17px;">Wilson</td>
-<td class="gt_row gt_right" style="font-size: 17px;">9</td>
-<td class="gt_row gt_right" style="font-size: 17px;">2</td>
-<td class="gt_row gt_right" style="font-size: 17px;">1</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 17px;">Forest</td>
-<td class="gt_row gt_left" style="font-size: 17px;">Smith</td>
-<td class="gt_row gt_right" style="font-size: 17px;">4</td>
-<td class="gt_row gt_right" style="font-size: 17px;">0</td>
-<td class="gt_row gt_right" style="font-size: 17px;">7</td></tr>
+    <tr><td class="gt_row gt_left" style="font-size: 22px;">Marsh</td>
+<td class="gt_row gt_left" style="font-size: 22px;">Clarkville</td>
+<td class="gt_row gt_right" style="font-size: 22px;">7</td>
+<td class="gt_row gt_right" style="font-size: 22px;">5</td>
+<td class="gt_row gt_right" style="font-size: 22px;">4</td></tr>
+    <tr><td class="gt_row gt_left" style="font-size: 22px;">Urban</td>
+<td class="gt_row gt_left" style="font-size: 22px;">Smith</td>
+<td class="gt_row gt_right" style="font-size: 22px;">0</td>
+<td class="gt_row gt_right" style="font-size: 22px;">0</td>
+<td class="gt_row gt_right" style="font-size: 22px;">2</td></tr>
+    <tr><td class="gt_row gt_left" style="font-size: 22px;">Wetland</td>
+<td class="gt_row gt_left" style="font-size: 22px;">Wilson</td>
+<td class="gt_row gt_right" style="font-size: 22px;">9</td>
+<td class="gt_row gt_right" style="font-size: 22px;">2</td>
+<td class="gt_row gt_right" style="font-size: 22px;">1</td></tr>
+    <tr><td class="gt_row gt_left" style="font-size: 22px;">Forest</td>
+<td class="gt_row gt_left" style="font-size: 22px;">Smith</td>
+<td class="gt_row gt_right" style="font-size: 22px;">4</td>
+<td class="gt_row gt_right" style="font-size: 22px;">0</td>
+<td class="gt_row gt_right" style="font-size: 22px;">7</td></tr>
   </tbody>
   
   
@@ -1836,16 +2144,35 @@ tibble::tribble(
 ]
 ]
 
+???
+
+Ill illustrate these transformations with this simple dataset that enumerates some wildlife sightings across different habitats and counties. Just looking at this table, we can see that it is wider than it is long.
+
 --
 
-&lt;/br&gt;
-Variables:
-- Habitat
-- County
-- Critter Type
-- Individuals Encountered
+.center[Variables (attributes measured):]
+.fl.w-24[
+Habitat
+]
+
+.fl.w-25.tc[
+County
+]
+
+.fl.w-25.tc[
+Critter Type
+]
+
+.fl.w-25.tr[
+Individuals Encountered
+]
+
+???
+
+Going deeper into the structure of the data though, we will come to realize that this wide data is not tidy. Why? Because there are actually four attributes being measured, but their values do not correspond to columns. Specifically, the values for critter type and the number of individuals encountered are not in their own column. We can still interpret the information stored in these data, but for many purposes a long, tidy version might be preferable. Lets see how we can go about reshaping this critter data.
 
 ---
+
 # Wide to long
 
 
@@ -1860,18 +2187,34 @@ critters_long &lt;- critters %&gt;%
 
 
 
+???
+
+For this, we use the pivot longer function. Notice again how we’re using pipes.
+Pivot longer has three main arguments that we need to specify.
 
 --
 
 .b[`cols`] Which columns have data in their names  
 
+???
+
+Cols are the columns that actually contain data in their names. In our example, these would be the columns for each of the little animals, which are actually levels of an attribute.
+
 --
 
 **`names_to`** Name for the new column to be created from `cols`  
 
+???
+
+Having recognized that there were data in column names which should be in its own column, we can give it a name. This is what the names to argument is for. In this case, lets call the new column critter underscore type
+
 --
 
 **`values_to`** Name of the column to be created from the contents of the cells in **`cols`**  
+
+???
+
+finally, the content of the columns we specified with the cols argument also needs to go into a separate variable, and it will need a name. In our example, this would be the number of individuals spotted, and we can use that as a name.
 
 ---
 
@@ -1900,6 +2243,12 @@ critters %&gt;%
 ## 12 Forest  Smith      Owls                               7
 ```
 
+???
+
+Lets see how the long table looks.
+
+The same information is now in a long, tidy version. Notice how the function handled all the combinations for us, and how there is more repetition with this structure. Now, each of the four measured attributes is in a column and each row is now an observation with a value for each variable.
+
 ---
 
 # Long to wide
@@ -1911,13 +2260,27 @@ critters_long %&gt;%
               values_from = individuals_encountered)
 ```
 
+???
+
+We can just as easily reshape the long version back to a wide version.
+
+For this, we use two main arguments.
+
 --
 
 .b[`names_from`] Which columns' values will be used for new .b[column names]
 
+???
+
+First, we need to specify which column contains the values that need to be spread out across as many column names as there are unique values in the column. We do this with the names from argument.
+
 --
 
 .b[`values_from`] Which column has the .b[cell values] for the new output columns
+
+???
+
+Then, we need to specify which column has the values that will populate the new columns. We use values from for this.
 
 ---
 
@@ -1938,11 +2301,21 @@ critters_long %&gt;%
 ## 4 Forest  Smith          4        0     7
 ```
 
+???
+
+With our example, the new “critter type” column has the names of the critters that we want as separate columns, and the “individuals encountered” column has the numeric values that will also be spread out into the new columns.
+
+When we run this code, we get our initial wide dataset back.
+
 ---
 
 class: center
 
 ![](images/pivoting.gif)
+
+???
+
+Maybe an animated version of this transformation can illustrate the process better. Look at how the same information can appear in different layouts. Each one has its advantages and disadvantages, but its important to know that its not an issue shifting between the two.
 
 ---
 
@@ -1977,17 +2350,40 @@ background-image:url("images/drew-dau-dXxsLrlg9qY-unsplash.jpg")
 background-size: cover
 # Coalescing Columns
 
+???
+
+By now, we’ve gone over subsetting rows and columns, creating new columns, and reshaping entire datasets between wide and long structures. These tools are pretty much everything we need to restructure our data. Now, we’ll learn about two more functions from dplyr and tidyr that may come in handy during the restructuring stage of our data cleaning.
+
+First, we’ll learn about coalescing columns.
+
+Coalescing values sounds strange and complicated, but as we’ll see, this comes up often during data cleaning and the important thing is that we can avoid having to do this by hand.
+
+
+Coalescing columns is essentially lumping together two or more columns with data for the same variable, in which there may be missing values. We want to combine the data, keeping values from one column and filling any missing data with values from other columns.
+
 ---
 
 ## .b.orange[coalesce()] from 📦 .b.rrured[`dplyr`]  
+
+???
+
+To do this, we use the coalesce function from dplyr. 
 
 --
 
 - Find and return the first non-NA value at each position for a set of vectors
 
+???
+
+Technically, coalesce finds and returns the first non NA value at each position for two or more vectors. Remember, columns in rectangular data are also vectors.
+
 --
 
 - Returns a single vector with the non-NA values that appear first 
+
+???
+
+When we coalesce a set of vectors, the function returns a single vector with all the non NA values, according to where they appear.
 
 ---
 
@@ -1999,6 +2395,11 @@ x &lt;- c(1, 2, NA, NA, 5)
 y &lt;- c(NA, NA, 3, 4, 5)
 z &lt;- c(1, 4, 3, 5, 3)
 ```
+
+???
+
+Lets demonstrate this with some simple vectors.
+X Y and Z are numeric vectors of the same length and some have missing values.
 
 --
 
@@ -2011,6 +2412,12 @@ coalesce(x, y, z)
 ## [1] 1 2 3 4 5
 ```
 
+???
+
+We want a single vector with as few Nas as possible. If we coalesce these three vectors in this particular order, the values from vector Y at the third and fourth positions fill in the missing values in vector X, and then vector Z is not used. 
+
+The order of the vectors here is important.
+
 ---
 
 ## .b.orange[coalesce()] from 📦 .b.rrured[`dplyr`]  
@@ -2021,6 +2428,10 @@ x &lt;- c(1, 2, NA, NA, 5)
 y &lt;- c(NA, NA, 3, 4, 5)
 z &lt;- c(1, 4, 3, 5, 3)
 ```
+
+???
+
+Lets do this again, but in a different order, this time z, x, and y. There are no missing values in vector Z so it is returned as is. 
 
 --
 
@@ -2033,6 +2444,10 @@ coalesce(z,x,y)
 ## [1] 1 4 3 5 3
 ```
 
+???
+
+Coalesce is a very useful function, but we need to be mindful of how we order and prioritize its inputs. Lets use coalesce in a more realistic scenario, to really illustrate its potential.
+
 ---
 
 
@@ -2043,7 +2458,7 @@ coalesce(z,x,y)
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#qbsdtirdsd .gt_table {
+#hhjnurzvql .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2068,7 +2483,7 @@ coalesce(z,x,y)
   border-left-color: #D3D3D3;
 }
 
-#qbsdtirdsd .gt_heading {
+#hhjnurzvql .gt_heading {
   background-color: #f4f4f9;
   text-align: center;
   border-bottom-color: #f4f4f9;
@@ -2080,7 +2495,7 @@ coalesce(z,x,y)
   border-right-color: #D3D3D3;
 }
 
-#qbsdtirdsd .gt_title {
+#hhjnurzvql .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2090,7 +2505,7 @@ coalesce(z,x,y)
   border-bottom-width: 0;
 }
 
-#qbsdtirdsd .gt_subtitle {
+#hhjnurzvql .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2100,13 +2515,13 @@ coalesce(z,x,y)
   border-top-width: 0;
 }
 
-#qbsdtirdsd .gt_bottom_border {
+#hhjnurzvql .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qbsdtirdsd .gt_col_headings {
+#hhjnurzvql .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2121,7 +2536,7 @@ coalesce(z,x,y)
   border-right-color: #D3D3D3;
 }
 
-#qbsdtirdsd .gt_col_heading {
+#hhjnurzvql .gt_col_heading {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -2141,7 +2556,7 @@ coalesce(z,x,y)
   overflow-x: hidden;
 }
 
-#qbsdtirdsd .gt_column_spanner_outer {
+#hhjnurzvql .gt_column_spanner_outer {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -2153,15 +2568,15 @@ coalesce(z,x,y)
   padding-right: 4px;
 }
 
-#qbsdtirdsd .gt_column_spanner_outer:first-child {
+#hhjnurzvql .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qbsdtirdsd .gt_column_spanner_outer:last-child {
+#hhjnurzvql .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qbsdtirdsd .gt_column_spanner {
+#hhjnurzvql .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2173,7 +2588,7 @@ coalesce(z,x,y)
   width: 100%;
 }
 
-#qbsdtirdsd .gt_group_heading {
+#hhjnurzvql .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #f4f4f9;
@@ -2195,7 +2610,7 @@ coalesce(z,x,y)
   vertical-align: middle;
 }
 
-#qbsdtirdsd .gt_empty_group_heading {
+#hhjnurzvql .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #f4f4f9;
@@ -2210,15 +2625,15 @@ coalesce(z,x,y)
   vertical-align: middle;
 }
 
-#qbsdtirdsd .gt_from_md > :first-child {
+#hhjnurzvql .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qbsdtirdsd .gt_from_md > :last-child {
+#hhjnurzvql .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qbsdtirdsd .gt_row {
+#hhjnurzvql .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2237,7 +2652,7 @@ coalesce(z,x,y)
   overflow-x: hidden;
 }
 
-#qbsdtirdsd .gt_stub {
+#hhjnurzvql .gt_stub {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -2249,7 +2664,7 @@ coalesce(z,x,y)
   padding-left: 12px;
 }
 
-#qbsdtirdsd .gt_summary_row {
+#hhjnurzvql .gt_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -2259,7 +2674,7 @@ coalesce(z,x,y)
   padding-right: 5px;
 }
 
-#qbsdtirdsd .gt_first_summary_row {
+#hhjnurzvql .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2269,7 +2684,7 @@ coalesce(z,x,y)
   border-top-color: #D3D3D3;
 }
 
-#qbsdtirdsd .gt_grand_summary_row {
+#hhjnurzvql .gt_grand_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -2279,7 +2694,7 @@ coalesce(z,x,y)
   padding-right: 5px;
 }
 
-#qbsdtirdsd .gt_first_grand_summary_row {
+#hhjnurzvql .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2289,11 +2704,11 @@ coalesce(z,x,y)
   border-top-color: #D3D3D3;
 }
 
-#qbsdtirdsd .gt_striped {
+#hhjnurzvql .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qbsdtirdsd .gt_table_body {
+#hhjnurzvql .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2302,7 +2717,7 @@ coalesce(z,x,y)
   border-bottom-color: #D3D3D3;
 }
 
-#qbsdtirdsd .gt_footnotes {
+#hhjnurzvql .gt_footnotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -2316,13 +2731,13 @@ coalesce(z,x,y)
   border-right-color: #D3D3D3;
 }
 
-#qbsdtirdsd .gt_footnote {
+#hhjnurzvql .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#qbsdtirdsd .gt_sourcenotes {
+#hhjnurzvql .gt_sourcenotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -2336,76 +2751,76 @@ coalesce(z,x,y)
   border-right-color: #D3D3D3;
 }
 
-#qbsdtirdsd .gt_sourcenote {
+#hhjnurzvql .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#qbsdtirdsd .gt_left {
+#hhjnurzvql .gt_left {
   text-align: left;
 }
 
-#qbsdtirdsd .gt_center {
+#hhjnurzvql .gt_center {
   text-align: center;
 }
 
-#qbsdtirdsd .gt_right {
+#hhjnurzvql .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qbsdtirdsd .gt_font_normal {
+#hhjnurzvql .gt_font_normal {
   font-weight: normal;
 }
 
-#qbsdtirdsd .gt_font_bold {
+#hhjnurzvql .gt_font_bold {
   font-weight: bold;
 }
 
-#qbsdtirdsd .gt_font_italic {
+#hhjnurzvql .gt_font_italic {
   font-style: italic;
 }
 
-#qbsdtirdsd .gt_super {
+#hhjnurzvql .gt_super {
   font-size: 65%;
 }
 
-#qbsdtirdsd .gt_footnote_marks {
+#hhjnurzvql .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="qbsdtirdsd" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="hhjnurzvql" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-size: 17px;">Sample</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-size: 17px;">Main.Sensor</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-size: 17px;">Backup.Sensor</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-size: 17px;">Manual.Reading</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-size: 21px;">Sample</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-size: 21px;">Main.Sensor</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-size: 21px;">Backup.Sensor</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-size: 21px;">Manual.Reading</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left" style="font-size: 17px;">A</td>
-<td class="gt_row gt_right" style="font-size: 17px;">NA</td>
-<td class="gt_row gt_right" style="font-size: 17px;">12.1</td>
-<td class="gt_row gt_right" style="font-size: 17px;">12.0</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 17px;">B</td>
-<td class="gt_row gt_right" style="font-size: 17px;">12</td>
-<td class="gt_row gt_right" style="font-size: 17px;">NA</td>
-<td class="gt_row gt_right" style="font-size: 17px;">11.9</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 17px;">C</td>
-<td class="gt_row gt_right" style="font-size: 17px;">16</td>
-<td class="gt_row gt_right" style="font-size: 17px;">NA</td>
-<td class="gt_row gt_right" style="font-size: 17px;">NA</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 17px;">D</td>
-<td class="gt_row gt_right" style="font-size: 17px;">3</td>
-<td class="gt_row gt_right" style="font-size: 17px;">9.5</td>
-<td class="gt_row gt_right" style="font-size: 17px;">NA</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 17px;">E</td>
-<td class="gt_row gt_right" style="font-size: 17px;">NA</td>
-<td class="gt_row gt_right" style="font-size: 17px;">13.0</td>
-<td class="gt_row gt_right" style="font-size: 17px;">12.0</td></tr>
+    <tr><td class="gt_row gt_left" style="font-size: 21px;">A</td>
+<td class="gt_row gt_right" style="font-size: 21px;">NA</td>
+<td class="gt_row gt_right" style="font-size: 21px;">12.1</td>
+<td class="gt_row gt_right" style="font-size: 21px;">12.0</td></tr>
+    <tr><td class="gt_row gt_left" style="font-size: 21px;">B</td>
+<td class="gt_row gt_right" style="font-size: 21px;">12</td>
+<td class="gt_row gt_right" style="font-size: 21px;">NA</td>
+<td class="gt_row gt_right" style="font-size: 21px;">11.9</td></tr>
+    <tr><td class="gt_row gt_left" style="font-size: 21px;">C</td>
+<td class="gt_row gt_right" style="font-size: 21px;">16</td>
+<td class="gt_row gt_right" style="font-size: 21px;">NA</td>
+<td class="gt_row gt_right" style="font-size: 21px;">NA</td></tr>
+    <tr><td class="gt_row gt_left" style="font-size: 21px;">D</td>
+<td class="gt_row gt_right" style="font-size: 21px;">3</td>
+<td class="gt_row gt_right" style="font-size: 21px;">9.5</td>
+<td class="gt_row gt_right" style="font-size: 21px;">NA</td></tr>
+    <tr><td class="gt_row gt_left" style="font-size: 21px;">E</td>
+<td class="gt_row gt_right" style="font-size: 21px;">NA</td>
+<td class="gt_row gt_right" style="font-size: 21px;">13.0</td>
+<td class="gt_row gt_right" style="font-size: 21px;">12.0</td></tr>
   </tbody>
   
   
@@ -2428,6 +2843,12 @@ tibble::tribble(
 ]
 ]
 
+???
+
+These data has temperature readings for different samples from two automated sensors plus a manual reading with an external device.
+
+For whatever season, there are missing values in the main sensor data, so we can coalesce the main, backup, and manual readings into a single column. These data have an inherent priority and order, in which we want to fill in gaps in the main sensor data with data from the backup sensor, with the manual readings as a third option.
+
 ---
 
 &lt;/br&gt;
@@ -2449,9 +2870,17 @@ sensors %&gt;%
 ## 5 E               NA          13             12            13
 ```
 
+???
+
+The code would look like this, we use mutate to create a new column called final reading, which is the output from coalescing the three columns with the data. In this case, we specified the same order that they appear in in the data. The new column combines data from the first column with values from the second one, and the third one was not needed.
+
 ---
 class: center
 ![](images/coalesce.gif)
+
+???
+
+This animation might also show the process better. If we have a record of the process and we don’t overwrite our original data, we may even want to subset the  data to keep only the new column.
 
 ---
 
@@ -2460,9 +2889,20 @@ background-image:url("images/sen-sathyamony-4RkmVyBMO5Q-unsplash.jpg")
 background-size: cover
 # Filling Adjacent Values
 
+???
+
+To wrap up, Let’s see how we can fill adjacent values in R. Doing this helps us avoid unnecessary NA values and makes for less ambiguous data. The logic is similar to the one you may be familiar with from filling adjacent values in spreadsheet software.
+
 ---
 
 ## .b.orange[fill()] from 📦 .b.rrured[`tidyr`]  
+
+???
+
+We’ll use the fill function from the tidyr package. The usage is straight forward.
+
+--
+
 
 
 .fl.w-40[
@@ -2470,7 +2910,7 @@ background-size: cover
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#kaubtljvek .gt_table {
+#ssvwtpqxaw .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2495,7 +2935,7 @@ background-size: cover
   border-left-color: #D3D3D3;
 }
 
-#kaubtljvek .gt_heading {
+#ssvwtpqxaw .gt_heading {
   background-color: #f4f4f9;
   text-align: center;
   border-bottom-color: #f4f4f9;
@@ -2507,7 +2947,7 @@ background-size: cover
   border-right-color: #D3D3D3;
 }
 
-#kaubtljvek .gt_title {
+#ssvwtpqxaw .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2517,7 +2957,7 @@ background-size: cover
   border-bottom-width: 0;
 }
 
-#kaubtljvek .gt_subtitle {
+#ssvwtpqxaw .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2527,13 +2967,13 @@ background-size: cover
   border-top-width: 0;
 }
 
-#kaubtljvek .gt_bottom_border {
+#ssvwtpqxaw .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#kaubtljvek .gt_col_headings {
+#ssvwtpqxaw .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2548,7 +2988,7 @@ background-size: cover
   border-right-color: #D3D3D3;
 }
 
-#kaubtljvek .gt_col_heading {
+#ssvwtpqxaw .gt_col_heading {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -2568,7 +3008,7 @@ background-size: cover
   overflow-x: hidden;
 }
 
-#kaubtljvek .gt_column_spanner_outer {
+#ssvwtpqxaw .gt_column_spanner_outer {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -2580,15 +3020,15 @@ background-size: cover
   padding-right: 4px;
 }
 
-#kaubtljvek .gt_column_spanner_outer:first-child {
+#ssvwtpqxaw .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#kaubtljvek .gt_column_spanner_outer:last-child {
+#ssvwtpqxaw .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#kaubtljvek .gt_column_spanner {
+#ssvwtpqxaw .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2600,7 +3040,7 @@ background-size: cover
   width: 100%;
 }
 
-#kaubtljvek .gt_group_heading {
+#ssvwtpqxaw .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #f4f4f9;
@@ -2622,7 +3062,7 @@ background-size: cover
   vertical-align: middle;
 }
 
-#kaubtljvek .gt_empty_group_heading {
+#ssvwtpqxaw .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #f4f4f9;
@@ -2637,15 +3077,15 @@ background-size: cover
   vertical-align: middle;
 }
 
-#kaubtljvek .gt_from_md > :first-child {
+#ssvwtpqxaw .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#kaubtljvek .gt_from_md > :last-child {
+#ssvwtpqxaw .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#kaubtljvek .gt_row {
+#ssvwtpqxaw .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2664,7 +3104,7 @@ background-size: cover
   overflow-x: hidden;
 }
 
-#kaubtljvek .gt_stub {
+#ssvwtpqxaw .gt_stub {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -2676,7 +3116,7 @@ background-size: cover
   padding-left: 12px;
 }
 
-#kaubtljvek .gt_summary_row {
+#ssvwtpqxaw .gt_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -2686,7 +3126,7 @@ background-size: cover
   padding-right: 5px;
 }
 
-#kaubtljvek .gt_first_summary_row {
+#ssvwtpqxaw .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2696,7 +3136,7 @@ background-size: cover
   border-top-color: #D3D3D3;
 }
 
-#kaubtljvek .gt_grand_summary_row {
+#ssvwtpqxaw .gt_grand_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -2706,7 +3146,7 @@ background-size: cover
   padding-right: 5px;
 }
 
-#kaubtljvek .gt_first_grand_summary_row {
+#ssvwtpqxaw .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2716,11 +3156,11 @@ background-size: cover
   border-top-color: #D3D3D3;
 }
 
-#kaubtljvek .gt_striped {
+#ssvwtpqxaw .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#kaubtljvek .gt_table_body {
+#ssvwtpqxaw .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2729,7 +3169,7 @@ background-size: cover
   border-bottom-color: #D3D3D3;
 }
 
-#kaubtljvek .gt_footnotes {
+#ssvwtpqxaw .gt_footnotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -2743,13 +3183,13 @@ background-size: cover
   border-right-color: #D3D3D3;
 }
 
-#kaubtljvek .gt_footnote {
+#ssvwtpqxaw .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#kaubtljvek .gt_sourcenotes {
+#ssvwtpqxaw .gt_sourcenotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -2763,46 +3203,46 @@ background-size: cover
   border-right-color: #D3D3D3;
 }
 
-#kaubtljvek .gt_sourcenote {
+#ssvwtpqxaw .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#kaubtljvek .gt_left {
+#ssvwtpqxaw .gt_left {
   text-align: left;
 }
 
-#kaubtljvek .gt_center {
+#ssvwtpqxaw .gt_center {
   text-align: center;
 }
 
-#kaubtljvek .gt_right {
+#ssvwtpqxaw .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#kaubtljvek .gt_font_normal {
+#ssvwtpqxaw .gt_font_normal {
   font-weight: normal;
 }
 
-#kaubtljvek .gt_font_bold {
+#ssvwtpqxaw .gt_font_bold {
   font-weight: bold;
 }
 
-#kaubtljvek .gt_font_italic {
+#ssvwtpqxaw .gt_font_italic {
   font-style: italic;
 }
 
-#kaubtljvek .gt_super {
+#ssvwtpqxaw .gt_super {
   font-size: 65%;
 }
 
-#kaubtljvek .gt_footnote_marks {
+#ssvwtpqxaw .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="kaubtljvek" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="ssvwtpqxaw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -2838,17 +3278,21 @@ background-size: cover
 &lt;/br&gt;
 `animal_populations`
 
+???
+
+Look at this two column table with data on animal populations. To avoid repetition,  values in the “animal” column only appear when they change to a different one.
+
 --
 
 .large[- Fill missing values in a column (top to bottom by default)]   
 
---
-
 .large[- Contiguous/adjacent values assumed to be the same]   
 
---
-
 .large[- Values only appear when they change along a column]
+
+???
+
+Fill will copy the value down into missing values, assuming that contiguous values are the same, and will stop at the next non-missing value. 
 
 ---
 
@@ -2898,6 +3342,10 @@ animal_populations %&gt;%
 ## 9 Frog            5
 ```
 ]
+
+???
+
+We can specify which variable we want to fill, by name, as an argument to the fill function. Here we are filling the animal column, and we can see that the values were copied down, replacing the NAS.
 
 ---
 class: my-turn

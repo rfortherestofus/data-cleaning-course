@@ -53,9 +53,19 @@ background-image:url("images/casey-horner-KtlTvi8leYQ-unsplash.jpg")
 background-size: cover
 # Toolbox Refresher
 
+???
+
+In previous lessons, we defined data cleaning and learned how to organize our data. Now we can get started with using R for data cleaning, and in particular, on first getting our data into sensible, usable structures.
+
+Let’s begin by going over the tools and packages that we’ll be using for this part and throughout this course in general.
+
 ---
 
 ### Tools for preparing, transforming, and restructuring data
+
+???
+
+When working in R for data cleaning, we’ll be calling on functions from two popular packages: dplyr and tidyr. Both are written and maintained by Rstudio staff with extensive community contributions. They are part of larger set of packages referred to as the tidyverse. 
 
 --
 
@@ -72,11 +82,20 @@ Flexible, but developed around built-in features that support a particular way o
 
 ]    
 
+???
+These tools are meant to be flexible, but they are built around built-in features that support a particular way of doing specific tasks.
+
 --
 
 - Hard to use incorrectly by accident   
 - Less code to achieve a goal  
 - Shared grammar and input/output data structures  
+
+???
+
+Functions in different tidyverse packages follow tidy data principles so they work well together. And, by having specialized purposes, each one does only one thing but they do it well.
+
+Having established that this course is tidyverse-oriented. Let’s go over another tool that we’ll be using to make our code easy to read.
 
 ---
 
@@ -84,17 +103,35 @@ Flexible, but developed around built-in features that support a particular way o
 
 To perform multiple operations in sequence:
 
+???
+
+When we work with functions to perform many sequential operations, we have three options.
+
 --
 
 - Nested code  
+
+???
+
+First we can use nested code, in which function calls are nested inside more function calls so that the results get evaluated from the inside out.
 
 --
 
 - Intermediate objects  
 
+???
+
+We can also assign objects with intermediate results that need to be passed to the next function in our sequence of operations.
+
 --
 
 - Pipes  
+
+???
+
+Or, as we’ll be doing in this course, we can use pipes.
+
+Let me show you how this looks like.
 
 ---
 
@@ -105,6 +142,14 @@ grades <- c(7,8,8,10,6,9,5,9,8)
 
 round(mean(grades), digits = 2)
 ```
+
+???
+
+
+Nested code looks like this.
+
+Here, we have a vector ‘grades’ with some numeric values.
+Our sequence of operations is to first get the mean grade, and then round this result. In nested code, the mean function is nested inside the round function.
 
 --
 
@@ -117,6 +162,13 @@ rd_mn_grades <- round(mn_grades, digits = 2)
 
 rd_mn_grades
 ```
+
+???
+
+Intermediate objects work in a similar way.
+First we assign an object with the mean of the grades, then we pass this object to the rounding function
+
+Notice how both approaches give us the same result. 
 
 ---
 
@@ -145,39 +197,83 @@ Right Hand Side
 <br>&nbsp;
 ]]
 
+???
+
+Alternatively, we can use pipes to avoid nested function calls or having so assign results to intermediate objects that we don’t really need.
+
+Pipes let us structure sequential operations from left to right.
+
+When we work with pipes, there is always something on the left hand side of a pipe operator, and something else on the right hand side.
+
+The pipe operator appears in orange here. Its originally from the magrittr package 
+
+
 ---
 
 ## Pipes
 
 - Take an **object** on the .avenir[Left Hand Side] of the pipe and insert it into a **function** as an argument on the .avenir[Right Hand Side] 
 
+???
+
+More specifically, pipes take and object on the left hand side of the pipe operator and insert it into a function on the right hand side.
+
 --
 
 - By default, .avenir[LHS] is placed as the **first** argument in the call 
+
+???
+
+By default, the object on the left hand side becomes the first argument in the function call.
+
 
 --
 
 - Packages in the `tidyverse`  load .b.orange[`%>%`] automatically
 
+???
+
+And remember, the pipe operator gets loaded by the tidyverse functions that we’ll be using. 
+
 ---
 
 ## Pipes 
+
+???
+
+Let me summarize the main advantages of using pipes to write code.
 
 --
 
 - Minimize the need for intermediate objects and nested code  
 
+???
+
+First, by chaining our operations with pipes we pass intermediate results onto the next function, so we don’t need nested code or to assign intermediate results to objects we won’t use again.
+
 --
 
 - Make code readable  
+
+???
+
+This makes our code more readable, and 
 
 --
 
 - Easy to add or remove steps at any point in the sequence of operations
 
+???
+
+its also easier to add or remove steps in our sequence of operations.
+
 --
 
 > Insert with `ctrl + shift + M`
+
+???
+
+A useful shortcut to remember is that in Rstudio we can insert pipes using control shift M, or command shift m on a mac.
 
 --
 
@@ -188,32 +284,70 @@ grades %>%
   round(digits=2)
 ```
 
+???
+
+The example from earlier looks like this is we use pipes.
+First we load the magrittr package, take the grades object, pass it  to the mean function, and then pass this result to the round function. Note how we don’t have to write the first argument in the function that are on the right hand side of a pipe. 
+
+We can now learn about the functions from dplyr that we’ll use extensively throughout this course. 
+
 ---
 
 ## Useful 📦 .b.rrured[`dplyr`] functions
 
+???
+
+As I mentioned earlier, the dplyr package provides us with separate functions for doing the most common data manipulation tasks.
+
+--
+
 - Individual functions for the most common operations
+
+???
+
+dplyr provides separate functions for the more common operations
 
 --
 
 - Each function does one only thing, but does it well  
 
+???
+
+Each function does one only thing, but does it well  
+
 --
 
 - Intuitive, user-friendly functions for common data manipulation tasks:
 
+???
+
+When we’re cleaning data, we usually do one of these if not all three of the following:
+
 --
 
   - Subset columns
-   
+
+???
+
+subset columns
+
 --
 
+
   - Subset rows
-   
+
+???
+
+Subset rows
+
 --
 
   - Create or modify columns  
- 
+
+???
+
+or create or modify columns
+
 ---
 
 ```{r, echo=FALSE, eval=TRUE}
@@ -263,6 +397,11 @@ beers <- tibble::tribble(
 ]
 ]
 
+???
+
+
+These data here describe some fictional beers and their properties.
+
 ---
 
 .left-column[
@@ -282,6 +421,14 @@ beers %>% select(name, style, star_rating)
 ![select animation](images/select.gif)
 ]
 
+???
+
+The first thing we might want to try is to subset some variables from the original table. For this we use the select function. Select helps us subset variables, which we can specify by their name, position on the data from left to right, or even by type.
+
+In the example, we’re selecting three variables from the beers object, and we’re doing that with a pipe and by passing their names to the select function. 
+
+The beers object is passed by the pipe as the first argument of the select function, and the other arguments are the names of the variables we want to keep, which are name, style, and star rating.
+
 ---
 .left-column[
 .large.b[`mutate()`]
@@ -299,6 +446,14 @@ beers %>% select(name, style, star_rating) %>%
 
 ![mutate animation](images/mutate.gif)
 ]
+
+???
+
+Next up, is creating new columns of modifying existing ones. We can do this with the mutate function. The syntax for creating new columns is quite flexible, but typically we need to specify its name and what will be in this new column. Lets see whats happening in the example. 
+
+To the transformation from before, in which we selected some variables from the beers object, we are adding an additional step using a pipe. With mutate, we’re creating a new variable called stars, which is itself the result of rounding the values of an existing column. 
+
+When we use mutate, we create new columns, but if the name of the new column is the same as an existing one, it will be overwritten.
 
 ---
 .left-column[
@@ -318,9 +473,19 @@ beers %>% select(name, style, star_rating) %>%
 ![filter animation](images/filter.gif)
 ]
 
+???
+
+Finally, we can also work on rows. To subset rows that meet a condition, we use the filter function. Again, we’re using a pipe to add a new step to the sequence from before. With the new variable stars, we want to keep only the rows in which the values of stars are greater than 3. 
+
+Notice how with the pipes we can keep track of the different steps, and that we didn’t have to work with intermediate objects for the results from each step. This is how we will work throughout this course.
+
 ---
 class: my-turn
 ## My Turn
+
+???
+
+Now, its my turn to use pipes and functions from dplyr to transform a dataset.
 
 --
 
@@ -374,6 +539,10 @@ background-image:url("images/emmanuel-acua-43Tvb651fxE-unsplash.jpg")
 background-size: cover
 # Working with Columns with `across()`
 
+???
+
+In all the previous examples in which we selected or modified columns, we were working on them either one at a time or were having to name each one.
+
 ---
 
 ## Operating on multiple columns
@@ -382,26 +551,52 @@ background-size: cover
 
 --
 
-`filter`, `mutate`, or `summarize` multiple columns
+`filter` or `mutate` multiple columns
+
+???
+
+Thanks to some recent updates to dplyr, we can operate on multiple columns at once using the across function.
+
+--
 
 - By position, name, or type  
+
+???
+
+We can specify many columns at once by position, name, or type. I don’t recommend using positions, because these are likely to change and less meaningful.
 
 --
 
 - Compound selections of columns  
 (e.g. _numeric columns that contain "mass" in their name_)
 
+???
+
+More importantly, we can use across to create compound selections of columns. For example, selecting or mutating all columns of type numeric but only if the contain a specific string in their name.
+
 ---
 
 ## .b.orange[`across()`] arguments:
 
+???
+
+Across has a relatively straight forward syntax.
+
 --
 
 .large.b[`.cols`] Columns to transform
- 
+
+???
+
+Cols is how we specify the columns we want to transform
+
 --
  
 .large.b[`.fns`]  Function to apply to each of the selected columns  
+
+???
+
+and fns is the function to apply to each of the columns
 
 --
 
@@ -414,14 +609,34 @@ beers %>%
   mutate(across(c(alc_by_volume, star_rating), round, digits = 3))
 ```
 
+???
+
+
+If you recall the beers data from earlier, we can use across to round all the numeric variables at the same time, the cols argument is a vector with the names of the two columns we’re interested in, and after that the function that we wish to apply and any additional arguments. Here, its the round function, with the digits argument passed on as well. Notice we used just the function name without any brackets.
+
 ---
 
 ## Useful column selection helpers
 
+???
+
+To specify sets of columns, there are a number of useful helper functions that we can use alongside or instead of the across function. 
+
+--
 .ba.ph4[
 .b.orange[`everything()`] Match all variables
 ]
 </br>
+
+```{r}
+beers %>% 
+  mutate(across(everything(), as.character))
+```
+
+???
+
+First up is everything, which matches all variables.
+In the example, we’re transforming every variable in the beers object to character.
 
 ---
 
@@ -432,6 +647,14 @@ beers %>%
 ]
 </br>
 
+```{r}
+beers %>% 
+  select(!c(style,country))
+```
+
+???
+
+We can also use the exclamation mark to take the complement of a set of variables. In the example, the question mark negates the set of variables that are specified by name, so we get everything except style and country.
 
 ---
 
@@ -441,6 +664,17 @@ beers %>%
 .ba.ph4.mt1.mb1[
 .b.orange[`where()`] Selects variables for which a predicate function returns `TRUE`  
 > e.g. subset or transform all numeric variables, determined by `is.numeric()`]
+
+```{r}
+beers %>% 
+  mutate(across(where(is.numeric), log2))
+```
+
+???
+
+Where is somewhat more elaborate, but it works together with any other function that returns TRUE of FALSE, and then select or mutates only those variables for which the condition is TRUE.
+
+For example, we want to apply a base two logarithm to any variables of type numeric in our beers object. We use the is.numeric function to check all the variables, and then the log2 function will only be applied to variables that meet the condition.
 
 ---
 
@@ -452,6 +686,17 @@ beers %>%
 
 ]
 
+```{r}
+beers %>% 
+  mutate(across(matches("rating"), log2))
+```
+
+???
+
+Matches is good for working with variable names and working only on those that contain a match for our pattern of interest. This is can be very useful, and we will see the power of regular expressions in a separate lesson.
+
+In the example code, were matching any variables in which the name contains the word rating, and applying a base two log transformation.
+
 ---
 
 ### Useful column selection helpers (continued)
@@ -461,6 +706,15 @@ beers %>%
 ]
 <br>
 
+```{r}
+beers %>% 
+  select(style:country)
+```
+
+???
+
+The colon, when used as a selection helper, matches a range of variables that are next to each other in the data. In the example, we’ll be keeping style, country, and every other variable between these two.
+
 ---
 
 ### Useful column selection helpers (continued)
@@ -469,6 +723,14 @@ beers %>%
 .b.orange[`-`]   Exclude variables   
 (return all elements except the one preceded by the subtraction operator)
 ]
+```{r}
+beers %>% 
+  select(-country)
+```
+
+???
+
+Finally, we can use the minus sign to exclude variables from a selection. In the example, we exclude country and keep everything else.
 
 ---
 
@@ -484,6 +746,10 @@ beers %>% gt() %>%
   tab_options(table.background.color="#f4f4f9")
 ```
 
+???
+
+Lets have another look at the beers data, and apply some transformations to many columns at once. Just looking at this table, we can see two numeric variables: alcohol by volume, and star rating. Just for demonstration, lets use the mutate function to apply a numeric transformation to these two columns.
+
 ---
 
 ### Square root (.orange.b[`sqrt()`]) of `alc_by_volume` and `star_rating`
@@ -493,6 +759,10 @@ beers %>%
   mutate(across(c(alc_by_volume,star_rating), sqrt))
 ```
 
+???
+
+To apply the square root function to these two columns, one option would be to refer to them by name inside across.
+
 ---
 
 ### Square root (.orange.b[`sqrt()`]) of all numeric variables
@@ -501,6 +771,10 @@ beers %>%
 beers %>% 
   mutate(across(where(is.numeric), sqrt))
 ```
+
+???
+
+Or, we can also use the where function and is.numeric to simplify our code and apply the square root function to every numeric variable. The results are both the same.
 
 ---
 
@@ -555,6 +829,10 @@ background-image:url("images/1024px-Espacio_Escultórico.jpg")
 background-size: cover
 # Pivoting Data
 
+???
+
+In the lesson on data organization, we went over tidy data principles, and glanced over long and wide structures for data. Now, we can go ahead and use R to reshape and pivot our data between these different structures.
+
 ---
 
 .pull-left[
@@ -572,14 +850,34 @@ Maps well to plot axes and aesthetics ]
 
 ![widelong](images/widelong.png)
 
+???
+
+As the names suggest, data can take either wide and long structures. The difference between these two structures goes beyond just having different proportions of rows and columns. This goes back to tidy data principles. 
+
+Wide data is what we see often and what we use for data entry or reporting. This structure is readable, concise, and easy to edit. 
+
+On the other hand, long data is more likely to be tidy and more ready for use in our workflows. The fundamental difference lies with how variables and observations relate to rows and columns.  The good news is that we can transform the data between structures.
+
 ---
 # Reshaping data with 📦 .b.rrured[`tidyr`]
+
+???
+
+To reshape data from wide to long and vice versa, we’ll use functions from the tidyr package, which, if you remember, is part of the tidyverse. 
+
+The names of the relevant functions are also quite easy to remember.
+
+--
 
 .large[wide to long: .b.orange[`pivot_longer()`]]  
 
 ```{r}
 pivot_longer(data, cols, names_to, values_to)
 ```
+
+???
+
+To go from wide to long, we use pivot_longer
 
 --
 
@@ -588,6 +886,10 @@ pivot_longer(data, cols, names_to, values_to)
 ```{r}
 pivot_longer(data, cols, names_from, values_from)
 ```
+
+???
+
+To go from long to wide, we use pivot_wider
 
 ---
 ```{r, echo=FALSE, eval=TRUE}
@@ -606,7 +908,7 @@ tibble::tribble(
 ```{r, echo=FALSE, eval=TRUE}
 critters%>% gt() %>% 
     tab_style(
-    cell_text(size = '17px'),
+    cell_text(size = '22px'),
     locations = list(cells_body(),
                      cells_column_labels(everything()),
                      cells_title())) %>% 
@@ -628,16 +930,35 @@ tibble::tribble(
 ]
 ]
 
+???
+
+Ill illustrate these transformations with this simple dataset that enumerates some wildlife sightings across different habitats and counties. Just looking at this table, we can see that it is wider than it is long.
+
 --
 
-</br>
-Variables:
-- Habitat
-- County
-- Critter Type
-- Individuals Encountered
+.center[Variables (attributes measured):]
+.fl.w-24[
+Habitat
+]
+
+.fl.w-25.tc[
+County
+]
+
+.fl.w-25.tc[
+Critter Type
+]
+
+.fl.w-25.tr[
+Individuals Encountered
+]
+
+???
+
+Going deeper into the structure of the data though, we will come to realize that this wide data is not tidy. Why? Because there are actually four attributes being measured, but their values do not correspond to columns. Specifically, the values for critter type and the number of individuals encountered are not in their own column. We can still interpret the information stored in these data, but for many purposes a long, tidy version might be preferable. Lets see how we can go about reshaping this critter data.
 
 ---
+
 # Wide to long
 
 ```{r}
@@ -658,18 +979,34 @@ critters_long <- critters %>%
   )
 ```
 
+???
+
+For this, we use the pivot longer function. Notice again how we’re using pipes.
+Pivot longer has three main arguments that we need to specify.
 
 --
 
 .b[`cols`] Which columns have data in their names  
 
+???
+
+Cols are the columns that actually contain data in their names. In our example, these would be the columns for each of the little animals, which are actually levels of an attribute.
+
 --
 
 **`names_to`** Name for the new column to be created from `cols`  
 
+???
+
+Having recognized that there were data in column names which should be in its own column, we can give it a name. This is what the names to argument is for. In this case, lets call the new column critter underscore type
+
 --
 
 **`values_to`** Name of the column to be created from the contents of the cells in **`cols`**  
+
+???
+
+finally, the content of the columns we specified with the cols argument also needs to go into a separate variable, and it will need a name. In our example, this would be the number of individuals spotted, and we can use that as a name.
 
 ---
 ```{r, eval=TRUE}
@@ -678,6 +1015,12 @@ critters %>%
                names_to = "critter_type", 
                values_to = "individuals_encountered")
 ```
+
+???
+
+Lets see how the long table looks.
+
+The same information is now in a long, tidy version. Notice how the function handled all the combinations for us, and how there is more repetition with this structure. Now, each of the four measured attributes is in a column and each row is now an observation with a value for each variable.
 
 ---
 
@@ -689,13 +1032,27 @@ critters_long %>%
               values_from = individuals_encountered)
 ```
 
+???
+
+We can just as easily reshape the long version back to a wide version.
+
+For this, we use two main arguments.
+
 --
 
 .b[`names_from`] Which columns' values will be used for new .b[column names]
 
+???
+
+First, we need to specify which column contains the values that need to be spread out across as many column names as there are unique values in the column. We do this with the names from argument.
+
 --
 
 .b[`values_from`] Which column has the .b[cell values] for the new output columns
+
+???
+
+Then, we need to specify which column has the values that will populate the new columns. We use values from for this.
 
 ---
 
@@ -705,11 +1062,21 @@ critters_long %>%
               values_from = individuals_encountered)
 ```
 
+???
+
+With our example, the new “critter type” column has the names of the critters that we want as separate columns, and the “individuals encountered” column has the numeric values that will also be spread out into the new columns.
+
+When we run this code, we get our initial wide dataset back.
+
 ---
 
 class: center
 
 ![](images/pivoting.gif)
+
+???
+
+Maybe an animated version of this transformation can illustrate the process better. Look at how the same information can appear in different layouts. Each one has its advantages and disadvantages, but its important to know that its not an issue shifting between the two.
 
 ---
 
@@ -744,17 +1111,40 @@ background-image:url("images/drew-dau-dXxsLrlg9qY-unsplash.jpg")
 background-size: cover
 # Coalescing Columns
 
+???
+
+By now, we’ve gone over subsetting rows and columns, creating new columns, and reshaping entire datasets between wide and long structures. These tools are pretty much everything we need to restructure our data. Now, we’ll learn about two more functions from dplyr and tidyr that may come in handy during the restructuring stage of our data cleaning.
+
+First, we’ll learn about coalescing columns.
+
+Coalescing values sounds strange and complicated, but as we’ll see, this comes up often during data cleaning and the important thing is that we can avoid having to do this by hand.
+
+
+Coalescing columns is essentially lumping together two or more columns with data for the same variable, in which there may be missing values. We want to combine the data, keeping values from one column and filling any missing data with values from other columns.
+
 ---
 
 ## .b.orange[coalesce()] from 📦 .b.rrured[`dplyr`]  
+
+???
+
+To do this, we use the coalesce function from dplyr. 
 
 --
 
 - Find and return the first non-NA value at each position for a set of vectors
 
+???
+
+Technically, coalesce finds and returns the first non NA value at each position for two or more vectors. Remember, columns in rectangular data are also vectors.
+
 --
 
 - Returns a single vector with the non-NA values that appear first 
+
+???
+
+When we coalesce a set of vectors, the function returns a single vector with all the non NA values, according to where they appear.
 
 ---
 
@@ -765,6 +1155,11 @@ x <- c(1, 2, NA, NA, 5)
 y <- c(NA, NA, 3, 4, 5)
 z <- c(1, 4, 3, 5, 3)
 ```
+
+???
+
+Lets demonstrate this with some simple vectors.
+X Y and Z are numeric vectors of the same length and some have missing values.
 
 --
 
@@ -772,6 +1167,12 @@ z <- c(1, 4, 3, 5, 3)
 coalesce(x, y, z)
 ```
 
+???
+
+We want a single vector with as few Nas as possible. If we coalesce these three vectors in this particular order, the values from vector Y at the third and fourth positions fill in the missing values in vector X, and then vector Z is not used. 
+
+The order of the vectors here is important.
+
 ---
 
 ## .b.orange[coalesce()] from 📦 .b.rrured[`dplyr`]  
@@ -782,11 +1183,19 @@ y <- c(NA, NA, 3, 4, 5)
 z <- c(1, 4, 3, 5, 3)
 ```
 
+???
+
+Lets do this again, but in a different order, this time z, x, and y. There are no missing values in vector Z so it is returned as is. 
+
 --
 
 ```{r, eval=TRUE}
 coalesce(z,x,y)
 ```
+
+???
+
+Coalesce is a very useful function, but we need to be mindful of how we order and prioritize its inputs. Lets use coalesce in a more realistic scenario, to really illustrate its potential.
 
 ---
 
@@ -807,7 +1216,7 @@ tibble::tribble(
 ```{r, echo=FALSE, eval=TRUE}
 sensors %>% gt() %>% 
     tab_style(
-    cell_text(size = '17px'),
+    cell_text(size = '21px'),
     locations = list(cells_body(),
                      cells_column_labels(everything()),
                      cells_title())) %>% 
@@ -830,6 +1239,12 @@ tibble::tribble(
 ]
 ]
 
+???
+
+These data has temperature readings for different samples from two automated sensors plus a manual reading with an external device.
+
+For whatever season, there are missing values in the main sensor data, so we can coalesce the main, backup, and manual readings into a single column. These data have an inherent priority and order, in which we want to fill in gaps in the main sensor data with data from the backup sensor, with the manual readings as a third option.
+
 ---
 
 </br>
@@ -840,9 +1255,17 @@ sensors %>%
   
 ```
 
+???
+
+The code would look like this, we use mutate to create a new column called final reading, which is the output from coalescing the three columns with the data. In this case, we specified the same order that they appear in in the data. The new column combines data from the first column with values from the second one, and the third one was not needed.
+
 ---
 class: center
 ![](images/coalesce.gif)
+
+???
+
+This animation might also show the process better. If we have a record of the process and we don’t overwrite our original data, we may even want to subset the  data to keep only the new column.
 
 ---
 
@@ -851,9 +1274,20 @@ background-image:url("images/sen-sathyamony-4RkmVyBMO5Q-unsplash.jpg")
 background-size: cover
 # Filling Adjacent Values
 
+???
+
+To wrap up, Let’s see how we can fill adjacent values in R. Doing this helps us avoid unnecessary NA values and makes for less ambiguous data. The logic is similar to the one you may be familiar with from filling adjacent values in spreadsheet software.
+
 ---
 
 ## .b.orange[fill()] from 📦 .b.rrured[`tidyr`]  
+
+???
+
+We’ll use the fill function from the tidyr package. The usage is straight forward.
+
+--
+
 ```{r, echo=FALSE, eval=TRUE}
 animal_populations <- tibble(animal=c("Bird",NA,NA,NA,NA,"Frog",NA,NA,NA),
        population=c(21,5,7,23,74,23,65,12,5))
@@ -874,17 +1308,21 @@ animal_populations %>% gt() %>%
 </br>
 `animal_populations`
 
+???
+
+Look at this two column table with data on animal populations. To avoid repetition,  values in the “animal” column only appear when they change to a different one.
+
 --
 
 .large[- Fill missing values in a column (top to bottom by default)]   
 
---
-
 .large[- Contiguous/adjacent values assumed to be the same]   
 
---
-
 .large[- Values only appear when they change along a column]
+
+???
+
+Fill will copy the value down into missing values, assuming that contiguous values are the same, and will stop at the next non-missing value. 
 
 ---
 
@@ -902,6 +1340,10 @@ animal_populations %>%
   fill(animal)
 ```
 ]
+
+???
+
+We can specify which variable we want to fill, by name, as an argument to the fill function. Here we are filling the animal column, and we can see that the values were copied down, replacing the NAS.
 
 ---
 class: my-turn
