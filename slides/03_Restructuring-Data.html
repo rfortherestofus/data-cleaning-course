@@ -57,9 +57,9 @@ background-size: cover
 
 ???
 
-In previous lessons, we defined data cleaning and learned how to organize our data. Now we can get started with using R for data cleaning, and in particular, on first getting our data into sensible, usable structures.
+In previous lessons, we defined data cleaning and learned how to organize our data. Now we can get started with using R, and in particular, on first getting our data into sensible, usable structures.
 
-Let’s begin by going over the tools and packages that we’ll be using for this part and throughout this course in general.
+Let’s begin by going over the tools and packages that we’ll be using for this part and throughout this course.
 
 ---
 
@@ -85,6 +85,7 @@ Flexible, but developed around built-in features that support a particular way o
 ]    
 
 ???
+
 These tools are meant to be flexible, but they are built around built-in features that support a particular way of doing specific tasks.
 
 --
@@ -115,7 +116,7 @@ When we work with functions to perform many sequential operations, we have three
 
 ???
 
-First we can use nested code, in which function calls are nested inside more function calls so that the results get evaluated from the inside out.
+we can use nested code, in which function calls are nested inside more function calls so that the results get evaluated from the inside out.
 
 --
 
@@ -123,7 +124,7 @@ First we can use nested code, in which function calls are nested inside more fun
 
 ???
 
-We can also assign objects with intermediate results that need to be passed to the next function in our sequence of operations.
+We can also assign objects with intermediate results, passed on to the next function in our sequence.
 
 --
 
@@ -211,7 +212,7 @@ Right Hand Side
 
 ???
 
-Alternatively, we can use pipes to avoid nested function calls or having so assign results to intermediate objects that we don’t really need.
+Alternatively, we can use pipes to avoid nested code or having so assign results to intermediate objects that we don’t really need.
 
 Pipes let us structure sequential operations from left to right.
 
@@ -245,7 +246,7 @@ By default, the object on the left hand side becomes the first argument in the f
 
 ???
 
-And remember, the pipe operator gets loaded by the tidyverse functions that we’ll be using. 
+by the way, the pipe operator gets loaded by the tidyverse packages that we’ll be using. 
 
 ---
 
@@ -261,7 +262,7 @@ Let me summarize the main advantages of using pipes to write code.
 
 ???
 
-First, by chaining our operations with pipes we pass intermediate results onto the next function, so we don’t need nested code or to assign intermediate results to objects we won’t use again.
+First, by chaining our operations with pipes we pass the results onto the next function, so we don’t need nested code or to assign intermediate results to objects we won’t use again.
 
 --
 
@@ -293,7 +294,7 @@ A useful shortcut to remember is that in Rstudio we can insert pipes using contr
 ```r
 library(magrittr)
 grades %&gt;% 
-  mean %&gt;% 
+  mean() %&gt;% 
   round(digits=2)
 ```
 
@@ -304,7 +305,7 @@ grades %&gt;%
 ???
 
 The example from earlier looks like this is we use pipes.
-First we load the magrittr package, take the grades object, pass it  to the mean function, and then pass this result to the round function. Note how we don’t have to write the first argument in the function that are on the right hand side of a pipe. 
+First we load the magrittr package, take the grades object, pass it to the mean function, and then pass this result to the round function. Note how we don’t have to write the first argument in functions that are on the right hand side of a pipe. 
 
 We can now learn about the functions from dplyr that we’ll use extensively throughout this course. 
 
@@ -350,7 +351,6 @@ subset columns
 
 --
 
-
   - Subset rows
 
 ???
@@ -375,7 +375,7 @@ or create or modify columns
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#ukubshgghj .gt_table {
+#mptzxpzxmh .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -400,7 +400,7 @@ or create or modify columns
   border-left-color: #D3D3D3;
 }
 
-#ukubshgghj .gt_heading {
+#mptzxpzxmh .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -412,7 +412,7 @@ or create or modify columns
   border-right-color: #D3D3D3;
 }
 
-#ukubshgghj .gt_title {
+#mptzxpzxmh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -422,7 +422,7 @@ or create or modify columns
   border-bottom-width: 0;
 }
 
-#ukubshgghj .gt_subtitle {
+#mptzxpzxmh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -432,13 +432,13 @@ or create or modify columns
   border-top-width: 0;
 }
 
-#ukubshgghj .gt_bottom_border {
+#mptzxpzxmh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ukubshgghj .gt_col_headings {
+#mptzxpzxmh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -453,7 +453,7 @@ or create or modify columns
   border-right-color: #D3D3D3;
 }
 
-#ukubshgghj .gt_col_heading {
+#mptzxpzxmh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -473,7 +473,7 @@ or create or modify columns
   overflow-x: hidden;
 }
 
-#ukubshgghj .gt_column_spanner_outer {
+#mptzxpzxmh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -485,15 +485,15 @@ or create or modify columns
   padding-right: 4px;
 }
 
-#ukubshgghj .gt_column_spanner_outer:first-child {
+#mptzxpzxmh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ukubshgghj .gt_column_spanner_outer:last-child {
+#mptzxpzxmh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ukubshgghj .gt_column_spanner {
+#mptzxpzxmh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -505,7 +505,7 @@ or create or modify columns
   width: 100%;
 }
 
-#ukubshgghj .gt_group_heading {
+#mptzxpzxmh .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -527,7 +527,7 @@ or create or modify columns
   vertical-align: middle;
 }
 
-#ukubshgghj .gt_empty_group_heading {
+#mptzxpzxmh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -542,15 +542,15 @@ or create or modify columns
   vertical-align: middle;
 }
 
-#ukubshgghj .gt_from_md > :first-child {
+#mptzxpzxmh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ukubshgghj .gt_from_md > :last-child {
+#mptzxpzxmh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ukubshgghj .gt_row {
+#mptzxpzxmh .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -569,7 +569,7 @@ or create or modify columns
   overflow-x: hidden;
 }
 
-#ukubshgghj .gt_stub {
+#mptzxpzxmh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -581,7 +581,7 @@ or create or modify columns
   padding-left: 12px;
 }
 
-#ukubshgghj .gt_summary_row {
+#mptzxpzxmh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -591,7 +591,7 @@ or create or modify columns
   padding-right: 5px;
 }
 
-#ukubshgghj .gt_first_summary_row {
+#mptzxpzxmh .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -601,7 +601,7 @@ or create or modify columns
   border-top-color: #D3D3D3;
 }
 
-#ukubshgghj .gt_grand_summary_row {
+#mptzxpzxmh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -611,7 +611,7 @@ or create or modify columns
   padding-right: 5px;
 }
 
-#ukubshgghj .gt_first_grand_summary_row {
+#mptzxpzxmh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -621,11 +621,11 @@ or create or modify columns
   border-top-color: #D3D3D3;
 }
 
-#ukubshgghj .gt_striped {
+#mptzxpzxmh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ukubshgghj .gt_table_body {
+#mptzxpzxmh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -634,7 +634,7 @@ or create or modify columns
   border-bottom-color: #D3D3D3;
 }
 
-#ukubshgghj .gt_footnotes {
+#mptzxpzxmh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -648,13 +648,13 @@ or create or modify columns
   border-right-color: #D3D3D3;
 }
 
-#ukubshgghj .gt_footnote {
+#mptzxpzxmh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#ukubshgghj .gt_sourcenotes {
+#mptzxpzxmh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -668,46 +668,46 @@ or create or modify columns
   border-right-color: #D3D3D3;
 }
 
-#ukubshgghj .gt_sourcenote {
+#mptzxpzxmh .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#ukubshgghj .gt_left {
+#mptzxpzxmh .gt_left {
   text-align: left;
 }
 
-#ukubshgghj .gt_center {
+#mptzxpzxmh .gt_center {
   text-align: center;
 }
 
-#ukubshgghj .gt_right {
+#mptzxpzxmh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ukubshgghj .gt_font_normal {
+#mptzxpzxmh .gt_font_normal {
   font-weight: normal;
 }
 
-#ukubshgghj .gt_font_bold {
+#mptzxpzxmh .gt_font_bold {
   font-weight: bold;
 }
 
-#ukubshgghj .gt_font_italic {
+#mptzxpzxmh .gt_font_italic {
   font-style: italic;
 }
 
-#ukubshgghj .gt_super {
+#mptzxpzxmh .gt_super {
   font-size: 65%;
 }
 
-#ukubshgghj .gt_footnote_marks {
+#mptzxpzxmh .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="ukubshgghj" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="mptzxpzxmh" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -720,66 +720,86 @@ or create or modify columns
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">County</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Lager</td>
-<td class="gt_row gt_right" style="font-size: 21px;">4.2</td>
-<td class="gt_row gt_left" style="font-size: 21px;">low</td>
-<td class="gt_row gt_left" style="font-size: 21px;">USA</td>
-<td class="gt_row gt_right" style="font-size: 21px;">3.40</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">Mountain Special</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Pale Ale</td>
-<td class="gt_row gt_right" style="font-size: 21px;">4.1</td>
-<td class="gt_row gt_left" style="font-size: 21px;">low</td>
-<td class="gt_row gt_left" style="font-size: 21px;">USA</td>
-<td class="gt_row gt_right" style="font-size: 21px;">2.70</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">Lagartos</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Lager</td>
-<td class="gt_row gt_right" style="font-size: 21px;">5.1</td>
-<td class="gt_row gt_left" style="font-size: 21px;">mid</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Mexico</td>
-<td class="gt_row gt_right" style="font-size: 21px;">4.10</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">Jealous Hobo</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Porter</td>
-<td class="gt_row gt_right" style="font-size: 21px;">6.5</td>
-<td class="gt_row gt_left" style="font-size: 21px;">mid</td>
-<td class="gt_row gt_left" style="font-size: 21px;">USA</td>
-<td class="gt_row gt_right" style="font-size: 21px;">3.36</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">Strasse</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Stout</td>
-<td class="gt_row gt_right" style="font-size: 21px;">8.3</td>
-<td class="gt_row gt_left" style="font-size: 21px;">high</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Germany</td>
-<td class="gt_row gt_right" style="font-size: 21px;">4.89</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">Arbre</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Pale Ale</td>
-<td class="gt_row gt_right" style="font-size: 21px;">3.4</td>
-<td class="gt_row gt_left" style="font-size: 21px;">low</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Belgium</td>
-<td class="gt_row gt_right" style="font-size: 21px;">4.01</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">K1997</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Lager</td>
-<td class="gt_row gt_right" style="font-size: 21px;">4.0</td>
-<td class="gt_row gt_left" style="font-size: 21px;">high</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Japan</td>
-<td class="gt_row gt_right" style="font-size: 21px;">3.88</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">Lagartos Cero</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Lager</td>
-<td class="gt_row gt_right" style="font-size: 21px;">0.0</td>
-<td class="gt_row gt_left" style="font-size: 21px;">mid</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Mexico</td>
-<td class="gt_row gt_right" style="font-size: 21px;">2.00</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">Airball</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Irish Ale</td>
-<td class="gt_row gt_right" style="font-size: 21px;">6.0</td>
-<td class="gt_row gt_left" style="font-size: 21px;">high</td>
-<td class="gt_row gt_left" style="font-size: 21px;">USA</td>
-<td class="gt_row gt_right" style="font-size: 21px;">3.64</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">Clean Tackle</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Stout</td>
-<td class="gt_row gt_right" style="font-size: 21px;">7.2</td>
-<td class="gt_row gt_left" style="font-size: 21px;">mid</td>
-<td class="gt_row gt_left" style="font-size: 21px;">England</td>
-<td class="gt_row gt_right" style="font-size: 21px;">4.20</td></tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">County</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Lager</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">4.2</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">low</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">USA</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">3.40</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">Mountain Special</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Pale Ale</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">4.1</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">low</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">USA</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">2.70</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">Lagartos</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Lager</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">5.1</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">mid</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Mexico</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">4.10</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">Jealous Hobo</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Porter</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">6.5</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">mid</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">USA</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">3.36</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">Strasse</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Stout</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">8.3</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">high</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Germany</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">4.89</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">Arbre</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Pale Ale</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">3.4</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">low</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Belgium</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">4.01</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">K1997</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Lager</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">4.0</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">high</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Japan</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">3.88</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">Lagartos Cero</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Lager</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">0.0</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">mid</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Mexico</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">2.00</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">Airball</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Irish Ale</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">6.0</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">high</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">USA</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">3.64</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">Clean Tackle</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Stout</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">7.2</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">mid</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">England</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">4.20</td>
+    </tr>
   </tbody>
   
   
@@ -1159,7 +1179,7 @@ Finally, we can use the minus sign to exclude variables from a selection. In the
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#omygfhjune .gt_table {
+#fcplqppxfg .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1184,7 +1204,7 @@ Finally, we can use the minus sign to exclude variables from a selection. In the
   border-left-color: #D3D3D3;
 }
 
-#omygfhjune .gt_heading {
+#fcplqppxfg .gt_heading {
   background-color: #f4f4f9;
   text-align: center;
   border-bottom-color: #f4f4f9;
@@ -1196,7 +1216,7 @@ Finally, we can use the minus sign to exclude variables from a selection. In the
   border-right-color: #D3D3D3;
 }
 
-#omygfhjune .gt_title {
+#fcplqppxfg .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1206,7 +1226,7 @@ Finally, we can use the minus sign to exclude variables from a selection. In the
   border-bottom-width: 0;
 }
 
-#omygfhjune .gt_subtitle {
+#fcplqppxfg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1216,13 +1236,13 @@ Finally, we can use the minus sign to exclude variables from a selection. In the
   border-top-width: 0;
 }
 
-#omygfhjune .gt_bottom_border {
+#fcplqppxfg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#omygfhjune .gt_col_headings {
+#fcplqppxfg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1237,7 +1257,7 @@ Finally, we can use the minus sign to exclude variables from a selection. In the
   border-right-color: #D3D3D3;
 }
 
-#omygfhjune .gt_col_heading {
+#fcplqppxfg .gt_col_heading {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -1257,7 +1277,7 @@ Finally, we can use the minus sign to exclude variables from a selection. In the
   overflow-x: hidden;
 }
 
-#omygfhjune .gt_column_spanner_outer {
+#fcplqppxfg .gt_column_spanner_outer {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -1269,15 +1289,15 @@ Finally, we can use the minus sign to exclude variables from a selection. In the
   padding-right: 4px;
 }
 
-#omygfhjune .gt_column_spanner_outer:first-child {
+#fcplqppxfg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#omygfhjune .gt_column_spanner_outer:last-child {
+#fcplqppxfg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#omygfhjune .gt_column_spanner {
+#fcplqppxfg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1289,7 +1309,7 @@ Finally, we can use the minus sign to exclude variables from a selection. In the
   width: 100%;
 }
 
-#omygfhjune .gt_group_heading {
+#fcplqppxfg .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #f4f4f9;
@@ -1311,7 +1331,7 @@ Finally, we can use the minus sign to exclude variables from a selection. In the
   vertical-align: middle;
 }
 
-#omygfhjune .gt_empty_group_heading {
+#fcplqppxfg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #f4f4f9;
@@ -1326,15 +1346,15 @@ Finally, we can use the minus sign to exclude variables from a selection. In the
   vertical-align: middle;
 }
 
-#omygfhjune .gt_from_md > :first-child {
+#fcplqppxfg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#omygfhjune .gt_from_md > :last-child {
+#fcplqppxfg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#omygfhjune .gt_row {
+#fcplqppxfg .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1353,7 +1373,7 @@ Finally, we can use the minus sign to exclude variables from a selection. In the
   overflow-x: hidden;
 }
 
-#omygfhjune .gt_stub {
+#fcplqppxfg .gt_stub {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -1365,7 +1385,7 @@ Finally, we can use the minus sign to exclude variables from a selection. In the
   padding-left: 12px;
 }
 
-#omygfhjune .gt_summary_row {
+#fcplqppxfg .gt_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -1375,7 +1395,7 @@ Finally, we can use the minus sign to exclude variables from a selection. In the
   padding-right: 5px;
 }
 
-#omygfhjune .gt_first_summary_row {
+#fcplqppxfg .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1385,7 +1405,7 @@ Finally, we can use the minus sign to exclude variables from a selection. In the
   border-top-color: #D3D3D3;
 }
 
-#omygfhjune .gt_grand_summary_row {
+#fcplqppxfg .gt_grand_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -1395,7 +1415,7 @@ Finally, we can use the minus sign to exclude variables from a selection. In the
   padding-right: 5px;
 }
 
-#omygfhjune .gt_first_grand_summary_row {
+#fcplqppxfg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1405,11 +1425,11 @@ Finally, we can use the minus sign to exclude variables from a selection. In the
   border-top-color: #D3D3D3;
 }
 
-#omygfhjune .gt_striped {
+#fcplqppxfg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#omygfhjune .gt_table_body {
+#fcplqppxfg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1418,7 +1438,7 @@ Finally, we can use the minus sign to exclude variables from a selection. In the
   border-bottom-color: #D3D3D3;
 }
 
-#omygfhjune .gt_footnotes {
+#fcplqppxfg .gt_footnotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -1432,13 +1452,13 @@ Finally, we can use the minus sign to exclude variables from a selection. In the
   border-right-color: #D3D3D3;
 }
 
-#omygfhjune .gt_footnote {
+#fcplqppxfg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#omygfhjune .gt_sourcenotes {
+#fcplqppxfg .gt_sourcenotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -1452,46 +1472,46 @@ Finally, we can use the minus sign to exclude variables from a selection. In the
   border-right-color: #D3D3D3;
 }
 
-#omygfhjune .gt_sourcenote {
+#fcplqppxfg .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#omygfhjune .gt_left {
+#fcplqppxfg .gt_left {
   text-align: left;
 }
 
-#omygfhjune .gt_center {
+#fcplqppxfg .gt_center {
   text-align: center;
 }
 
-#omygfhjune .gt_right {
+#fcplqppxfg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#omygfhjune .gt_font_normal {
+#fcplqppxfg .gt_font_normal {
   font-weight: normal;
 }
 
-#omygfhjune .gt_font_bold {
+#fcplqppxfg .gt_font_bold {
   font-weight: bold;
 }
 
-#omygfhjune .gt_font_italic {
+#fcplqppxfg .gt_font_italic {
   font-style: italic;
 }
 
-#omygfhjune .gt_super {
+#fcplqppxfg .gt_super {
   font-size: 65%;
 }
 
-#omygfhjune .gt_footnote_marks {
+#fcplqppxfg .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="omygfhjune" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="fcplqppxfg" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -1504,66 +1524,86 @@ Finally, we can use the minus sign to exclude variables from a selection. In the
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">County</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Lager</td>
-<td class="gt_row gt_right" style="font-size: 21px;">4.2</td>
-<td class="gt_row gt_left" style="font-size: 21px;">low</td>
-<td class="gt_row gt_left" style="font-size: 21px;">USA</td>
-<td class="gt_row gt_right" style="font-size: 21px;">3.40</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">Mountain Special</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Pale Ale</td>
-<td class="gt_row gt_right" style="font-size: 21px;">4.1</td>
-<td class="gt_row gt_left" style="font-size: 21px;">low</td>
-<td class="gt_row gt_left" style="font-size: 21px;">USA</td>
-<td class="gt_row gt_right" style="font-size: 21px;">2.70</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">Lagartos</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Lager</td>
-<td class="gt_row gt_right" style="font-size: 21px;">5.1</td>
-<td class="gt_row gt_left" style="font-size: 21px;">mid</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Mexico</td>
-<td class="gt_row gt_right" style="font-size: 21px;">4.10</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">Jealous Hobo</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Porter</td>
-<td class="gt_row gt_right" style="font-size: 21px;">6.5</td>
-<td class="gt_row gt_left" style="font-size: 21px;">mid</td>
-<td class="gt_row gt_left" style="font-size: 21px;">USA</td>
-<td class="gt_row gt_right" style="font-size: 21px;">3.36</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">Strasse</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Stout</td>
-<td class="gt_row gt_right" style="font-size: 21px;">8.3</td>
-<td class="gt_row gt_left" style="font-size: 21px;">high</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Germany</td>
-<td class="gt_row gt_right" style="font-size: 21px;">4.89</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">Arbre</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Pale Ale</td>
-<td class="gt_row gt_right" style="font-size: 21px;">3.4</td>
-<td class="gt_row gt_left" style="font-size: 21px;">low</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Belgium</td>
-<td class="gt_row gt_right" style="font-size: 21px;">4.01</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">K1997</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Lager</td>
-<td class="gt_row gt_right" style="font-size: 21px;">4.0</td>
-<td class="gt_row gt_left" style="font-size: 21px;">high</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Japan</td>
-<td class="gt_row gt_right" style="font-size: 21px;">3.88</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">Lagartos Cero</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Lager</td>
-<td class="gt_row gt_right" style="font-size: 21px;">0.0</td>
-<td class="gt_row gt_left" style="font-size: 21px;">mid</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Mexico</td>
-<td class="gt_row gt_right" style="font-size: 21px;">2.00</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">Airball</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Irish Ale</td>
-<td class="gt_row gt_right" style="font-size: 21px;">6.0</td>
-<td class="gt_row gt_left" style="font-size: 21px;">high</td>
-<td class="gt_row gt_left" style="font-size: 21px;">USA</td>
-<td class="gt_row gt_right" style="font-size: 21px;">3.64</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">Clean Tackle</td>
-<td class="gt_row gt_left" style="font-size: 21px;">Stout</td>
-<td class="gt_row gt_right" style="font-size: 21px;">7.2</td>
-<td class="gt_row gt_left" style="font-size: 21px;">mid</td>
-<td class="gt_row gt_left" style="font-size: 21px;">England</td>
-<td class="gt_row gt_right" style="font-size: 21px;">4.20</td></tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">County</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Lager</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">4.2</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">low</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">USA</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">3.40</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">Mountain Special</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Pale Ale</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">4.1</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">low</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">USA</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">2.70</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">Lagartos</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Lager</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">5.1</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">mid</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Mexico</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">4.10</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">Jealous Hobo</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Porter</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">6.5</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">mid</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">USA</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">3.36</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">Strasse</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Stout</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">8.3</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">high</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Germany</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">4.89</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">Arbre</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Pale Ale</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">3.4</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">low</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Belgium</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">4.01</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">K1997</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Lager</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">4.0</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">high</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Japan</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">3.88</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">Lagartos Cero</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Lager</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">0.0</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">mid</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Mexico</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">2.00</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">Airball</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Irish Ale</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">6.0</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">high</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">USA</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">3.64</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">Clean Tackle</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">Stout</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">7.2</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">mid</td>
+      <td class="gt_row gt_left" style="font-size: 21px;">England</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">4.20</td>
+    </tr>
   </tbody>
   
   
@@ -1759,7 +1799,7 @@ To go from long to wide, we use pivot_wider
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#mupquzdyuw .gt_table {
+#ztvclfmcgd .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1784,7 +1824,7 @@ To go from long to wide, we use pivot_wider
   border-left-color: #D3D3D3;
 }
 
-#mupquzdyuw .gt_heading {
+#ztvclfmcgd .gt_heading {
   background-color: #f4f4f9;
   text-align: center;
   border-bottom-color: #f4f4f9;
@@ -1796,7 +1836,7 @@ To go from long to wide, we use pivot_wider
   border-right-color: #D3D3D3;
 }
 
-#mupquzdyuw .gt_title {
+#ztvclfmcgd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1806,7 +1846,7 @@ To go from long to wide, we use pivot_wider
   border-bottom-width: 0;
 }
 
-#mupquzdyuw .gt_subtitle {
+#ztvclfmcgd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1816,13 +1856,13 @@ To go from long to wide, we use pivot_wider
   border-top-width: 0;
 }
 
-#mupquzdyuw .gt_bottom_border {
+#ztvclfmcgd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#mupquzdyuw .gt_col_headings {
+#ztvclfmcgd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1837,7 +1877,7 @@ To go from long to wide, we use pivot_wider
   border-right-color: #D3D3D3;
 }
 
-#mupquzdyuw .gt_col_heading {
+#ztvclfmcgd .gt_col_heading {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -1857,7 +1897,7 @@ To go from long to wide, we use pivot_wider
   overflow-x: hidden;
 }
 
-#mupquzdyuw .gt_column_spanner_outer {
+#ztvclfmcgd .gt_column_spanner_outer {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -1869,15 +1909,15 @@ To go from long to wide, we use pivot_wider
   padding-right: 4px;
 }
 
-#mupquzdyuw .gt_column_spanner_outer:first-child {
+#ztvclfmcgd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#mupquzdyuw .gt_column_spanner_outer:last-child {
+#ztvclfmcgd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#mupquzdyuw .gt_column_spanner {
+#ztvclfmcgd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1889,7 +1929,7 @@ To go from long to wide, we use pivot_wider
   width: 100%;
 }
 
-#mupquzdyuw .gt_group_heading {
+#ztvclfmcgd .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #f4f4f9;
@@ -1911,7 +1951,7 @@ To go from long to wide, we use pivot_wider
   vertical-align: middle;
 }
 
-#mupquzdyuw .gt_empty_group_heading {
+#ztvclfmcgd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #f4f4f9;
@@ -1926,15 +1966,15 @@ To go from long to wide, we use pivot_wider
   vertical-align: middle;
 }
 
-#mupquzdyuw .gt_from_md > :first-child {
+#ztvclfmcgd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#mupquzdyuw .gt_from_md > :last-child {
+#ztvclfmcgd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#mupquzdyuw .gt_row {
+#ztvclfmcgd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1953,7 +1993,7 @@ To go from long to wide, we use pivot_wider
   overflow-x: hidden;
 }
 
-#mupquzdyuw .gt_stub {
+#ztvclfmcgd .gt_stub {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -1965,7 +2005,7 @@ To go from long to wide, we use pivot_wider
   padding-left: 12px;
 }
 
-#mupquzdyuw .gt_summary_row {
+#ztvclfmcgd .gt_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -1975,7 +2015,7 @@ To go from long to wide, we use pivot_wider
   padding-right: 5px;
 }
 
-#mupquzdyuw .gt_first_summary_row {
+#ztvclfmcgd .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1985,7 +2025,7 @@ To go from long to wide, we use pivot_wider
   border-top-color: #D3D3D3;
 }
 
-#mupquzdyuw .gt_grand_summary_row {
+#ztvclfmcgd .gt_grand_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -1995,7 +2035,7 @@ To go from long to wide, we use pivot_wider
   padding-right: 5px;
 }
 
-#mupquzdyuw .gt_first_grand_summary_row {
+#ztvclfmcgd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2005,11 +2045,11 @@ To go from long to wide, we use pivot_wider
   border-top-color: #D3D3D3;
 }
 
-#mupquzdyuw .gt_striped {
+#ztvclfmcgd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#mupquzdyuw .gt_table_body {
+#ztvclfmcgd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2018,7 +2058,7 @@ To go from long to wide, we use pivot_wider
   border-bottom-color: #D3D3D3;
 }
 
-#mupquzdyuw .gt_footnotes {
+#ztvclfmcgd .gt_footnotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -2032,13 +2072,13 @@ To go from long to wide, we use pivot_wider
   border-right-color: #D3D3D3;
 }
 
-#mupquzdyuw .gt_footnote {
+#ztvclfmcgd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#mupquzdyuw .gt_sourcenotes {
+#ztvclfmcgd .gt_sourcenotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -2052,77 +2092,85 @@ To go from long to wide, we use pivot_wider
   border-right-color: #D3D3D3;
 }
 
-#mupquzdyuw .gt_sourcenote {
+#ztvclfmcgd .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#mupquzdyuw .gt_left {
+#ztvclfmcgd .gt_left {
   text-align: left;
 }
 
-#mupquzdyuw .gt_center {
+#ztvclfmcgd .gt_center {
   text-align: center;
 }
 
-#mupquzdyuw .gt_right {
+#ztvclfmcgd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#mupquzdyuw .gt_font_normal {
+#ztvclfmcgd .gt_font_normal {
   font-weight: normal;
 }
 
-#mupquzdyuw .gt_font_bold {
+#ztvclfmcgd .gt_font_bold {
   font-weight: bold;
 }
 
-#mupquzdyuw .gt_font_italic {
+#ztvclfmcgd .gt_font_italic {
   font-style: italic;
 }
 
-#mupquzdyuw .gt_super {
+#ztvclfmcgd .gt_super {
   font-size: 65%;
 }
 
-#mupquzdyuw .gt_footnote_marks {
+#ztvclfmcgd .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="mupquzdyuw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="ztvclfmcgd" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-size: 22px;">Habitat</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-size: 22px;">County</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-size: 22px;">Frogs</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-size: 22px;">Crayfish</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-size: 22px;">Owls</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="font-size: 22px;">Frogs</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="font-size: 22px;">Crayfish</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="font-size: 22px;">Owls</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left" style="font-size: 22px;">Marsh</td>
-<td class="gt_row gt_left" style="font-size: 22px;">Clarkville</td>
-<td class="gt_row gt_right" style="font-size: 22px;">7</td>
-<td class="gt_row gt_right" style="font-size: 22px;">5</td>
-<td class="gt_row gt_right" style="font-size: 22px;">4</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 22px;">Urban</td>
-<td class="gt_row gt_left" style="font-size: 22px;">Smith</td>
-<td class="gt_row gt_right" style="font-size: 22px;">0</td>
-<td class="gt_row gt_right" style="font-size: 22px;">0</td>
-<td class="gt_row gt_right" style="font-size: 22px;">2</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 22px;">Wetland</td>
-<td class="gt_row gt_left" style="font-size: 22px;">Wilson</td>
-<td class="gt_row gt_right" style="font-size: 22px;">9</td>
-<td class="gt_row gt_right" style="font-size: 22px;">2</td>
-<td class="gt_row gt_right" style="font-size: 22px;">1</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 22px;">Forest</td>
-<td class="gt_row gt_left" style="font-size: 22px;">Smith</td>
-<td class="gt_row gt_right" style="font-size: 22px;">4</td>
-<td class="gt_row gt_right" style="font-size: 22px;">0</td>
-<td class="gt_row gt_right" style="font-size: 22px;">7</td></tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 22px;">Marsh</td>
+      <td class="gt_row gt_left" style="font-size: 22px;">Clarkville</td>
+      <td class="gt_row gt_center" style="font-size: 22px;">7</td>
+      <td class="gt_row gt_center" style="font-size: 22px;">5</td>
+      <td class="gt_row gt_center" style="font-size: 22px;">4</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 22px;">Urban</td>
+      <td class="gt_row gt_left" style="font-size: 22px;">Smith</td>
+      <td class="gt_row gt_center" style="font-size: 22px;">0</td>
+      <td class="gt_row gt_center" style="font-size: 22px;">0</td>
+      <td class="gt_row gt_center" style="font-size: 22px;">2</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 22px;">Wetland</td>
+      <td class="gt_row gt_left" style="font-size: 22px;">Wilson</td>
+      <td class="gt_row gt_center" style="font-size: 22px;">9</td>
+      <td class="gt_row gt_center" style="font-size: 22px;">2</td>
+      <td class="gt_row gt_center" style="font-size: 22px;">1</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 22px;">Forest</td>
+      <td class="gt_row gt_left" style="font-size: 22px;">Smith</td>
+      <td class="gt_row gt_center" style="font-size: 22px;">4</td>
+      <td class="gt_row gt_center" style="font-size: 22px;">0</td>
+      <td class="gt_row gt_center" style="font-size: 22px;">7</td>
+    </tr>
   </tbody>
   
   
@@ -2458,7 +2506,7 @@ Coalesce is a very useful function, but we need to be mindful of how we order an
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#hhjnurzvql .gt_table {
+#meruwszsqy .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2483,7 +2531,7 @@ Coalesce is a very useful function, but we need to be mindful of how we order an
   border-left-color: #D3D3D3;
 }
 
-#hhjnurzvql .gt_heading {
+#meruwszsqy .gt_heading {
   background-color: #f4f4f9;
   text-align: center;
   border-bottom-color: #f4f4f9;
@@ -2495,7 +2543,7 @@ Coalesce is a very useful function, but we need to be mindful of how we order an
   border-right-color: #D3D3D3;
 }
 
-#hhjnurzvql .gt_title {
+#meruwszsqy .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2505,7 +2553,7 @@ Coalesce is a very useful function, but we need to be mindful of how we order an
   border-bottom-width: 0;
 }
 
-#hhjnurzvql .gt_subtitle {
+#meruwszsqy .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2515,13 +2563,13 @@ Coalesce is a very useful function, but we need to be mindful of how we order an
   border-top-width: 0;
 }
 
-#hhjnurzvql .gt_bottom_border {
+#meruwszsqy .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#hhjnurzvql .gt_col_headings {
+#meruwszsqy .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2536,7 +2584,7 @@ Coalesce is a very useful function, but we need to be mindful of how we order an
   border-right-color: #D3D3D3;
 }
 
-#hhjnurzvql .gt_col_heading {
+#meruwszsqy .gt_col_heading {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -2556,7 +2604,7 @@ Coalesce is a very useful function, but we need to be mindful of how we order an
   overflow-x: hidden;
 }
 
-#hhjnurzvql .gt_column_spanner_outer {
+#meruwszsqy .gt_column_spanner_outer {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -2568,15 +2616,15 @@ Coalesce is a very useful function, but we need to be mindful of how we order an
   padding-right: 4px;
 }
 
-#hhjnurzvql .gt_column_spanner_outer:first-child {
+#meruwszsqy .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#hhjnurzvql .gt_column_spanner_outer:last-child {
+#meruwszsqy .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#hhjnurzvql .gt_column_spanner {
+#meruwszsqy .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2588,7 +2636,7 @@ Coalesce is a very useful function, but we need to be mindful of how we order an
   width: 100%;
 }
 
-#hhjnurzvql .gt_group_heading {
+#meruwszsqy .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #f4f4f9;
@@ -2610,7 +2658,7 @@ Coalesce is a very useful function, but we need to be mindful of how we order an
   vertical-align: middle;
 }
 
-#hhjnurzvql .gt_empty_group_heading {
+#meruwszsqy .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #f4f4f9;
@@ -2625,15 +2673,15 @@ Coalesce is a very useful function, but we need to be mindful of how we order an
   vertical-align: middle;
 }
 
-#hhjnurzvql .gt_from_md > :first-child {
+#meruwszsqy .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#hhjnurzvql .gt_from_md > :last-child {
+#meruwszsqy .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#hhjnurzvql .gt_row {
+#meruwszsqy .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2652,7 +2700,7 @@ Coalesce is a very useful function, but we need to be mindful of how we order an
   overflow-x: hidden;
 }
 
-#hhjnurzvql .gt_stub {
+#meruwszsqy .gt_stub {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -2664,7 +2712,7 @@ Coalesce is a very useful function, but we need to be mindful of how we order an
   padding-left: 12px;
 }
 
-#hhjnurzvql .gt_summary_row {
+#meruwszsqy .gt_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -2674,7 +2722,7 @@ Coalesce is a very useful function, but we need to be mindful of how we order an
   padding-right: 5px;
 }
 
-#hhjnurzvql .gt_first_summary_row {
+#meruwszsqy .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2684,7 +2732,7 @@ Coalesce is a very useful function, but we need to be mindful of how we order an
   border-top-color: #D3D3D3;
 }
 
-#hhjnurzvql .gt_grand_summary_row {
+#meruwszsqy .gt_grand_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -2694,7 +2742,7 @@ Coalesce is a very useful function, but we need to be mindful of how we order an
   padding-right: 5px;
 }
 
-#hhjnurzvql .gt_first_grand_summary_row {
+#meruwszsqy .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2704,11 +2752,11 @@ Coalesce is a very useful function, but we need to be mindful of how we order an
   border-top-color: #D3D3D3;
 }
 
-#hhjnurzvql .gt_striped {
+#meruwszsqy .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#hhjnurzvql .gt_table_body {
+#meruwszsqy .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2717,7 +2765,7 @@ Coalesce is a very useful function, but we need to be mindful of how we order an
   border-bottom-color: #D3D3D3;
 }
 
-#hhjnurzvql .gt_footnotes {
+#meruwszsqy .gt_footnotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -2731,13 +2779,13 @@ Coalesce is a very useful function, but we need to be mindful of how we order an
   border-right-color: #D3D3D3;
 }
 
-#hhjnurzvql .gt_footnote {
+#meruwszsqy .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#hhjnurzvql .gt_sourcenotes {
+#meruwszsqy .gt_sourcenotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -2751,76 +2799,86 @@ Coalesce is a very useful function, but we need to be mindful of how we order an
   border-right-color: #D3D3D3;
 }
 
-#hhjnurzvql .gt_sourcenote {
+#meruwszsqy .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#hhjnurzvql .gt_left {
+#meruwszsqy .gt_left {
   text-align: left;
 }
 
-#hhjnurzvql .gt_center {
+#meruwszsqy .gt_center {
   text-align: center;
 }
 
-#hhjnurzvql .gt_right {
+#meruwszsqy .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#hhjnurzvql .gt_font_normal {
+#meruwszsqy .gt_font_normal {
   font-weight: normal;
 }
 
-#hhjnurzvql .gt_font_bold {
+#meruwszsqy .gt_font_bold {
   font-weight: bold;
 }
 
-#hhjnurzvql .gt_font_italic {
+#meruwszsqy .gt_font_italic {
   font-style: italic;
 }
 
-#hhjnurzvql .gt_super {
+#meruwszsqy .gt_super {
   font-size: 65%;
 }
 
-#hhjnurzvql .gt_footnote_marks {
+#meruwszsqy .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="hhjnurzvql" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="meruwszsqy" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-size: 21px;">Sample</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-size: 21px;">Main.Sensor</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="font-size: 21px;">Main.Sensor</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-size: 21px;">Backup.Sensor</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-size: 21px;">Manual.Reading</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">A</td>
-<td class="gt_row gt_right" style="font-size: 21px;">NA</td>
-<td class="gt_row gt_right" style="font-size: 21px;">12.1</td>
-<td class="gt_row gt_right" style="font-size: 21px;">12.0</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">B</td>
-<td class="gt_row gt_right" style="font-size: 21px;">12</td>
-<td class="gt_row gt_right" style="font-size: 21px;">NA</td>
-<td class="gt_row gt_right" style="font-size: 21px;">11.9</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">C</td>
-<td class="gt_row gt_right" style="font-size: 21px;">16</td>
-<td class="gt_row gt_right" style="font-size: 21px;">NA</td>
-<td class="gt_row gt_right" style="font-size: 21px;">NA</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">D</td>
-<td class="gt_row gt_right" style="font-size: 21px;">3</td>
-<td class="gt_row gt_right" style="font-size: 21px;">9.5</td>
-<td class="gt_row gt_right" style="font-size: 21px;">NA</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">E</td>
-<td class="gt_row gt_right" style="font-size: 21px;">NA</td>
-<td class="gt_row gt_right" style="font-size: 21px;">13.0</td>
-<td class="gt_row gt_right" style="font-size: 21px;">12.0</td></tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">A</td>
+      <td class="gt_row gt_center" style="font-size: 21px;">NA</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">12.1</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">12.0</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">B</td>
+      <td class="gt_row gt_center" style="font-size: 21px;">12</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">NA</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">11.9</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">C</td>
+      <td class="gt_row gt_center" style="font-size: 21px;">16</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">NA</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">NA</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">D</td>
+      <td class="gt_row gt_center" style="font-size: 21px;">3</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">9.5</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">NA</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">E</td>
+      <td class="gt_row gt_center" style="font-size: 21px;">NA</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">13.0</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">12.0</td>
+    </tr>
   </tbody>
   
   
@@ -2910,7 +2968,7 @@ We’ll use the fill function from the tidyr package. The usage is straight forw
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#ssvwtpqxaw .gt_table {
+#vhkahqaovt .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2935,7 +2993,7 @@ We’ll use the fill function from the tidyr package. The usage is straight forw
   border-left-color: #D3D3D3;
 }
 
-#ssvwtpqxaw .gt_heading {
+#vhkahqaovt .gt_heading {
   background-color: #f4f4f9;
   text-align: center;
   border-bottom-color: #f4f4f9;
@@ -2947,7 +3005,7 @@ We’ll use the fill function from the tidyr package. The usage is straight forw
   border-right-color: #D3D3D3;
 }
 
-#ssvwtpqxaw .gt_title {
+#vhkahqaovt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2957,7 +3015,7 @@ We’ll use the fill function from the tidyr package. The usage is straight forw
   border-bottom-width: 0;
 }
 
-#ssvwtpqxaw .gt_subtitle {
+#vhkahqaovt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2967,13 +3025,13 @@ We’ll use the fill function from the tidyr package. The usage is straight forw
   border-top-width: 0;
 }
 
-#ssvwtpqxaw .gt_bottom_border {
+#vhkahqaovt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ssvwtpqxaw .gt_col_headings {
+#vhkahqaovt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2988,7 +3046,7 @@ We’ll use the fill function from the tidyr package. The usage is straight forw
   border-right-color: #D3D3D3;
 }
 
-#ssvwtpqxaw .gt_col_heading {
+#vhkahqaovt .gt_col_heading {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -3008,7 +3066,7 @@ We’ll use the fill function from the tidyr package. The usage is straight forw
   overflow-x: hidden;
 }
 
-#ssvwtpqxaw .gt_column_spanner_outer {
+#vhkahqaovt .gt_column_spanner_outer {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -3020,15 +3078,15 @@ We’ll use the fill function from the tidyr package. The usage is straight forw
   padding-right: 4px;
 }
 
-#ssvwtpqxaw .gt_column_spanner_outer:first-child {
+#vhkahqaovt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ssvwtpqxaw .gt_column_spanner_outer:last-child {
+#vhkahqaovt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ssvwtpqxaw .gt_column_spanner {
+#vhkahqaovt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3040,7 +3098,7 @@ We’ll use the fill function from the tidyr package. The usage is straight forw
   width: 100%;
 }
 
-#ssvwtpqxaw .gt_group_heading {
+#vhkahqaovt .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #f4f4f9;
@@ -3062,7 +3120,7 @@ We’ll use the fill function from the tidyr package. The usage is straight forw
   vertical-align: middle;
 }
 
-#ssvwtpqxaw .gt_empty_group_heading {
+#vhkahqaovt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #f4f4f9;
@@ -3077,15 +3135,15 @@ We’ll use the fill function from the tidyr package. The usage is straight forw
   vertical-align: middle;
 }
 
-#ssvwtpqxaw .gt_from_md > :first-child {
+#vhkahqaovt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ssvwtpqxaw .gt_from_md > :last-child {
+#vhkahqaovt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ssvwtpqxaw .gt_row {
+#vhkahqaovt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3104,7 +3162,7 @@ We’ll use the fill function from the tidyr package. The usage is straight forw
   overflow-x: hidden;
 }
 
-#ssvwtpqxaw .gt_stub {
+#vhkahqaovt .gt_stub {
   color: #333333;
   background-color: #f4f4f9;
   font-size: 100%;
@@ -3116,7 +3174,7 @@ We’ll use the fill function from the tidyr package. The usage is straight forw
   padding-left: 12px;
 }
 
-#ssvwtpqxaw .gt_summary_row {
+#vhkahqaovt .gt_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -3126,7 +3184,7 @@ We’ll use the fill function from the tidyr package. The usage is straight forw
   padding-right: 5px;
 }
 
-#ssvwtpqxaw .gt_first_summary_row {
+#vhkahqaovt .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3136,7 +3194,7 @@ We’ll use the fill function from the tidyr package. The usage is straight forw
   border-top-color: #D3D3D3;
 }
 
-#ssvwtpqxaw .gt_grand_summary_row {
+#vhkahqaovt .gt_grand_summary_row {
   color: #333333;
   background-color: #f4f4f9;
   text-transform: inherit;
@@ -3146,7 +3204,7 @@ We’ll use the fill function from the tidyr package. The usage is straight forw
   padding-right: 5px;
 }
 
-#ssvwtpqxaw .gt_first_grand_summary_row {
+#vhkahqaovt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3156,11 +3214,11 @@ We’ll use the fill function from the tidyr package. The usage is straight forw
   border-top-color: #D3D3D3;
 }
 
-#ssvwtpqxaw .gt_striped {
+#vhkahqaovt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ssvwtpqxaw .gt_table_body {
+#vhkahqaovt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3169,7 +3227,7 @@ We’ll use the fill function from the tidyr package. The usage is straight forw
   border-bottom-color: #D3D3D3;
 }
 
-#ssvwtpqxaw .gt_footnotes {
+#vhkahqaovt .gt_footnotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -3183,13 +3241,13 @@ We’ll use the fill function from the tidyr package. The usage is straight forw
   border-right-color: #D3D3D3;
 }
 
-#ssvwtpqxaw .gt_footnote {
+#vhkahqaovt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#ssvwtpqxaw .gt_sourcenotes {
+#vhkahqaovt .gt_sourcenotes {
   color: #333333;
   background-color: #f4f4f9;
   border-bottom-style: none;
@@ -3203,46 +3261,46 @@ We’ll use the fill function from the tidyr package. The usage is straight forw
   border-right-color: #D3D3D3;
 }
 
-#ssvwtpqxaw .gt_sourcenote {
+#vhkahqaovt .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#ssvwtpqxaw .gt_left {
+#vhkahqaovt .gt_left {
   text-align: left;
 }
 
-#ssvwtpqxaw .gt_center {
+#vhkahqaovt .gt_center {
   text-align: center;
 }
 
-#ssvwtpqxaw .gt_right {
+#vhkahqaovt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ssvwtpqxaw .gt_font_normal {
+#vhkahqaovt .gt_font_normal {
   font-weight: normal;
 }
 
-#ssvwtpqxaw .gt_font_bold {
+#vhkahqaovt .gt_font_bold {
   font-weight: bold;
 }
 
-#ssvwtpqxaw .gt_font_italic {
+#vhkahqaovt .gt_font_italic {
   font-style: italic;
 }
 
-#ssvwtpqxaw .gt_super {
+#vhkahqaovt .gt_super {
   font-size: 65%;
 }
 
-#ssvwtpqxaw .gt_footnote_marks {
+#vhkahqaovt .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="ssvwtpqxaw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="vhkahqaovt" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -3251,24 +3309,42 @@ We’ll use the fill function from the tidyr package. The usage is straight forw
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">Bird</td>
-<td class="gt_row gt_right" style="font-size: 21px;">21</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">NA</td>
-<td class="gt_row gt_right" style="font-size: 21px;">5</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">NA</td>
-<td class="gt_row gt_right" style="font-size: 21px;">7</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">NA</td>
-<td class="gt_row gt_right" style="font-size: 21px;">23</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">NA</td>
-<td class="gt_row gt_right" style="font-size: 21px;">74</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">Frog</td>
-<td class="gt_row gt_right" style="font-size: 21px;">23</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">NA</td>
-<td class="gt_row gt_right" style="font-size: 21px;">65</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">NA</td>
-<td class="gt_row gt_right" style="font-size: 21px;">12</td></tr>
-    <tr><td class="gt_row gt_left" style="font-size: 21px;">NA</td>
-<td class="gt_row gt_right" style="font-size: 21px;">5</td></tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">Bird</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">21</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">NA</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">5</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">NA</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">7</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">NA</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">23</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">NA</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">74</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">Frog</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">23</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">NA</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">65</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">NA</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">12</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="font-size: 21px;">NA</td>
+      <td class="gt_row gt_right" style="font-size: 21px;">5</td>
+    </tr>
   </tbody>
   
   

@@ -55,9 +55,9 @@ background-size: cover
 
 ???
 
-In previous lessons, we defined data cleaning and learned how to organize our data. Now we can get started with using R for data cleaning, and in particular, on first getting our data into sensible, usable structures.
+In previous lessons, we defined data cleaning and learned how to organize our data. Now we can get started with using R, and in particular, on first getting our data into sensible, usable structures.
 
-Let’s begin by going over the tools and packages that we’ll be using for this part and throughout this course in general.
+Let’s begin by going over the tools and packages that we’ll be using for this part and throughout this course.
 
 ---
 
@@ -83,6 +83,7 @@ Flexible, but developed around built-in features that support a particular way o
 ]    
 
 ???
+
 These tools are meant to be flexible, but they are built around built-in features that support a particular way of doing specific tasks.
 
 --
@@ -113,7 +114,7 @@ When we work with functions to perform many sequential operations, we have three
 
 ???
 
-First we can use nested code, in which function calls are nested inside more function calls so that the results get evaluated from the inside out.
+we can use nested code, in which function calls are nested inside more function calls so that the results get evaluated from the inside out.
 
 --
 
@@ -121,7 +122,7 @@ First we can use nested code, in which function calls are nested inside more fun
 
 ???
 
-We can also assign objects with intermediate results that need to be passed to the next function in our sequence of operations.
+We can also assign objects with intermediate results, passed on to the next function in our sequence.
 
 --
 
@@ -199,7 +200,7 @@ Right Hand Side
 
 ???
 
-Alternatively, we can use pipes to avoid nested function calls or having so assign results to intermediate objects that we don’t really need.
+Alternatively, we can use pipes to avoid nested code or having so assign results to intermediate objects that we don’t really need.
 
 Pipes let us structure sequential operations from left to right.
 
@@ -233,7 +234,7 @@ By default, the object on the left hand side becomes the first argument in the f
 
 ???
 
-And remember, the pipe operator gets loaded by the tidyverse functions that we’ll be using. 
+by the way, the pipe operator gets loaded by the tidyverse packages that we’ll be using. 
 
 ---
 
@@ -249,7 +250,7 @@ Let me summarize the main advantages of using pipes to write code.
 
 ???
 
-First, by chaining our operations with pipes we pass intermediate results onto the next function, so we don’t need nested code or to assign intermediate results to objects we won’t use again.
+First, by chaining our operations with pipes we pass the results onto the next function, so we don’t need nested code or to assign intermediate results to objects we won’t use again.
 
 --
 
@@ -280,14 +281,14 @@ A useful shortcut to remember is that in Rstudio we can insert pipes using contr
 ```{r, eval=TRUE}
 library(magrittr)
 grades %>% 
-  mean %>% 
+  mean() %>% 
   round(digits=2)
 ```
 
 ???
 
 The example from earlier looks like this is we use pipes.
-First we load the magrittr package, take the grades object, pass it  to the mean function, and then pass this result to the round function. Note how we don’t have to write the first argument in the function that are on the right hand side of a pipe. 
+First we load the magrittr package, take the grades object, pass it to the mean function, and then pass this result to the round function. Note how we don’t have to write the first argument in functions that are on the right hand side of a pipe. 
 
 We can now learn about the functions from dplyr that we’ll use extensively throughout this course. 
 
@@ -332,7 +333,6 @@ When we’re cleaning data, we usually do one of these if not all three of the f
 subset columns
 
 --
-
 
   - Subset rows
 
