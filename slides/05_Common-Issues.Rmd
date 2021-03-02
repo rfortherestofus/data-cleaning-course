@@ -33,6 +33,10 @@ xaringanExtra::use_extra_styles(
 )
 ```
 
+```{r xaringan-animate-all, echo=FALSE, eval=TRUE}
+xaringanExtra::use_animate_all("fade")
+```
+
 ```{r imgs setup, echo=FALSE, eval=TRUE}
 knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
 ```
@@ -57,24 +61,34 @@ background-size: cover
 
 ???
 
-For this part of the course, we’ll go over most common issues that we encounter in real-world data. The files and datasets that we receive or come across for day-to-day use are never as usable as the ones we use when we’re learning.
+In this lesson, we’ll go over most common issues that we encounter in real-world data. The files and datasets that we receive or come across for day-to-day use are never as usable as the ones we use when we’re learning.
 
-So, in the following lessons, we will learn how to identify these issues, and more importantly, how to fix them.
+So, in the following sections, we will learn how to identify these issues, and more importantly, how to fix them.
 
 ---
 
 ## 🌍 Real-world data
 
+???
+
+The thing with real-world data is that files and tables vary in how messy they are, and these issues can vary in how much they affect our workflows.
+
 --
 
 - May not be readily imported  
 
+???
+
+In some cases we might not be able to load the data into our software of choice, 
 
 --
 
 
 - May not function properly within analysis software  
 
+???
+
+or maybe we can, but they will not be immediately usable and we will not be able to get things done in the first place.
 
 --
 
@@ -86,10 +100,6 @@ So, in the following lessons, we will learn how to identify these issues, and mo
 
 ???
 
-The thing with real-world data is that files and tables vary in how messy they are, and these issues can vary in how much they affect our workflows.
-
-In some cases we might not be able to load the data into our software of choice, or maybe we can, but they will not be immediately usable and we will not be able to get things done in the first place.
-
 Alternatively, real world data can have small issues that can go unnoticed until 
 they either break something, or they introduce biases and errors. At this point it is likely that going back and fixing these issues will mean wasting time or resources.  
 
@@ -99,9 +109,19 @@ The good news is that most issues can be fixed before they trip up any data anal
 
 ## General data cleaning workflows 
 
+???
+
+There is no single sequence for cleaning data, but I recommend this general workflow because these broad steps make our data usable in incremental steps.
+
+--
+
 .large[
 **0\.** Rectangular data
 ]
+
+???
+
+The first prerequisite would be to make sure we have rectangular data, with usable rows and columns.
 
 --
 
@@ -109,11 +129,19 @@ The good news is that most issues can be fixed before they trip up any data anal
 1\. Variable names
 ]
 
+???
+
+After that, it is advisable to have column names that mean something to us, and preferably with a consistent naming scheme. 
+
 --
 
 .large[
 2\. Observational units
 ]
+
+???
+
+For the rows in our data, we want to be able to identify the observational units, and have one row for each observation.
 
 --
 
@@ -123,39 +151,42 @@ The good news is that most issues can be fixed before they trip up any data anal
 
 ???
 
-There is no single sequence for cleaning data, but I recommend this general workflow because these broad steps make our data more usable without 
-
-The first prerequisite would be to make sure we have rectangular data, with usable rows and columns.
-
-After that, it is advisable to have column names that mean something to us, and preferably that follow a consistent naming scheme. 
-
-For the rows in our data, we want to be able to identify the observational units, and have one row for each observation.
-
 Once we have usable rows and columns, then we can make sure that any variable that aggregates our observations into groups is doing so adequately.
 
 ---
 
 ## Less interpretation
 
+???
+
+Although there is no specific recipe to follow for cleaning data, there are some steps that we can do first because they will not interfere with the rest of our work. If we recognize any of these issues in our data, we can usually fix them first because they need less interpretation from us about why these issues are present in the first place.
+
+--
+
 .large[
 Whitespace, duplication, letter case
 ]
+
+???
+
+For example, extra spaces between words are rarely intentional and present in our data because they mean something. More likely, they are typing mistakes or artifacts from prior data transformations, so we can just get rid of any spaces that we determine to be unwanted. This can also apply to inconsistencies in letter case, and unless we are specifically interested in how capitalization varies within our data, we can usually fix this straight away.  Same with duplicate entries.
 
 --
 
 ## More interpretation
 
+???
+
+On the other hand, there are issues in our data for which we need to stop and make a more careful interpretation.
+
+--
 .large[
 Cleaning numeric variables, unbreaking values, extracting target data
 ]
 
 ???
 
-Although there is no specific recipe to follow for cleaning data, there are some steps that we can do first because they will not interfere with the rest of our work. If we recognize any of these issues in our data, we can usually fix them first because they need less interpretation from us about why these issues are present in the first place.
-
-For example, extra spaces between words are rarely intentional and present in our data because they mean something. More likely, they are typing mistakes or artifacts from prior data transformations, so we can just get rid of any spaces that we determine to be unwanted. This can also apply to inconsistencies in letter case, and unless we are specifically interested in how capitalization varies within our data, we can usually fix this straight away.  Same with duplicate entries.
-
-On the other hand, there are issues in our data for which we need to stop and make a more careful interpretation. For example, we might need to figure out what it means if a numeric variable has inconsistent decimal symbols or annotations, or if values are broken across more than one row or column, what criteria were used to break them. This will become clear as we go over the most common issues.
+For example, we might need to figure out what it means if a numeric variable has inconsistent decimal symbols or annotations, or if values are broken across more than one row or column, what criteria were used to break them. This will become clear as we go over the most common issues.
 
 ---
 class: center, middle, dk-section-title
