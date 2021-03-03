@@ -364,9 +364,9 @@ We have many options for this. If you have a web connection, I strongly suggest 
 
 ???
 
-When we’re starting out, and even after having memorized what the special characters do, it is often helpful to check and test our regular expressions before putting them in our code. There are many interactive tools that help us understand what is going on with the regular expression that we’re writing.
+At all levels of familiarity with regex, it helps to check and test our regular expressions before putting them in our R code. For this, there are many interactive tools that can help us understand what is going on with the regular expression that we’re writing.
 
-I’ll list some that I’m familiar with here and that I like for their simple user interface, but feel free to use any of the hundreds of testers out there.
+I’ll list some that I’m familiar with here, and that I like for their simple user interface, but feel free to use any of the hundreds of testers out there.
 
 --
 
