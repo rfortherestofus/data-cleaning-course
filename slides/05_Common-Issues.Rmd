@@ -29,7 +29,7 @@ xaringanExtra::use_tachyons()
 
 ```{r xaringan-extra-styles, eval=TRUE, echo=FALSE}
 xaringanExtra::use_extra_styles(
-  hover_code_line = TRUE,     
+  hover_code_line = TRUE,
 )
 ```
 
@@ -204,33 +204,52 @@ The names for the columns in our data are in the first row, or the header. If th
 
 ## Unusable headers 
 
+???
+
+There are many ways for headers to be unusable. 
+
+--
 
 Inconsistent or uninformative names  
 
 ```{r, echo=FALSE, eval=TRUE}
 useless <- tibble::tribble(
-  ~X,    ~X1, ~X2, ~mean_Score, ~AVERAGE.SCORE,
-  "UMN", "EAST", "A",         7.7,          7.701,
-  "UV", "WEST", "B",         8.9,           8.89,
-  "UNLV", "EAST", "C",         9.2,          9.199
+  ~X, ~X1, ~X2, ~mean_Score, ~AVERAGE.SCORE,
+  "UMN", "EAST", "A", 7.7, 7.701,
+  "UV", "WEST", "B", 8.9, 8.89,
+  "UNLV", "EAST", "C", 9.2, 9.199
 )
-useless %>% 
-  gt() %>% 
+useless %>%
+  gt() %>%
   tab_style(
-    cell_text(size = '17px'),
-    locations = list(cells_body(),
-                     cells_column_labels(everything()),
-                     cells_title()))
+    cell_text(size = "17px"),
+    locations = list(
+      cells_body(),
+      cells_column_labels(everything()),
+      cells_title()
+    )
+  )
 ```
+
+???
+
+The most common issue with headers is when they have Inconsistent or uninformative names.
 
 --
 
-
 - Distinct != informative 
+
+???
+
+In this example, column names in the header are all distinct, but they do not tell us much. This name has a dot between words and this one an underscore.
 
 --
 
 - More difficult to remember and specify  
+
+???
+
+Names like these are more difficult to remember, and to refer to them in functions.
 
 --
 
@@ -238,11 +257,7 @@ useless %>%
 
 ???
 
-There are many ways for headers to be unusable. The most common issue with headers is when they have Inconsistent or uninformative names.
-
-In this example, column names in the header are all distinct, but they do not tell us much. This name has a dot between words and this one an underscore.
-
-Names like these are more difficult to remember, and to refer to them  in functions. Another consequence of inconsistent naming is that columns will not sort well if we want to sort them alphabetically.
+Another consequence of inconsistent naming is that columns will not sort well if we want to sort them alphabetically.
 
 Inconsistent names are fixable with string manipulation, which we will do later on.
 
@@ -250,26 +265,37 @@ Inconsistent names are fixable with string manipulation, which we will do later 
 
 ## Unusable headers
 
+???
+Another common issue that makes headers unusable is when column names are broken across rows. 
+
+--
+
 .pull-left[
 Names broken across rows
 
-
 ```{r, echo=FALSE, eval=TRUE}
 tibble::tribble(
-  ~X,    ~X1, ~X2,   ~mean,     ~AVERAGE,
-  NA,     NA,  NA, "Score",      "SCORE",
-  "UMN", "EAST", "A",   "7.7",      "7.701",
-  "UV", "WEST", "B",   "8.9",       "8.89",
-  "UNLV", "EAST", "C",   "9.2",      "9.199"
-) %>% 
-  gt(useless) %>% 
+  ~X, ~X1, ~X2, ~mean, ~AVERAGE,
+  NA, NA, NA, "Score", "SCORE",
+  "UMN", "EAST", "A", "7.7", "7.701",
+  "UV", "WEST", "B", "8.9", "8.89",
+  "UNLV", "EAST", "C", "9.2", "9.199"
+) %>%
+  gt(useless) %>%
   tab_style(
-    cell_text(size = '17px'),
-    locations = list(cells_body(),
-                     cells_column_labels(everything()),
-                     cells_title()))
+    cell_text(size = "17px"),
+    locations = list(
+      cells_body(),
+      cells_column_labels(everything()),
+      cells_title()
+    )
+  )
 ```
 ]
+
+???
+
+This means that the header row only contains part of the column names, and the remaining parts are embedded in the first few rows which should only contain data. I’ve seen this a lot when working with spreadsheets.
 
 --
 
@@ -277,17 +303,29 @@ tibble::tribble(
 Variable names appear in >1 rows  
 ]
 
+???
+
+As we can see in this example, variable names appear outside of the header row
+
 --
 
 .tr[
 Header fragments mixed with data
 ]
 
+???
+
+and fragments of the headers are mixed in data rows. 
+
 --
 
 .tr[
 Separators become implicit  
 ]
+
+???
+
+The separator between fragments is nowhere to be seen, so we dont know if it was originally a space, a dot, a dash, underscore, or nothing. 
 
 --
 
@@ -297,10 +335,6 @@ Separators become implicit
 
 ???
 
-Another common issue that makes headers unusable is when column names are broken across rows. This means that the header row only contains part of the column names, and the remaining parts are embedded in the first few rows which should only contain data. I’ve seen this a lot when working with spreadsheets.
-
-As we can see in this example, variable names appear outside of the header row, and fragments of the headers are mixed in data rows. The separator between fragments is nowhere to be seen, so we dont know if it was originally a space, a dot, a dash, underscore, or nothing. 
-
 To make things worse, there are NA or empty values introduced for names that aren’t broken.
 
 This can also fixed, but before we do so, let’s go over some good practices for naming variables.
@@ -309,17 +343,33 @@ This can also fixed, but before we do so, let’s go over some good practices fo
 
 ## Cleaning column names
 
+???
+
+In the data organization section, we discussed good names for files, objects, and variables, but lets go a little deeper
+
 --
 
 ### Syntactically valid variable names
+
+???
+
+Syntactically valid means that R will understand these names and that they will not cause any functions to fail. 
 
 --
 
 - Contain only letters, numbers, dots or underscores
 
+???
+
+Valid names should not have special characters or reserved words meant for other uses, 
+
 --
 
 - Start with a letter or a dot (not followed by a number)
+
+???
+
+and start with a letter or a dot.
 
 --
 
@@ -327,9 +377,9 @@ This can also fixed, but before we do so, let’s go over some good practices fo
 
 ???
 
-In the data organization section, we discussed good names for files, objects, and variables, but lets go a little deeper. Syntactically valid means that R will understand these names and that they will not cause any functions to fail. 
+Also, some words are reserved for other programming purposes and are not allowed in names.
 
-Valid names should not have special characters or reserved words meant for other uses, and start with a letter or a dot. Many of the functions that are involved in creating tables, data frames, and variables protect us from making invalid names, but we still need them to be informative and consistent.
+Many of the functions we use to create tables, data frames, and variables protect us from making invalid names, but we still need them to be informative and consistent.
 
 ---
 
@@ -340,6 +390,13 @@ Valid names should not have special characters or reserved words meant for other
 .large[
 Rename or clean with .orange.b[regex]
 ]
+
+???
+
+To clean column names, we can perform string manipulations and use regular expressions to clean and replace the names,
+
+--
+
 ]
 .right-column[
 .large[
@@ -356,19 +413,18 @@ Clean with .b.purple[`clean_names()`] from 📦 **.rrured.b[`janitor`]**
 
 ???
 
-To clean column names, we can always perform string manipulations on the names and use regular expressions, but the JANITOR package has a useful purpose-built function  for cleaning names. 
+but, the JANITOR package has a useful purpose-built function for cleaning names. 
 
 The clean names function will strip any special characters, replace spaces and dots with underscores, and apply a consistent letter case. 
-
 
 ---
 
 ```{r, echo=FALSE, eval=TRUE}
 badnames <- tibble::tribble(
-  ~X,    ~X1, ~X2, ~mean_Score, ~AVERAGE.SCORE,
-  "UMN", "EAST", "A",         7.7,          7.701,
-  "UV", "WEST", "B",         8.9,           8.89,
-  "UNLV", "EAST", "C",         9.2,          9.199
+  ~X, ~X1, ~X2, ~mean_Score, ~AVERAGE.SCORE,
+  "UMN", "EAST", "A", 7.7, 7.701,
+  "UV", "WEST", "B", 8.9, 8.89,
+  "UNLV", "EAST", "C", 9.2, 9.199
 )
 ```
 
@@ -376,28 +432,38 @@ badnames <- tibble::tribble(
 badnames
 ```
 
+???
+
+The names in this example dataset are kind of a mess, with inconsistent character case and separators beween words.
+
+--
+
 ```{r, eval=TRUE}
-badnames %>% 
+badnames %>%
   clean_names()
 ```
 
 ???
 
-Here, this tibble object called badnames is piped into the clean names function, with no additional arguments, and in the resulting object all the names have consistent spacing and letter case.
+To fix this, the tibble object called badnames is piped into the clean names function, with no additional arguments. In the resulting object all the names have consistent spacing and letter case.
 
 ---
 
 ## Broken headers
 
+???
+Clean names make headers usable, but if they are broken across rows, we can also use a purpose-built tool to put them together.
+
+--
+
 ```{r, echo=FALSE, eval=TRUE}
 badheaders <- tibble::tribble(
-  ~X,    ~X1, ~X2,   ~mean,     ~AVERAGE,
-  NA,     NA,  NA, "Score",      "SCORE",
-  "UMN", "EAST", "A",   "7.7",      "7.701",
-  "UV", "WEST", "B",   "8.9",       "8.89",
-  "UNLV", "EAST", "C",   "9.2",      "9.199"
+  ~X, ~X1, ~X2, ~mean, ~AVERAGE,
+  NA, NA, NA, "Score", "SCORE",
+  "UMN", "EAST", "A", "7.7", "7.701",
+  "UV", "WEST", "B", "8.9", "8.89",
+  "UNLV", "EAST", "C", "9.2", "9.199"
 )
-
 ```
 
 ```{r, eval=TRUE}
@@ -406,7 +472,8 @@ badheaders
 
 ???
 
-Clean names make headers usable, but if they are broken across rows, we can also use a purpose-built tool to put them together. This tibble object called badheaders has its headers broken across rows
+This tibble object called badheaders has its headers broken across rows, specifically the last two columns in which mean score and average score are separated across rows, with NAs introduced in the first three columns. Let's see how we can fix this.
+
 
 ---
 
@@ -416,39 +483,54 @@ Clean names make headers usable, but if they are broken across rows, we can also
 Mash the top _n_ data rows column-wise with .b.purple[`mash_colnames()`] from 📦 .rrured.b[`unheadr`]
 ]
 
+???
+
+If we come across broken headers, we can use the mash colnames function from the unheadr package.
+
+--
+
 ```{r, eval=FALSE}
-badheaders %>% 
-    mash_colnames(n_name_rows = 1, # number of data rows with header fragments #<<
-                   sep = "_") # separator for collapsing header fragments
+badheaders %>%
+  mash_colnames(
+    n_name_rows = 1, # number of data rows with header fragments #<<
+    sep = "_"
+  ) # separator for collapsing header fragments
 ```
 
 > Data rows exclude the header row
 
 ???
 
-If we encounter this issue, we can use the mash colnames function from the unheadr package. 
 
-Mash colnames has an n name rows argument, where we specify how many data rows have name fragments, we can also specify what to use as a separator when collapsing the header fragments. 
+Mash colnames takes a data object, and it has an n name rows argument, to specify how many data rows have name fragments, we can also specify what to use as a separator when collapsing the header fragments into a single string. 
 
+Remember though, that data rows do not include the header row.
 ---
 
 ```{r, eval=TRUE}
-badheaders %>% 
-  mash_colnames(n_name_rows = 1,
-                sep = "_")
-```
-
-
-```{r, eval=TRUE}
-badheaders %>% 
-  mash_colnames(n_name_rows = 1,
-                sep = "_") %>% 
-  clean_names()
+badheaders %>%
+  mash_colnames(
+    n_name_rows = 1,
+    sep = "_"
+  )
 ```
 
 ???
 
 In this case there is one row with parts of the names, and we want to use an underscore for the new names.
+
+--
+
+```{r, eval=TRUE}
+badheaders %>%
+  mash_colnames(
+    n_name_rows = 1,
+    sep = "_"
+  ) %>%
+  clean_names()
+```
+
+???
 
 After that, we can pipe the resulting object into clean names, which will give us consistent letter case.
 
@@ -501,6 +583,9 @@ background-image:url("images/farnoosh-abdollahi-vIkABUsLEDY-unsplash.jpg")
 background-size: cover
 # Whitespace
 
+???
+
+Once we have data with usable names, we can deal with the seemingly minor issue of white space.
 ---
 
 ## Whitespace
@@ -509,14 +594,24 @@ background-size: cover
 Does not correspond to a visible character, but occupies space in a string.
 ]
 
+???
+
+spaces are not visible characters that print on our screen, but they still take up space in a string
+
+this can be a problem when there are extra spaces and we cant see them, let's look at some examples of how this can affect our work.
+
 --
 
 ```{r, eval=TRUE}
 string_a <- "This string starts with a T"
 string_b <- " This string starts with a space"
 string_c <- "This string has trailing whitespace "
-tibble(strings=c(string_a,string_b,string_c))
+tibble(strings = c(string_a, string_b, string_c))
 ```
+
+???
+
+Of these three character strings, two of them have extra whitespace, and if we put them in a rectangular object, these extra spaces can be hard to see and likely to cause trouble. Let's see.
 
 ---
 
@@ -528,24 +623,40 @@ string_b <- " R for the rest of us"
 string_c <- "R for the rest of us "
 string_d <- " R for the rest of us "
 string_e <- "R for the   rest of us"
-RrU <- tibble(strings=c(string_a,string_b,string_c,string_d,string_e))
+RrU <- tibble(strings = c(string_a, string_b, string_c, string_d, string_e))
 RrU
 ```
+
+???
+
+Here, these five character vectors all have say R for the Rest of us, but I added extra spaces at different positions.
 
 ---
 
 ```{r, eval=TRUE}
-RrU %>% 
+RrU %>%
   distinct(strings)
 ```
 
+???
+
+Because of the spaces, when we use the distinct function to keep only the unique values in the data, we get back all the rows. This is because to the computer, each string is different even when they all say the same thing, which is R for the Rest of Us.
+
 ---
 
-## Issues
+## Whitespace Issues
+
+Extra spaces can be anywhere in a string, but we can usually describe them as being in one of these three positions:  
+
+--
 
 .large[
 - Leading whitespace
 ]
+
+???
+
+At the beginning of a string, or leading whitespace
 
 --
 
@@ -553,50 +664,104 @@ RrU %>%
 - Trailing whitespace
 ]
 
+???
+
+or trailing at the end of a string
+
 --
 
 .large[
 - Duplicated whitespace within strings
 ]
 
+???
+
+or alongside existing spaces between words in a string
+
 ---
 
 ## Diagnosing whitespace issues
 
->**"R for the rest of us"**   
-(six words, five spaces)  
+???
+
+This example should 
 
 --
 
+.pull-left[
+**"R for the rest of us"**   
+(six words, five spaces)  
+
+```{r, eval=TRUE, echo=FALSE}
+RrU
+```
+]
+
+???
+
+In the string R for the rest of us, there are six words so there should only be five spaces between these words, but remember that the data we created earlier had extra spaces in various spots. Just looking at the tibble, the text seems misaligned, so we know that the spacing is off.
+
+--
+
+.pull-right[
 Count words, then spaces
 
 ```{r, eval=TRUE}
-str_count(RrU$strings, '\\w+')
+str_count(RrU$strings, "\\w+")
 ```
-
---
 
 ```{r, eval=TRUE}
-str_count(RrU$strings, '\\s')
+str_count(RrU$strings, "\\s")
 ```
+]
+
+???
+
+This is just for demonstration, but one option could be to count the number of words and spaces in each string. For this, we can use the str count function from stringr with regular expressions. One to match words, and one to match spaces. We know there should be five spaces, so when we get the number of matches for each element and some have more than five, then we know that there is extra space that we might want to remove.
 
 ---
 
 ### Ambiguous strings
 
-**`is.ambiguous_string()`**  
+???
+
+Another way we can tell if there are any leading or trailing spaces in a column of type character is by printing the object to the console. This only applies if we are working with tibble objects, and we usually are because tidyverse functions typically produce tibbles. 
+
+--
+
+**.purple[`is.ambiguous_string()`]**  
+
+???
+
+If we print our objects in the console and there are leading or trailing spaces in our strings, then all the values in the columns with ambiguous strings will be quoted.
+
+--
 
 .large[
 - Unexported function from 📦 .rrured.b[`pillar`]
 - Used by 📦 .rrured.b[`tibble`] to reveal ambiguous strings when printing to console
+]
+
+???
+
+This happens because in the background, the printing method for tibbles calls on the is.ambiguous.string function from the pillar package, and if a string is ambigous, we'll see it quoted.
+
+--
+
+.large[
 - Ambiguous strings defined with a .orange.b[regexp]]
 
 ```{r, eval=FALSE}
-function (x) 
-{
+function(x) {
   !is.na(x) & grepl("^$|^ | $|\\\\|\"", x)
 }
 ```
+
+???
+
+But what makes a string ambiguous? We can look at the function definition and come to realize that ambiguous strings are defined with a regular expression. We can say that a string is ambiguous if it's empty, has leading or trailing whitespace, or has unmatched quotes or escapes.
+
+Lets try it out
 
 ---
 
@@ -605,38 +770,34 @@ RrU %>% mutate(is_ambiguous = pillar:::is_ambiguous_string(strings))
 ```
 
 ```{r, eval=TRUE}
-RrU %>% mutate(is_ambiguous = str_detect(strings,"^$|^ | $"))
+RrU %>% mutate(is_ambiguous = str_detect(strings, "^$|^ | $"))
 ```
+
+???
+
+here we're using mutate to add a new column to our RRU object, which will label if the strings are ambiguous or not.
+
+The first approach uses the is.ambiguous.string function, and in the second one we're using str detect and a regular expression for empty strings or strings with either leading or trailing whitespace.
+
+The results are the same for both approaches, but notice that the last row has some evident extra spaces, and it is not recognized as an ambiguous string under this definition. We can go further.
 
 ---
 
-.large[
-Check **all** columns of type _character_
-]
+## Removing whitespace: .b.purple[`trim_ws`]
 
-```{r, eval=TRUE}
-RrU %>% 
-  mutate(across(where(is.character), pillar:::is_ambiguous_string))
-```
+???
 
----
+We know that we can identify strings with leading and trailing spaces. We could use string manipulation to find and remove these, but fortunately there are existing tools for cleaning spaces. Our first tool is trim ws, which is short for whitespace.
 
-.large[
-Check **all** columns of type _character_
-]
-
-```{r, eval=TRUE}
-RrU %>% 
-  mutate(across(where(is.character), str_detect,"^$|^ | $"))
-```
-
----
-
-## Removing whitespace: .b.purple[`trim_ws()`]
+--
 
 .large[
 Argument to `read_x` functions in 📦 .rrured.b[`readr`]
 ]
+
+???
+
+Trim ws is not a function, but an argument for other functions in the readr package. Readr itself is a tidyverse package for importing data into R.
 
 --
 
@@ -644,63 +805,102 @@ Argument to `read_x` functions in 📦 .rrured.b[`readr`]
 Trims leading and trailing whitespace from each field during import. 
 ]
 
+???
+
+When we import files into R with functions from readr, leading and trailing whitespace can be removed automatically.
+
 --
 
 `TRUE` by default for **`read_csv()`** and **`read_tsv()`**  
+
+???
+
+this is the default behavior when importing csv or tsv files
 
 --
 
 `FALSE` by default for **`read_delim()`**
 
+???
+
+but not when importing other delimited text files. This behavior in readr is already a big help during data import, and it's also a good thing that this is option. However, we still need to deal with repeated whitespace inside a a string.
+
 ---
 
 ## Removing whitespace: .b.purple[`str_squish()`]
+
+???
+
+For this, we can use str squish
+
+--
 
 String manipulation function from 📦 **.rrured.b[`stringr`]**   
 
 Removes whitespace from the start and end of a string and reduces repeated whitespace inside the string
 
+???
+
+str squish is a string manipulation function from stringr, it will remove leading and trailing spaces, and also repeated spaces inside the string.
+
 --
 
 ```{r, eval=TRUE}
-RrU %>% 
+RrU %>%
   mutate(strings_sq = str_squish(strings))
 ```
+
+???
+
+lets try it out. Here we'll use it inside mutate from dplyr to create a new column without any extra spaces.
+
+Notice two things in the new column. First, the strings are not quoted anymore, which is a subtle way of telling us that they are not ambiguous. And second, also see how the text just lines up. 
+
+These visual cues are good for small datasets, but not necessarily useful for larger datasets with more rows. 
 
 ---
 
 ## Count words and spaces (again)  
 
-.large[
 **"R for the rest of us"** (six words, five spaces)
-]
+
+???
+
+After squishing the strings, we can check again if the leading and trailing spaces, as well as the repeated interior whitespace, was removed. 
+
+--
 
 ```{r, eval=TRUE}
-str_count(RrU$strings_sq, '\\w+')
-str_count(RrU$strings_sq, '\\s')
+RrU %>%
+  mutate(strings_sq = str_squish(strings)) %>%
+  mutate(n_words = str_count(strings_sq, "\\w+"),
+    n_spaces = str_count(strings_sq, "\\s"))
 ```
+
+???
+
+and, we get the same numbers for all the rows.
+Counting words and numbers was just for demonstration. A more realistic and useful approach would be to count the number of unique strings in our column of interest after we fix white space issues.
 
 ---
 
-## Check ambiguous strings (again)
+## Count distinct strings after removing extra whitespace
 
-```{r, echo=FALSE}
-RrU
-```
+???
 
-```{r, eval=TRUE}
-RrU %>% mutate(across(where(is.character), str_detect,"^$|^ | $"))
-```
+Like we did earlier, we can use the distinct function from dply to remove duplicates, and in this case we'll get back a single distinct value.
 
----
-
-## Check ambiguous strings (again)
+--
 
 ```{r, eval=TRUE}
-RrU %>% 
-  mutate(strings = str_squish(strings)) %>% 
+RrU %>%
+  mutate(strings = str_squish(strings)) %>%
   distinct()
 ```
+
+???
+
+Overall, whitespace issues can be very annoying, but their fix is relatively easy. If we use the readr package for data import, we'll trim leading and trailing spaces. At other stages of our work, if we need to remove extra spaces included repeated spaces inside strings, str squish will handle this without problem.
 
 ---
 
@@ -729,44 +929,70 @@ background-image:url("images/snake-mylene2401.jpg")
 background-size: fill
 # Letter Case 
 
+???
+
+The next common issue we'll address is letter case. Letter case issues can trip up our analyses, but fortunately fixing this is not too difficult. LEts start.
+
 ---
 
 ## Letter case
 
 ### 🧶 Strings in R are ⌨️ case sensitive
 
+???
+
+As you may remember from an earlier lesson, strings in R are case sensitive, and to R the same letters in upper and lower case are not interchangeable.
+
+--
+
 Addressing letter case issues:
+
+???
+There are many good reasons to spend a little bit of time dealing with letter at the early stages of our work.
 
 --
 
 - Removes unwanted variation
 
+???
+First, having consistent letter case will remove unwanted variation,
+
 --
 
 - Improves noise/signal ratio
 
+???
+This improves our signal to noise ratio,
 --
 
 - Adds consistency 
+
+???
+makes the data more consistent.
 
 --
 
 - Improves readability (more shape contrast in lower vs. upper case, for many popular fonts)
 
+???
+
+Fixing lettercase issues can also make our data more readable, because lower and upper case letters differ in how easily we can tell them apart. 
+
 ---
+
 ```{r, echo=FALSE, eval=TRUE}
-districts <- 
+districts <-
   tibble::tribble(
     ~District, ~`Contribution.(USD)`, ~Constituents,
-    "Orange walk",                10990L,           12L,
-    "TOLEDO",                30000L,            7L,
-    "Stann Creek",                 3400L,            9L,
-    "Toledo",                21999L,            7L,
-    "Orange WalK",                 8800L,           12L,
-    "Orange Walk",                  800L,           12L,
-    "Orange Walk",                55000L,           12L,
-    "stann creek",                22999L,            9L,
-    "Toledo",                 4900L,            7L
+    "Orange walk", 10990L, 12L,
+    "TOLEDO", 30000L, 7L,
+    "Stann Creek", 3400L, 9L,
+    "Toledo", 21999L, 7L,
+    "Orange WalK", 8800L, 12L,
+    "Orange Walk", 800L, 12L,
+    "Orange Walk", 55000L, 12L,
+    "stann creek", 22999L, 9L,
+    "Toledo", 4900L, 7L
   )
 ```
 
@@ -774,13 +1000,17 @@ districts <-
 .panelset[
 .panel[.panel-name[Districts]
 ```{r, echo=FALSE, eval=TRUE}
-districts %>% gt() %>% 
+districts %>%
+  gt() %>%
   tab_style(
-    cell_text(size = '22px'),
-    locations = list(cells_body(),
-                     cells_column_labels(everything()),
-                     cells_title())) %>% 
-  tab_options(table.background.color="#f4f4f9")
+    cell_text(size = "22px"),
+    locations = list(
+      cells_body(),
+      cells_column_labels(everything()),
+      cells_title()
+    )
+  ) %>%
+  tab_options(table.background.color = "#f4f4f9")
 ```
 ]
 
@@ -788,47 +1018,85 @@ districts %>% gt() %>%
 ```{r panel-chunk, fig.show='hide'}
 districts <- tibble::tribble(
   ~District, ~`Contribution.(USD)`, ~Constituents,
-  "Orange walk",                10990L,           12L,
-  "TOLEDO",                30000L,            7L,
-  "Stann Creek",                 3400L,            9L,
-  "Toledo",                21999L,            7L,
-  "Orange WalK",                 8800L,           12L,
-  "Orange Walk",                  800L,           12L,
-  "Orange Walk",                55000L,           12L,
-  "stann creek",                22999L,            9L,
-  "Toledo",                 4900L,            7L
+  "Orange walk", 10990L, 12L,
+  "TOLEDO", 30000L, 7L,
+  "Stann Creek", 3400L, 9L,
+  "Toledo", 21999L, 7L,
+  "Orange WalK", 8800L, 12L,
+  "Orange Walk", 800L, 12L,
+  "Orange Walk", 55000L, 12L,
+  "stann creek", 22999L, 9L,
+  "Toledo", 4900L, 7L
 )
 ```
 ]
 ]
 
+???
+
+These will be our example data for this lesson. It's a table with three variables, describing some made up electoral data for three districts in Belize.
+
+With these data, lets say we want to simply calculate the total contributions by district.
+
 ---
 
 ## Total contributions by district
+
+???
+In our tidyverse-oriented approach, we would group the data by district, then use the summarize function to add up the contribution variable for each group. This would go into a new variable, which we can call total underscore contribution.
+
+--
+
 ```{r, eval=TRUE}
-districts %>% 
-  group_by(District) %>% 
+districts %>%
+  group_by(District) %>%
   summarize(total_contribution = sum(`Contribution.(USD)`))
 ```
+
+???
+
+When we run this, we get duplicates and we're not arriving at a single sum for each of the three districts. The districts variable is not quoted, and we know now that this means that there are no extra spaces. In this case, the duplication is coming from variation and inconsistency in the letter case.
 
 ---
 
 ## Detecting lower and upper case
 
+???
+The variation in letter case in these district names is more or less evident. For demonstration, we can use regular expressions to label the strings that are all uppercase and those that are all lowercase. Anything else would be mixed case.
+
+--
+
 ```{r, eval=TRUE}
-districts %>% 
-  mutate(lowercase = str_detect(District,"^[a-z\\s]+$"),
-         uppercase = str_detect(District,"^[A-Z\\s]+$")) %>% 
+districts %>%
+  mutate(
+    lowercase = str_detect(District, "^[a-z\\s]+$"),
+    uppercase = str_detect(District, "^[A-Z\\s]+$")
+  ) %>%
   select(District, lowercase, uppercase)
 ```
+
+???
+The regex here looks complicated but it actually is pretty simple. We're looking for character ranges for either all lowercase letters and spaces or all uppercase letters and spaces, with anchors to specify that we want this match across the whole string.
+
+In the result, we see that there is one district name in all caps, one in all lowercase, and the rest is in mixed case. This is progress, but for clean data we actually need to clean these district names. Thankfully, there are also tools built specifically for this.
 
 ---
 
 ## Changing case with 📦 .rrured.b[`snakecase`]    
 
+???
+When our data has variations in letter case, we can go ahead and change case with the snakecase package.
+
+--
+
 ```{r, eval=FALSE}
 to_any_case(strings, case)
 ```
+
+???
+
+This is all powered by the to any case function, which takes a vector of strings, and the letter case that we want to change them into. We can choose from a number of existing target cases built into the package. These include
+
 --
 
 .pull-left[
@@ -845,35 +1113,59 @@ to_any_case(strings, case)
 **Sentence case** - First word capitalized, spaces between words  
 ]
 
+???
+
+camelCase, title case, sentence case, slug case, or 
+snake case, which is a very sensible default, because it uses underscores between words and all lowercase letters which are easy to read
+
 ---
 
 ## Convert case first with .b.purple[`to_any_case()`]
 
+???
+Let's summarize the total contributions again, but this time after convertin the letter case.
+
+--
 
 ```{r, eval=TRUE}
 districts %>%
   mutate(District_clean = to_any_case(District, "title",
-                                      parsing_option = 0 #<<
-  )) %>%  
+    parsing_option = 0 
+  )) %>%
   group_by(District_clean) %>%
   summarize(total_contribution = sum(`Contribution.(USD)`))
 ```
 
 > .b.purple[`?to_any_case()`] for details on parsing options
 
+???
+We're using to any case inside mutate to create a new variable called district clean, before summarizing the data. We selected title as our target case because it capitalizes all words, and these districts are proper names that should be capitalized like this.
+
+This now gives us a clean, accurate summary of the totals. 
+
+You might have noticed an argument for the to any case function called parsing option. This is for determining how the function interprets changes in letter case to see if mixed case words need to be separated. In our case, cero means to do no parsing.
+
 ---
 
 ## 📦 .rrured.b[`snakecase`] shortcuts
 
+???
+
+The snakecase package comes with additional functions that do the same thing as to any case, but the target case is built into the name.
+
+--
 
 ```{r, eval=TRUE}
-districts %>% 
-  mutate(District_clean = to_title_case(District, #<<
-                                        parsing_option = 0 #<<
-  )) %>% 
+districts %>%
+  mutate(District_clean = to_title_case(District, 
+    parsing_option = 0
+  )) %>%
   group_by(District_clean) %>%
   summarize(total_contribution = sum(`Contribution.(USD)`))
 ```
+
+???
+In this example, we're using the to_title_case function to convert the districts into title case, without having to specify it separately. 
 
 ---
 
@@ -900,13 +1192,28 @@ background-image:url("images/hans-heiner-buhr-OKe4Q8azVNU-unsplash.jpg")
 background-size: cover
 # Missing, Implicit, or Misplaced Grouping Variables
 
+
+???
+
+When we learned about data organization earlier, I mentioned that grouping variables should preferably be in their own column. Now, we'll see what can be done when we get data with missing, implicit, or misplaced grouping variable.
+
 ---
 
 ### Missing ... 🤷
 
+???
+
+First off, if the grouping variables are missing altogheter from the data, there's not much we can do. 
+
 ---
 
 ### Implicit or misplaced
+
+???
+
+But if they are somewhere in the data, just not where they're supposed to be, we have more options.
+
+A common issue that affects grouping variables is when they get tangled up inside existing columns.
 
 --
 
@@ -914,9 +1221,18 @@ background-size: cover
 - Embedded as subheaders  
 ]
 
+???
+
+either embedded in the data as subheaders
+
+--
 .large[
-- Part of a compound value (next lesson)
+- Part of a compound value
 ]
+
+???
+
+or misplaced inside an existing variable but as part of a compound value. We'll deal with compound values in the lext lesson, but for now lets look at grouping values embedded as subheaders.
 
 ---
 
@@ -934,6 +1250,9 @@ Water
 Beer  
 ]
 
+???
+We can see this excerpt from a cafeteria menu as an example of embedded subheaders. Why is that?
+
 --
 
 .right-column[
@@ -946,97 +1265,81 @@ Beer
 
 ]
 
+???
+
+Because we have rows that correspond to values in a grouping variable. 
+In this case, the text in bold group the menu items into hot or cold drinks, but these values are entangled with the actual items. This is very-human readable, but it can be hard to work with.
+
 ---
 
 ```{r, echo=FALSE, eval=TRUE}
-cafeteria <- 
+cafeteria <-
   tibble::tribble(
     ~Item, ~Price,
-    "Hot Drinks",     NA,
-    "Coffee",    12L,
-    "Tea",     9L,
-    "Hot chocolate",     9L,
-    "Cold Drinks",     NA,
-    "Soda",    10L,
-    "Juice",    13L,
-    "Water",     8L,
-    "Beer",     8L
+    "Hot Drinks", NA,
+    "Coffee", 12L,
+    "Tea", 9L,
+    "Hot chocolate", 9L,
+    "Cold Drinks", NA,
+    "Soda", 10L,
+    "Juice", 13L,
+    "Water", 8L,
+    "Beer", 8L
   )
-cafeteria_tidy <- 
+cafeteria_tidy <-
   tibble::tribble(
-    ~Item, ~Price,   ~drink_type,
-    "Coffee",    12L,  "Hot Drinks",
-    "Tea",     9L,  "Hot Drinks",
-    "Hot chocolate",     9L,  "Hot Drinks",
-    "Soda",    10L, "Cold Drinks",
-    "Juice",    13L, "Cold Drinks",
-    "Water",     8L, "Cold Drinks",
-    "Beer",     8L, "Cold Drinks"
+    ~Item, ~Price, ~drink_type,
+    "Coffee", 12L, "Hot Drinks",
+    "Tea", 9L, "Hot Drinks",
+    "Hot chocolate", 9L, "Hot Drinks",
+    "Soda", 10L, "Cold Drinks",
+    "Juice", 13L, "Cold Drinks",
+    "Water", 8L, "Cold Drinks",
+    "Beer", 8L, "Cold Drinks"
   )
-
 ```
 
 .panelset[
 .panel[.panel-name[Menu]
 ```{r, echo=FALSE, eval=TRUE}
-cafeteria %>% gt() %>%
+cafeteria %>%
+  gt() %>%
   tab_style(
-    cell_text(size = '25px'),
-    locations = list(cells_body(),
-                     cells_column_labels(everything()),
-                     cells_title())) %>% 
-  tab_options(table.background.color="#f4f4f9")
+    cell_text(size = "25px"),
+    locations = list(
+      cells_body(),
+      cells_column_labels(everything()),
+      cells_title()
+    )
+  ) %>%
+  tab_options(table.background.color = "#f4f4f9")
 ```
 ]
 
 .panel[.panel-name[Data setup]
 ```{r panel-chunk2, fig.show='hide'}
-cafeteria <- 
+cafeteria <-
   tibble::tribble(
     ~Item, ~Price,
-    "Hot Drinks",     NA,
-    "Coffee",    12L,
-    "Tea",     9L,
-    "Hot chocolate",     9L,
-    "Cold Drinks",     NA,
-    "Soda",    10L,
-    "Juice",    13L,
-    "Water",     8L,
-    "Beer",     8L
+    "Hot Drinks", NA,
+    "Coffee", 12L,
+    "Tea", 9L,
+    "Hot chocolate", 9L,
+    "Cold Drinks", NA,
+    "Soda", 10L,
+    "Juice", 13L,
+    "Water", 8L,
+    "Beer", 8L
   )
-
-```
-]
-
-.panel[.panel-name[Menu (tidy)]
-```{r, echo=FALSE, eval=TRUE}
-cafeteria_tidy %>% gt() %>% 
-  tab_style(
-    cell_text(size = '22px'),
-    locations = list(cells_body(),
-                     cells_column_labels(everything()),
-                     cells_title())) %>% 
-  tab_options(table.background.color="#f4f4f9")
-```
-]
-
-.panel[.panel-name[Data setup (tidy)]
-```{r panel-chunk3, fig.show='hide'}
-cafeteria_tidy <- 
-  tibble::tribble(
-    ~Item, ~Price,   ~drink_type,
-    "Coffee",    12L,  "Hot Drinks",
-    "Tea",     9L,  "Hot Drinks",
-    "Hot chocolate",     9L,  "Hot Drinks",
-    "Soda",    10L, "Cold Drinks",
-    "Juice",    13L, "Cold Drinks",
-    "Water",     8L, "Cold Drinks",
-    "Beer",     8L, "Cold Drinks"
-  )
-
 ```
 ]
 ]
+
+???
+
+Here's the cafeteria menu again, this time as a tibble object and with prices for each item.
+
+First up, notice the grouping variables that appear as subheaders inside the item column. Good data organization calls for having this information in a separate variable, in this case, one that groups drinks by type.
 
 ---
 
@@ -1045,13 +1348,25 @@ cafeteria_tidy <-
 .b.purple[`untangle2()`] from 📦 .rrured.b[`unheadr`]
 ]
 
+???
+
+Until recently, there was no easy way to handle embedded subheaders, but now we can, using the untangle2 function from the unheadr package. Untangle2 will work in most cases, with two main approaches.
+
 --
 
 1. Match with a .orange.b[regular expression]
 
+???
+
+First, we can put these grouping information into its own variable if the embedded subheaders share a prefix or suffix or anything in common that can be matched with a regular expression.
+
 --
 
 2. Position (sometimes) identifiable as the rows with NAs in all the variables except for the one with the subheaders
+
+???
+
+If not, we can often figure out which rows have embedded subheaders, because the rows they consume inside other variables tend to be otherwise empty.
 
 ---
 
@@ -1061,14 +1376,27 @@ cafeteria_tidy <-
 cafeteria
 ```
 
+???
+
+We can see that both of these approaches would work in our cafeteria data.
+This is because the embedded values use to group the hot drinks and the cold drinks have a word that appears in both at the same position. And also, there is nothing else in the rows with these values.
+
 --
 
 ```{r, eval= FALSE}
-untangle2(df,
-          regex, # regular expression to match subheaders
-          orig,  # variable with the subheaders
-          new)   # name of the new variable with the group values
+untangle2(
+  df,
+  regex, # regular expression to match subheaders
+  orig, # variable with the subheaders
+  new
+) # name of the new variable with the group values
 ```
+
+???
+
+The untangle2 function also works like a dplyr function. It works well with pipes and has a similar syntax.
+
+The main arguments are our data object, a regular expression to match the subheaders, the name of the variable with the subheaders, and a name for the new grouping variable.
 
 ---
 
@@ -1076,115 +1404,173 @@ untangle2(df,
 
 Match using .orange.b[regex]
 ```{r, eval= TRUE}
-cafeteria %>% 
-  untangle2("Drinks$", Item, drink_type) %>% #<<
+cafeteria %>%
+  untangle2("Drinks$", Item, drink_type) %>% 
   clean_names()
 ```
+
+???
+
+Lets match the grouping values, or subheaders, with a regular expression.
+Here we pipe the cafeteria object into untangle2, and the regular expression matches the word drinks with a capital D at the end of a string. The column to work on is the item column, and we'll name the new grouping variable drink underscore type.
+
+Looking at the result, the function did its job, putting the grouping values in a separate column with a group for each observation. The original rows with the subheaders were removed. These data are now usable.
 
 ---
 
 ## `untangle2()`
 
 .orange.b[Regexp] match and summarize
+
 ```{r, eval=TRUE}
-cafeteria %>% 
-  untangle2("Drinks$", Item, drink_type) %>% 
+cafeteria %>%
+  untangle2("Drinks$", Item, drink_type) %>%
+  clean_names() %>%
+  group_by(drink_type) %>%
+  summarize(mean_price = mean(price))
+```
+
+???
+With a tidy version of the same data, we can use dplyr and perform calculations on groups. Here, we group the data by drink type and get the mean price for the cold and the hot drinks. This wouldn't be possible at all with the data in their previous presentation.
+
+---
+
+### Alternation
+
+???
+
+If we cant match the embedded grouping values with a regular expression, but there aren't that many of them and we can recognize them somehow, we can use alternation and pass the series of alternatives to the untangle2 function.
+
+--
+
+```{r, eval=TRUE}
+cafeteria %>%
+  untangle2("Hot Drinks|Cold Drinks", Item, drink_type) %>%
   clean_names()
 ```
 
+???
 
-```{r, eval=TRUE}
-cafeteria %>% 
-  untangle2("Drinks$", Item, drink_type) %>% 
-  clean_names() %>% 
-  group_by(drink_type) %>% 
-  summarize(mean_price=mean(price))
-```
+See? we passed the possible alternatives for matching, spelled out in full, and got the same results as before.
 
 ---
 
 ### Alternation
 
 ```{r, eval=TRUE}
-cafeteria %>% 
-  untangle2("Hot Drinks|Cold Drinks", Item, drink_type) %>% 
-  clean_names()
+cafeteria %>%
+  untangle2("Hot Drinks|Cold Drinks", Item, drink_type) %>%
+  clean_names() %>%
+  group_by(drink_type) %>%
+  summarize(mean_price = mean(price))
 ```
 
----
+???
 
-### Alternation
-
-```{r, eval=TRUE}
-cafeteria %>% 
-  untangle2("Hot Drinks|Cold Drinks", Item, drink_type) %>% 
-  clean_names() %>% 
-  group_by(drink_type) %>% 
-  summarize(mean_price=mean(price))
-```
+And now we repeat the calculations on groups, untangling the groups using alternation and getting the mean price for each type of drink.
 
 ---
 
 ### Identify subheaders by context (`NA` values)
 
+???
+
+This third option is more involved, but it can help us when there are many distinct embedded grouping values and they share nothing in common. When we can't match them with a regular expression and it becomes impractical to locate and write them all for alternation, we can identify these subheaders by context. 
+
+The context here would be those values in our column of interest in which all other rows are empty, because these embedded subheaders are used to imply that everything below them belongs to a group.
+
+--
+
 ```{r, eval=TRUE}
 cafeteria %>%
   filter(across(-Item, is.na)) %>%
   select(Item) %>%
-  mutate(tag = paste0("subheader_", Item)) %>% 
+  mutate(tag = paste0("subheader_", Item)) %>%
   right_join(cafeteria) %>%
   untangle2("^subheader", tag, drink_type) %>%
   select(-tag) %>%
   mutate(drink_type = stringr::str_remove(drink_type, "^subheader_"))
 ```
 
----
+???
 
+This sequence will give us the same result as the ones before. It looks complicated, but it is just a series of dplyr operation to find the rows with the group values, tag them, and match them.
+
+---
 
 ```{r, eval=TRUE}
 cafeteria %>%
   filter(across(-Item, is.na)) %>%
   select(Item) %>%
-  mutate(tag = paste0("subheader_", Item)) 
+  mutate(tag = paste0("subheader_", Item))
 ```
 
+???
+
+Lets break this into two main step so I can explain this better.
 
 --
 
 Filter rows with NAs in all columns except the one holding the subheaders  
 
+???
+
+The first thing we do is to filter the data and keep the rows that have NA values in all the columns, except the one with the subheaders.
+
 --
 
 Keep only the column with subheaders  
+
+???
+
+Then we only keep this focal column,
 
 --
 
 Create a new variable that includes a pattern that can be matched with .orange.b[regex]
 
+???
+
+And use mutate to make a copy of its values, but adding a tag to the strings that will let us match them with regex
 
 ---
 
 
 ```{r, eval=FALSE}
-... %>%    
+... %>%
   right_join(cafeteria) %>%
   untangle2("^subheader", tag, drink_type) %>%
   select(-tag) %>%
   mutate(drink_type = stringr::str_remove(drink_type, "^subheader_"))
 ```
 
+???
+
+Once we have this object with the tagged group values, we can proceed
+
 --
 
 Join resulting object with original data
+
+???
+
+Next, we'll join this object with the original data, in this case we're doing a right join usin dplyr. This join will merge the two objects, so that the group values in the original data will be labelled with something of our choosing and ready for matching.
 
 --
 
 Put implicit grouping variable into its own column
 
+???
+
+After this, we proceed just like before, matching the prefix we just added, and untangling the data.
+
 --
 
 Clean up resulting data
 
+???
+
+After that, we can clean up the data by removing the prefix we used for tagging the subheaders. In general, I believe that this approach can be quite useful for large datasets with many subheaders that don't share a common pattern but all appear in otherwise empty rows.
 
 ---
 
@@ -1214,13 +1600,27 @@ background-image:url("images/max-vertsanov-qvRuue12Huw-unsplash.jpg")
 background-size: fill
 # Compound Values  
 
+???
+
+Another common issue that should be overlooked is when we have compound values in our data
+
 ---
 
 ## Compound values
 
+???
+
+In the context of tidy data, remember that each cell in a data rectangle should have only value. If there are two or more values from different variables or observations in the same cell, then we have compound values.
+
+--
+
 .large[
 * Not tidy
 ]  
+
+???
+
+If this happens, then by definition the data are not tidy.
 
 --
 
@@ -1228,9 +1628,19 @@ background-size: fill
 * Potential loss of variables or observations
 ]
 
+???
+
+More importantly, if we don't separate compound values, parts of of these values may go overlooked and important information may be lost. We'll see how this can happen in the upcoming example.
+
 ---
 
 ### Tidying compound values 
+
+???
+
+We have some options if we want to tidy up data with compound values. Existing functions from tidyverse packages can help us with this.
+
+--
 
 .pull-left[Split on a delimiter, then:
 
@@ -1239,31 +1649,43 @@ background-size: fill
 **`separate_rows()`**
 ]
 
+???
+
+First is to separate columns or rows. When there are compound values in a cell, there is often a character used to separate each value. If so, we can identify and use these separators to break up our compound values. For this we use functions from tidyr, one for columns and one for rows. 
+
+--
+
 .pull-right[
 Match with .orange.b[regex], then:  
 
 **`str_extract()`** substrings into new columns
 ]
 
+???
+
+Another possibility is to use regular expressions and use the stringr package to match part of our compound values and put the matched content into a new variable.
+
+Lets dive into the example.
+
 ---
 
 ```{r, include=FALSE, eval=TRUE}
-households <- 
+households <-
   tibble::tribble(
-    ~Participant.ID,     ~Education,            ~Residence, ~Bonus,
-    "GHC21",   "Vocational",    "Living Alone-Cat",   500L,
-    "MYL11",  "High School",     "Family Home-Cat",   400L,
-    "LLB16",     "Graduate",     "Family Home-Dog",   400L,
-    "AAH08",   "Vocational", "Shared Housing-None",   450L,
-    "PCG91",   "Vocational",   "Family Home-Other",   500L,
-    "ACC22, PMM02",  "High School", "Shared Housing-None",   400L,
-    "MJM13", "Postgraduate",    "Living Alone-Dog",   500L
+    ~Participant.ID, ~Education, ~Residence, ~Bonus,
+    "GHC21", "Vocational", "Living Alone-Cat", 500L,
+    "MYL11", "High School", "Family Home-Cat", 400L,
+    "LLB16", "Graduate", "Family Home-Dog", 400L,
+    "AAH08", "Vocational", "Shared Housing-None", 450L,
+    "PCG91", "Vocational", "Family Home-Other", 500L,
+    "ACC22, PMM02", "High School", "Shared Housing-None", 400L,
+    "MJM13", "Postgraduate", "Living Alone-Dog", 500L
   )
 ```
 
 
 .panelset[
-.panel[.panel-name[Households]
+.panel[.panel-name[households]
 ```{r echo=FALSE, eval=TRUE}
 gt(households)
 ```
@@ -1271,81 +1693,145 @@ gt(households)
 
 .panel[.panel-name[Data setup]
 ```{r householdsetup, fig.show='hide'}
-households <- 
+households <-
   tibble::tribble(
-    ~Participant.ID,     ~Education,            ~Residence, ~Bonus,
-    "GHC21",   "Vocational",    "Living Alone-Cat",   500L,
-    "MYL11",  "High School",     "Family Home-Cat",   400L,
-    "LLB16",     "Graduate",     "Family Home-Dog",   400L,
-    "AAH08",   "Vocational", "Shared Housing-None",   450L,
-    "PCG91",   "Vocational",   "Family Home-Other",   500L,
-    "ACC22, PMM02",  "High School", "Shared Housing-None",   400L,
-    "MJM13", "Postgraduate",    "Living Alone-Dog",   500L
+    ~Participant.ID, ~Education, ~Residence, ~Bonus,
+    "GHC21", "Vocational", "Living Alone-Cat", 500L,
+    "MYL11", "High School", "Family Home-Cat", 400L,
+    "LLB16", "Graduate", "Family Home-Dog", 400L,
+    "AAH08", "Vocational", "Shared Housing-None", 450L,
+    "PCG91", "Vocational", "Family Home-Other", 500L,
+    "ACC22, PMM02", "High School", "Shared Housing-None", 400L,
+    "MJM13", "Postgraduate", "Living Alone-Dog", 500L
   )
 ```
 ]
 ]
 
+
+???
+
+This object called households has some demographic data about fictional households, and it has compound values. 
+
+First, look closely at the participant ID variable. There is one instance with two household IDS, separated by a comma. In this case we might assume that this means that the values for the rest of the variables are the same for these two households.
+
+Then, notice the Residence column, it has values for the type of residence, but there is also data on pets in the same cells, separated by a dash.
+
+Lets see how we can sort out these issues.
+
 ---
 
 ## Separate Residence and 'Pet' variables
 
+???
+
+First, lets separate the residence and Pet variables, which should be in two columns for more usability. 
+
+--
+
 .large[
-.b.purple[`separate_rows()`] from 📦 .rrured.b[`tidyr`] 
+.b.purple[`separate()`] from 📦 .rrured.b[`tidyr`] 
 ]
 
 .large[
 - Turns a single character column into multiple columns
 ]
 
+???
+
+For this, we'll use separate from tidyr. this function splits a character column into multiple columns.
+
 --
 
 _Arguments_  
 
-.b[`sep`]"  what separates values that should not be together in a single column  
+.b[`sep`]:  what separates values that should not be together in a single column  
 
 .b[`into`]: names for the new columns to create
+
+???
+
+To do so, we tell the function what is being used to separate values with the argument sep.
+
+And with the into argument, we pass a character vector with the names of the new columns to create.
 
 ---
 
 ## Separate Residence and 'Pet' variables
 
 ```{r, eval=TRUE}
-households %>% 
-  separate(col = Residence, # columns to separate
-           into = c("Residence", "Pet"), # names of new variables to create 
-           sep = "-")   # separator between columns
+households %>%
+  separate(
+    col = Residence, # columns to separate
+    into = c("Residence", "Pet"), # names of new variables to create
+    sep = "-"
+  ) # separator between columns
 ```
+
+???
+Lets see. 
+We pipe de households object into separate, specify that we want to separate the Residence column, into two columns, residence and pet, and a dash is being used to separate values.
+
+The resulting object looks better, and now we have pets in its own column.
 
 ---
 
 ### Match and extract
+
+???
+
+Now let me demonstrate the other approach, in which we match and extract a substring and put it into a separate column.
+
+--
+
 .large[
 .orange.b[Regexp] for ~'last word in string'
 ]
 ```{r, eval=TRUE}
-households %>% 
-  mutate(Pet = str_extract(Residence,"\\b\\w+$"))
+households %>%
+  mutate(Pet = str_extract(Residence, "\\b\\w+$"))
 ```
+
+???
+For this, we use the str extract function from stringr inside mutate to match a pattern in the residence column. The regular expression uses a word boundry, the shorthand sequence for word characters, a quantifier, and an end anchor to tell the regex engine the match the last word in a string. In this case, the pets are the last words in the string, so these matches will be extracted into a new Pet column.
+
+After this, we might want to clean up the original residence column, which we could easily do with str remove. This approach can be very useful if the compound values don't have a clear separator and instead we can match parts of the values with regular expressions.
 
 ---
 
 ## Separate Participant IDs
+
+???
+
+Now, lets see what we can do when the compound values are for values meant to be across rows and not columns.
+
+--
 
 .large[
 .b.purple[`separate_rows()`] from 📦 .rrured.b[`tidyr`] 
 - Separates multiple delimited observations within a column and places each one in its own row.]
 
+???
+
+To separat rows, we use the separate rows function from tidyr, what this does it to separate multiple observations in a column into two or more rows.
+
 ---
 
 ## Separate Participant IDs
 
 ```{r, eval=TRUE}
-households %>% 
+households %>%
   separate_rows(Participant.ID,
-                sep = ", ") #<<  
-
+    sep = ", ")
 ```
+
+
+???
+
+The syntax for this function is quite simple, we pipe the households object into separate rows, then specify which column has values that need to be separated, and what the separator is.
+In this case, we want to split participant ids, and the separator is a comma followed by a space.
+
+In the result, we have one more row because the compound value was split across rows, and the values in the other columns were taken to be the same for the two values that were together in the first place.
 
 ---
 
@@ -1445,16 +1931,16 @@ Discard with .b.purple[`distinct()`] from 📦 .rrured.b[`dplyr`]
 ---
 
 ```{r, include=FALSE, eval=TRUE}
-pizza_orders <- 
+pizza_orders <-
   tibble::tribble(
-  ~CustomerID,                             ~Address,           ~City,     ~State,
-     "Newman", "Apartment 5E, 129 West 81st Street", "New York City", "New York",
-    "susan_A",               "185 West 74th Street", "New York City", "New York",
-    "susan_A",               "185 West 74th Street", "New York City", "New York",
-     "js1994", "Apartment 5A, 129 West 81st Street", "New York City", "New York",
-       "Eric",    "Unit 1B, 4186 Willoughby Avenue",      "Brooklyn", "New York",
-       "Dash",    "Unit 1B, 4186 Willoughby Avenue",      "Brooklyn", "New York",
-     "Rakeem",    "Unit 1B, 4186 Willoughby Avenue",      "Brooklyn", "New York"
+    ~CustomerID, ~Address, ~City, ~State,
+    "Newman", "Apartment 5E, 129 West 81st Street", "New York City", "New York",
+    "susan_A", "185 West 74th Street", "New York City", "New York",
+    "susan_A", "185 West 74th Street", "New York City", "New York",
+    "js1994", "Apartment 5A, 129 West 81st Street", "New York City", "New York",
+    "Eric", "Unit 1B, 4186 Willoughby Avenue", "Brooklyn", "New York",
+    "Dash", "Unit 1B, 4186 Willoughby Avenue", "Brooklyn", "New York",
+    "Rakeem", "Unit 1B, 4186 Willoughby Avenue", "Brooklyn", "New York"
   )
 ```
 
@@ -1462,30 +1948,32 @@ pizza_orders <-
 .panelset[
 .panel[.panel-name[pizza_orders]
 ```{r, echo=FALSE, eval=TRUE}
-pizza_orders %>% gt() %>% 
-    tab_style(
-    cell_text(size = '26px'),
-    locations = list(cells_body(),
-                     cells_column_labels(everything()),
-                     cells_title()))
-  
+pizza_orders %>%
+  gt() %>%
+  tab_style(
+    cell_text(size = "26px"),
+    locations = list(
+      cells_body(),
+      cells_column_labels(everything()),
+      cells_title()
+    )
+  )
 ```
 ]
 
 .panel[.panel-name[Data setup]
 ```{r pizzasetup, fig.show='hide'}
-pizza_orders <- 
+pizza_orders <-
   tibble::tribble(
-  ~CustomerID,                             ~Address,           ~City,     ~State,
-     "Newman", "Apartment 5E, 129 West 81st Street", "New York City", "New York",
-    "susan_A",               "185 West 74th Street", "New York City", "New York",
-    "susan_A",               "185 West 74th Street", "New York City", "New York",
-     "js1994", "Apartment 5A, 129 West 81st Street", "New York City", "New York",
-       "Eric",    "Unit 1B, 4186 Willoughby Avenue",      "Brooklyn", "New York",
-       "Dash",    "Unit 1B, 4186 Willoughby Avenue",      "Brooklyn", "New York",
-     "Rakeem",    "Unit 1B, 4186 Willoughby Avenue",      "Brooklyn", "New York"
+    ~CustomerID, ~Address, ~City, ~State,
+    "Newman", "Apartment 5E, 129 West 81st Street", "New York City", "New York",
+    "susan_A", "185 West 74th Street", "New York City", "New York",
+    "susan_A", "185 West 74th Street", "New York City", "New York",
+    "js1994", "Apartment 5A, 129 West 81st Street", "New York City", "New York",
+    "Eric", "Unit 1B, 4186 Willoughby Avenue", "Brooklyn", "New York",
+    "Dash", "Unit 1B, 4186 Willoughby Avenue", "Brooklyn", "New York",
+    "Rakeem", "Unit 1B, 4186 Willoughby Avenue", "Brooklyn", "New York"
   )
-
 ```
 ]
 ]
@@ -1497,7 +1985,7 @@ Identify with .b.purple[`get_dupes()`] from 📦 .rrured.b[`janitor`]
 ]
 
 ```{r, eval=TRUE}
-pizza_orders %>% 
+pizza_orders %>%
   get_dupes() # all variables by default
 ```
 
@@ -1513,7 +2001,7 @@ pizza_orders %>%
 ]
 
 ```{r, eval=TRUE}
-pizza_orders %>% 
+pizza_orders %>%
   get_dupes(CustomerID)
 ```
 
@@ -1525,8 +2013,8 @@ pizza_orders %>%
 > now accepts 📦 .rrured.b[`tidyselect`] helpers
 
 ```{r, eval=TRUE}
-pizza_orders %>% 
-  get_dupes(Address, starts_with("Cit")) 
+pizza_orders %>%
+  get_dupes(Address, starts_with("Cit"))
 ```
 
 ---
@@ -1536,7 +2024,7 @@ Discard with .b.purple[`distinct()`] from 📦 .rrured.b[`dplyr`]
 ]
 
 ```{r, eval=TRUE}
-pizza_orders %>% 
+pizza_orders %>%
   distinct() # all variables by default
 ```
 
@@ -1547,7 +2035,7 @@ pizza_orders %>%
 ]
 
 ```{r, eval=TRUE}
-pizza_orders %>% 
+pizza_orders %>%
   distinct(CustomerID, .keep_all = TRUE)
 ```
 
@@ -1565,8 +2053,8 @@ pizza_orders %>%
 >  📦 .b.rrured[`tidyselect`] helpers enabled by using .b[`across`] semantics
 
 ```{r, eval=TRUE}
-pizza_orders %>% 
-  distinct(across(c(Address, starts_with("Cit")))) 
+pizza_orders %>%
+  distinct(across(c(Address, starts_with("Cit"))))
 ```
 
 ---
@@ -1578,8 +2066,8 @@ pizza_orders %>%
 >⚠️ If `.keep_all = TRUE` and there are duplicates in other variables, `distinct` only keeps the first row 
 
 ```{r, eval=TRUE}
-pizza_orders %>% 
-  distinct(across(c(Address,starts_with("City"))), .keep_all = TRUE) 
+pizza_orders %>%
+  distinct(across(c(Address, starts_with("City"))), .keep_all = TRUE)
 ```
 
 ---
@@ -1657,53 +2145,55 @@ Problematic when grouping variables or observational units are broken
 ---
 
 ```{r, echo=FALSE, eval=TRUE}
-olympics <- 
+olympics <-
   tibble::tribble(
-    ~Edition,    ~Country, ~`Soccer.gold.medal.(men)`, ~`Wrestling.(men.middleweight)`,
-    NA,          NA,                         NA,           "weight class limit:",
-    NA,          NA,                         NA,                         "82 kg",
-    "Los Angeles 1984",       "USA",                   "France",                           "USA",
-    "Barcelona",     "Spain",                    "Spain",                           "USA",
-    "1992",          NA,                         NA,                              NA,
-    "Atlanta 1996",       "USA",                  "Nigeria",                        "Russia",
-    NA,          NA,                         NA,           "weight class limit:",
-    NA,          NA,                         NA,                         "85 kg",
-    "Sydney 2000", "Australia",                 "Cameroon",                        "Russia",
-    "London",        "UK",                   "Mexico",                    "Azerbaijan",
-    "2012",          NA,                         NA,                              NA
+    ~Edition, ~Country, ~`Soccer.gold.medal.(men)`, ~`Wrestling.(men.middleweight)`,
+    NA, NA, NA, "weight class limit:",
+    NA, NA, NA, "82 kg",
+    "Los Angeles 1984", "USA", "France", "USA",
+    "Barcelona", "Spain", "Spain", "USA",
+    "1992", NA, NA, NA,
+    "Atlanta 1996", "USA", "Nigeria", "Russia",
+    NA, NA, NA, "weight class limit:",
+    NA, NA, NA, "85 kg",
+    "Sydney 2000", "Australia", "Cameroon", "Russia",
+    "London", "UK", "Mexico", "Azerbaijan",
+    "2012", NA, NA, NA
   )
-
 ```
 
 
 .panelset[
 .panel[.panel-name[olympics]
 ```{r olympicsgt, echo=FALSE, eval=TRUE}
-gt(olympics) %>% 
+gt(olympics) %>%
   tab_style(
-    cell_text(size = '20px'),
-    locations = list(cells_body(),
-                     cells_column_labels(everything()),
-                     cells_title()))
+    cell_text(size = "20px"),
+    locations = list(
+      cells_body(),
+      cells_column_labels(everything()),
+      cells_title()
+    )
+  )
 ```
 ]
 
 .panel[.panel-name[Data setup]
 ```{r olympics_setup, fig.show='hide'}
-olympics <- 
+olympics <-
   tibble::tribble(
-    ~Edition,    ~Country, ~`Soccer.gold.medal.(men)`, ~`Wrestling.(men.middleweight)`,
-    NA,          NA,                         NA,           "weight class limit:",
-    NA,          NA,                         NA,                         "82 kg",
-    "Los Angeles 1984",       "USA",                   "France",                           "USA",
-    "Barcelona",     "Spain",                    "Spain",                           "USA",
-    "1992",          NA,                         NA,                              NA,
-    "Atlanta 1996",       "USA",                  "Nigeria",                        "Russia",
-    NA,          NA,                         NA,           "weight class limit:",
-    NA,          NA,                         NA,                         "85 kg",
-    "Sydney 2000", "Australia",                 "Cameroon",                        "Russia",
-    "London",        "UK",                   "Mexico",                    "Azerbaijan",
-    "2012",          NA,                         NA,                              NA
+    ~Edition, ~Country, ~`Soccer.gold.medal.(men)`, ~`Wrestling.(men.middleweight)`,
+    NA, NA, NA, "weight class limit:",
+    NA, NA, NA, "82 kg",
+    "Los Angeles 1984", "USA", "France", "USA",
+    "Barcelona", "Spain", "Spain", "USA",
+    "1992", NA, NA, NA,
+    "Atlanta 1996", "USA", "Nigeria", "Russia",
+    NA, NA, NA, "weight class limit:",
+    NA, NA, NA, "85 kg",
+    "Sydney 2000", "Australia", "Cameroon", "Russia",
+    "London", "UK", "Mexico", "Azerbaijan",
+    "2012", NA, NA, NA
   )
 ```
 ]
@@ -1782,11 +2272,11 @@ verb-like function from 📦 .rrured.b[`unheadr`]
 Match the trailing half of the broken value with a .orange.b[regular expression]
 ]
 ```{r, eval=FALSE}
-unbreak_vals(df, 
-             regex, 
-             ogcol, 
-             newcol, 
-             sep = " ",
+unbreak_vals(df,
+  regex,
+  ogcol,
+  newcol,
+  sep = " ",
 )
 ```
 
@@ -1796,11 +2286,13 @@ unbreak_vals(df,
 
 
 ```{r, eval=TRUE}
-olympics %>% 
-  unbreak_vals(regex = "^\\d", # numbers at start of string
-               ogcol = Edition,
-               newcol = Edition_ub,
-               sep = " ")
+olympics %>%
+  unbreak_vals(
+    regex = "^\\d", # numbers at start of string
+    ogcol = Edition,
+    newcol = Edition_ub,
+    sep = " "
+  )
 ```
 
 ---
@@ -1814,10 +2306,11 @@ Match the leading half of the broken value with .orange.b[regular expression]
 
 
 ```{r, eval=FALSE}
-unbreak_rows(df, 
-             regex, 
-             ogcol, 
-             sep = " ")
+unbreak_rows(df,
+  regex,
+  ogcol,
+  sep = " "
+)
 ```
 
 ---
@@ -1825,9 +2318,11 @@ unbreak_rows(df,
 ## Leading row
 
 ```{r, eval=TRUE}
-olympics %>% unbreak_rows(regex = "^weight", # numbers at start of string
-                          ogcol = `Wrestling.(men.middleweight)`,
-                          sep = " ")
+olympics %>% unbreak_rows(
+  regex = "^weight", # numbers at start of string
+  ogcol = `Wrestling.(men.middleweight)`,
+  sep = " "
+)
 ```
 
 ---
@@ -1838,10 +2333,13 @@ olympics %>% unbreak_rows(regex = "^weight", # numbers at start of string
 olympics %>%
   unbreak_rows(
     regex = "^weight",
-    ogcol = `Wrestling.(men.middleweight)`) %>%
-  unbreak_vals(regex = "^\\d", # numbers at start of string
-               ogcol = Edition,
-               newcol = Edition_ub)
+    ogcol = `Wrestling.(men.middleweight)`
+  ) %>%
+  unbreak_vals(
+    regex = "^\\d", # numbers at start of string
+    ogcol = Edition,
+    newcol = Edition_ub
+  )
 ```
 
 ---
@@ -1933,55 +2431,58 @@ background-size: cover
 ---
 
 ```{r, echo=FALSE, eval=TRUE}
-universities <- 
+universities <-
   tibble::tribble(
-    ~ID,                          ~Institution, ~year,    ~ZIP.code, ~Highest.degree.offered, ~County.name, ~Religious.affiliation,
-    NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
-    100663L, "University of Alabama at Birmingham",    NA, "35294-0110",       "Doctor's degree",           NA,       "Not applicable",
-    100690L,                  "Amridge University",    NA, "36117-3553",       "Doctor's degree",           NA,   "Churches of Christ",
-    100706L, "University of Alabama in Huntsville",    NA,      "35899",       "Doctor's degree",           NA,       "Not applicable",
-    NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
-    100751L,           "The University of Alabama",    NA, "35487-0166",       "Doctor's degree",           NA,       "Not applicable",
-    NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
-    NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
-    101541L,                      "Judson College",    NA,      "36756",     "Bachelor's degree",           NA,              "Baptist",
-    101587L,          "University of West Alabama",    NA,      "35470",       "Master's degree",           NA,       "Not applicable",
-    NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
-    101693L,                "University of Mobile",    NA, "36613-2842",       "Master's degree",           NA,     "Southern Baptist"
+    ~ID, ~Institution, ~year, ~ZIP.code, ~Highest.degree.offered, ~County.name, ~Religious.affiliation,
+    NA, NA, NA, NA, NA, NA, NA,
+    100663L, "University of Alabama at Birmingham", NA, "35294-0110", "Doctor's degree", NA, "Not applicable",
+    100690L, "Amridge University", NA, "36117-3553", "Doctor's degree", NA, "Churches of Christ",
+    100706L, "University of Alabama in Huntsville", NA, "35899", "Doctor's degree", NA, "Not applicable",
+    NA, NA, NA, NA, NA, NA, NA,
+    100751L, "The University of Alabama", NA, "35487-0166", "Doctor's degree", NA, "Not applicable",
+    NA, NA, NA, NA, NA, NA, NA,
+    NA, NA, NA, NA, NA, NA, NA,
+    101541L, "Judson College", NA, "36756", "Bachelor's degree", NA, "Baptist",
+    101587L, "University of West Alabama", NA, "35470", "Master's degree", NA, "Not applicable",
+    NA, NA, NA, NA, NA, NA, NA,
+    101693L, "University of Mobile", NA, "36613-2842", "Master's degree", NA, "Southern Baptist"
   )
-
 ```
 
 .panelset[
 .panel[.panel-name[universities]
 ```{r, echo=FALSE, eval=TRUE}
-universities%>% gt() %>% 
+universities %>%
+  gt() %>%
   tab_style(
-    cell_text(size = '14px'),
-    locations = list(cells_body(),
-                     cells_column_labels(everything()),
-                     cells_title())) %>%  
-  tab_options(table.background.color="#f4f4f9")
+    cell_text(size = "14px"),
+    locations = list(
+      cells_body(),
+      cells_column_labels(everything()),
+      cells_title()
+    )
+  ) %>%
+  tab_options(table.background.color = "#f4f4f9")
 ```
 ]
 
 .panel[.panel-name[Data setup]
 ```{r unissetup, fig.show='hide'}
-universities <- 
+universities <-
   tibble::tribble(
-    ~ID,                          ~Institution, ~year,    ~ZIP.code, ~Highest.degree.offered, ~County.name, ~Religious.affiliation,
-    NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
-    100663L, "University of Alabama at Birmingham",    NA, "35294-0110",       "Doctor's degree",           NA,       "Not applicable",
-    100690L,                  "Amridge University",    NA, "36117-3553",       "Doctor's degree",           NA,   "Churches of Christ",
-    100706L, "University of Alabama in Huntsville",    NA,      "35899",       "Doctor's degree",           NA,       "Not applicable",
-    NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
-    100751L,           "The University of Alabama",    NA, "35487-0166",       "Doctor's degree",           NA,       "Not applicable",
-    NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
-    NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
-    101541L,                      "Judson College",    NA,      "36756",     "Bachelor's degree",           NA,              "Baptist",
-    101587L,          "University of West Alabama",    NA,      "35470",       "Master's degree",           NA,       "Not applicable",
-    NA,                                    NA,    NA,           NA,                      NA,           NA,                     NA,
-    101693L,                "University of Mobile",    NA, "36613-2842",       "Master's degree",           NA,     "Southern Baptist"
+    ~ID, ~Institution, ~year, ~ZIP.code, ~Highest.degree.offered, ~County.name, ~Religious.affiliation,
+    NA, NA, NA, NA, NA, NA, NA,
+    100663L, "University of Alabama at Birmingham", NA, "35294-0110", "Doctor's degree", NA, "Not applicable",
+    100690L, "Amridge University", NA, "36117-3553", "Doctor's degree", NA, "Churches of Christ",
+    100706L, "University of Alabama in Huntsville", NA, "35899", "Doctor's degree", NA, "Not applicable",
+    NA, NA, NA, NA, NA, NA, NA,
+    100751L, "The University of Alabama", NA, "35487-0166", "Doctor's degree", NA, "Not applicable",
+    NA, NA, NA, NA, NA, NA, NA,
+    NA, NA, NA, NA, NA, NA, NA,
+    101541L, "Judson College", NA, "36756", "Bachelor's degree", NA, "Baptist",
+    101587L, "University of West Alabama", NA, "35470", "Master's degree", NA, "Not applicable",
+    NA, NA, NA, NA, NA, NA, NA,
+    101693L, "University of Mobile", NA, "36613-2842", "Master's degree", NA, "Southern Baptist"
   )
 ```
 ]
@@ -1995,7 +2496,9 @@ universities <-
 
 ```{r, eval=TRUE}
 universities %>% filter(across(everything(), is.na))
-universities %>% filter(across(everything(), is.na)) %>% nrow()
+universities %>%
+  filter(across(everything(), is.na)) %>%
+  nrow()
 ```
 
 ---
@@ -2003,9 +2506,9 @@ universities %>% filter(across(everything(), is.na)) %>% nrow()
 ### Add unique identifier first
 
 ```{r, eval=TRUE}
-universities %>% 
-  rowid_to_column() %>% #<<
-  filter(across(-rowid, is.na)) 
+universities %>%
+  rowid_to_column() %>% # <<
+  filter(across(-rowid, is.na))
 ```
 
 ---
@@ -2013,7 +2516,7 @@ universities %>%
 ### Negate the condition .b.purple[(!)] and discard empty rows
 
 ```{r, eval=TRUE}
-universities %>% 
+universities %>%
   filter(!across(everything(), is.na))
 ```
 
@@ -2026,9 +2529,11 @@ Discard empty rows with .purple.b[`remove_empty()`]
 > `quiet = FALSE` prints a statement about the rows that were removed
 
 ```{r message=TRUE, eval=TRUE}
-universities %>% 
-  remove_empty(which = "rows",
-               quiet = FALSE) 
+universities %>%
+  remove_empty(
+    which = "rows",
+    quiet = FALSE
+  )
 ```
 
 ---
@@ -2040,7 +2545,7 @@ Identify with 📦 .rrured.b[`dplyr`] and .b.purple[`all_na()`] from 📦 .rrure
 ]
 
 ```{r, eval=TRUE}
-universities %>% 
+universities %>%
   select(where(all_na))
 ```
 
@@ -2049,8 +2554,8 @@ universities %>%
 ### Identify and get names
 
 ```{r, eval=TRUE}
-universities %>% 
-  select(where(all_na)) %>% 
+universities %>%
+  select(where(all_na)) %>%
   names()
 ```
 
@@ -2060,8 +2565,8 @@ universities %>%
 
 
 ```{r, eval=TRUE}
-universities %>% 
-  select(!where(all_na)) %>% 
+universities %>%
+  select(!where(all_na)) %>%
   names()
 ```
 
@@ -2071,8 +2576,8 @@ universities %>%
 
 
 ```{r, eval=TRUE, message=TRUE}
-universities %>% 
-  remove_empty(which= "cols", quiet = FALSE) 
+universities %>%
+  remove_empty(which = "cols", quiet = FALSE)
 ```
 
 
@@ -2148,9 +2653,9 @@ class: middle
 --
 
 ```{r message=TRUE, warning=TRUE, eval=TRUE}
-test_scores <- c(8.8,9,10,7.2,8.4)
+test_scores <- c(8.8, 9, 10, 7.2, 8.4)
 class(test_scores)
-class(c(test_scores,"a"))
+class(c(test_scores, "a"))
 ```
 
 ---
@@ -2177,49 +2682,52 @@ class(c(test_scores,"a"))
 
 ---
 ```{r, include=FALSE, eval=TRUE}
-burger_prices <- 
+burger_prices <-
   tibble::tribble(
-    ~Rank,        ~Country,   ~Price, ~Price.ARS,   ~Region,
-    "1",   "Switzerland",    "6.8",  "$544.50",  "Europe",
-    "2",        "Norway",    "6.2",      "496",  "Europe",
-    "3",        "Sweden",    "6.1",      "488",  "Europe",
-    "4",       "Finland",    "5.6",      "448",  "Europe",
-    "5", "United States", "5.3[1]",  "$424.50", "America",
-    "8",         "Italy",    "5.1",      "408",  "Europe",
-    "7",        "France",    "5.1",   "408,50",  "Europe",
-    "6",        "Canada",    "5.3",      "424", "America",
-    "9",        "Brazil",   "5.1*",      "408", "America"
+    ~Rank, ~Country, ~Price, ~Price.ARS, ~Region,
+    "1", "Switzerland", "6.8", "$544.50", "Europe",
+    "2", "Norway", "6.2", "496", "Europe",
+    "3", "Sweden", "6.1", "488", "Europe",
+    "4", "Finland", "5.6", "448", "Europe",
+    "5", "United States", "5.3[1]", "$424.50", "America",
+    "8", "Italy", "5.1", "408", "Europe",
+    "7", "France", "5.1", "408,50", "Europe",
+    "6", "Canada", "5.3", "424", "America",
+    "9", "Brazil", "5.1*", "408", "America"
   )
-
 ```
 
 .panelset[
 .panel[.panel-name[Burger Prices]
 ```{r, echo=FALSE, eval=TRUE}
-burger_prices %>% gt() %>%
+burger_prices %>%
+  gt() %>%
   tab_style(
-    cell_text(size = '24px'),
-    locations = list(cells_body(),
-                     cells_column_labels(everything()),
-                     cells_title())) %>% 
-  tab_options(table.background.color="#f4f4f9",container.overflow.x = TRUE, container.overflow.y = TRUE)
+    cell_text(size = "24px"),
+    locations = list(
+      cells_body(),
+      cells_column_labels(everything()),
+      cells_title()
+    )
+  ) %>%
+  tab_options(table.background.color = "#f4f4f9", container.overflow.x = TRUE, container.overflow.y = TRUE)
 ```
 ]
 
 .panel[.panel-name[Data setup]
 ```{r burgerssetup, fig.show='hide'}
-burger_prices <- 
+burger_prices <-
   tibble::tribble(
-    ~Rank,        ~Country,   ~Price, ~Price.ARS,   ~Region,
-    "1",   "Switzerland",    "6.8",  "$544.50",  "Europe",
-    "2",        "Norway",    "6.2",      "496",  "Europe",
-    "3",        "Sweden",    "6.1",      "488",  "Europe",
-    "4",       "Finland",    "5.6",      "448",  "Europe",
-    "5", "United States", "5.3[1]",  "$424.50", "America",
-    "8",         "Italy",    "5.1",      "408",  "Europe",
-    "7",        "France",    "5.1",   "408,50",  "Europe",
-    "6",        "Canada",    "5.3",      "424", "America",
-    "9",        "Brazil",   "5.1*",      "408", "America"
+    ~Rank, ~Country, ~Price, ~Price.ARS, ~Region,
+    "1", "Switzerland", "6.8", "$544.50", "Europe",
+    "2", "Norway", "6.2", "496", "Europe",
+    "3", "Sweden", "6.1", "488", "Europe",
+    "4", "Finland", "5.6", "448", "Europe",
+    "5", "United States", "5.3[1]", "$424.50", "America",
+    "8", "Italy", "5.1", "408", "Europe",
+    "7", "France", "5.1", "408,50", "Europe",
+    "6", "Canada", "5.3", "424", "America",
+    "9", "Brazil", "5.1*", "408", "America"
   )
 ```
 ]
@@ -2232,7 +2740,7 @@ burger_prices <-
 Parse all columns
 
 ```{r, eval=TRUE}
-burger_prices %>% 
+burger_prices %>%
   type_convert()
 ```
 
@@ -2241,7 +2749,7 @@ burger_prices %>%
 ## Numbers stored as text  
 
 ```{r, eval=TRUE}
-burger_prices 
+burger_prices
 ```
 
 ---
@@ -2251,7 +2759,7 @@ burger_prices
 Coerce variables to `numeric`
 
 ```{r, eval=TRUE}
-burger_prices %>% 
+burger_prices %>%
   mutate(Rank = as.numeric(Rank))
 ```
 
@@ -2262,7 +2770,7 @@ burger_prices %>%
 Parse with 📦 .rrured.b[`readr`] (⚠ watch out for inconsistent decimals)
 
 ```{r, eval=TRUE}
-burger_prices %>% 
+burger_prices %>%
   mutate(across(c(Rank, Price, Price.ARS), parse_number))
 ```
 
@@ -2275,7 +2783,7 @@ Clean with .orange.b[regular expressions] then .b.purple[`type_convert()`]
 ]
 
 ```{r, echo=FALSE, eval=TRUE}
-options(pillar.sigfig=5)
+options(pillar.sigfig = 5)
 ```
 
 
@@ -2283,21 +2791,21 @@ options(pillar.sigfig=5)
 burger_prices %>%
   mutate(across(c(Rank, Price, Price.ARS), str_remove_all, "\\[.+\\]|\\(.+\\)")) %>%
   mutate(across(c(Rank, Price, Price.ARS), str_remove_all, "[^0-9.,]")) %>%
-  mutate(Price.ARS = str_replace(Price.ARS, ",", ".")) %>% 
+  mutate(Price.ARS = str_replace(Price.ARS, ",", ".")) %>%
   type_convert()
 ```
 
 ---
 
 ```{r, echo=FALSE, eval=TRUE}
-options(pillar.sigfig=5)
+options(pillar.sigfig = 5)
 ```
 
 ```{r, eval=TRUE}
 burger_prices %>%
   mutate(across(c(Rank, Price, Price.ARS), str_remove_all, "\\[.+\\]|\\(.+\\)")) %>%
   mutate(across(c(Rank, Price, Price.ARS), str_remove_all, "[^0-9.,]")) %>%
-  mutate(Price.ARS = str_replace(Price.ARS, ",", ".")) %>% 
+  mutate(Price.ARS = str_replace(Price.ARS, ",", ".")) %>%
   type_convert()
 ```
 
