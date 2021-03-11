@@ -364,7 +364,7 @@ We have many options for this. If you have a web connection, I strongly suggest 
 
 ???
 
-At all levels of familiarity with regex, it helps to check and test our regular expressions before putting them in our R code. For this, there are many interactive tools that can help us understand what is going on with the regular expression that we’re writing.
+For both beginners or advanced users of regex, it helps to check and test our regular expressions before putting them in our R code. For this, there are many interactive tools that can help us understand what is going on with the regular expression that we’re writing.
 
 I’ll list some that I’m familiar with here, and that I like for their simple user interface, but feel free to use any of the hundreds of testers out there.
 
@@ -390,7 +390,7 @@ The cleanest, most straightforward tester I know of is rubular, by Michael Lovit
 
 ???
 
-We can also test regular expressions within R. The regexplain package by Garrick Aden Buie runs inside Rstudio and works quite well, or we can call the str_view function from the stringr package to show us any matches. I personally prefer the online testers, but this is completely up to you.
+We can also test regular expressions within R. The regexplain package runs inside Rstudio and works quite well, or we can call the str_view function from the stringr package to show us any matches. I personally prefer the online testers, but this is completely up to you.
 
 --
 
@@ -464,6 +464,8 @@ Strings are made of characters, and so are regular expressions. For regular expr
 ---
 
 ## Literal characters
+
+If input string is **"dog"** and regex is .b.orange[dog],
 
 We will get a match whenever the characters .orange[`d`], .orange[`o`], and .orange[`g`] occur consecutively in the input text.
 
@@ -1057,7 +1059,7 @@ Word boundaries match positions, not any particular character that prints on the
 
 --
 
-> After a sequene of word characters
+> After a sequence of word characters
 
 .b.orange[org\\b] matches "cyb.b.bg-yellow.purple[org] rebellion" but not "organic"
 
