@@ -2820,9 +2820,11 @@ Discard empty rows with .purple.b[`remove_empty()`]
 ]  
 
 ???
+
 I just showed a way to remove empty rows with dplyr, but there is an easier alternative, using the remove empty function from the janitor package.
 
 --
+
 > `quiet = FALSE` prints a statement about the rows that were removed  
 
 > `'which'` specifies rows or columns
@@ -2849,7 +2851,7 @@ universities %>%
 
 ???
 
-Using remove empty and specifying rows, we get the same result as before, and because we set the quiet argument to FALSE, a small message tells us that five empty rows were removed out of tweleve in total.
+Using remove empty and specifying rows, we get the same result as before, and because we set the quiet argument to FALSE, a small message tells us that five empty rows were removed out of twelve in total. This looks much better.
 
 ---
 
@@ -2858,15 +2860,35 @@ Using remove empty and specifying rows, we get the same result as before, and be
 ???
 
 Now let's deal with empty columns in our data.
+
 --
+
 .large[
 Identify with 📦 .rrured.b[`dplyr`] and .b.purple[`all_na()`] from 📦 .rrured.b[`naniar`]  
 ]
+
+```{r, eval=FALSE}
+universities %>%
+  select(where(all_na))
+```
+
+**`where`** helps select variables for which a function returns `TRUE`
+
+**`all_na`** checks if all values in a vector are `NA` 
+
+???
+
+Before we remove them, we can identify then with functions from dplyr and naniar. We use select from dplyr to subset columns, and the where helper to keep only the variables that meet a condition. The condition here is if the entire column is all NA. We specificy this with all na from the package naniar. 
+
+---
 
 ```{r, eval=TRUE}
 universities %>%
   select(where(all_na))
 ```
+
+???
+This gives a subset of the data, but only with the empty columns. Because columns have names, we know right away which ones we can remove.
 
 ---
 
@@ -2878,10 +2900,19 @@ universities %>%
   names()
 ```
 
+???
+
+If we want to skip printing the object and just get the names, we can, and the names function at the end of the sequence will gives us a vector with the names of the empty columns.
+
 ---
 
 ### Negate condition for selection, get names
 
+???
+
+Like we did we columns, we can negate the condition for subsetting the columns and this will remove the empty ones.
+
+--
 
 ```{r, eval=TRUE}
 universities %>%
@@ -2889,19 +2920,55 @@ universities %>%
   names()
 ```
 
+???
+
+With this code, we know which variables aren't empty.
+
 ---
 
 ### Discard empty columns with .b.purple[`remove_empty()`] 
 
+???
 
-```{r, eval=TRUE, message=TRUE}
+We can also use janitor and the remove empty function for this.
+
+--
+
+```{r, eval=FALSE, message=TRUE}
 universities %>%
-  remove_empty(which = "cols", quiet = FALSE)
+    remove_empty(which = "cols", quiet = FALSE)
 ```
 
+> `quiet = FALSE` prints a statement about the rows that were removed  
+
+
+> `'which'` specifies rows or columns  
 
 ---
 
+#### Discard empty columns with .b.purple[`remove_empty()`] 
+
+```{r, eval=TRUE, message=TRUE}
+universities %>%
+    remove_empty(which = "cols", quiet = FALSE)
+```
+
+???
+
+The syntax is simple, we specify that we're removing columns, and if quiet is set to false, then we'll get a message telling us how many and which ones were removed. 
+---
+### Discard empty rows and columns simultaneously with .b.purple[`remove_empty()`] 
+
+```{r, eval=TRUE, message=TRUE}
+universities %>%
+    remove_empty(which = c("cols","rows"), quiet = TRUE)
+```
+
+???
+
+If we want to remove empty rows and columns all at once, we can pass a character vector with cols and rows to remove empty. For this one I set quiet to TRUE, so there's no message printed to the console.
+
+---
 class: my-turn
 
 # My turn
@@ -2945,11 +3012,21 @@ background-image:url("images/markus-spiske-4jiR57y3jgY-unsplash.jpg")
 background-size: cover
 # Parsing Numbers
 
+???
+
+In this lesson, we'll learn how to make numeric values in our data useable, because they often aren't.
+
+We can start by going over some basic R.
+
 ---
 class: middle
 
 .large[
 - Vectors must have all their values of the same mode (_character, numeric, logical_)]
+
+???
+
+A fundamental property in R is that vectors must have all their values of the same mode, which can be character, numeric, or logical.
 
 --
 
@@ -2957,17 +3034,31 @@ class: middle
 - If there is a character string is present in a vector, everything else in the vector will be converted to character strings
 ]
 
+???
+Because everything in a vector must be of the same type, if we have character strings in a vector then everything will be treated as type character, including numbers.
+
 ---
 
 ### We cannot perform arithmetic operations on:
+
+???
+If this happens, then we're blocked from going further, because we can't do arithmetic operations on 
 
 --
 
 - Numbers stored as text
 
+???
+
+Numbers stored as text,
+
 --
 
 - Strings with non-digits
+
+???
+
+or strings with non-digits.
 
 --
 
@@ -2977,29 +3068,59 @@ class(test_scores)
 class(c(test_scores, "a"))
 ```
 
+???
+
+This is what I mean. First we have a vector of five numbers, called test scores. This is an object of type numeric, but it becomes a character vector as soon as we mix in a string. In this case, the letter a.
+
 ---
 
 ## Numbers stored as text
 
+???
+
+In R, it is possible to have columns in our data that are of type character even when they contain only numbers. This is like using cell format in a spreadsheet. If this is the case, the conversion to numeric is simple and we have two options.
+
+--
 
 1. .b.purple[`type_convert()`] the whole object (📦 .rrured.b[`readr`])
+
+???
+
+First, we can use the type convert function from readr to take an object, look at all the content in each column, and guess the type for each one. This works great for columns with all numbers.
 
 --
 
 2. Coerce one or more variables to `numeric` with 📦 .rrured.b[`dplyr`]
 
+???
+
+Another option is to coerce one or more variables to type numeric using dplyr. In this case we're transforming the data and applying a coercion to those columns that we believe to be numbers stored as text.
 
 ---
 
 ## Strings with non-digits
 
+???
+
+We cannot perform numeric operations on numbers that have non-digits. This excludes decimals though. To get rid of non digits, we have two options as well.
+
+--
 
 1. Parse with 📦 .rrured.b[`readr`]  
 
+???
+
+We can parse our variables with functions from readr,
+
+--
 2. Clean with .orange.b[regular expressions]
 
+???
+
+Or we can clean up the values with regular expressions.
 
 ---
+
 ```{r, include=FALSE, eval=TRUE}
 burger_prices <-
   tibble::tribble(
@@ -3052,10 +3173,29 @@ burger_prices <-
 ]
 ]
 
+???
+
+Let's see the example data for this lesson. This object called burger prices has prices for the same hamburger in different countries, shown in two different currencies.
+
+---
+
+```{r, eval=TRUE}
+burger_prices
+```
+
+???
+
+Printed in the console, the data looks like this. The printing methods for tibble objects tell us the data type for each column, and in these data all the columns are of type character, including the ones that contain numbers and including the first column Rank, which just has numbers from one to nine.
+
 ---
 
 ## Numbers stored as text  
 
+???
+
+The Rank column in our data has numbers stored as text. There is no good reason for this variable to be of type character, so we can make it numeric.
+
+--
 Parse all columns
 
 ```{r, eval=TRUE}
@@ -3063,17 +3203,19 @@ burger_prices %>%
   type_convert()
 ```
 
----
+???
 
-## Numbers stored as text  
-
-```{r, eval=TRUE}
-burger_prices
-```
+Our first approach should be to just parse all the columns in the object with the type convert function from readr. When we do this, we can see that Rank column is now a variable of type double, which is a class of numeric values, the other one is for integers. 
 
 ---
 
 ## Numbers stored as text  
+
+???
+
+For a finer control of our data, we could just coerce the problematic variable to numeric. R has a function for this called as.numeric.
+
+--
 
 Coerce variables to `numeric`
 
@@ -3082,20 +3224,53 @@ burger_prices %>%
   mutate(Rank = as.numeric(Rank))
 ```
 
+??? 
+To change a single variable, we can use mutate from dplyr to overwrite Rank, in this case, with the values coerced to numeric using as.numeric. The output is the same as before.
+
+Ok, so the rank column is numeric now, but we still want to fix the values with the actual prices. Looking at these column, we see that one of them has annotations and special characters, the other one seems to have inconsistent decimal marks, and only a few of the prices has dollar signs to indicate currency.
+
 ---
 
 ## Strings with non-digits
 
-Parse with 📦 .rrured.b[`readr`] (⚠ watch out for inconsistent decimals)
+???
+
+The two columns with prices are good examples of numbers stored as strings with non-digits. We can't work with these prices until we parse the numbers in these variables into something usable.
+
+--
+
+Parse with .b.purple[`parse_number`] from 📦 .rrured.b[`readr`] (⚠ watch out for inconsistent decimals)
+
+???
+
+We can first use the parse number function from readr and see how we do. Parse number drops any non-numeric characters from a string, trying to respect how commas or dots are used to separate decimals or group digits for larger numbers.  
+
+--
+```{r, echo=FALSE, eval=TRUE}
+options(pillar.sigfig = 5)
+```
 
 ```{r, eval=TRUE}
 burger_prices %>%
   mutate(across(c(Rank, Price, Price.ARS), parse_number))
 ```
 
+???
+In the code, we use mutate and the across syntax from dpyr to modify many columns at once, we specify Rank and the two variables with the price, and that we want to apply the parse number function to each one.
+
+The result looks good for the Rank and Price columns. The extra comments or annotations in the Price column were dropped and now this column appears as a variable of type double. 
+
+The price dot ARS column is also of type double now. The dollar signs were stripped, but because of an inconsistent decimal point, the values are off now. We need to be careful with this.
+
 ---
 
 ## Strings with non-digits
+
+???
+
+Let's try again, but using string manipulation with an approach suited for these messy data.
+
+--
 
 .large[
 Clean with .orange.b[regular expressions] then .b.purple[`type_convert()`]
@@ -3114,6 +3289,14 @@ burger_prices %>%
   type_convert()
 ```
 
+???
+
+In the first step, we use mutate, the across function, combined the str remove all function from stringr and a regular expression. This will match any notes or additional details in brackets that may be present in our target columns.
+
+The second step is similar, but the regular expression is a negated character set for matching anything that is not a number, a comma, or a dot. We don't want any of these in our numeric data. 
+
+In the third step we replace commas with dots only in Price dot ARS, and finally we type convert everything.
+
 ---
 
 ```{r, echo=FALSE, eval=TRUE}
@@ -3127,6 +3310,10 @@ burger_prices %>%
   mutate(Price.ARS = str_replace(Price.ARS, ",", ".")) %>%
   type_convert()
 ```
+
+???
+
+The resulting object has usable numeric variables. We can now work with these prices, for example by converting them to other currencies through multiplication, or finding the mean price by region.
 
 ---
 class: my-turn
