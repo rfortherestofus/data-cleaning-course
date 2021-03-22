@@ -2623,7 +2623,7 @@ background-size: cover
 
 ???
 
-So, data organization good practices suggest not leaving empty cells, and also being aware of how we encode missing data. Empty rows and columns are an extension of this. Let's see how we can sort them out.
+In general, data organization good practices suggest not leaving empty cells, and also being aware of how we encode missing data. Empty rows and columns are an extension of this. Let's see how we can sort them out.
 
 
 ---
@@ -2640,7 +2640,7 @@ Empty here refers to rows or columns in our data for which all values are missin
 
 ???
 
-It's quite common to find empty rows or columns when we import files, and the reasons for them being in the data can vary. 
+It's quite common to find empty rows or columns when we import files, and the reasons for them being prsent can vary. 
 
 --
 
@@ -2760,7 +2760,7 @@ Let's look at these example data. This object, called universities, includes det
 
 ???
 
-In smaller datasets we can simply look at the data and see which rows or columns are empty. With larger volumes of data this is not possible, so we can existing functions to identify them.  
+In smaller datasets we can simply look at them and see which rows or columns are empty. With larger volumes of data this is not possible, so we can existing functions to identify them.  
 
 Let's do rows first.
 For this, we'll use the filter function from dplyr, which we used before to subset data and keep only rows that meet a condition.
@@ -2772,7 +2772,7 @@ universities %>% filter(across(everything(), is.na))
 ```
 
 ???
-To use the filter function on many columns at once, we use the new across syntax, and the helper function everything to work across all the variables. The is.na function, applied to each rows, will tell us if all the values in the row are NA or not. If they are, then we keep them.
+To use the filter function on many columns at once, we use the new across syntax, and the helper function everything to work across all the variables. The is.na function, applied to each rows, will tell us if ALL the values in the row are NA or not. If they are, then we keep them.
 
 The result from this was a tibble with five rows, which are all empty. 
 
@@ -2790,17 +2790,18 @@ universities %>%
 
 ???
 
-We can add a unique identifier to each row before subsetting the data to keep only the empty rows. The row id to column function from the package tibble takes the row numbering inherent to the data and places it as a column. 
+We can add a unique identifier to each row before subsetting to keep only the empty rows. The row id to column function from the package tibble takes the row numbering inherent to the data and places it as a new column. 
 Then we can filter for rows which are empty in all variables except in the new one we just created. By default, its name is rowid.
 
 Now we know the position of the five empty rows, but how do we remove them.
 
 ---
 
-### Negate the condition .b.purple[(!)] and discard empty rows
+### Negate the selection .b.purple[(!)] and discard empty rows
 
 ???
-To remove the empty rows, we follow the same process as before, but instead of keeping the empty rows, we discard them by negating the is.na condition with an exclamation mark. 
+
+To remove the empty rows, we follow the same process as before, but instead of keeping the empty rows, we discard them by getting the complement of our selection with an exclamation mark. 
 
 --
 
@@ -2851,7 +2852,7 @@ universities %>%
 
 ???
 
-Using remove empty and specifying rows, we get the same result as before, and because we set the quiet argument to FALSE, a small message tells us that five empty rows were removed out of twelve in total. This looks much better.
+Using remove empty and specifying rows in the which argument, we get the same result as before, and because we set the quiet argument to FALSE, a small message tells us that five empty rows were removed out of twelve in total. This looks much better.
 
 ---
 
@@ -2906,11 +2907,11 @@ If we want to skip printing the object and just get the names, we can, and the n
 
 ---
 
-### Negate condition for selection, get names
+### Negate selection, get names
 
 ???
 
-Like we did we columns, we can negate the condition for subsetting the columns and this will remove the empty ones.
+Like we did with rows, we get the complement of our selection and this will remove the empty ones.
 
 --
 
@@ -2944,6 +2945,10 @@ universities %>%
 
 > `'which'` specifies rows or columns  
 
+???
+
+The syntax is simple, we specify cols in the which argument and run the code.
+
 ---
 
 #### Discard empty columns with .b.purple[`remove_empty()`] 
@@ -2955,7 +2960,8 @@ universities %>%
 
 ???
 
-The syntax is simple, we specify that we're removing columns, and if quiet is set to false, then we'll get a message telling us how many and which ones were removed. 
+Quiet is set to false, so we'll get a message telling us how many and which ones were removed. 
+
 ---
 ### Discard empty rows and columns simultaneously with .b.purple[`remove_empty()`] 
 
@@ -3014,7 +3020,7 @@ background-size: cover
 
 ???
 
-In this lesson, we'll learn how to make numeric values in our data useable, because they often aren't.
+In this lesson, we'll learn how to make numeric values in our data usable, because they often aren't.
 
 We can start by going over some basic R.
 
@@ -3026,7 +3032,7 @@ class: middle
 
 ???
 
-A fundamental property in R is that vectors must have all their values of the same mode, which can be character, numeric, or logical.
+In R, vectors must have all their values of the same mode, which can be character, numeric, or logical.
 
 --
 
@@ -3042,6 +3048,7 @@ Because everything in a vector must be of the same type, if we have character st
 ### We cannot perform arithmetic operations on:
 
 ???
+
 If this happens, then we're blocked from going further, because we can't do arithmetic operations on 
 
 --
@@ -3078,7 +3085,7 @@ This is what I mean. First we have a vector of five numbers, called test scores.
 
 ???
 
-In R, it is possible to have columns in our data that are of type character even when they contain only numbers. This is like using cell format in a spreadsheet. If this is the case, the conversion to numeric is simple and we have two options.
+In R, it is possible to have columns in our data that are of type character, even when they contain only numbers. This is like using cell format in a spreadsheet. If this is the case, the conversion to numeric is simple and we have two options.
 
 --
 
@@ -3102,7 +3109,7 @@ Another option is to coerce one or more variables to type numeric using dplyr. I
 
 ???
 
-We cannot perform numeric operations on numbers that have non-digits. This excludes decimals though. To get rid of non digits, we have two options as well.
+We cannot perform numeric operations on numbers that have non-digits. To get rid of non digits, we have two options as well.
 
 --
 
@@ -3185,7 +3192,7 @@ burger_prices
 
 ???
 
-Printed in the console, the data looks like this. The printing methods for tibble objects tell us the data type for each column, and in these data all the columns are of type character, including the ones that contain numbers and including the first column Rank, which just has numbers from one to nine.
+Printed in the console, the data looks like this. The printing methods for tibble objects tell us the data type for each column, and in these data all the columns are of type character, including the ones that contain numbers and including the first column - Rank, which just has numbers from one to nine.
 
 ---
 
@@ -3196,6 +3203,7 @@ Printed in the console, the data looks like this. The printing methods for tibbl
 The Rank column in our data has numbers stored as text. There is no good reason for this variable to be of type character, so we can make it numeric.
 
 --
+
 Parse all columns
 
 ```{r, eval=TRUE}
@@ -3205,7 +3213,7 @@ burger_prices %>%
 
 ???
 
-Our first approach should be to just parse all the columns in the object with the type convert function from readr. When we do this, we can see that Rank column is now a variable of type double, which is a class of numeric values, the other one is for integers. 
+Our first approach should be to just parse all the columns in the object with the type convert function from readr. When we do this, we can see that the Rank column is now a variable of type double, which is a class of of values within numeric.
 
 ---
 
@@ -3224,7 +3232,8 @@ burger_prices %>%
   mutate(Rank = as.numeric(Rank))
 ```
 
-??? 
+???
+
 To change a single variable, we can use mutate from dplyr to overwrite Rank, in this case, with the values coerced to numeric using as.numeric. The output is the same as before.
 
 Ok, so the rank column is numeric now, but we still want to fix the values with the actual prices. Looking at these column, we see that one of them has annotations and special characters, the other one seems to have inconsistent decimal marks, and only a few of the prices has dollar signs to indicate currency.

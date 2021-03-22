@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>My Turn and Your Turn prompts</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.6.6/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/animate.css-xaringan-3.7.2/animate.fade.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# My Turn and Your Turn prompts
+
+---
+
+
+
+
+
+layout: true
+  
+&lt;div class="dk-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://rfortherestofus.com/" target="_blank"&gt;R for the Rest of Us
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
+---
+
+
+---
+
+class: inverse
+
+## Your turn
+
+1. Read this short blog [post](https://www.johndcook.com/blog/2021/01/12/data-pathology/) by John D. Cook.
+.center[https://www.johndcook.com/blog/2021/01/12/data-pathology/]
+
+2. Reflect on the amount (if any) of data cleaning you perform for your day-to-day work.
+
+???
+
+Before we get to any code, please complete these short tasks. 
+First, read a short text on why we should not consider data cleaning an obstacle to our work.
+Then, reflect on how much time you spent cleaning data in your own work, do you enjoy it? do you find it tedious?
+
+---
+
+# My setup
+
+- R v4.0.4  
+
+- RStudio v1.4.1106  
+
+- Default theme and pane layout  
+
+- Windows 10
+
+???
+I'm running recent versions of R and Rstudio in Windows 10, and other than making the font slighly larger I made no additional customization.
+
+---
+
+## Course setup
+
+
+**1\.** Create a new RStudio project on your computer
+
+
+**2\.** Download course materials (slides and data needed for "your turn" exercises) with 
+📦 .b.rrured[`usethis`]
+
+
+
+```r
+install.packages("usethis") # Install first if necessary
+usethis::use_course("rfortherestofus/data-cleaning-course") # Download course materials 
+```
+
+**3\.** Copy the downloaded materials to the folder containing the RStudio project you created for this course. 
+
+???
+
+For this course, we'll need to download some files.
+First, create a new RStudio project somewhere on your computer where you will be able to find it.
+Then, install the usethis package and call the use course function to download the course materials.
+Finally, copy contents of the new folder into the location of the Rstudio project you created for this course.
+
+I'll demonstrate these steps now.
+---
+
+class: inverse
+
+# Your turn
+
+.large[
+- Read this illustrated [explanation](https://www.openscapes.org/blog/2020/10/12/tidy-data/) of tidy data, written by the Openscapes team  
+https://www.openscapes.org/blog/2020/10/12/tidy-data/
+
+- Read this [paper](https://doi.org/10.1080/00031305.2017.1375989) by Broman and Woo (2018) on organizing data in spreadsheets.
+
+https://doi.org/10.1080/00031305.2017.1375989
+]
+
+???
+
+Before moving on, consider reading these two items. The first is an illustrated guide to tidy data, and the second one is a readable, comprehensive guide to organizing data in spreadsheets.
+
+---
+
+class: my-turn
+## My Turn
+
+???
+
+Now, its my turn to use pipes and functions from dplyr to transform a dataset.
+
+--
+
+- Load the mammal sleep data bundled with `ggplot2`
+
+--
+
+- Select the "name" and "conservation" columns, as well as all numeric variables
+
+--
+
+- Create a new column that contains the values of _'awake'_ multiplied by the values in _'brainwt'_
+
+--
+
+- Filter the data to keep only rows with _'sleep_total'_ &gt; 4
+
+--
+
+&gt; I'll use pipes to chain the operations 
+
+---
+
+class: inverse
+## Your Turn
+
+--
+
+- Load the mammal sleep data bundled with `ggplot2`
+
+--
+
+- Select "name" and "conservation" columns and those that include the string _'sleep'_ in their name
+
+--
+
+- Create a new column that contains the values of _'sleep_total'_ multiplied by 3
+
+--
+
+- Filter the data to remove domesticated mammals
+
+--
+
+&gt; Use pipes to chain the operations!
+
+---
+
+class: my-turn
+## My Turn
+
+--
+
+- Load the _midwest_ data bundled with `ggplot2`
+
+--
+
+- Keep only rows for Wisconsin (WI)
+
+--
+
+- Subset the 'county' column and all columns that match the string '_perc_' (hint: use a selection helper)
+
+--
+
+- log-transform all numeric variables
+
+--
+
+- Append the suffix "_check" to every value
+
+---
+
+class: inverse
+## Your Turn
+
+--
+
+- Load the _midwest_ data bundled with `ggplot2`
+
+--
+
+- Keep only rows for Ohio (OH)
+
+--
+
+- Subset the 'county' column and all columns that match the string '_pop_' (hint: use a selection helper)
+
+--
+
+- Square-root transform all numeric variables
+
+---
+
+class: my-turn
+# My Turn
+
+--
+
+- .large[Load the dog ranks data ("dogranks_mine.csv")]  
+
+--
+
+- .large[Pivot the data (wide to long and back to wide)]
+
+---
+
+class: my-turn
+# My Turn
+
+--
+
+.large[- Load the fish landings data 'fish-landings.csv']
+
+--
+
+.large[- Fill the 'Fish' and 'Lake' columns]
+
+--
+
+.large[- Create a new column, coalescing the three numeric variables]
+
+---
+
+class: inverse
+# Your Turn
+
+--
+
+.large[- Load the fish landings data 'fish-landings.csv']
+
+--
+
+.large[- Fill the 'Fish' and 'Lake' columns]
+
+--
+
+.large[- Reorder the numeric variables ('Comission reported total' first) and create a new column, coalescing the three numeric variables]
+
+---
+class: inverse
+## Your Turn
+
+???
+
+Now its your turn, in your web browser, navigate to either of these four interactive testers and have a look at its user interface.
+
+--
+
+Navigate to [rubular](https://rubular.com/), [regex101](https://regex101.com/), [regexr](https://regexr.com/), or [regexpal](https://www.regexpal.com/) and familiarize yourself with the user interface
+
+???
+
+Then paste the following into the box for the input text. You might recognize this text as part of a recipe.
+
+--
+
+Input the following text into the test string field: 
+
+--
+
+`
+2 cups whole milk  
+1 cup white rice (uncooked)  
+1 pinch salt  
+1/2 cup water  
+1/4 cup dark brown sugar
+`  
+
+--
+
+Write regular expressions (one at a time) to match the wet ingredients and look at the match results
+
+???
+
+Then, write regular expressions in the input field to match the wet ingredients, which would be  milk and water, and look at how the resulting matches are shown.
+
+---
+
+class: inverse
+### Your Turn
+1\. Write a regexp that can match **tail**, **tool**, **tall**, and **toil**  
+--
+
+2\. How can we match **Jocelyn**, **Jocelin**, and **Joselyn** but not Jozelyn using character sets?
+
+.fl.w-third.pa0[.tc[
+a) Joscel[iy]n
+]]
+.fl.w-third.pa0[.tc[
+b) Jo[sc^z]el[yi]n
+]]
+.fl.w-third.pa0[.tc[
+c) Jo[sc]el[yi]n
+]]
+
+--
+
+3\. Which of these regular expressions matches **`food`** at the beginning of a string?
+.fl.w-25[.tl[
+a) ^food
+]]
+.fl.w-25[.tl[
+b) food
+]]
+.fl.w-25[.tl[
+c) $food
+]]
+.fl.w-25[.tl[
+d) food^
+]]
+
+---
+class: inverse
+### Your Turn
+
+1\. Use a wildcard and a quantifier to match **cute**, **cuuute**, **cuuuuuute**, and **cuuuuuuuuute**  
+
+--
+
+2\. How can we match only Computer, computer, Computers, and computers?
+.fl.w-third.pa0[.tc[
+a) [cC]omputer[s]?
+]]
+.fl.w-third.pa0[.tc[
+b) Computers+
+]]
+.fl.w-third.pa0[.tc[
+c) [cC]omputer[s]+
+]]
+
+
+---
+
+
+class: inverse
+### Your Turn
+
+Enter "That athlete is at the squat rack" as the test string in a regex tester.
+
+--
+
+Why are the matches different with the following three regular expressions?
+ 
+ a) at  
+ b) \bat  
+ c) at\b
+
+---
+
+class: my-turn
+## My Turn
+
+Write regular expressions for the patterns below and test them in an interactive tool:
+
+1. "dogs" but only if string begins with "dogs"  
+2. strings that start with digits  
+3. UPPERCASE strings  
+4. numbers in brackets  
+5. strings that end in “at” but longer than 3 characters   
+
+---
+class: inverse
+## Your Turn
+
+Write regular expressions to match the following, making sure they work in an interactive regex tester:
+
+1. cute, cuuute, cuuuuuute, and cuuuuuuuuute 
+2. strings with both letters and digits
+3. strings ending in a period
+4. lowercase strings
+5. exactly four digits
+6. strings without the letter _**s**_
+
+---
+
+class: inverse
+
+## Your Turn
+
+Match the following regular expressions against the test vector below using `str_detect`.  Can you explain the matches?
+
+Regular expressions
+1. ^dog
+2. ^[a-z]+$
+3. \\\\\d
+
+
+
+```r
+test_vector &lt;- c("Those dogs are small.","dogs and cats",
+                 "34","(34)","rat","watchdog","placemat",
+                 "BABY","2011_April","mice")
+```
+
+---
+
+class: inverse
+
+# Your Turn
+
+.large[🐀 After running the code below, how can we exclude muskrats from the matches?]
+
+
+```r
+msleep %&gt;% 
+  select(name,genus) %&gt;% 
+  filter(str_detect(string = name,pattern = "rat"))
+```
+---
+
+
+class: my-turn
+# My Turn
+
+1. Download CRAN package descriptions  
+
+--
+
+2. Select Package name, author, description, and all variables that contain 'License'  
+
+--
+
+3. Filter rows for packages with names that:  
+
+--
+
+ - start with _gg_ (case insensitivty)
+ 
+--
+ 
+ - contain _Bayes_
+ 
+--
+
+ - contain _glm_ but not _glmm_
+
+---
+class: inverse
+# Your Turn
+
+1. Download CRAN package descriptions  
+
+--
+
+2. Select package name, author, description, and all variables that end in 'ports'  
+
+--
+
+3. Filter rows for packages with names that: 
+
+--
+
+ - end in _plot_
+
+--
+
+ - contain _Bayes_
+
+--
+
+ - contain digits  
+
+--
+
+ - are all UPPER CASE
+
+---
+
+
+class: my-turn
+## My turn
+
+.large[
+- Import a .csv file with problematic headers (MPAS-mine.csv)
+]
+
+--
+
+.large[
+- Make the variable names usable by placing all header fragments in a single header row  
+]
+
+--
+
+.large[
+- Clean the names for consistency, using snake case
+]
+
+---
+
+class: inverse
+
+## Your turn
+
+.large[
+- Import a .csv file with problematic headers (MPAS-your.csv)
+]
+
+--
+
+.large[
+- Make the variable names usable by placing all header fragments in a single header row  
+]
+
+--
+
+.large[
+- Clean the names for consistency
+]
+
+---
+class: my-turn
+
+# My turn
+
+.large[
+- In the Marine Protected Areas dataset from the previous lesson (MPAS-mine.csv), check the _geographic_location_ variable for leading or trailing whitespace and remove it if necessary.
+]
+
+---
+
+class: inverse
+
+# Your turn
+
+.large[
+- In the Marine Protected Areas dataset from the previous lesson (MPAS-your.csv), check the _Country_ variable for leading or trailing whitespace and remove it if necessary.
+]
+
+---
+
+class: my-turn
+## My turn
+
+.large[
+- Import the Marine Protected Areas dataset (MPAS-mine.csv) and summarize the number of Marine Protected Areas by United Nations Geoscheme Region (_UN Geoscheme_).
+]
+
+---
+
+class: inverse
+## Your turn
+
+.large[
+- Import the Marine Protected Areas dataset (MPAS-your.csv), and summarize the number of Marine Protected Areas by country (_Country full_).
+]
+
+---
+
+class: my-turn
+# My turn
+.large[
+- Load the `primates2017` dataset bundled with 📦 `unheadr` and create a new column that groups the different species by geographic region. 
+]
+
+---
+
+class: inverse
+# Your turn
+.large[
+- Load the `primates2017` dataset bundled with 📦 `unheadr` and create a new column that groups the different species by taxonomic family.  
+]
+
+&gt; In biology, taxonomic families all end in the suffix "_DAE_"  
+
+.large[- How many different ways can you identify the embedded subheaders in these data?
+]
+
+---
+
+class: my-turn
+## My turn
+
+.large[
+- Import the Marine Protected Areas dataset (MPAS-mine.csv), separate the country codes variable (ISO3 and UN scheme) into columns the Reference variable into rows.]
+
+--
+
+.large[
+- Which Reference appears the most?
+]
+
+---
+
+class: inverse
+## Your turn
+
+.large[
+- Import the Marine Protected Areas dataset (MPAS-your.csv), separate the country codes variable (ISO3 and UN scheme) into columns and the Reference variable into rows.]
+
+--
+
+&gt; Keep an eye on the separators
+
+--
+
+.large[
+- Optional: Arrange the data by ISO3 country code
+]
+
+---
+
+class: my-turn
+
+# My turn
+
+--
+
+.large[
+- Load the messy Age of Empires units dataset bundled with `unheadr` (AOEunits_raw) and discard units that are not of Type "Archer".
+]
+
+--
+
+.large[
+- Identify duplicated records across all variables.
+]
+
+--
+
+.large[
+- Remove duplicated records across all variables.
+]
+
+---
+
+class: inverse
+# Your turn
+
+.large[
+- Load the messy Age of Empires units dataset bundled with `unheadr` (AOEunits_raw) and keep only units of Type "Cavalry".
+]
+
+--
+
+.large[
+- Identify duplicated records across all variables.
+]
+
+--
+
+.large[
+- Remove duplicated records across all variables.
+]
+
+---
+class: my-turn
+
+# My turn
+
+--
+
+.large[
+- Load the messy Age of Empires units dataset from csv (aoe_raw.csv)
+]
+
+--
+
+.large[
+- Identify the broken values in the 'Type' column and unbreak them
+]
+
+---
+
+class: inverse
+# Your turn
+
+--
+
+.large[
+- Load the messy Age of Empires units dataset from csv (aoe_raw.csv)
+]
+
+--
+
+.large[
+- Identify the broken values in both the 'Type' and 'Name' columns and unbreak them
+]
+
+--
+
+.large[
+- Clean up any separator-related issues arising from the 'unbreaking'
+]
+
+---
+class: my-turn
+
+# My turn
+
+--
+
+- Import the Marine Protected Areas dataset (MPAS-mine.csv)
+
+--
+
+- Identify the empty rows and columns, and create a new object with only the empty rows and columns 
+
+--
+
+- Remove the empty rows and columns 
+
+
+---
+class: inverse
+
+# Your turn
+
+--
+
+- Import the Marine Protected Areas dataset (MPAS-your.csv)
+
+--
+
+- Identify the empty rows and columns, and create a new object with only the empty rows and columns 
+
+--
+
+- Remove the empty rows and columns
+
+--
+
+---
+class: my-turn
+# My turn
+
+--
+.large[
+- Import the Marine Protected Areas dataset (MPAS-mine.csv)
+]
+
+--
+
+.large[
+- Make the columns that hold the MPA extent into usable numeric variables
+]
+
+---
+class: inverse
+# Your turn
+
+--
+
+.large[
+- Import the Marine Protected Areas dataset (MPAS-mine.csv)
+]
+
+--
+
+.large[
+- Subset to keep only the MPA names and columns with extent data
+]
+
+--
+
+.large[
+- Make the columns that hold the MPA extent into usable numeric variables (Watch out for the decimals!)]
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
