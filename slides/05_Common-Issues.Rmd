@@ -196,7 +196,7 @@ background-size: cover
 
 ???
 
-Whether our data has a only handful of rows and columns, or millions of observations for hundreds of columns, we need ways of referring to each column. To refer efficiently to 2 or 2000 columns, we need them to have usable, informative names.
+Whether our data has a only handful of rows and columns, or millions of observations for hundreds of columns, we need ways of referring to each one. To refer efficiently to 2 or 2000 columns, we need them to have usable, informative names.
 
 The names for the columns in our data are in the first row, or the header. If the headers have issues, we need to address them before we proceed.  This is why sorting out headers is the first general step in our workflow.
 
@@ -241,7 +241,7 @@ The most common issue with headers is when they have Inconsistent or uninformati
 
 ???
 
-In this example, column names in the header are all distinct, but they do not tell us much. This name has a dot between words and this one an underscore.
+In this example, names in the header are all distinct, but they do not tell us much. One name has a dot between words and one has an underscore.
 
 --
 
@@ -295,7 +295,7 @@ tibble::tribble(
 
 ???
 
-This means that the header row only contains part of the column names, and the remaining parts are embedded in the first few rows which should only contain data. I’ve seen this a lot when working with spreadsheets.
+This means that the header row only contains part of the column names, and the remaining parts are embedded in the first few rows, which should only contain data. I’ve seen this a lot when working with spreadsheets.
 
 --
 
@@ -315,7 +315,7 @@ Header fragments mixed with data
 
 ???
 
-and fragments of the headers are mixed in data rows. 
+and fragments of the headers are mixed in with data rows. 
 
 --
 
@@ -353,7 +353,7 @@ In the data organization section, we discussed good names for files, objects, an
 
 ???
 
-Syntactically valid means that R will understand these names and that they will not cause any functions to fail. 
+Syntactically valid means that R will understand these names, and that they will not cause any functions to fail. 
 
 --
 
@@ -361,7 +361,7 @@ Syntactically valid means that R will understand these names and that they will 
 
 ???
 
-Valid names should not have special characters or reserved words meant for other uses, 
+valid names should not have special characters,
 
 --
 
@@ -369,7 +369,7 @@ Valid names should not have special characters or reserved words meant for other
 
 ???
 
-and start with a letter or a dot.
+and they should start with a letter or a dot.
 
 --
 
@@ -377,7 +377,7 @@ and start with a letter or a dot.
 
 ???
 
-Also, some words are reserved for other programming purposes and are not allowed in names.
+Also, some words are reserved for other programming purposes so they are not allowed in names.
 
 Many of the functions we use to create tables, data frames, and variables protect us from making invalid names, but we still need them to be informative and consistent.
 
@@ -385,19 +385,23 @@ Many of the functions we use to create tables, data frames, and variables protec
 
 ## Cleaning column names 
 
-.left-column[
-</br>
-.large[
-Rename or clean with .orange.b[regex]
-]
-
 ???
 
-To clean column names, we can perform string manipulations and use regular expressions to clean and replace the names,
+Knowing how to name things is important, but it is also important to learn how clean names in existing data
 
 --
 
-]
+.left-column[
+.large[
+Rename or clean with .orange.b[regex]
+]]
+
+???
+
+To clean existing column names, we can perform string manipulations and use regular expressions to clean and replace the names,
+
+--
+
 .right-column[
 .large[
 Clean with .b.purple[`clean_names()`] from 📦 **.rrured.b[`janitor`]**  
@@ -413,7 +417,9 @@ Clean with .b.purple[`clean_names()`] from 📦 **.rrured.b[`janitor`]**
 
 ???
 
-but, the JANITOR package has a useful purpose-built function for cleaning names. 
+or we can use an existing user friendly tool
+
+the JANITOR package has a useful purpose-built function for cleaning names. 
 
 The clean names function will strip any special characters, replace spaces and dots with underscores, and apply a consistent letter case. 
 
@@ -493,8 +499,7 @@ If we come across broken headers, we can use the mash colnames function from the
 badheaders %>%
   mash_colnames(
     n_name_rows = 1, # number of data rows with header fragments #<<
-    sep = "_"
-  ) # separator for collapsing header fragments
+    sep = "_") # separator for collapsing header fragments
 ```
 
 > Data rows exclude the header row
@@ -509,10 +514,8 @@ Remember though, that data rows do not include the header row.
 
 ```{r, eval=TRUE}
 badheaders %>%
-  mash_colnames(
-    n_name_rows = 1,
-    sep = "_"
-  )
+  mash_colnames(n_name_rows = 1,
+    sep = "_")
 ```
 
 ???
@@ -523,10 +526,8 @@ In this case there is one row with parts of the names, and we want to use an und
 
 ```{r, eval=TRUE}
 badheaders %>%
-  mash_colnames(
-    n_name_rows = 1,
-    sep = "_"
-  ) %>%
+  mash_colnames(n_name_rows = 1,
+    sep = "_") %>%
   clean_names()
 ```
 
@@ -596,9 +597,9 @@ Does not correspond to a visible character, but occupies space in a string.
 
 ???
 
-spaces are not visible characters that print on our screen, but they still take up space in a string
+Spaces are not visible characters that print on our screen, but they still take up space in a string.
 
-this can be a problem when there are extra spaces and we cant see them, let's look at some examples of how this can affect our work.
+This can be a problem when there are extra spaces and we cant see them, let's look at some examples of how this can affect our work.
 
 --
 
@@ -629,7 +630,7 @@ RrU
 
 ???
 
-Here, these five character vectors all have say R for the Rest of us, but I added extra spaces at different positions.
+Here, these five character vectors all have say 'R for the Rest of us', but I added extra spaces at different positions.
 
 ---
 
@@ -640,7 +641,7 @@ RrU %>%
 
 ???
 
-Because of the spaces, when we use the distinct function to keep only the unique values in the data, we get back all the rows. This is because to the computer, each string is different even when they all say the same thing, which is R for the Rest of Us.
+Because of the spaces, when we use the distinct function to keep only the unique values in the data, we get back all the rows. This is because to the computer, each string is different, even when they all say the same thing, which is R for the Rest of Us.
 
 ---
 
@@ -648,6 +649,8 @@ Because of the spaces, when we use the distinct function to keep only the unique
 
 Extra spaces can be anywhere in a string, but we can usually describe them as being in one of these three positions:  
 
+???
+whitespace can be anywhere in a sting, but we can usually find it
 --
 
 .large[
@@ -684,8 +687,7 @@ or alongside existing spaces between words in a string
 
 ???
 
-This example should 
-
+Lets look at the example from earlier.
 --
 
 .pull-left[
@@ -699,7 +701,7 @@ RrU
 
 ???
 
-In the string R for the rest of us, there are six words so there should only be five spaces between these words, but remember that the data we created earlier had extra spaces in various spots. Just looking at the tibble, the text seems misaligned, so we know that the spacing is off.
+In the string R for the rest of us, there are six words so there should only be five spaces between these words. Remember though that the data we created earlier had extra spaces in various spots. Just looking at the tibble, the text seems misaligned, so we know that the spacing is off.
 
 --
 
@@ -717,7 +719,7 @@ str_count(RrU$strings, "\\s")
 
 ???
 
-This is just for demonstration, but one option could be to count the number of words and spaces in each string. For this, we can use the str count function from stringr with regular expressions. One to match words, and one to match spaces. We know there should be five spaces, so when we get the number of matches for each element and some have more than five, then we know that there is extra space that we might want to remove.
+This is just for demonstration, but one option for diagnosing whitespace issues could be to count the number of words and spaces in each string. For this, we can use the str count function from stringr with regular expressions. One to match words, and one to match spaces. We know there should be five spaces, so when we get the number of matches for each element and some have more than five, then we know that there is extra space that we might want to remove.
 
 ---
 
@@ -725,7 +727,7 @@ This is just for demonstration, but one option could be to count the number of w
 
 ???
 
-Another way we can tell if there are any leading or trailing spaces in a column of type character is by printing the object to the console. This only applies if we are working with tibble objects, and we usually are because tidyverse functions typically produce tibbles. 
+Another way we can tell if there are any leading or trailing spaces in a column of type character, is by printing the object to the console. This only applies if we are working with tibble objects, and we usually are because tidyverse functions typically produce tibbles. 
 
 --
 
@@ -744,7 +746,7 @@ If we print our objects in the console and there are leading or trailing spaces 
 
 ???
 
-This happens because in the background, the printing method for tibbles calls on the is.ambiguous.string function from the pillar package, and if a string is ambigous, we'll see it quoted.
+This happens because in the background, the printing method for tibbles calls on the is.ambiguous.string function, from the pillar package, and if a string is ambiguous, we'll see it quoted.
 
 --
 
@@ -759,7 +761,7 @@ function(x) {
 
 ???
 
-But what makes a string ambiguous? We can look at the function definition and come to realize that ambiguous strings are defined with a regular expression. We can say that a string is ambiguous if it's empty, has leading or trailing whitespace, or has unmatched quotes or escapes.
+But what makes a string ambiguous? We can look at the function definition and realize that ambiguous strings are defined with a regular expression. We can say that a string is ambiguous if it's empty, has leading or trailing whitespace, or has unmatched quotes or escapes.
 
 Lets try it out
 
@@ -1203,7 +1205,7 @@ When we learned about data organization earlier, I mentioned that grouping varia
 
 ???
 
-First off, if the grouping variables are missing altogheter from the data, there's not much we can do. 
+First off, if the grouping variables are missing altogether from the data, there's not much we can do. 
 
 ---
 
@@ -1770,7 +1772,7 @@ households %>%
 
 ???
 Lets see. 
-We pipe de households object into separate, specify that we want to separate the Residence column, into two columns, residence and pet, and a dash is being used to separate values.
+We pipe the households object into separate, specify that we want to separate the Residence column, into two columns, residence and pet, and a dash is being used to separate values.
 
 The resulting object looks better, and now we have pets in its own column.
 
@@ -1793,7 +1795,7 @@ households %>%
 ```
 
 ???
-For this, we use the str extract function from stringr inside mutate to match a pattern in the residence column. The regular expression uses a word boundry, the shorthand sequence for word characters, a quantifier, and an end anchor to tell the regex engine the match the last word in a string. In this case, the pets are the last words in the string, so these matches will be extracted into a new Pet column.
+For this, we use the str extract function from stringr inside mutate to match a pattern in the residence column. The regular expression uses a word boundary, the shorthand sequence for word characters, a quantifier, and an end anchor to tell the regex engine the match the last word in a string. In this case, the pets are the last words in the string, so these matches will be extracted into a new Pet column.
 
 After this, we might want to clean up the original residence column, which we could easily do with str remove. This approach can be very useful if the compound values don't have a clear separator and instead we can match parts of the values with regular expressions.
 
@@ -1839,7 +1841,7 @@ class: my-turn
 ## My turn
 
 .large[
-- Import the Marine Protected Areas dataset (MPAS-mine.csv), separate the country codes variable (ISO3 and UN scheme) into columns the Reference variable into rows.]
+- Import the Marine Protected Areas dataset (MPAS-mine.csv), separate the country codes variable (ISO3 and UN scheme) into columns and the Reference variable into rows.]
 
 --
 
@@ -1872,15 +1874,31 @@ background-image:url("images/armelle-danjour-kwGqIuNrM5E-unsplash.jpg")
 background-size: cover
 # Duplicates  
 
+???
+
+At this point, we can discuss the very common issue of duplicate values in our data. 
+
+Before we continue, I'd like to define duplication in the context of data cleaning.
+Typically, when we have two or more copies of the same record, observation, or data point, these can be said to be duplicated.  
+
+However, it's important to know that defining duplication in our data is up to us. This will become evident in the examples.
+
 ---
 
 ## Problems with duplicates
 
+???
+
+In this section we'll learn how to handle duplicates, but first let's see what can happen if we leave them in our data.
 --
 
 .large[
 - Bloat our data
 ]  
+
+???
+
+First, duplicate values bloat our data, and in larger datasets they can easily get out of hand if we somehow end up duplicating the duplicates. This has implication for file size, efficiency, and readability. 
 
 --
 
@@ -1888,19 +1906,37 @@ background-size: cover
 - Unintentional repetition can be costly
 ]  
 
+???
+
+Also, unintentional repetition can be costly, not just in terms of computing and storage, but also in real applications. For example, if a company has duplicated records for their customers, they may end up unintentionally shipping a product or sample more than once to the same customer.  
+
 --
 
 .large[
 - Inaccurate reporting (double counting, inflated or biased summary statistics)
 ]
 
+???
+
+Another major complication that comes from duplicate data, is that we can end up with results and data that are downright incorrect or biased. The most obvious issue would be double counting or inflating our numbers without realizing.
+
 ---
 
 ## What can we do?
 
+???
+
+To deal with duplication, we can again call on a number of packages with purpose-built tools.
+
+--
+
 .large[
 Identify with .b.purple[`get_dupes()`] from 📦 .rrured.b[`janitor`]  
 ]
+
+???
+
+To fix duplication, we first need to identify it. For this, we can use the get dupes function from the janitor package. 
 
 --
 
@@ -1908,13 +1944,27 @@ Identify with .b.purple[`get_dupes()`] from 📦 .rrured.b[`janitor`]
 Discard with .b.purple[`distinct()`] from 📦 .rrured.b[`dplyr`]  
 ]
 
+???
+
+If we find duplicates in our data, and we don't want them, then we can use the distinct function from dplyr to get rid of them.
+
 ---
 
 ## Duplicated values  
 
+???
+
+As I mentioned earlier, it is up to us to define duplication in our data.
+
+--
+
 .large[
 - Across all variables  
 ]
+
+???
+
+The most common usage, is when duplicates refer to identical copies of the same row.
 
 --
 
@@ -1922,11 +1972,19 @@ Discard with .b.purple[`distinct()`] from 📦 .rrured.b[`dplyr`]
 - Across the variable(s) defining the observational units  
 ]
 
+???
+
+But we can also define duplicates in which not all values are identical across variables. A common practice is to pick the variable or set of variables that define our observational units and look for duplication here, regardless of what's in the other columns.
+
 --
 
 .large[
 - Across arbitrary sets of variables
 ]
+
+???
+
+And, it's also possible to define duplicates in any arbitrary set of variables.
 
 ---
 
@@ -1978,21 +2036,38 @@ pizza_orders <-
 ]
 ]
 
+???
+
+Let's look at duplicates in an example dataset.
+This object called pizza orders records customers that ordered pizza from a restaurant.
+
+This is a small dataset, so we can see straight away that there are two rows with the exact same values across all columns. These are duplicates by definition, but we could also define duplication at other levels, for example, duplicates of the same address or city. 
+
+
 ---
 
 .large[
 Identify with .b.purple[`get_dupes()`] from 📦 .rrured.b[`janitor`]  
 ]
 
+???
+
+Let's identify the duplicate records using the janitor package.
+
+--
+
+
 ```{r, eval=TRUE}
 pizza_orders %>%
   get_dupes() # all variables by default
 ```
 
---
-
 * Adds a `dupe_count` variable showing the number of rows sharing the duplicated values  
 * Puts the input variables at the beginning of the resulting data frame 
+
+???
+
+We simply pass the pizza orders object to get dupes. Without any other arguments, the function will work on all variables. The result will be a table with only the duplicate records, with a new column that tells us how many copies there were.
 
 ---
 
@@ -2000,16 +2075,33 @@ pizza_orders %>%
 .b.purple[`get_dupes()`] using variable with chosen observational unit
 ]
 
+???
+
+Let's repeat the operation, but this time we can specify a variable, by name, in which we want to look for duplicates. In this case, let's see if any customer placed more than one order. 
+
+--
+
 ```{r, eval=TRUE}
 pizza_orders %>%
   get_dupes(CustomerID)
 ```
 
+???
+
+Coincidentally, we get the same result as before, but this is not always the case.
+
 ---
 
 .large[
-.b.purple[`get_dupes()`] with an arbirary set of variables
+.b.purple[`get_dupes()`] with an arbitrary set of variables
 ]
+
+???
+
+Now, let's look for duplicates in an arbitrary combination of variables. Let's say we want to find duplicates in the combination of address and city. This implies that we don't care if the customers are different.
+
+--
+
 > now accepts 📦 .rrured.b[`tidyselect`] helpers
 
 ```{r, eval=TRUE}
@@ -2017,16 +2109,30 @@ pizza_orders %>%
   get_dupes(Address, starts_with("Cit"))
 ```
 
+???
+
+To do this, we simply pass the variable names, separated by a comma. Notice that we can use helper functions from tidyselect to match variable names. In the result, we see the two addresses that placed more than one order, even when they were placed by different customers.
+
 ---
 
 .large[
 Discard with .b.purple[`distinct()`] from 📦 .rrured.b[`dplyr`]
 ]
 
+???
+
+Now that we identified duplicate records, we can remove them if we want. For this, we use the distinct function from dplyr, which does essentially the opposite of get dupes.
+
+--
+
 ```{r, eval=TRUE}
 pizza_orders %>%
   distinct() # all variables by default
 ```
+
+???
+
+If we use the distinct function without any arguments, it will work on all the variables, and drop the duplicated record we had seen earlier.
 
 ---
 
@@ -2034,14 +2140,27 @@ pizza_orders %>%
 .b.purple[`distinct()`] using variable with the chosen observational unit
 ]
 
+???
+
+If we do the same for the customer ID variable, each unique value for this column will appear only once, regardless of what's in the other columns.
+
+--
 ```{r, eval=TRUE}
 pizza_orders %>%
   distinct(CustomerID, .keep_all = TRUE)
 ```
 
+???
+
+The resulting data has no more duplicated entries for customer ID
+
 --
 
 > Use `.keep_all = FALSE` (default) to drop all other variables
+
+???
+
+Notice, that distinct has a useful argument for either keeping or dropping all the other variables.
 
 ---
 
@@ -2049,6 +2168,11 @@ pizza_orders %>%
 .b.purple[`distinct()`] with custom combination of variables
 ]
 
+???
+
+Let's try again with an arbitrary selection of variables, just we did before. We want the unique combinations of addresses and cities. 
+
+--
 
 >  📦 .b.rrured[`tidyselect`] helpers enabled by using .b[`across`] semantics
 
@@ -2056,6 +2180,10 @@ pizza_orders %>%
 pizza_orders %>%
   distinct(across(c(Address, starts_with("Cit"))))
 ```
+
+???
+
+To use tidyselect like we did with get dupes, we use the across function. We pass the address and part of cities. In the result, the default behaviour of distinct dropped the rest of the colums and now we only have all the unique combinations of address and city. 
 
 ---
 
@@ -2069,6 +2197,10 @@ pizza_orders %>%
 pizza_orders %>%
   distinct(across(c(Address, starts_with("City"))), .keep_all = TRUE)
 ```
+
+???
+
+This is the same as before, but we used the keep all argument to keep the rest of the columns. Be aware of the default behavior here, because distinct will keep the first row even if there are duplicates in other variables outside of our selection.
 
 ---
 
@@ -2122,6 +2254,10 @@ background-image:url("images/jonathan-safa-YcxOAC5DpDA-unsplash.jpg")
 background-size: cover
 # Broken Values
 
+???
+
+We talked about broken headers earlier, but other values in our data can also be broken, which can really slow us down.
+
 ---
 
 # Broken values
@@ -2130,11 +2266,19 @@ background-size: cover
 Values broken across rows, often to save horizontal space
 ]
 
+???
+
+For this section, broken values refers to instances where values are broken across rows. This is often done to save horizontal space in documents.
+
 --
 
 .large[
 `NA` or blank values introduced  
 ]
+
+???
+
+When this happens, Na or blank values can end up padding the empty spaces and this is not good for data organization.
 
 --
 
@@ -2142,12 +2286,16 @@ Values broken across rows, often to save horizontal space
 Problematic when grouping variables or observational units are broken
 ]
 
+???
+
+Broken values are particularly problematic when either grouping variables or the variables with the observational units are broken across rows.
+
 ---
 
 ```{r, echo=FALSE, eval=TRUE}
 olympics <-
   tibble::tribble(
-    ~Edition, ~Country, ~`Soccer.gold.medal.(men)`, ~`Wrestling.(men.middleweight)`,
+    ~Edition, ~Country, ~`Soccer.gold.medal.(men)`, ~`Wrestling.gold.medal.(men.middleweight)`,
     NA, NA, NA, "weight class limit:",
     NA, NA, NA, "82 kg",
     "Los Angeles 1984", "USA", "France", "USA",
@@ -2168,7 +2316,7 @@ olympics <-
 ```{r olympicsgt, echo=FALSE, eval=TRUE}
 gt(olympics) %>%
   tab_style(
-    cell_text(size = "20px"),
+    cell_text(size = "19px"),
     locations = list(
       cells_body(),
       cells_column_labels(everything()),
@@ -2182,7 +2330,7 @@ gt(olympics) %>%
 ```{r olympics_setup, fig.show='hide'}
 olympics <-
   tibble::tribble(
-    ~Edition, ~Country, ~`Soccer.gold.medal.(men)`, ~`Wrestling.(men.middleweight)`,
+    ~Edition, ~Country, ~`Soccer.gold.medal.(men)`, ~`Wrestling.gold.medal.(men.middleweight)`,
     NA, NA, NA, "weight class limit:",
     NA, NA, NA, "82 kg",
     "Los Angeles 1984", "USA", "France", "USA",
@@ -2199,9 +2347,19 @@ olympics <-
 ]
 ]
 
+???
+
+These are our example data for broken values. These are data show gold medals in different olympic games for two sports. These data are quite messy, starting with the column names, but we can fix this easily. Next, see how the rows are full of NAs. This is because there are broken values in the data. 
+
+Looking closely at the edition column, some of the values are split up across two consecutive rows, maybe to make the data fit better on a page. This happened for the Barcelona 1992 and London 2012 games. The year is in the next row. What this ends up causing is confusion and lots of NAs. Another column with issues is the last one, wrestling gold medal. In this one, for some reason, information about the changes to the weight class appear in the data, and the values are also broken. Let's clean this up.   
+
 ---
 
 ## 'Unbreaking' values 
+
+???
+
+To clean broken values, we can also use some existing tools, but they have some limitations. 
 
 --
 
@@ -2209,38 +2367,54 @@ olympics <-
 For values broken up across **two consecutive rows**:
 ]
 
+???
+
+The main one being that we can mostly just unbreak values when they are split up across two consecutive rows. Any more than that and the process becomes unmanageable.
+
 --
 
 .large[
 Match the trailing or leading half of the value with a .orange.b[regexp] and 📦 .rrured.b[`unheadr`]
 ]
+
+???
+
+To unbreak values, we can use functions from unheadr, and this approach uses regular expressions to match either the leading or the trailing half of the broken values. 
+
 ---
 
 ## 'Unbreaking' values 
+### Leading
 
 .pull-left[
-Fast  
+**Fast**  
 food  
 Casual dining  
 Thai  
 Pizzeria  
-Cakes and  
+**Cakes and**  
 ice cream  
 ]  
 
 .pull-right[
-Retriever  
+**Retriever**  
 (flat-coated)  
 Bulldog (American)   
 Bullmastiff  
-Retriever  
+**Retriever**  
 (golden)  
 Poodle  
 ]
 
+???
+
+This is what we mean by the leading half of a broken value.
+This simple example has some observations, for restaurants and for dog breeds. I highlighted here the leading half, like Fast in fast food. In this case with the restaurants, these leading parts start with an uppercase letter, unlike the remaining half of the value. 
+
 ---
 
 ## 'Unbreaking' values
+### Trailing
 
 .pull-left[
 Fast  
@@ -2262,43 +2436,20 @@ Retriever
 Poodle  
 ]
 
----
+???
 
-## .purple[**`unbreak_vals()`**]  
-
-.large[
-verb-like function from 📦 .rrured.b[`unheadr`]
-
-Match the trailing half of the broken value with a .orange.b[regular expression]
-]
-```{r, eval=FALSE}
-unbreak_vals(df,
-  regex,
-  ogcol,
-  newcol,
-  sep = " ",
-)
-```
-
----
-
-## Trailing row
-
-
-```{r, eval=TRUE}
-olympics %>%
-  unbreak_vals(
-    regex = "^\\d", # numbers at start of string
-    ogcol = Edition,
-    newcol = Edition_ub,
-    sep = " "
-  )
-```
+Trailing halves are the second of two parts of a value. Like food in fast food. This we can recognize because it starts with a lowercase letter. For the dog breeds, some annotations in parentheses got broken up and we can recognize them because these trailing halves start with an opening brace.
 
 ---
 
 ### .purple[**`unbreak_rows()`**]  
 
+???
+
+Let's fix some broken values. For this we'll use functions from the unheadr package. First is the unbreak rows function.
+This function will merge two rows by matching the leading half of the broken value with a regular expression.
+
+--
 
 Verb for merging rows from 📦 .rrured.b[`unheadr`]
 
@@ -2313,37 +2464,116 @@ unbreak_rows(df,
 )
 ```
 
+???
+
+This function takes a data object and three important arguments. A regular expression to match the leading parts of a broken value, the column we'll be working on, and the separator that we want between the two parts of the value when we paste them together.
+
 ---
 
 ## Leading row
 
 ```{r, eval=TRUE}
 olympics %>% unbreak_rows(
-  regex = "^weight", # numbers at start of string
-  ogcol = `Wrestling.(men.middleweight)`,
-  sep = " "
-)
+  regex = "^weight", # string starts with 'weight'
+  ogcol = `Wrestling.gold.medal.(men.middleweight)`,
+  sep = " ")
 ```
+
+???
+
+This is how we fix the broken values in the wrestling gold medal column. There was information about changes to the weight class intermingled in this column. To match the rows that have the first half of a broken value, we can use a regular expression for strings that start with the literal string weight. A space can be a good separator here. When this runs, notice that the broken values are now in a single row and the table is more compact.
 
 ---
 
-## Leading and trailing rows
+## .purple[**`unbreak_vals()`**]  
+
+???
+
+To fix broken values by matching the trailing row, we use unbreak vals from headr.
+
+--
+
+.large[
+verb-like function from 📦 .rrured.b[`unheadr`]
+
+Match the trailing half of the broken value with a .orange.b[regular expression]
+]
+
+```{r, eval=FALSE}
+unbreak_vals(df,
+  regex,
+  ogcol,
+  newcol,
+  sep = " ")
+```
+
+???
+
+This function takes a data object and four arguments. A regular expression to match the trailing parts of a broken value, the column we'll be working on, and the name for a new column to create with the unified values. Finally, the separator that we want between the two parts of the value when we paste them together.
+
+---
+
+## Trailing row
+
 
 ```{r, eval=TRUE}
 olympics %>%
-  unbreak_rows(
-    regex = "^weight",
-    ogcol = `Wrestling.(men.middleweight)`
-  ) %>%
+  unbreak_vals(
+    regex = "^\\d", # numbers at start of string
+    ogcol = Edition,
+    newcol = Edition_ub,
+    sep = " ")
+```
+
+???
+
+This is how we fix the broken values in the edition variable. To match the rows that have the second half of a broken value, we can use a regular expression for strings that start with numbers. We specify that we want to work with the edition column, and I set the new unified values to be in a column called edition underscore ub, for unbroken. We'll also use a space as a separator. When this runs, the unified values are now in a single row, in the new column, which by default is placed at the beginning of the data. 
+
+---
+
+## Unbreak sequentially
+
+???
+
+We can chain these two operations together with pipes. With the same arguments as before, we pass the output from one function to the other one.
+
+--
+```{r, eval=FALSE}
+olympics %>%
   unbreak_vals(
     regex = "^\\d", # numbers at start of string
     ogcol = Edition,
     newcol = Edition_ub
-  )
+  ) %>% 
+    unbreak_rows(
+    regex = "^weight",
+    ogcol = `Wrestling.gold.medal.(men.middleweight)`)
+
 ```
+
 
 ---
 
+## Unbreak sequentially
+
+```{r, eval=TRUE, echo=FALSE}
+olympics %>%
+  unbreak_vals(
+    regex = "^\\d", # numbers at start of string
+    ogcol = Edition,
+    newcol = Edition_ub
+  ) %>% 
+    unbreak_rows(
+    regex = "^weight",
+    ogcol = `Wrestling.gold.medal.(men.middleweight)`)
+
+```
+
+???
+
+The result looks much better now, and we already know how to fix the two remaining issues: the messy names, and the data embedded as weird subheaders.
+
+---
 class: my-turn
 
 # My turn
@@ -2391,14 +2621,26 @@ background-size: cover
 
 # Empty Rows and Columns
 
+???
+
+In general, data organization good practices suggest not leaving empty cells, and also being aware of how we encode missing data. Empty rows and columns are an extension of this. Let's see how we can sort them out.
+
+
 ---
 
 ### Problems with empty rows and columns
+
+???
+Empty here refers to rows or columns in our data for which all values are missing. 
 
 --
 .large[
 - Common when importing files
 ]
+
+???
+
+It's quite common to find empty rows or columns when we import files, and the reasons for them being prsent can vary. 
 
 --
 
@@ -2406,15 +2648,26 @@ background-size: cover
 - Problematic when referring to variables by position or ranges of consecutive variables  (`:`)  
 ]
 
+???
+
+Having empty columns can affect our work because they might interfere with how we select variables by position or when we work with ranges of contiguous variables. Also, when we perform operations across observations, empty columns might lead to unexpected errors.  
+
 --
 
 .large[
 - Potentially disruptive when filling adjacent cells
 ]
 
+???
+Empty rows are also inconvenient if we need to fill adjacent values of perform other row-wise operations. Fortunately, we have options for cleaning data with empty rows or columns.
+
 ---
 
 # What can we do?
+
+???
+
+To deal with empty rows or columns, we can use a couple of familiar packages to first identify them, then discard them, because we don't need empty rows or columns in our data.
 
 --
 
@@ -2422,11 +2675,19 @@ background-size: cover
 **Identify** with 📦 .rrured.b[`dplyr`]  
 ]
 
+???
+
+We can identify empty rows or columns with functions from dplyr,
+
 --
 
 .large[
 **Discard** with .purple[**`remove_empty()`**] from 📦 .rrured.b[`janitor`]
 ]
+
+???
+
+and remove them with the remove empty function from janitor.
 
 ---
 
@@ -2489,17 +2750,33 @@ universities <-
 ]
 .small[source: US Integrated Postsecondary Education Data System (IPEDS)]
 
----
+???
 
+Let's look at these example data. This object, called universities, includes details about some universities in the united states. There are a lot of NAs in these data, and if we look more closely, some rows and columns are empty altogether. 
+
+---
 
 ## Identify empty rows with 📦 .rrured.b[`dplyr`] (and 📦 .rrured.b[`tibble`])  
 
+???
+
+In smaller datasets we can simply look at them and see which rows or columns are empty. With larger volumes of data this is not possible, so we can existing functions to identify them.  
+
+Let's do rows first.
+For this, we'll use the filter function from dplyr, which we used before to subset data and keep only rows that meet a condition.
+
+--
+
 ```{r, eval=TRUE}
 universities %>% filter(across(everything(), is.na))
-universities %>%
-  filter(across(everything(), is.na)) %>%
-  nrow()
 ```
+
+???
+To use the filter function on many columns at once, we use the new across syntax, and the helper function everything to work across all the variables. The is.na function, applied to each rows, will tell us if ALL the values in the row are NA or not. If they are, then we keep them.
+
+The result from this was a tibble with five rows, which are all empty. 
+
+This tells us that there were empty rows in the data, and how many, but we can also use a function from the tibble package to find out which ones.
 
 ---
 
@@ -2507,18 +2784,35 @@ universities %>%
 
 ```{r, eval=TRUE}
 universities %>%
-  rowid_to_column() %>% # <<
+  rowid_to_column() %>% #<<
   filter(across(-rowid, is.na))
 ```
 
+???
+
+We can add a unique identifier to each row before subsetting to keep only the empty rows. The row id to column function from the package tibble takes the row numbering inherent to the data and places it as a new column. 
+Then we can filter for rows which are empty in all variables except in the new one we just created. By default, its name is rowid.
+
+Now we know the position of the five empty rows, but how do we remove them.
+
 ---
 
-### Negate the condition .b.purple[(!)] and discard empty rows
+### Negate the selection .b.purple[(!)] and discard empty rows
+
+???
+
+To remove the empty rows, we follow the same process as before, but instead of keeping the empty rows, we discard them by getting the complement of our selection with an exclamation mark. 
+
+--
 
 ```{r, eval=TRUE}
 universities %>%
   filter(!across(everything(), is.na))
 ```
+
+???
+
+This will keep only the rows that aren't empty.
 
 ---
 
@@ -2526,28 +2820,76 @@ universities %>%
 Discard empty rows with .purple.b[`remove_empty()`]
 ]  
 
-> `quiet = FALSE` prints a statement about the rows that were removed
+???
+
+I just showed a way to remove empty rows with dplyr, but there is an easier alternative, using the remove empty function from the janitor package.
+
+--
+
+> `quiet = FALSE` prints a statement about the rows that were removed  
+
+> `'which'` specifies rows or columns
+
+```{r message=TRUE, eval=FALSE}
+universities %>%
+  remove_empty(
+    which = "rows",
+    quiet = FALSE)
+```
+
+???
+
+We simply specify if we want to remove row or columns, and there is an argument called quiet that controls if a little message with details prints to the console.
+
+---
 
 ```{r message=TRUE, eval=TRUE}
 universities %>%
   remove_empty(
     which = "rows",
-    quiet = FALSE
-  )
+    quiet = FALSE)
 ```
+
+???
+
+Using remove empty and specifying rows in the which argument, we get the same result as before, and because we set the quiet argument to FALSE, a small message tells us that five empty rows were removed out of twelve in total. This looks much better.
 
 ---
 
 ## Empty columns 
 
+???
+
+Now let's deal with empty columns in our data.
+
+--
+
 .large[
 Identify with 📦 .rrured.b[`dplyr`] and .b.purple[`all_na()`] from 📦 .rrured.b[`naniar`]  
 ]
+
+```{r, eval=FALSE}
+universities %>%
+  select(where(all_na))
+```
+
+**`where`** helps select variables for which a function returns `TRUE`
+
+**`all_na`** checks if all values in a vector are `NA` 
+
+???
+
+Before we remove them, we can identify then with functions from dplyr and naniar. We use select from dplyr to subset columns, and the where helper to keep only the variables that meet a condition. The condition here is if the entire column is all NA. We specificy this with all na from the package naniar. 
+
+---
 
 ```{r, eval=TRUE}
 universities %>%
   select(where(all_na))
 ```
+
+???
+This gives a subset of the data, but only with the empty columns. Because columns have names, we know right away which ones we can remove.
 
 ---
 
@@ -2559,10 +2901,19 @@ universities %>%
   names()
 ```
 
+???
+
+If we want to skip printing the object and just get the names, we can, and the names function at the end of the sequence will gives us a vector with the names of the empty columns.
+
 ---
 
-### Negate condition for selection, get names
+### Negate selection, get names
 
+???
+
+Like we did with rows, we get the complement of our selection and this will remove the empty ones.
+
+--
 
 ```{r, eval=TRUE}
 universities %>%
@@ -2570,19 +2921,60 @@ universities %>%
   names()
 ```
 
+???
+
+With this code, we know which variables aren't empty.
+
 ---
 
 ### Discard empty columns with .b.purple[`remove_empty()`] 
 
+???
 
-```{r, eval=TRUE, message=TRUE}
+We can also use janitor and the remove empty function for this.
+
+--
+
+```{r, eval=FALSE, message=TRUE}
 universities %>%
-  remove_empty(which = "cols", quiet = FALSE)
+    remove_empty(which = "cols", quiet = FALSE)
 ```
 
+> `quiet = FALSE` prints a statement about the rows that were removed  
+
+
+> `'which'` specifies rows or columns  
+
+???
+
+The syntax is simple, we specify cols in the which argument and run the code.
 
 ---
 
+#### Discard empty columns with .b.purple[`remove_empty()`] 
+
+```{r, eval=TRUE, message=TRUE}
+universities %>%
+    remove_empty(which = "cols", quiet = FALSE)
+```
+
+???
+
+Quiet is set to false, so we'll get a message telling us how many and which ones were removed. 
+
+---
+### Discard empty rows and columns simultaneously with .b.purple[`remove_empty()`] 
+
+```{r, eval=TRUE, message=TRUE}
+universities %>%
+    remove_empty(which = c("cols","rows"), quiet = TRUE)
+```
+
+???
+
+If we want to remove empty rows and columns all at once, we can pass a character vector with cols and rows to remove empty. For this one I set quiet to TRUE, so there's no message printed to the console.
+
+---
 class: my-turn
 
 # My turn
@@ -2593,7 +2985,7 @@ class: my-turn
 
 --
 
-- Identify the empty rows and columns, and create a new object with only the empty rows and columns 
+- Identify the empty rows and columns
 
 --
 
@@ -2611,7 +3003,7 @@ class: inverse
 
 --
 
-- Identify the empty rows and columns, and create a new object with only the empty rows and columns 
+- Identify the empty rows and columns
 
 --
 
@@ -2626,11 +3018,21 @@ background-image:url("images/markus-spiske-4jiR57y3jgY-unsplash.jpg")
 background-size: cover
 # Parsing Numbers
 
+???
+
+In this lesson, we'll learn how to make numeric values in our data usable, because they often aren't.
+
+We can start by going over some basic R.
+
 ---
 class: middle
 
 .large[
 - Vectors must have all their values of the same mode (_character, numeric, logical_)]
+
+???
+
+In R, vectors must have all their values of the same mode, which can be character, numeric, or logical.
 
 --
 
@@ -2638,17 +3040,32 @@ class: middle
 - If there is a character string is present in a vector, everything else in the vector will be converted to character strings
 ]
 
+???
+Because everything in a vector must be of the same type, if we have character strings in a vector then everything will be treated as type character, including numbers.
+
 ---
 
 ### We cannot perform arithmetic operations on:
+
+???
+
+If this happens, then we're blocked from going further, because we can't do arithmetic operations on 
 
 --
 
 - Numbers stored as text
 
+???
+
+Numbers stored as text,
+
 --
 
 - Strings with non-digits
+
+???
+
+or strings with non-digits.
 
 --
 
@@ -2658,29 +3075,59 @@ class(test_scores)
 class(c(test_scores, "a"))
 ```
 
+???
+
+This is what I mean. First we have a vector of five numbers, called test scores. This is an object of type numeric, but it becomes a character vector as soon as we mix in a string. In this case, the letter a.
+
 ---
 
 ## Numbers stored as text
 
+???
+
+In R, it is possible to have columns in our data that are of type character, even when they contain only numbers. This is like using cell format in a spreadsheet. If this is the case, the conversion to numeric is simple and we have two options.
+
+--
 
 1. .b.purple[`type_convert()`] the whole object (📦 .rrured.b[`readr`])
+
+???
+
+First, we can use the type convert function from readr to take an object, look at all the content in each column, and guess the type for each one. This works great for columns with all numbers.
 
 --
 
 2. Coerce one or more variables to `numeric` with 📦 .rrured.b[`dplyr`]
 
+???
+
+Another option is to coerce one or more variables to type numeric using dplyr. In this case we're transforming the data and applying a coercion to those columns that we believe to be numbers stored as text.
 
 ---
 
 ## Strings with non-digits
 
+???
+
+We cannot perform numeric operations on numbers that have non-digits. To get rid of non digits, we have two options as well.
+
+--
 
 1. Parse with 📦 .rrured.b[`readr`]  
 
+???
+
+We can parse our variables with functions from readr,
+
+--
 2. Clean with .orange.b[regular expressions]
 
+???
+
+Or we can clean up the values with regular expressions.
 
 ---
+
 ```{r, include=FALSE, eval=TRUE}
 burger_prices <-
   tibble::tribble(
@@ -2733,9 +3180,29 @@ burger_prices <-
 ]
 ]
 
+???
+
+Let's see the example data for this lesson. This object called burger prices has prices for the same hamburger in different countries, shown in two different currencies.
+
+---
+
+```{r, eval=TRUE}
+burger_prices
+```
+
+???
+
+Printed in the console, the data looks like this. The printing methods for tibble objects tell us the data type for each column, and in these data all the columns are of type character, including the ones that contain numbers and including the first column - Rank, which just has numbers from one to nine.
+
 ---
 
 ## Numbers stored as text  
+
+???
+
+The Rank column in our data has numbers stored as text. There is no good reason for this variable to be of type character, so we can make it numeric.
+
+--
 
 Parse all columns
 
@@ -2744,17 +3211,19 @@ burger_prices %>%
   type_convert()
 ```
 
----
+???
 
-## Numbers stored as text  
-
-```{r, eval=TRUE}
-burger_prices
-```
+Our first approach should be to just parse all the columns in the object with the type convert function from readr. When we do this, we can see that the Rank column is now a variable of type double, which is a class of of values within numeric.
 
 ---
 
 ## Numbers stored as text  
+
+???
+
+For a finer control of our data, we could just coerce the problematic variable to numeric. R has a function for this called as.numeric.
+
+--
 
 Coerce variables to `numeric`
 
@@ -2763,20 +3232,54 @@ burger_prices %>%
   mutate(Rank = as.numeric(Rank))
 ```
 
+???
+
+To change a single variable, we can use mutate from dplyr to overwrite Rank, in this case, with the values coerced to numeric using as.numeric. The output is the same as before.
+
+Ok, so the rank column is numeric now, but we still want to fix the values with the actual prices. Looking at these column, we see that one of them has annotations and special characters, the other one seems to have inconsistent decimal marks, and only a few of the prices has dollar signs to indicate currency.
+
 ---
 
 ## Strings with non-digits
 
-Parse with 📦 .rrured.b[`readr`] (⚠ watch out for inconsistent decimals)
+???
+
+The two columns with prices are good examples of numbers stored as strings with non-digits. We can't work with these prices until we parse the numbers in these variables into something usable.
+
+--
+
+Parse with .b.purple[`parse_number`] from 📦 .rrured.b[`readr`] (⚠ watch out for inconsistent decimals)
+
+???
+
+We can first use the parse number function from readr and see how we do. Parse number drops any non-numeric characters from a string, trying to respect how commas or dots are used to separate decimals or group digits for larger numbers.  
+
+--
+```{r, echo=FALSE, eval=TRUE}
+options(pillar.sigfig = 5)
+```
 
 ```{r, eval=TRUE}
 burger_prices %>%
   mutate(across(c(Rank, Price, Price.ARS), parse_number))
 ```
 
+???
+In the code, we use mutate and the across syntax from dpyr to modify many columns at once, we specify Rank and the two variables with the price, and that we want to apply the parse number function to each one.
+
+The result looks good for the Rank and Price columns. The extra comments or annotations in the Price column were dropped and now this column appears as a variable of type double. 
+
+The price dot ARS column is also of type double now. The dollar signs were stripped, but because of an inconsistent decimal point, the values are off now. We need to be careful with this.
+
 ---
 
 ## Strings with non-digits
+
+???
+
+Let's try again, but using string manipulation with an approach suited for these messy data.
+
+--
 
 .large[
 Clean with .orange.b[regular expressions] then .b.purple[`type_convert()`]
@@ -2795,6 +3298,14 @@ burger_prices %>%
   type_convert()
 ```
 
+???
+
+In the first step, we use mutate, the across function, combined the str remove all function from stringr and a regular expression. This will match any notes or additional details in brackets that may be present in our target columns.
+
+The second step is similar, but the regular expression is a negated character set for matching anything that is not a number, a comma, or a dot. We don't want any of these in our numeric data. 
+
+In the third step we replace commas with dots only in Price dot ARS, and finally we type convert everything.
+
 ---
 
 ```{r, echo=FALSE, eval=TRUE}
@@ -2808,6 +3319,10 @@ burger_prices %>%
   mutate(Price.ARS = str_replace(Price.ARS, ",", ".")) %>%
   type_convert()
 ```
+
+???
+
+The resulting object has usable numeric variables. We can now work with these prices, for example by converting them to other currencies through multiplication, or finding the mean price by region.
 
 ---
 class: my-turn

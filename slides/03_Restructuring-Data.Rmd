@@ -1376,4 +1376,4 @@ class: inverse
 
 --
 
-.large[- Reorder the numeric variables ('Comission reported total' first) and create a new column, coalescing the three numeric variables]
+.large[- Reorder the numeric variables ('Commission reported total' first) and create a new column, coalescing the three numeric variables]

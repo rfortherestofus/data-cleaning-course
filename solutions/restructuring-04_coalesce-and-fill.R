@@ -6,7 +6,7 @@
 
 # Load the fish landings data 'fish-landings.csv'
 # Fill the 'Fish' and 'Lake' columns
-# Reorder the numeric variables ('Comission reported total' first)
+# Reorder the numeric variables ('Commission reported total' first)
 # create a new column, coalescing the three numeric variables
 
 # load packages -----------------------------------------------------------

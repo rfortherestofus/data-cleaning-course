@@ -49,8 +49,10 @@ background-size: cover
 # What is Data Cleaning?
 
 ???
+
 Hello and welcome to Data Cleaning with R.
 Before we begin, let's define Data Cleaning. Let's look at some common definitions.
+
 ---
 
 class: center, middle
@@ -58,19 +60,25 @@ class: center, middle
 >.large["Mechanistic, time consuming process of identifying and fixing incomplete, inaccurate, irrelevant, or duplicated data"]
 
 ???
+
 One popular definition describes data cleaning as a mechanistic, time consuming process of identifying and fixing incomplete, inaccurate, irrelevant, or duplicated data
+
 --
 
 >.large["Tedious tasks that get in the way of extracting true value and insights from data"]
 
 ???
+
 Others see it as an obstacle to extracting true insights from data
+
 --
 
 > .large["Not difficult, not _real_ work. Done (grudgingly) before the main analyses"]
 
 ???
+
 and some say it is not difficult and not real work. that it is done grudgingly before the actual analyses.
+
 ---
 
 class: center, middle
@@ -82,8 +90,10 @@ class: center, middle
 > .large["~~.gray[Not difficult, not _real_ work. Done (grudgingly) before the main analyses"]~~]
 
 ???
+
 I'd like to refute some of that. 
 yes, data cleaning means fixing issues with our data, but it is real work, and it is not trivial.
+
 ---
 
 ## Data cleaning:
@@ -103,12 +113,12 @@ Has no single end product, because different systems and methods consume differe
 ???
 
 There is no one particular end product when we're cleaning data, because different programs take different inputs, and we need to adjust our approach for each one. Still, clean data has certan things in common that we will be discussing throughout this course.  
-
 ---
 
 ## Cleaning data involves:
 
 ???
+
 When we need to clean our data, these are the three main steps in the process.
 
 --
@@ -117,20 +127,26 @@ When we need to clean our data, these are the three main steps in the process.
 **1\.** Identifying specific **issues** that hinder an analysis, visualization, or reporting workflow.]  
 
 ???
+
 First, we identify the issues that hinder our workflows
+
 --
 
 .large[
 **2\.** Determining which approach or tool is needed to address each issue.] 
 
 ???
+
 Then we determine which approach or tool we will need
+
 --
+
 .large[
 **3\.** Transforming the data, making them more appropriate and valuable for a variety of downstream purposes.
 ]
 
 ???
+
 Finally, we transform the data, making them more useful for various different purposes.
 
 ---
@@ -155,35 +171,46 @@ Finally, we transform the data, making them more useful for various different pu
 ]
 
 ???
+
 While I was preparing this class, I noticed that 
 most definitions of data cleaning mention fixing issues with the data, but these issues are often mentioned without descriptions or context. I collected the most common ones here.
 
 Data in the real world usually have these issues. This list here is for reference,but we will deal with all of them at a later section of this course.
+
 ---
 
 ## Why data cleaning
 
 ???
+
 We often need to clean our data simply to get our software to import the data, and behave as we expect it to.
 
 --
+
 .large[
 - Enables downstream tasks by making data readable & usable  
 ]
 ???
 Clean data makes downstream tasks possible.
+
 --
+
 .large[
 - Saves time (rows and columns in a data object ready for use)  
 ]
+
 ???
+
 Having clean data saves time, for example, by having tables with rows and columns on which we can immediately perform operations.
+
 --
+
 .large[
 - Avoid potentially costly delays, or misinterpretations
 ]
 
 ???
+
 After that, clean data is important to avoid delays, biases, or misinterpretations.
 
 ---
@@ -191,39 +218,57 @@ After that, clean data is important to avoid delays, biases, or misinterpretatio
 ## Why data cleaning in R
 
 ???
+
 Why should we use R for data cleaning.
 
 Because, by working with code and not interactively with pointing and clicking, we leave a record of our actions which we can revisit whenever we want.
+
 --
+
 .large[
 - Document and reproduce the process  
 ]
+
 --
+
 .large[
 - Less time editing manually  
 ]
 ???
 with R, we can work on large files or with many files at once, which saves us time and might not even be feasible if done by hand.
+
 --
+
 .large[
 - Purpose-built tools available and well documented
 ]
+
 ???
+
 I also like R so much for data cleaning because there are a number of tools and packages built specifically for this, which have good documentation and a large community of users ready to help us if we get stuck.
+
 --
+
 .large[
 - Code can be reproduced and repurposed
 ] 
+
 ???
+
 Finally, the code we write can be run many times and repurposed for new projects.
+
 ---
+
 class: center, middle
 
 # Examples
 
 ???
+
 Let me show you some examples of what can happen when we don't clean our data.
+
 ---
+
 class: middle, center
 
 ```{r, eval=TRUE, out.width = "96%", echo=FALSE}
@@ -231,6 +276,7 @@ knitr::include_graphics("images/drugs.png")
 ```
 
 ???
+
 This graph is fictional, but it is based on a real used by a pharmaceutical company. It shows drug sales in a year. If, for example, an executive wants to know which was the top selling drug that year, this plot can be misleading. 
 
 Why is that?
@@ -240,6 +286,7 @@ Look at the labels on the x-axis. Each drug should only appear once, but some ap
 In this situation, the top-selling drug is not the one the chart is showing, so this is misleading. This looks obvious, but these kinds of issues are common and they can go unnoticed if we are working, for example with many years worth of data for hundreds of drugs.
 
 ---
+
 ```{r, eval=TRUE, echo=FALSE}
 isi <- 
 tibble::tribble(
@@ -264,6 +311,7 @@ isi %>% gt %>%   tab_header(
 ```
 
 ???
+
 This other example is also simplified and fictional, but it is based on a report used at a real university. Each year, the most productive faculty member receives a cash bonus, based on a report that is generated automatically. This is a good example of the consequences of not cleaning data before making calculations.
 
 Here, one faculty members appears twice in the data, because for whatever reason some entries include academic titles while the rest of the entries do not. This is also a simple fix, which could have avoided some embarrassment. 
@@ -296,9 +344,10 @@ knitr::include_graphics("images/tymp.png")
 .small[Source: Ojeda _et al._ [(1999)](https://doi.org/10.1006/jare.1999.0496)]
 
 ???
-This next example is a table from a scientific publication. A lot of information is being presented here, and let's assume the only version of these data is in a PDF file. If wanted to work with the contents of this table, we would most likely run into some trouble. 
 
+This next example is a table from a scientific publication. A lot of information is being presented here, and let's assume the only version of these data is in a PDF file. If wanted to work with the contents of this table, we would most likely run into some trouble. 
 Nothing is inherently wrong with this table, but sometimes we might be forced to import and work with these kinds of data sources
+
 ---
 
 ```{r, eval=TRUE, echo=FALSE}
@@ -323,10 +372,10 @@ gtcars %>%
 
 This last example describes some fancy cars. Things are OK for the most part, but notice these rows that group the cars by the country of their maker. This is informative and readable, but not ideal from an analysis perspective, and we will see why later on in the course.
 
-
 With these few examples, you hopefully were able to recognize some common issues and relate them to things you may have seen in your own work.
 
 ---
+
 class: inverse
 
 ## Your turn
@@ -337,6 +386,7 @@ class: inverse
 2. Reflect on the amount (if any) of data cleaning you perform for your day-to-day work.
 
 ???
+
 Before we get to any code, please complete these short tasks. 
 First, read a short text on why we should not consider data cleaning an obstacle to our work.
 Then, reflect on how much time you spent cleaning data in your own work, do you enjoy it? do you find it tedious?
@@ -349,6 +399,7 @@ background-size: cover
 # Data Cleaning is Analysis
 
 ???
+
 Before moving on, I want to really emphasize that data cleaning is the first step in an analysis. Let me elaborate.
 
 ---
@@ -364,6 +415,7 @@ When we clean data, we make judgments and interpretations
 - Are the data in a usable structure?
 
 ???
+
 Can we use the data in their current state?
 
 --
@@ -371,6 +423,7 @@ Can we use the data in their current state?
 - What constitutes 'unwanted' variation?
 
 ???
+
 Also, what constitutes unwanted variation?
 As we saw earlier in an example, are spaces between words interchangeable with underscores? do we want to keep this kind of variation? It will always depend on the context.
 
@@ -379,14 +432,17 @@ As we saw earlier in an example, are spaces between words interchangeable with u
 - Is there any implicit information that needs to made explicit?
 
 ???
+
 Sometimes we need to figure out if there is any information that is only implied but not actually recorded within a dataset. 
 
 Consider the example from earlier with the cars and the country of their makers. The country names show up in the data but it was up to us to interpret what this means. 
+
 --
 
 - What to do about missing data. 
 
 ???
+
 Finally, what to do about missing data.  We will go over this in detail later, but it is up to us to interpret what missing values mean before moving on with a workflow.
 
 ---
@@ -401,16 +457,18 @@ class: center, middle
 
 --
 
->.large[Data cleaning is an important stage in most data analyses, not a one-off task of lesser importance.]
+>.large[Data cleaning is an important stage in most data analyses, not a one-off task of lesser importance.]  
 
 ???
 
 Most of the time, diagnosing issues with our data and doing something about them is the first step in data analysis.
 
 ---
+
 .pull-left[
 <blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">I will let the data speak for itself when it cleans itself</p>&mdash; Allison Reichel (@AllisonReichel) <a href="https://twitter.com/AllisonReichel/status/1350107719236247558?ref_src=twsrc%5Etfw">January 15, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 ]
+
 .pull-right[
 <blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">I was recently asked, “are you sure teaching Python &amp; R is right? Isn’t the future all AI and ML?”<br><br>Munging data is going to be step 1 of analysis for the foreseeable future. <a href="https://t.co/n2tKDwI0wn">https://t.co/n2tKDwI0wn</a></p>&mdash; JD Long (@CMastication) <a href="https://twitter.com/CMastication/status/1361050957962952705?ref_src=twsrc%5Etfw">February 14, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 ]
@@ -453,7 +511,9 @@ background-size: cover
 # Course Logistics
 
 ???
+
 We are almost ready to start cleaning data but before we do, lets spell out the general logistics for this course.
+
 ---
 
 ## Requirements and Prerequisites
@@ -483,12 +543,15 @@ Now, some conventions that I use throughout this course.
 - All packages available on **CRAN** (can be installed with .orange[`install.packages()`])   
 
 ???
+
 All the packages we will be using are available on CRAN, which should make for easier installation. 
+
 --
 
 - All slides are available in html format
 
 ???
+
 All the slides are available in html format, which you can open with any web browser. 
 
 --
@@ -496,33 +559,39 @@ All the slides are available in html format, which you can open with any web bro
 - Package names in .b.rrured[red], preceded by 📦  
 
 ???
+
 All package names appear in red with a package emoji
+
 --
 
 - Functions and important operators in .b.orange[orange] or .b.purple[purple]  
 
 ???
+
 Important functions and operators appear in orange or purple.
+
 --
 
 - Relevant example data is provided in slides (see '**data-setup**' panels)  
 
 ???
+
 Finally, there is code for creating the example datasets that appear in the slides whenever a tabbed panel says data-setup.
 
 ---
 
 # My setup
 
-- R v4.0.3  
+- R v4.0.4  
 
-- RStudio v1.4.1103  
+- RStudio v1.4.1106  
 
 - Default theme and pane layout  
 
 - Windows 10
 
 ???
+
 I'm running recent versions of R and Rstudio in Windows 10, and other than making the font slighly larger I made no additional customization.
 
 ---
