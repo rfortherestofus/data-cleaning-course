@@ -44,4 +44,7 @@ MPAs %>% remove_empty(which = c("rows", "cols")) # still too many empty rows
 MPAs %>%
   remove_empty(which = c("rows", "cols")) %>%
   mash_colnames(1) %>%
-  filter(!across(-`Rank (by extent)`, is.na)) # negate the row selection
+  filter(!if_any(-`Rank (by extent)`, is.na))
+  # It looks like the use of across() within filter() was deprecated in dplyr 1.0.8
+  # https://dplyr.tidyverse.org/news/index.html#dplyr-108
+  # filter(across(-`Rank (by extent)`, is.na)) # negate the row selection
